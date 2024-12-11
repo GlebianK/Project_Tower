@@ -50,12 +50,12 @@ public class ClimbChecker : MonoBehaviour
 
         //check if any colliders messes up climbing
         //Debug.DrawLine(raycastHit.point + Vector3.up * cc.skinWidth, raycastHit.point + Vector3.up * (cc.skinWidth + cc.height), Color.red);
-        //if (Physics.CheckCapsule(raycastHit.point + Vector3.up * cc.skinWidth, 
-        //    raycastHit.point + Vector3.up * (cc.skinWidth + cc.height),
-        //    cc.radius, _groundLayer, QueryTriggerInteraction.Ignore))
-        //{
-        //    return new RaycastHit();
-        //}
+        if (Physics.CheckCapsule(raycastHit.point + Vector3.up * (cc.skinWidth + cc.radius),
+            raycastHit.point + Vector3.up * (cc.skinWidth + cc.height - cc.radius),
+            cc.radius, _groundLayer, QueryTriggerInteraction.Ignore))
+        {
+            return new RaycastHit();
+        }
 
         return raycastHit;
     }
