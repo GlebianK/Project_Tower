@@ -3,43 +3,33 @@ using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private float Hp = 1f;
-    private float StartHp;
-    [SerializeField] private UnityEvent DiedGO;
-    [SerializeField] private UnityEvent HealedGO;
-    [SerializeField] private UnityEvent TookDamageGO;
+    [SerializeField] private float _maxHp = 1f;
+    private float _hp;
+    public UnityEvent Died;
+    public UnityEvent Healed;
+    public UnityEvent TookDamage;
     private void Start()
     {
-        StartHp = Hp;
+        _hp = _maxHp;
     }
     public void Heal(float healValue)
     {
-        if(Hp <= StartHp)
+        if(_hp <= _maxHp)
         {
-            Healed();
-            Hp += healValue; 
+            _hp += healValue;
+            Healed.Invoke();
         }
     }
     public void TakeDamage(float damageValue)
     {
-        Hp -= damageValue;
-        TookDamage();
-        if(Hp <= 0f)
+        _hp -= damageValue;
+        TookDamage.Invoke();
+        if(_hp <= 0f)
         {
-            Died();
+            Died.Invoke();
         }
     }
-    private void Died()
-    {
-        DiedGO.Invoke();
-    }
-    private void Healed()
-    {
-        HealedGO.Invoke();
-    }
-    private void TookDamage()
-    {
-        TookDamageGO.Invoke();
-    }
+
+
 
 }
