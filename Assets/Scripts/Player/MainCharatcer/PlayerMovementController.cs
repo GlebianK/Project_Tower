@@ -188,7 +188,7 @@ public class PlayerMovementController : MonoBehaviour
             {
                 if (IsSprintAvailable())
                     _moveState |= PlayerMovementState.SprintingFlag;
-                else
+                else if (_movementInputEventHandler.GetMovementDirectionRaw().sqrMagnitude > 0.2)
                 {
                     IntoDash();
                 }
