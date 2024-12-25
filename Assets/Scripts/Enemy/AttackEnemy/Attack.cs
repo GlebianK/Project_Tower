@@ -13,43 +13,37 @@ public class Attack : MonoBehaviour
     [SerializeField] private float damageDealingDelay;
     [SerializeField] private float durationOfTheAttack;
     [SerializeField] private LayerMask layerMask;
-    private Transform AttackRaycastPointPosition;
-    private void Start()
-    {
-        AttackRaycastPointPosition = transform.Find("AttackRaycastPointPosition");
-    }
+    [SerializeField] private Transform AttackRaycastPointPosition;
+    private bool canAttack;
     #region
-    public void CanAttack(bool canAttack)
+    public bool CanAttack()
     {
-        if (canAttack)
-        {
-            TryAttack();
-        }
+       return canAttack;
     }
     public void TryAttack()
     {
+        if(canAttack)
         StartCoroutine(PerformAttackCoroutine());
     }
     #endregion
     private IEnumerator PerformAttackCoroutine()
     {
+        canAttack = false;
+        AttackStarted.Invoke();
         Health health;
         RaycastHit hit;
         Ray ray;
         yield return new WaitForSeconds(damageDealingDelay);
         ray = new Ray(AttackRaycastPointPosition.position, transform.forward);
         Debug.DrawRay(ray.origin, ray.direction * rangeAttack, Color.cyan);
-
         if (Physics.Raycast(ray, out hit, rangeAttack, layerMask))
         {
-            AttackStarted.Invoke();
-            AttackEnded.Invoke();
             health = hit.transform.GetComponent<Health>();
             health.TakeDamage(damage);
-            AttackStarted.Invoke();
-            AttackEnded.Invoke();
         }
         yield return new WaitForSeconds(durationOfTheAttack);
+        AttackEnded.Invoke();
+        canAttack = true;
     }
 
 }
