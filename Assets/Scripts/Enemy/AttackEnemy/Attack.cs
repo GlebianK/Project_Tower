@@ -5,64 +5,51 @@ using UnityEngine.Events;
 
 public class Attack : MonoBehaviour
 {
-    [SerializeField] private float _damageGive;
-    [SerializeField] private float _rangeAttack;
-    [SerializeField] private float _taimAttack;
-    [SerializeField] private float _durationOfTheAttack;
-    private bool _isAttacking = true;
-   
-    private RaycastHit hit;
-    private Ray ray;
-    [SerializeField] private LayerMask layerMask;
-
-    private Health health;
-    [SerializeField] private Transform AttackRaycastPointPosition;
     public UnityEvent AttackStarted;
     public UnityEvent AttackEnded;
+
+    [SerializeField] private float damage;
+    [SerializeField] private float rangeAttack;
+    [SerializeField] private float damageDealingDelay;
+    [SerializeField] private float durationOfTheAttack;
+    [SerializeField] private LayerMask layerMask;
+    private Transform AttackRaycastPointPosition;
     private void Start()
     {
         AttackRaycastPointPosition = transform.Find("AttackRaycastPointPosition");
     }
-    private IEnumerator StartRaycast()
+    #region
+    public void CanAttack(bool canAttack)
     {
-        yield return new WaitForSeconds(_taimAttack);
+        if (canAttack)
+        {
+            TryAttack();
+        }
+    }
+    public void TryAttack()
+    {
+        StartCoroutine(PerformAttackCoroutine());
+    }
+    #endregion
+    private IEnumerator PerformAttackCoroutine()
+    {
+        Health health;
+        RaycastHit hit;
+        Ray ray;
+        yield return new WaitForSeconds(damageDealingDelay);
         ray = new Ray(AttackRaycastPointPosition.position, transform.forward);
-        Debug.DrawRay(ray.origin, ray.direction * _rangeAttack, Color.cyan);
-       
-        if (Physics.Raycast(ray, out hit, _rangeAttack, layerMask))
-        {
-            {
-               
-                health = GameObject.Find(hit.transform.name).GetComponent<Health>();
-                health.TakeDamage(_damageGive);
-                yield return new WaitForSeconds(_durationOfTheAttack);
-                //_isAttacking = true;
-            }
-        }
-        _isAttacking = true;
-    }
-    private void OnTriggerEnter(Collider collision)
-    {
-        if (collision.gameObject.CompareTag("Player") && _isAttacking)
-        {
-            _isAttacking = false;
-            StartCoroutine(StartRaycast());
-        }
-    }
-    private void OnTriggerStay(Collider collision)
-    {
-        if (collision.gameObject.CompareTag("Player") && _isAttacking)
-        {
-            _isAttacking = false;
-            StartCoroutine(StartRaycast());
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        _isAttacking = true;
-    }
+        Debug.DrawRay(ray.origin, ray.direction * rangeAttack, Color.cyan);
 
-
-
+        if (Physics.Raycast(ray, out hit, rangeAttack, layerMask))
+        {
+            AttackStarted.Invoke();
+            AttackEnded.Invoke();
+            health = hit.transform.GetComponent<Health>();
+            health.TakeDamage(damage);
+            AttackStarted.Invoke();
+            AttackEnded.Invoke();
+        }
+        yield return new WaitForSeconds(durationOfTheAttack);
+    }
 
 }
