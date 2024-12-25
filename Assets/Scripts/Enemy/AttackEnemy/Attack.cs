@@ -22,7 +22,7 @@ public class Attack : MonoBehaviour
     }
     public void TryAttack()
     {
-        if(canAttack)
+        if(CanAttack())
         StartCoroutine(PerformAttackCoroutine());
     }
     #endregion
