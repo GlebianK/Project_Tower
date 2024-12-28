@@ -313,7 +313,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void GroundCheck()
     {
-        float chosenGroundCheckDistance = IsGrounded ? cc.skinWidth + 1 : 0.30f;
+        float chosenGroundCheckDistance = cc.skinWidth * 2 + cc.stepOffset;
         if (Time.time - _lastTimeJump > 0.2f)
         {
             Vector3 p1 = transform.position + Vector3.up * cc.radius;

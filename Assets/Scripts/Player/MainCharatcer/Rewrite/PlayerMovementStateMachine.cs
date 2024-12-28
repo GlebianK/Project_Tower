@@ -6,66 +6,67 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovementStateMachine : MonoBehaviour
 {
-    private CharacterController _cc;
+    private CharacterController cc;
     [SerializeField] 
-    private MovementInputEventHandler _movementInputEventHandler;
+    private MovementInputEventHandler movementInputEventHandler;
     [SerializeField]
-    private List<PlayerMovementStateConfigBase> _moveStatesList;
+    private List<PlayerMovementStateConfigBase> moveStatesList;
 
     [SerializeField]
-    private string _startMovementStateName;
+    private string startMovementStateName;
     [SerializeField]
-    private LayerMask _groundLayer;
+    private LayerMask groundLayer;
 
-    private Dictionary<int, IPlayerMovementState> _movementStates
-        = new Dictionary<int, IPlayerMovementState>();
+    private Dictionary<int, IPlayerMovementState> movementStates;
 
-    private IPlayerMovementState _currentMovementState;
+    private IPlayerMovementState currentMovementState;
 
     //additional vals for good machine management
-    public CharacterController CC => _cc;
+    public CharacterController CC => cc;
     public Vector3 GroundNormal { get; private set; }
     public Vector3 CharacterVelocity;
 
-    private float _lastTimeJump;
+    private float lastTimeJump;
 
     private void Awake()
     {
-        _cc = GetComponent<CharacterController>();
-        _lastTimeJump = -1;
+        cc = GetComponent<CharacterController>();
+        lastTimeJump = -1;
+
+        movementStates = new Dictionary<int, IPlayerMovementState>();
     }
 
     private void Start()
     {
-        foreach (var stateConfig in _moveStatesList)
+        foreach (var stateConfig in moveStatesList)
         {
             int hash = stateConfig.Name.GetHashCode();
             IPlayerMovementState state = stateConfig.CreateMovementStateInstance(
                 this,
-                _movementInputEventHandler
+                movementInputEventHandler
                 );
-            _movementStates.Add(hash, state);
+            movementStates.Add(hash, state);
         }
 
-        SetCurrentState(_startMovementStateName);
+        SetCurrentState(startMovementStateName);
         CharacterVelocity = Vector3.zero;
         GroundNormal = Vector3.up;
     }
 
     private void Update()
     {
-        _currentMovementState.UpdateMovementVelocity(Time.deltaTime);
+        currentMovementState.UpdateMovementVelocity(Time.deltaTime);
 
-        Vector3 capsuleBottomBeforeMove = transform.position + transform.up * _cc.radius;
-        Vector3 capsuleTopBeforeMove = transform.position + transform.up * (_cc.height - _cc.radius);
+        Vector3 capsuleBottomBeforeMove = transform.position + transform.up * cc.radius;
+        Vector3 capsuleTopBeforeMove = transform.position + transform.up * (cc.height - cc.radius);
         Vector3 moveVec = CharacterVelocity * Time.deltaTime;
 
-        _cc.Move(moveVec);
+        cc.Move(moveVec);
         RaycastHit hitResult;
         if (Physics.CapsuleCast(
                 capsuleBottomBeforeMove,
                 capsuleTopBeforeMove,
-                _cc.radius,
+                cc.radius,
                 CharacterVelocity.normalized,
                 out hitResult,
                 CharacterVelocity.magnitude * Time.deltaTime,
@@ -74,16 +75,16 @@ public class PlayerMovementStateMachine : MonoBehaviour
             CharacterVelocity = Vector3.ProjectOnPlane(CharacterVelocity, hitResult.normal);
         }
 
-        _currentMovementState.HandleObstacleAfterMovement(Time.deltaTime, hitResult);
+        currentMovementState.HandleObstacleAfterMovement(Time.deltaTime, hitResult);
 
-        _movementInputEventHandler.jumpPressed = false;
+        movementInputEventHandler.jumpPressed = false;
     }
 
     //machine manage methods
 
     public IPlayerMovementState GetCurrentState()
     {
-        return _currentMovementState;
+        return currentMovementState;
     }
     public void SetCurrentState(string stateName)
     {
@@ -91,20 +92,20 @@ public class PlayerMovementStateMachine : MonoBehaviour
     }
     public void SetCurrentState(int hash)
     {
-        IPlayerMovementState newState = _movementStates[hash];
-        if (newState == _currentMovementState)
+        IPlayerMovementState newState = movementStates[hash];
+        if (newState == currentMovementState)
             return;
 
-        IPlayerMovementState oldState = _currentMovementState;
-        _currentMovementState = newState;
+        IPlayerMovementState oldState = currentMovementState;
+        currentMovementState = newState;
         oldState?.OnStateDeactivated(newState);
         newState?.OnStateActivated(oldState);
     }
 
     private void UpdateHeight(float height)
     {
-        _cc.height = height;
-        _cc.center = Vector3.up * _cc.height * 0.5f;
+        cc.height = height;
+        cc.center = Vector3.up * cc.height * 0.5f;
     }
 
     Coroutine _uncrouchCoroutine = null;
@@ -112,15 +113,15 @@ public class PlayerMovementStateMachine : MonoBehaviour
     public bool CanSetHeight(float height)
     {
         Collider[] standingOverlaps = Physics.OverlapCapsule(
-                    transform.position + Vector3.up * _cc.radius,
-                    transform.position + Vector3.up * (height - _cc.radius),
-                    _cc.radius,
+                    transform.position + Vector3.up * cc.radius,
+                    transform.position + Vector3.up * (height - cc.radius),
+                    cc.radius,
                     -1,
                     QueryTriggerInteraction.Ignore);
 
         foreach (Collider c in standingOverlaps)
         {
-            if (c != _cc) return false;
+            if (c != this.cc) return false;
         }
         return true;
     }
@@ -137,7 +138,7 @@ public class PlayerMovementStateMachine : MonoBehaviour
 
     public void SetHeight(float newHeight, bool ignoreObstructions)
     {
-        if (_cc.height > newHeight)
+        if (cc.height > newHeight)
         {
             if (_uncrouchCoroutine != null)
                 StopCoroutine(_uncrouchCoroutine);
@@ -160,20 +161,20 @@ public class PlayerMovementStateMachine : MonoBehaviour
     }
     public bool GroundCheck()
     {
-        float chosenGroundCheckDistance = _cc.skinWidth + _cc.stepOffset;
+        float chosenGroundCheckDistance = cc.isGrounded ? cc.skinWidth + 1 : 0.2f;
         GroundNormal = Vector3.up;
         bool isGrounded = false;
-        float afterJumpTime = Time.time - _lastTimeJump;
+        float afterJumpTime = Time.time - lastTimeJump;
         if (afterJumpTime < 0.12f)
         {
             return false;
         }
-        Vector3 p1 = transform.position + Vector3.up * _cc.radius;
-        Vector3 p2 = transform.position + Vector3.up * (_cc.height - _cc.radius);
+        Vector3 p1 = transform.position + Vector3.up * cc.radius;
+        Vector3 p2 = transform.position + Vector3.up * (cc.height - cc.radius);
         if (Physics.CapsuleCast(p1,
             p2,
-            _cc.radius, Vector3.down, out RaycastHit hit, chosenGroundCheckDistance,
-            _groundLayer,
+            cc.radius, Vector3.down, out RaycastHit hit, chosenGroundCheckDistance,
+            groundLayer,
             QueryTriggerInteraction.Ignore))
         {
             GroundNormal = hit.normal;
@@ -181,8 +182,8 @@ public class PlayerMovementStateMachine : MonoBehaviour
             if (Vector3.Dot(GroundNormal, Vector3.up) > 0 &&
                 IsNormalUnderSlope(GroundNormal))
             {
-                if (hit.distance > _cc.skinWidth)
-                    _cc.Move(Vector3.down * hit.distance);
+                if (hit.distance > cc.skinWidth)
+                    cc.Move(Vector3.down * hit.distance);
             }
         }
         return isGrounded;
@@ -198,12 +199,12 @@ public class PlayerMovementStateMachine : MonoBehaviour
     public bool IsNormalUnderSlope(Vector3 normal)
     {
         float angle = Vector3.Angle(transform.up, normal);
-        return angle <= _cc.slopeLimit;
+        return angle <= cc.slopeLimit;
     }
 
     public void Jump(Vector3 jumpVelocity)
     {
         CharacterVelocity = jumpVelocity;
-        _lastTimeJump = Time.time;
+        lastTimeJump = Time.time;
     }
 }

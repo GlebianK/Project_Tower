@@ -2,23 +2,23 @@ using UnityEngine;
 
 public class GroundedPlayerMovementState : PlayerMovementStateBase
 {
-    private float _acceleration;
-    private float _maxSpeed;
-    private float _jumpVelocity;
+    private float acceleration;
+    private float maxSpeed;
+    private float jumpVelocity;
 
-    private int _airStateHash;
-    private int _crouchStateHash;
-    private int _sprintStateHash;
+    private int airStateHash;
+    private int crouchStateHash;
+    private int sprintStateHash;
 
     public GroundedPlayerMovementState(GroundedPlayerMovementStateConfig config)
     {
-        _acceleration = config.Acceleration;
-        _maxSpeed = config.MaxSpeed;
-        _jumpVelocity = config.JumpVelocity;
+        acceleration = config.Acceleration;
+        maxSpeed = config.MaxSpeed;
+        jumpVelocity = config.JumpVelocity;
 
-        _airStateHash = config.AirStateHash;
-        _crouchStateHash = config.CrouchStateHash;
-        _sprintStateHash = config.SprintStateHash;
+        airStateHash = config.AirStateHash;
+        crouchStateHash = config.CrouchStateHash;
+        sprintStateHash = config.SprintStateHash;
     }
 
     // возвращает true, если был совершен переход в новое состояние
@@ -33,7 +33,7 @@ public class GroundedPlayerMovementState : PlayerMovementStateBase
             {
                 movementController.Jump(ComputeJumpVelocity(deltaTime));
             }
-            movementController.SetCurrentState(_airStateHash);
+            movementController.SetCurrentState(airStateHash);
             movementController.GetCurrentState().UpdateMovementVelocity(deltaTime);
             return true;
         }
@@ -44,21 +44,21 @@ public class GroundedPlayerMovementState : PlayerMovementStateBase
     public virtual Vector3 ComputeJumpVelocity(float deltaTime)
     {
         Vector3 velocity = movementController.CharacterVelocity;
-        velocity.y = _jumpVelocity;
+        velocity.y = jumpVelocity;
         return velocity;
     }
 
     protected Vector3 AvoidGroundJiggleForVelocity(Vector3 velocityToFix, float deltaTime)
     {
-        return velocityToFix + Vector3.down * 0.05f / deltaTime;
+        return velocityToFix + movementController.GetDirectionOnSlope(Vector3.down, movementController.GroundNormal) * 0.05f / deltaTime;
     }
 
     protected override Vector3 ComputeVelocity(float deltaTime)
     {
         Vector3 WSinput = inputController.GetMovementDirectionInTransformSpace(movementController.transform);
-        Vector3 targetVelocity = WSinput * _maxSpeed;
+        Vector3 targetVelocity = WSinput * maxSpeed;
         targetVelocity = movementController.GetDirectionOnSlope(targetVelocity.normalized, movementController.GroundNormal) * targetVelocity.magnitude;
-        Vector3 resultVelocity = Vector3.Lerp(movementController.CharacterVelocity, targetVelocity, _acceleration * deltaTime);
+        Vector3 resultVelocity = Vector3.Lerp(movementController.CharacterVelocity, targetVelocity, acceleration * deltaTime);
         return AvoidGroundJiggleForVelocity(resultVelocity, deltaTime);
     }
 

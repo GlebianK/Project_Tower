@@ -2,20 +2,19 @@ using UnityEngine;
 
 public class AirPlayerMovementState : PlayerMovementStateBase
 {
-    private float _acceleration;
-    private float _airMaxSpeed;
-    private float _gravityForce;
+    private float acceleration;
+    private float airMaxSpeed;
+    private float gravityForce;
+    private float airDelimitSpeed;
 
-    private int _groundStateHash;
-
-    private float _airDelimitSpeed;
+    private int groundStateHash;
 
     public AirPlayerMovementState(AirPlayerMovementStateConfig config)
     {
-        _acceleration = config.Acceleration;
-        _airMaxSpeed = config.AirMaxSpeed;
-        _gravityForce = config.GravityForce;
-        _groundStateHash = config.GroundStateHash;
+        acceleration = config.Acceleration;
+        airMaxSpeed = config.AirMaxSpeed;
+        gravityForce = config.GravityForce;
+        groundStateHash = config.GroundStateHash;
     }
 
     public override void HandleObstacleAfterMovement(float deltaTime, in RaycastHit hit)
@@ -27,7 +26,7 @@ public class AirPlayerMovementState : PlayerMovementStateBase
     {
         Vector3 velocity = movementController.CharacterVelocity;
         velocity.y = 0;
-        _airDelimitSpeed = velocity.magnitude > _airMaxSpeed ? velocity.magnitude : _airMaxSpeed;
+        airDelimitSpeed = velocity.magnitude > airMaxSpeed ? velocity.magnitude : airMaxSpeed;
     }
 
     public override void OnStateDeactivated(IPlayerMovementState nextState)
@@ -42,7 +41,7 @@ public class AirPlayerMovementState : PlayerMovementStateBase
         bool isJumping = inputController.jumpPressed;
         if (isGrounded && !isJumping)
         {
-            movementController.SetCurrentState(_groundStateHash);
+            movementController.SetCurrentState(groundStateHash);
             movementController.GetCurrentState().UpdateMovementVelocity(deltaTime);
             return true;
         }
@@ -56,14 +55,14 @@ public class AirPlayerMovementState : PlayerMovementStateBase
 
         Vector3 velocity = movementController.CharacterVelocity;
 
-        velocity += WSmovementInput * _acceleration * deltaTime;
+        velocity += WSmovementInput * acceleration * deltaTime;
         float VertVelocity = velocity.y;
         Vector3 HorizontalVelocity = Vector3.ProjectOnPlane(velocity, Vector3.up);
 
-        HorizontalVelocity = Vector3.ClampMagnitude(HorizontalVelocity, _airDelimitSpeed);
+        HorizontalVelocity = Vector3.ClampMagnitude(HorizontalVelocity, airDelimitSpeed);
         velocity = HorizontalVelocity + Vector3.up * VertVelocity;
 
-        velocity += Vector3.down * _gravityForce * deltaTime;
+        velocity += Vector3.down * gravityForce * deltaTime;
 
         return velocity;
     }
