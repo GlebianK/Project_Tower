@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AttackAnimator : MonoBehaviour
+public class MoveAnimator : MonoBehaviour
 {
     private Animator animator;
 
@@ -10,13 +10,13 @@ public class AttackAnimator : MonoBehaviour
     }
 
     #region
-    public void OnAttackStarted()
+    public void MoveStart()
     {
-        animator.SetBool("OnAttack",true);
+        animator.SetBool("Move", true);
     }
-    public void OnAttackEnded()
+    public void MoveEnded()
     {
-        animator.SetBool("OnAttack", false);
+        animator.SetBool("Move",false);
     }
     #endregion
 }
