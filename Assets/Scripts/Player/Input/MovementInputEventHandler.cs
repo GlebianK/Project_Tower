@@ -1,26 +1,20 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.XInput;
-using static UnityEngine.Rendering.DebugUI;
-
-[Serializable]
-public class InputControllerEvent : UnityEvent<InputAction.CallbackContext> { }
-
-[Serializable]
-public class InputAxisEvent : UnityEvent<Vector2> { }
-
 
 public class MovementInputEventHandler : MonoBehaviour
 {
-    public InputAxisEvent MovementDirectionChanged;
-    public InputAxisEvent LookInputAction;
+    public UnityEvent<Vector2> MovementDirectionChanged;
+    public UnityEvent<Vector2> LookInputAction;
+    public UnityEvent JumpInputAction;
 
     private Vector2 _movementDirection;
     private Vector2 _lookInputProperty;
+
+    public bool sprintModifier;
+    public bool crouchModifier;
+    public bool jumpPressed;
+
     private Vector2 _lookInput
     {
         get
@@ -47,8 +41,6 @@ public class MovementInputEventHandler : MonoBehaviour
         return new Vector2(xVal, yVal);
     }
 
-
-
     public Vector2 GetMovementDirectionRaw()
     {
         if (enabled)
@@ -71,6 +63,9 @@ public class MovementInputEventHandler : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        sprintModifier = false;
+        crouchModifier = false;
     }
 
     public void OnMove(InputAction.CallbackContext Context)
@@ -90,6 +85,27 @@ public class MovementInputEventHandler : MonoBehaviour
             currentLookInput += Context.ReadValue<Vector2>() * Mathf.Deg2Rad;
             _lookInput = currentLookInput;
             LookInputAction?.Invoke(_lookInput);
+        }
+    }
+
+    public void OnSprint(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            sprintModifier ^= sprintModifier;
+        }
+    }
+
+    public void OnCrouch(InputAction.CallbackContext context)
+    {
+        crouchModifier = context.started ? true : context.canceled ? false : crouchModifier;
+    }
+
+    public void OnJump(InputAction.CallbackContext context) 
+    { 
+        if (context.started)
+        {
+            jumpPressed = true;
         }
     }
 }

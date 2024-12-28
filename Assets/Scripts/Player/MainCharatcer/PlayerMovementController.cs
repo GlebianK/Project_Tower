@@ -164,6 +164,7 @@ public class PlayerMovementController : MonoBehaviour
         _moveState = PlayerMovementState.InAir;
         SetCrouchState(false, true);
         UpdateHeight();
+        _lastTimeJump = -1;
     }
 
     private void Update()
@@ -312,10 +313,8 @@ public class PlayerMovementController : MonoBehaviour
 
     private void GroundCheck()
     {
-        float chosenGroundCheckDistance = IsGrounded ? cc.skinWidth + 1 : 0.10f;
-        _moveState &= ~PlayerMovementState.GroundedFlag;
-        GroundNormal = Vector3.up;
-        if (Time.time >= _lastTimeJump + 0.2f)
+        float chosenGroundCheckDistance = IsGrounded ? cc.skinWidth + 1 : 0.30f;
+        if (Time.time - _lastTimeJump > 0.2f)
         {
             Vector3 p1 = transform.position + Vector3.up * cc.radius;
             Vector3 p2 = transform.position + Vector3.up * (cc.height - cc.radius);
@@ -333,6 +332,12 @@ public class PlayerMovementController : MonoBehaviour
                     if (hit.distance > cc.skinWidth)
                         cc.Move(Vector3.down * hit.distance);
                 }
+            }
+            else
+            {
+                
+                _moveState &= ~PlayerMovementState.GroundedFlag;
+                GroundNormal = Vector3.up;
             }
         }
     }

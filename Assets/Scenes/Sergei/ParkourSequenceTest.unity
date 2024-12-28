@@ -8204,6 +8204,43 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1272563973 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3977425384504874981, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+  m_PrefabInstance: {fileID: 1448627070}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1272563975 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1562706418643954085, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+  m_PrefabInstance: {fileID: 1448627070}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272563973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad86edec584d8744eb0fbfc2936b2b2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1272563980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272563973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0c7c0fe79f69de4a8341b6e8423f9a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _movementInputEventHandler: {fileID: 1272563975}
+  _moveStatesList:
+  - {fileID: 11400000, guid: 3a9df56017bc765408482692285b4cec, type: 2}
+  - {fileID: 11400000, guid: 157f36f6642b6bc4bb99fd8ca98901d8, type: 2}
+  _startMovementStateName: Air
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  CharacterVelocity: {x: 0, y: 0, z: 0}
 --- !u!1 &1286058443
 GameObject:
   m_ObjectHideFlags: 0
@@ -15192,6 +15229,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5119250697248205721, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_SkinWidth
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5119250697248205721, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_SlopeLimit
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5119250697248205721, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_StepOffset
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5119250697248205721, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_MinMoveDistance
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084029200340598382, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084029200340598382, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084029200340598382, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1272563975}
+    - target: {fileID: 6084029200340598382, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084029200340598382, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnJump
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084029200340598382, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: MovementInputEventHandler, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084029200340598382, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7397748607678048935, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
       propertyPath: Priority.Enabled
       value: 1
@@ -15207,6 +15288,10 @@ PrefabInstance:
     - target: {fileID: 7397748607678048935, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
       propertyPath: m_StreamingVersion
       value: 20241001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7742737663926725935, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7742737663926725935, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
       propertyPath: _jumpVelocitySprinting
@@ -15235,7 +15320,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3977425384504874981, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1272563980}
   m_SourcePrefab: {fileID: 100100000, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
 --- !u!43 &1476713533
 Mesh:
