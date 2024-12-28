@@ -14,12 +14,9 @@ public class Attack : MonoBehaviour
     [SerializeField] private float durationOfTheAttack;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private Transform AttackRaycastPointPosition;
-    private bool canAttack;
+    private bool canAttack = true;
     #region
-    public bool CanAttack()
-    {
-       return canAttack;
-    }
+    public bool CanAttack() => canAttack;
     public void TryAttack()
     {
         if(CanAttack())
