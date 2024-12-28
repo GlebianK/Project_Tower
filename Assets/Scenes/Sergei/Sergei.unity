@@ -868,12 +868,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0c7c0fe79f69de4a8341b6e8423f9a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementInputEventHandler: {fileID: 0}
-  moveStatesList: []
-  startMovementStateName: 
+  movementInputEventHandler: {fileID: 525963081}
+  moveStatesList:
+  - {fileID: 11400000, guid: 3a9df56017bc765408482692285b4cec, type: 2}
+  - {fileID: 11400000, guid: 157f36f6642b6bc4bb99fd8ca98901d8, type: 2}
+  startMovementStateName: Air
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   CharacterVelocity: {x: 0, y: 0, z: 0}
 --- !u!1 &530699107
 GameObject:
@@ -5245,7 +5247,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5119250697248205721, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
       propertyPath: m_StepOffset
-      value: 0
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 6084029200340598382, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
       propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.size
