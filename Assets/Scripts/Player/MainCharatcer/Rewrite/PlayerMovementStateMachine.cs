@@ -28,6 +28,8 @@ public class PlayerMovementStateMachine : MonoBehaviour
 
     private float lastTimeJump;
 
+    public float PlayerDefaultHeight { get; private set; }
+    
     private void Awake()
     {
         cc = GetComponent<CharacterController>();
@@ -51,6 +53,7 @@ public class PlayerMovementStateMachine : MonoBehaviour
         SetCurrentState(startMovementStateName);
         CharacterVelocity = Vector3.zero;
         GroundNormal = Vector3.up;
+        PlayerDefaultHeight = cc.height;
     }
 
     private void Update()
@@ -108,7 +111,7 @@ public class PlayerMovementStateMachine : MonoBehaviour
         cc.center = Vector3.up * cc.height * 0.5f;
     }
 
-    Coroutine _uncrouchCoroutine = null;
+    Coroutine uncrouchCoroutine = null;
 
     public bool CanSetHeight(float height)
     {
@@ -126,7 +129,7 @@ public class PlayerMovementStateMachine : MonoBehaviour
         return true;
     }
 
-    private IEnumerator TrySetHeightForWhile(float height)
+    private IEnumerator TrySetHeightForWhileCoroutine(float height)
     {
         while (!CanSetHeight(height))
         {
@@ -136,12 +139,17 @@ public class PlayerMovementStateMachine : MonoBehaviour
         UpdateHeight(height);
     }
 
+    public void ResetHeight()
+    {
+        SetHeight(PlayerDefaultHeight, false);
+    }
+
     public void SetHeight(float newHeight, bool ignoreObstructions)
     {
         if (cc.height > newHeight)
         {
-            if (_uncrouchCoroutine != null)
-                StopCoroutine(_uncrouchCoroutine);
+            if (uncrouchCoroutine != null)
+                StopCoroutine(uncrouchCoroutine);
             UpdateHeight(newHeight);
         }
         else
@@ -150,9 +158,9 @@ public class PlayerMovementStateMachine : MonoBehaviour
             {
                 if (!CanSetHeight(newHeight))
                 {
-                    if (_uncrouchCoroutine != null)
-                        StopCoroutine(_uncrouchCoroutine);
-                    _uncrouchCoroutine = StartCoroutine(TrySetHeightForWhile(newHeight));
+                    if (uncrouchCoroutine != null)
+                        StopCoroutine(uncrouchCoroutine);
+                    uncrouchCoroutine = StartCoroutine(TrySetHeightForWhileCoroutine(newHeight));
                     return;
                 }
             }

@@ -1,14 +1,16 @@
+using NUnit.Framework.Interfaces;
 using UnityEngine;
 
 public class GroundedPlayerMovementState : PlayerMovementStateBase
 {
-    private float acceleration;
-    private float maxSpeed;
-    private float jumpVelocity;
+    protected float acceleration;
+    protected float maxSpeed;
+    protected float jumpVelocity;
 
-    private int airStateHash;
-    private int crouchStateHash;
-    private int sprintStateHash;
+    protected int airStateHash;
+    protected int crouchStateHash;
+    protected int sprintStateHash;
+    protected int walkStateHash;
 
     public GroundedPlayerMovementState(GroundedPlayerMovementStateConfig config)
     {
@@ -19,6 +21,7 @@ public class GroundedPlayerMovementState : PlayerMovementStateBase
         airStateHash = config.AirStateHash;
         crouchStateHash = config.CrouchStateHash;
         sprintStateHash = config.SprintStateHash;
+        walkStateHash = config.WalkStateHash;
     }
 
     // возвращает true, если был совершен переход в новое состояние
@@ -34,6 +37,13 @@ public class GroundedPlayerMovementState : PlayerMovementStateBase
                 movementController.Jump(ComputeJumpVelocity(deltaTime));
             }
             movementController.SetCurrentState(airStateHash);
+            movementController.GetCurrentState().UpdateMovementVelocity(deltaTime);
+            return true;
+        }
+
+        if (inputController.crouchModifier)
+        {
+            movementController.SetCurrentState(crouchStateHash);
             movementController.GetCurrentState().UpdateMovementVelocity(deltaTime);
             return true;
         }
@@ -74,7 +84,7 @@ public class GroundedPlayerMovementState : PlayerMovementStateBase
 
     public override void OnStateDeactivated(IPlayerMovementState nextState)
     {
-        movementController.CharacterVelocity -= Vector3.down * 0.05f / Time.deltaTime;
+        movementController.CharacterVelocity -= movementController.GetDirectionOnSlope(Vector3.down, movementController.GroundNormal) * 0.05f / Time.deltaTime;
     }
 }
 
@@ -91,10 +101,6 @@ public class GroundedPlayerMovementStateConfig : PlayerMovementStateConfigBase
     [SerializeField]
     private float _jumpVelocity;
     public float JumpVelocity => _jumpVelocity;
-    [SerializeField]
-    private float _capsuleHeight;
-    public float CapsuleHeight => _capsuleHeight;
-
 
     [SerializeField]
     private string _airStateName;
@@ -108,6 +114,10 @@ public class GroundedPlayerMovementStateConfig : PlayerMovementStateConfigBase
     private string _sprintStateName;
     public string SprintStateName => _sprintStateName;
     public int SprintStateHash => _sprintStateName.GetHashCode();
+    [SerializeField]
+    private string _walkStateName;
+    public string WalkStateName => _walkStateName;
+    public int WalkStateHash => _walkStateName.GetHashCode();
 
     protected override IPlayerMovementState CreateMovementState()
     {
