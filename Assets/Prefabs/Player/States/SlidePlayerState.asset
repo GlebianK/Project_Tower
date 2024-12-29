@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f7552270f8b7904ea586572deea5e50, type: 3}
   m_Name: SlidePlayerState
   m_EditorClassIdentifier: 
-  _name: 
-  startSpeed: 0
-  decceleration: 0
-  endSpeedThreshold: 0
-  playerHeight: 0
-  airState: 
-  sprintState: 
-  crouchState: 
+  _name: Slide
+  startSpeed: 12
+  decceleration: 12
+  endSpeedThreshold: 4
+  playerHeight: 1
+  airState: Air
+  sprintState: Sprint
+  crouchState: Crouch
