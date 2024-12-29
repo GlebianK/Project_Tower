@@ -48,6 +48,27 @@ public class GroundedPlayerMovementState : PlayerMovementStateBase
             return true;
         }
 
+        Vector3 wsInput = inputController.GetMovementDirectionInTransformSpace(movementController.transform);
+        bool isRunningForward = wsInput.magnitude > 0 &&
+            Vector3.Dot(movementController.transform.forward, wsInput) > 0.70;
+
+        if (inputController.sprintModifier &&
+            isRunningForward)
+        {
+            if (isRunningForward)
+            {
+                movementController.SetCurrentState(sprintStateHash);
+                movementController.GetCurrentState().UpdateMovementVelocity(deltaTime);
+                return true;
+            }
+            else
+            {
+                // TODO Dash transition
+                inputController.sprintModifier = false;
+            }
+           
+        }
+
         return false;
     }
 
@@ -84,7 +105,7 @@ public class GroundedPlayerMovementState : PlayerMovementStateBase
 
     public override void OnStateDeactivated(IPlayerMovementState nextState)
     {
-        movementController.CharacterVelocity -= movementController.GetDirectionOnSlope(Vector3.down, movementController.GroundNormal) * 0.05f / Time.deltaTime;
+        movementController.CharacterVelocity -= Vector3.down * 0.05f / Time.deltaTime;
     }
 }
 

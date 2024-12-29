@@ -92,7 +92,7 @@ public class MovementInputEventHandler : MonoBehaviour
     {
         if (context.started)
         {
-            sprintModifier ^= sprintModifier;
+            sprintModifier ^= true;
         }
     }
 

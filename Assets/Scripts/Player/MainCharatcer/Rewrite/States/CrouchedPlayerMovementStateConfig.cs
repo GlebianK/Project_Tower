@@ -38,8 +38,8 @@ public class CrouchedPlayerMovementState : GroundedPlayerMovementState
 
     public override void OnStateDeactivated(IPlayerMovementState nextState)
     {
-        movementController.ResetHeight();
         base.OnStateDeactivated(nextState);
+        movementController.ResetHeight();
     }
 }
 

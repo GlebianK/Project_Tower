@@ -89,6 +89,16 @@ public class PlayerMovementStateMachine : MonoBehaviour
     {
         return currentMovementState;
     }
+
+    public IPlayerMovementState GetStateByNameHash(int hash)
+    {
+        return movementStates[hash];
+    }
+    public IPlayerMovementState GetStateByName(string name)
+    {
+        return GetStateByNameHash(name.GetHashCode());
+    }
+
     public void SetCurrentState(string stateName)
     {
         SetCurrentState(stateName.GetHashCode());
@@ -177,21 +187,25 @@ public class PlayerMovementStateMachine : MonoBehaviour
         {
             return false;
         }
-        Vector3 p1 = transform.position + Vector3.up * cc.radius;
-        Vector3 p2 = transform.position + Vector3.up * (cc.height - cc.radius);
-        if (Physics.CapsuleCast(p1,
-            p2,
-            cc.radius, Vector3.down, out RaycastHit hit, chosenGroundCheckDistance,
-            groundLayer,
-            QueryTriggerInteraction.Ignore))
+        //Vector3 p1 = transform.position + Vector3.up * cc.radius;
+        //Vector3 p2 = transform.position + Vector3.up * (cc.height - cc.radius);
+        //if (Physics.CapsuleCast(p1,
+        //    p2,
+        //    cc.radius, Vector3.down, out RaycastHit hit, chosenGroundCheckDistance,
+        //    groundLayer,
+        //    QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 
+            chosenGroundCheckDistance, groundLayer, QueryTriggerInteraction.Ignore))
         {
-            GroundNormal = hit.normal;
-            isGrounded = true;
-            if (Vector3.Dot(GroundNormal, Vector3.up) > 0 &&
-                IsNormalUnderSlope(GroundNormal))
+            if (Vector3.Dot(hit.normal, Vector3.up) > 0 &&
+                IsNormalUnderSlope(hit.normal))
             {
                 if (hit.distance > cc.skinWidth)
+                {
                     cc.Move(Vector3.down * hit.distance);
+                }
+                GroundNormal = hit.normal;
+                isGrounded = true;
             }
         }
         return isGrounded;

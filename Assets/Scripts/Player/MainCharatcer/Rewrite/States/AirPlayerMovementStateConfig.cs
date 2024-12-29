@@ -25,7 +25,8 @@ public class AirPlayerMovementState : PlayerMovementStateBase
     public override void OnStateActivated(IPlayerMovementState prevState)
     {
         Vector3 velocity = movementController.CharacterVelocity;
-        velocity.y = 0;
+        if (inputController.jumpPressed)
+            velocity.y = 0;
         airDelimitSpeed = velocity.magnitude > airMaxSpeed ? velocity.magnitude : airMaxSpeed;
     }
 
