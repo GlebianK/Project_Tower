@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a697dde0d3b81c14195bc06513b2f892, type: 3}
   m_Name: WalkPlayerState
   m_EditorClassIdentifier: 
-  _name: Walk
-  _acceleration: 15
-  _maxSpeed: 5
-  _jumpVelocity: 8
-  _airStateName: Air
-  _crouchStateName: Crouch
-  _sprintStateName: Sprint
-  _walkStateName: Walk
+  stateName: Walk
+  acceleration: 15
+  maxSpeed: 5
+  jumpVelocity: 8
+  airStateName: Air
+  crouchStateName: Crouch
+  sprintStateName: Sprint
+  walkStateName: Walk

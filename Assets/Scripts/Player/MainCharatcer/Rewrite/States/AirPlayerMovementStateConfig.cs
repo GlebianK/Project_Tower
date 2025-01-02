@@ -17,24 +17,7 @@ public class AirPlayerMovementState : PlayerMovementStateBase
         groundStateHash = config.GroundStateHash;
     }
 
-    public override void HandleObstacleAfterMovement(float deltaTime, in RaycastHit hit)
-    {
-        
-    }
-
-    public override void OnStateActivated(IPlayerMovementState prevState)
-    {
-        Vector3 velocity = movementController.CharacterVelocity;
-        if (inputController.jumpPressed)
-            velocity.y = 0;
-        airDelimitSpeed = velocity.magnitude > airMaxSpeed ? velocity.magnitude : airMaxSpeed;
-    }
-
-    public override void OnStateDeactivated(IPlayerMovementState nextState)
-    {
-        
-    }
-
+    #region [ Movement Cycle Methods ]
     // возвращает true при переходе в новое состояние
     public override bool MakeTransitions(float deltaTime)
     {
@@ -49,7 +32,6 @@ public class AirPlayerMovementState : PlayerMovementStateBase
 
         return false;
     }
-
     protected override Vector3 ComputeVelocity(float deltaTime)
     {
         Vector3 WSmovementInput = inputController.GetMovementDirectionInTransformSpace(movementController.transform);
@@ -67,24 +49,40 @@ public class AirPlayerMovementState : PlayerMovementStateBase
 
         return velocity;
     }
+    public override void HandleObstacleAfterMovement(float deltaTime, in RaycastHit hit)
+    {
+        
+    }
+    #endregion
+
+    public override void OnStateActivated(IPlayerMovementState prevState)
+    {
+        Vector3 velocity = movementController.CharacterVelocity;
+        if (inputController.jumpPressed)
+            velocity.y = 0;
+        airDelimitSpeed = velocity.magnitude > airMaxSpeed ? velocity.magnitude : airMaxSpeed;
+    }
+    public override void OnStateDeactivated(IPlayerMovementState nextState)
+    {
+
+    }
 }
 
 [CreateAssetMenu(fileName = "AirPlayerMovementState", menuName = "Character/Movement/Air Move State")]
 public class AirPlayerMovementStateConfig : PlayerMovementStateConfigBase
 {
-    [SerializeField]
-    private float _acceleration;
-    public float Acceleration => _acceleration;
-    [SerializeField]
-    private float _gravityForce;
-    public float GravityForce => _gravityForce;
-    [SerializeField]
-    private float _airMaxSpeed;
-    public float AirMaxSpeed => _airMaxSpeed;
-    [SerializeField]
-    private string _groundStateName;
-    public string GroundStateName => _groundStateName;
-    public int GroundStateHash => _groundStateName.GetHashCode();
+    [SerializeField] private float acceleration;
+    [SerializeField] private float gravityForce;
+    [SerializeField] private float airMaxSpeed;
+    [SerializeField] private string groundStateName;
+
+    public float Acceleration => acceleration;
+    public float GravityForce => gravityForce;
+    public float AirMaxSpeed => airMaxSpeed;
+
+    public string GroundStateName => groundStateName;
+    public int GroundStateHash => groundStateName.GetHashCode();
+
     protected override IPlayerMovementState CreateMovementState()
     {
         return new AirPlayerMovementState(this);

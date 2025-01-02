@@ -26,14 +26,6 @@ public class SlidePlayerMovementState : PlayerMovementStateBase
         sprintStateHash = config.SprintStateHash;
     }
 
-    public override void HandleObstacleAfterMovement(float deltaTime, in RaycastHit hit)
-    {
-        if (hit.transform != null)
-        {
-            slideCurrentSpeed = movementController.CharacterVelocity.magnitude;
-        }
-    }
-
     public override bool MakeTransitions(float deltaTime)
     {
         bool isGrounded = movementController.GroundCheck();
@@ -63,20 +55,6 @@ public class SlidePlayerMovementState : PlayerMovementStateBase
 
         return false;
     }
-
-    public override void OnStateActivated(IPlayerMovementState prevState)
-    {
-        slideDirection = inputController.GetMovementDirectionInTransformSpace(movementController.transform);
-        slideCurrentSpeed = startSpeed;
-        movementController.SetHeight(playerHeight, false);
-    }
-
-    public override void OnStateDeactivated(IPlayerMovementState nextState)
-    {
-        movementController.ResetHeight();
-        movementController.CharacterVelocity -= Vector3.down * 0.05f / Time.deltaTime;
-    }
-
     protected override Vector3 ComputeVelocity(float deltaTime)
     {
         Vector3 velocityDirection = movementController.GetDirectionOnSlope(slideDirection, movementController.GroundNormal).normalized;
@@ -85,31 +63,45 @@ public class SlidePlayerMovementState : PlayerMovementStateBase
         slideCurrentSpeed -= decceleration * deltaTime;
         return resultVelocity;
     }
+    public override void HandleObstacleAfterMovement(float deltaTime, in RaycastHit hit)
+    {
+        if (hit.transform != null)
+        {
+            slideCurrentSpeed = movementController.CharacterVelocity.magnitude;
+        }
+    }
+
+    public override void OnStateActivated(IPlayerMovementState prevState)
+    {
+        slideDirection = inputController.GetMovementDirectionInTransformSpace(movementController.transform);
+        slideCurrentSpeed = startSpeed;
+        movementController.SetHeight(playerHeight, false);
+    }
+    public override void OnStateDeactivated(IPlayerMovementState nextState)
+    {
+        movementController.ResetHeight();
+        movementController.CharacterVelocity -= Vector3.down * 0.05f / Time.deltaTime;
+    }
 }
 
 [CreateAssetMenu(fileName = "SlidePlayerMovementStateConfig", menuName = "Character/Movement/Slide Movement State")]
 public class SlidePlayerMovementStateConfig : PlayerMovementStateConfigBase
 {
-    [SerializeField]
-    private float startSpeed;
-    [SerializeField]
-    private float decceleration;
-    [SerializeField]
+    [SerializeField] private float startSpeed;
+    [SerializeField] private float decceleration;
     [Tooltip("Скорость, при достожении которой персонаж переходит в состояние присяда или бега")]
-    private float endSpeedThreshold;
-    [SerializeField]
-    private float playerHeight;
+    [SerializeField] private float endSpeedThreshold;
 
-    [SerializeField]
-    private string airState;
-    [SerializeField]
-    private string sprintState;
-    [SerializeField]
-    private string crouchState;
+    [SerializeField] private float playerHeight;
+
+    [SerializeField] private string airState;
+    [SerializeField] private string sprintState;
+    [SerializeField] private string crouchState;
 
     public float StartSpeed => startSpeed;
     public float Decceleration => decceleration;
     public float EndSpeedThreshold => endSpeedThreshold;
+
     public float PlayerHeight => playerHeight;
 
     public string AirState => airState;

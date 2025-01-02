@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4710814a7faadd84bb7445a6cd930d92, type: 3}
   m_Name: CrouchedPlayerState
   m_EditorClassIdentifier: 
-  _name: Crouch
-  _acceleration: 15
-  _maxSpeed: 3
-  _jumpVelocity: 0
-  _airStateName: Air
-  _crouchStateName: Crouch
-  _sprintStateName: Sprint
-  _walkStateName: Walk
-  playerHeight: 0.8
+  stateName: Crouch
+  acceleration: 15
+  maxSpeed: 3
+  jumpVelocity: 0
+  airStateName: Air
+  crouchStateName: Crouch
+  sprintStateName: Sprint
+  walkStateName: Walk
+  playerHeight: 1

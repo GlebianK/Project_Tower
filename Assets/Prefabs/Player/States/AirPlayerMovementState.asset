@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e47e9b347bfcd79428fcc171071911ca, type: 3}
   m_Name: AirPlayerMovementState
   m_EditorClassIdentifier: Assembly-CSharp::AirPlayerMovementStateConfig
-  _name: Air
-  _acceleration: 15
-  _gravityForce: 15
-  _airMaxSpeed: 5
-  _groundStateName: Walk
+  stateName: Air
+  acceleration: 15
+  gravityForce: 15
+  airMaxSpeed: 5
+  groundStateName: Walk

@@ -59,7 +59,6 @@ public class SprintingPlayerMovementState : GroundedPlayerMovementState
 
         return false;
     }
-
     public override void HandleObstacleAfterMovement(float deltaTime, in RaycastHit hit)
     {
         if (movementController.CharacterVelocity.magnitude < toWalkSpeedThreshold)
@@ -78,14 +77,11 @@ public class SprintingPlayerMovementState : GroundedPlayerMovementState
 [CreateAssetMenu(fileName = "SprintingPlayerMovementStateConfig", menuName = "Character/Movement/Sprinting Move State")]
 public class SprintingPlayerMovementStateConfig : GroundedPlayerMovementStateConfig
 {
-    [SerializeField]
-    private float jumpHorizontalSpeed;
-    public float JumpHorizontalSpeed => jumpHorizontalSpeed;
-
-    [SerializeField]
+    [SerializeField] private float jumpHorizontalSpeed;
     [Tooltip("Скорость, порог итоговой скорости, меньше которой персонаж переходит на шаг(например, после того как уперся в стену)")]
-    private float toWalkSpeedThreshold;
+    [SerializeField] private float toWalkSpeedThreshold;
 
+    public float JumpHorizontalSpeed => jumpHorizontalSpeed;
     public float ToWalkSpeedThreshold => toWalkSpeedThreshold;
 
     protected override IPlayerMovementState CreateMovementState()

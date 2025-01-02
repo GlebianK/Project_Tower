@@ -868,6 +868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0c7c0fe79f69de4a8341b6e8423f9a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CharacterVelocity: {x: 0, y: 0, z: 0}
   movementInputEventHandler: {fileID: 525963081}
   moveStatesList:
   - {fileID: 11400000, guid: 3a9df56017bc765408482692285b4cec, type: 2}
@@ -879,7 +880,6 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
-  CharacterVelocity: {x: 0, y: 0, z: 0}
 --- !u!1 &530699107
 GameObject:
   m_ObjectHideFlags: 0
@@ -5184,6 +5184,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1233270651167420773, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: cameraFollow
+      value: 
+      objectReference: {fileID: 1800808288}
+    - target: {fileID: 1233270651167420773, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: movementHandler
+      value: 
+      objectReference: {fileID: 525963081}
     - target: {fileID: 1562706418643954085, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
       propertyPath: crouchModifier
       value: 0
@@ -11039,6 +11047,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1800808288 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6163103275957430476, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+  m_PrefabInstance: {fileID: 1123813278}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1890118977
 Mesh:
   m_ObjectHideFlags: 0

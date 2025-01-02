@@ -35,7 +35,6 @@ public class CrouchedPlayerMovementState : GroundedPlayerMovementState
         movementController.SetHeight(capsuleHeight, false);
         base.OnStateActivated(prevState);
     }
-
     public override void OnStateDeactivated(IPlayerMovementState nextState)
     {
         base.OnStateDeactivated(nextState);
@@ -46,8 +45,7 @@ public class CrouchedPlayerMovementState : GroundedPlayerMovementState
 [CreateAssetMenu(fileName = "CrouchedPlayerMovementStateConfig", menuName = "Character/Movement/Crouched Movement State")]
 public class CrouchedPlayerMovementStateConfig : GroundedPlayerMovementStateConfig
 {
-    [SerializeField]
-    private float playerHeight;
+    [SerializeField] private float playerHeight;
 
     public float PlayerHeight => playerHeight;
 

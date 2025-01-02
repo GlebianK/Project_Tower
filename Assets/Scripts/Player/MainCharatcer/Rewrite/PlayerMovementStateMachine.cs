@@ -6,30 +6,25 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovementStateMachine : MonoBehaviour
 {
-    private CharacterController cc;
-    [SerializeField] 
-    private MovementInputEventHandler movementInputEventHandler;
-    [SerializeField]
-    private List<PlayerMovementStateConfigBase> moveStatesList;
-
-    [SerializeField]
-    private string startMovementStateName;
-    [SerializeField]
-    private LayerMask groundLayer;
-
-    private Dictionary<int, IPlayerMovementState> movementStates;
-
-    private IPlayerMovementState currentMovementState;
-
-    //additional vals for good machine management
-    public CharacterController CC => cc;
-    public Vector3 GroundNormal { get; private set; }
     public Vector3 CharacterVelocity;
 
-    private float lastTimeJump;
+    [SerializeField] private MovementInputEventHandler movementInputEventHandler;
+    [SerializeField] private List<PlayerMovementStateConfigBase> moveStatesList;
+    [SerializeField] private string startMovementStateName;
+    [SerializeField] private LayerMask groundLayer;
 
+    private Dictionary<int, IPlayerMovementState> movementStates;
+    private IPlayerMovementState currentMovementState;
+
+    // нужно для предотвращения "приклеивания" игрока к полу сразу после прыжка
+    private float lastTimeJump;
+    // если есть, пытается восстановить высоту персонажа
+    Coroutine uncrouchCoroutine = null;
+
+    public CharacterController cc { get; private set; }
+    public Vector3 GroundNormal { get; private set; }
     public float PlayerDefaultHeight { get; private set; }
-    
+
     private void Awake()
     {
         cc = GetComponent<CharacterController>();
@@ -37,12 +32,11 @@ public class PlayerMovementStateMachine : MonoBehaviour
 
         movementStates = new Dictionary<int, IPlayerMovementState>();
     }
-
     private void Start()
     {
         foreach (var stateConfig in moveStatesList)
         {
-            int hash = stateConfig.Name.GetHashCode();
+            int hash = stateConfig.StateName.GetHashCode();
             IPlayerMovementState state = stateConfig.CreateMovementStateInstance(
                 this,
                 movementInputEventHandler
@@ -55,7 +49,6 @@ public class PlayerMovementStateMachine : MonoBehaviour
         GroundNormal = Vector3.up;
         PlayerDefaultHeight = cc.height;
     }
-
     private void Update()
     {
         currentMovementState.UpdateMovementVelocity(Time.deltaTime);
@@ -83,8 +76,7 @@ public class PlayerMovementStateMachine : MonoBehaviour
         movementInputEventHandler.jumpPressed = false;
     }
 
-    //machine manage methods
-
+    #region [ States Management Methods ]
     public IPlayerMovementState GetCurrentState()
     {
         return currentMovementState;
@@ -114,15 +106,14 @@ public class PlayerMovementStateMachine : MonoBehaviour
         oldState?.OnStateDeactivated(newState);
         newState?.OnStateActivated(oldState);
     }
+    #endregion
 
+    #region [ Height Control Methods ]
     private void UpdateHeight(float height)
     {
         cc.height = height;
         cc.center = Vector3.up * cc.height * 0.5f;
     }
-
-    Coroutine uncrouchCoroutine = null;
-
     public bool CanSetHeight(float height)
     {
         Collider[] standingOverlaps = Physics.OverlapCapsule(
@@ -138,22 +129,10 @@ public class PlayerMovementStateMachine : MonoBehaviour
         }
         return true;
     }
-
-    private IEnumerator TrySetHeightForWhileCoroutine(float height)
-    {
-        while (!CanSetHeight(height))
-        {
-            yield return null;
-        }
-
-        UpdateHeight(height);
-    }
-
     public void ResetHeight()
     {
         SetHeight(PlayerDefaultHeight, false);
     }
-
     public void SetHeight(float newHeight, bool ignoreObstructions)
     {
         if (cc.height > newHeight)
@@ -177,6 +156,18 @@ public class PlayerMovementStateMachine : MonoBehaviour
             UpdateHeight(newHeight);
         }
     }
+    private IEnumerator TrySetHeightForWhileCoroutine(float height)
+    {
+        while (!CanSetHeight(height))
+        {
+            yield return null;
+        }
+
+        UpdateHeight(height);
+    }
+    #endregion
+
+    #region [ Ground and Jump ]
     public bool GroundCheck()
     {
         float chosenGroundCheckDistance = cc.isGrounded ? cc.skinWidth + 1 : 0.2f;
@@ -211,8 +202,14 @@ public class PlayerMovementStateMachine : MonoBehaviour
         return isGrounded;
 
     }
+    public void Jump(Vector3 jumpVelocity)
+    {
+        CharacterVelocity = jumpVelocity;
+        lastTimeJump = Time.time;
+    }
+    #endregion
 
-    //helpers
+    #region [ Direction Correction Methods ]
     public Vector3 GetDirectionOnSlope(Vector3 direction, Vector3 slopeNormal)
     {
         Vector3 directionRight = Vector3.Cross(direction, Vector3.up);
@@ -223,10 +220,5 @@ public class PlayerMovementStateMachine : MonoBehaviour
         float angle = Vector3.Angle(transform.up, normal);
         return angle <= cc.slopeLimit;
     }
-
-    public void Jump(Vector3 jumpVelocity)
-    {
-        CharacterVelocity = jumpVelocity;
-        lastTimeJump = Time.time;
-    }
+    #endregion
 }

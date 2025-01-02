@@ -4,27 +4,39 @@ using UnityEngine.InputSystem;
 
 public class MovementInputEventHandler : MonoBehaviour
 {
-    public UnityEvent<Vector2> MovementDirectionChanged;
-    public UnityEvent<Vector2> LookInputAction;
-    public UnityEvent JumpInputAction;
-
-    private Vector2 _movementDirection;
-    private Vector2 _lookInputProperty;
-
     public bool sprintModifier;
     public bool crouchModifier;
     public bool jumpPressed;
 
-    private Vector2 _lookInput
+    public UnityEvent<Vector2> MovementDirectionChanged;
+    public UnityEvent<Vector2> LookInputAction;
+    public UnityEvent JumpInputAction;
+
+    private Vector2 movementDirection;
+    private Vector2 lookInputProperty;
+
+    private Vector2 lookInput
     {
         get
         {
-            return _lookInputProperty;
+            return lookInputProperty;
         }
         set
         {
-            _lookInputProperty = internalClampLookInput(value);
+            lookInputProperty = internalClampLookInput(value);
         }
+    }
+
+    private void Start()
+    {
+        movementDirection = Vector2.zero;
+        lookInput = Vector2.zero;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        sprintModifier = false;
+        crouchModifier = false;
     }
     private Vector2 internalClampLookInput(Vector2 unclampedLookInput)
     {
@@ -44,50 +56,35 @@ public class MovementInputEventHandler : MonoBehaviour
     public Vector2 GetMovementDirectionRaw()
     {
         if (enabled)
-            return _movementDirection.normalized;
+            return movementDirection.normalized;
         else
             return Vector2.zero;
     }
     public Vector3 GetMovementDirectionInTransformSpace(Transform transformSpace)
     {
         if (enabled)
-            return (transformSpace.forward * _movementDirection.y + transformSpace.right * _movementDirection.x).normalized;
+            return (transformSpace.forward * movementDirection.y + transformSpace.right * movementDirection.x).normalized;
         else
             return Vector3.zero;
     }
-
-    private void Start()
-    {
-        _movementDirection = Vector2.zero;
-        _lookInput = Vector2.zero;
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
-        sprintModifier = false;
-        crouchModifier = false;
-    }
-
     public void OnMove(InputAction.CallbackContext Context)
     {
         if (enabled)
         {
-            _movementDirection = Context.ReadValue<Vector2>();
-            MovementDirectionChanged?.Invoke(_movementDirection);
+            movementDirection = Context.ReadValue<Vector2>();
+            MovementDirectionChanged?.Invoke(movementDirection);
         }
     }
-
     public void OnLook(InputAction.CallbackContext Context)
     {
         if (enabled)
         {
-            Vector2 currentLookInput = _lookInput;
+            Vector2 currentLookInput = lookInput;
             currentLookInput += Context.ReadValue<Vector2>() * Mathf.Deg2Rad;
-            _lookInput = currentLookInput;
-            LookInputAction?.Invoke(_lookInput);
+            lookInput = currentLookInput;
+            LookInputAction?.Invoke(lookInput);
         }
     }
-
     public void OnSprint(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -95,12 +92,10 @@ public class MovementInputEventHandler : MonoBehaviour
             sprintModifier ^= true;
         }
     }
-
     public void OnCrouch(InputAction.CallbackContext context)
     {
         crouchModifier = context.started ? true : context.canceled ? false : crouchModifier;
     }
-
     public void OnJump(InputAction.CallbackContext context) 
     { 
         if (context.started)

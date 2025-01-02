@@ -24,6 +24,7 @@ public class GroundedPlayerMovementState : PlayerMovementStateBase
         walkStateHash = config.WalkStateHash;
     }
 
+    #region [ Movement Cycle Methods ]
     // возвращает true, если был совершен переход в новое состояние
     public override bool MakeTransitions(float deltaTime)
     {
@@ -71,19 +72,12 @@ public class GroundedPlayerMovementState : PlayerMovementStateBase
 
         return false;
     }
-
     public virtual Vector3 ComputeJumpVelocity(float deltaTime)
     {
         Vector3 velocity = movementController.CharacterVelocity;
         velocity.y = jumpVelocity;
         return velocity;
     }
-
-    protected Vector3 AvoidGroundJiggleForVelocity(Vector3 velocityToFix, float deltaTime)
-    {
-        return velocityToFix + movementController.GetDirectionOnSlope(Vector3.down, movementController.GroundNormal) * 0.05f / deltaTime;
-    }
-
     protected override Vector3 ComputeVelocity(float deltaTime)
     {
         Vector3 WSinput = inputController.GetMovementDirectionInTransformSpace(movementController.transform);
@@ -92,53 +86,49 @@ public class GroundedPlayerMovementState : PlayerMovementStateBase
         Vector3 resultVelocity = Vector3.Lerp(movementController.CharacterVelocity, targetVelocity, acceleration * deltaTime);
         return AvoidGroundJiggleForVelocity(resultVelocity, deltaTime);
     }
-
+    protected Vector3 AvoidGroundJiggleForVelocity(Vector3 velocityToFix, float deltaTime)
+    {
+        return velocityToFix + movementController.GetDirectionOnSlope(Vector3.down, movementController.GroundNormal) * 0.05f / deltaTime;
+    }
     public override void HandleObstacleAfterMovement(float deltaTime, in RaycastHit hit)
     {
         // ignore
     }
-
+    #endregion
     public override void OnStateActivated(IPlayerMovementState prevState)
     {
         
     }
-
     public override void OnStateDeactivated(IPlayerMovementState nextState)
     {
         movementController.CharacterVelocity -= Vector3.down * 0.05f / Time.deltaTime;
     }
 }
 
-
 [CreateAssetMenu(fileName = "GroundPlayerMovementState", menuName = "Character/Movement/Ground Move State", order = 0)]
 public class GroundedPlayerMovementStateConfig : PlayerMovementStateConfigBase
 {
-    [SerializeField]
-    private float _acceleration;
-    public float Acceleration => _acceleration;
-    [SerializeField]
-    private float _maxSpeed;
-    public float MaxSpeed => _maxSpeed;
-    [SerializeField]
-    private float _jumpVelocity;
-    public float JumpVelocity => _jumpVelocity;
+    [SerializeField] private float acceleration;
+    [SerializeField] private float maxSpeed;
+    [SerializeField] private float jumpVelocity;
 
-    [SerializeField]
-    private string _airStateName;
-    public string AirStateName => _airStateName;
-    public int AirStateHash => _airStateName.GetHashCode();
-    [SerializeField]
-    private string _crouchStateName;
-    public string CrouchStateName => _crouchStateName;
-    public int CrouchStateHash => _crouchStateName.GetHashCode();
-    [SerializeField]
-    private string _sprintStateName;
-    public string SprintStateName => _sprintStateName;
-    public int SprintStateHash => _sprintStateName.GetHashCode();
-    [SerializeField]
-    private string _walkStateName;
-    public string WalkStateName => _walkStateName;
-    public int WalkStateHash => _walkStateName.GetHashCode();
+    [SerializeField] private string airStateName;
+    [SerializeField] private string crouchStateName;
+    [SerializeField] private string sprintStateName;
+    [SerializeField] private string walkStateName;
+
+    public float Acceleration => acceleration;
+    public float MaxSpeed => maxSpeed;
+    public float JumpVelocity => jumpVelocity;
+
+    public string AirStateName => airStateName;
+    public int AirStateHash => airStateName.GetHashCode();
+    public string CrouchStateName => crouchStateName;
+    public int CrouchStateHash => crouchStateName.GetHashCode();
+    public string SprintStateName => sprintStateName;
+    public int SprintStateHash => sprintStateName.GetHashCode();
+    public string WalkStateName => walkStateName;
+    public int WalkStateHash => walkStateName.GetHashCode();
 
     protected override IPlayerMovementState CreateMovementState()
     {

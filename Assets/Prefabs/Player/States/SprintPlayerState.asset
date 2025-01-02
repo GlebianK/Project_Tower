@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f6024365bbb054c901f0365e0432f2, type: 3}
   m_Name: SprintPlayerState
   m_EditorClassIdentifier: 
-  _name: Sprint
-  _acceleration: 15
-  _maxSpeed: 7
-  _jumpVelocity: 6
-  _airStateName: Air
-  _crouchStateName: Slide
-  _sprintStateName: Sprint
-  _walkStateName: Walk
+  stateName: Sprint
+  acceleration: 15
+  maxSpeed: 7
+  jumpVelocity: 6
+  airStateName: Air
+  crouchStateName: Slide
+  sprintStateName: Sprint
+  walkStateName: Walk
   jumpHorizontalSpeed: 8
   toWalkSpeedThreshold: 3
