@@ -8232,15 +8232,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0c7c0fe79f69de4a8341b6e8423f9a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementInputEventHandler: {fileID: 1272563975}
-  _moveStatesList:
-  - {fileID: 11400000, guid: 3a9df56017bc765408482692285b4cec, type: 2}
-  - {fileID: 11400000, guid: 157f36f6642b6bc4bb99fd8ca98901d8, type: 2}
-  _startMovementStateName: Air
-  _groundLayer:
-    serializedVersion: 2
-    m_Bits: 1
   CharacterVelocity: {x: 0, y: 0, z: 0}
+  movementInputEventHandler: {fileID: 0}
+  moveStatesList: []
+  startMovementStateName: 
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1286058443
 GameObject:
   m_ObjectHideFlags: 0
@@ -15189,6 +15187,38 @@ PrefabInstance:
       propertyPath: m_StreamingVersion
       value: 20241001
       objectReference: {fileID: 0}
+    - target: {fileID: 794740482913903711, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: Priority.Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 794740482913903711, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: Priority.m_Value
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 794740482913903711, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_LegacyPriority
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 794740482913903711, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_StreamingVersion
+      value: 20241001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470051146681784486, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_Name
+      value: TopRig
+      objectReference: {fileID: 0}
+    - target: {fileID: 2906770936674486151, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_ControllerManager.Controllers.Array.data[0].Owner
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2906770936674486151, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_ControllerManager.Controllers.Array.data[1].Owner
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2906770936674486151, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_ControllerManager.Controllers.Array.data[2].Owner
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4058592504260889806, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -15229,6 +15259,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4513425997790741316, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: Priority.Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4513425997790741316, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: Priority.m_Value
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4513425997790741316, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_LegacyPriority
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4513425997790741316, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_StreamingVersion
+      value: 20241001
+      objectReference: {fileID: 0}
     - target: {fileID: 5119250697248205721, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
       propertyPath: m_SkinWidth
       value: 0.01
@@ -15244,6 +15290,54 @@ PrefabInstance:
     - target: {fileID: 5119250697248205721, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
       propertyPath: m_MinMoveDistance
       value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5332235599247157405, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_ControllerManager.Controllers.Array.data[0].Owner
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5332235599247157405, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_ControllerManager.Controllers.Array.data[1].Owner
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5332235599247157405, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_ControllerManager.Controllers.Array.data[2].Owner
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5538718771313898205, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: Priority.Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5538718771313898205, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: Priority.m_Value
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5538718771313898205, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_LegacyPriority
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5538718771313898205, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_StreamingVersion
+      value: 20241001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598827683746825605, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: Priority.Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598827683746825605, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: Priority.m_Value
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598827683746825605, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_LegacyPriority
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598827683746825605, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_StreamingVersion
+      value: 20241001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5699197102200074196, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_Name
+      value: BottomRig
       objectReference: {fileID: 0}
     - target: {fileID: 6084029200340598382, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
       propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.size
@@ -15273,6 +15367,22 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 6223395696348780317, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_ControllerManager.Controllers.Array.data[0].Owner
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6223395696348780317, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_ControllerManager.Controllers.Array.data[1].Owner
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6223395696348780317, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_ControllerManager.Controllers.Array.data[2].Owner
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7286427080594952404, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_Name
+      value: MiddleRig
+      objectReference: {fileID: 0}
     - target: {fileID: 7397748607678048935, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
       propertyPath: Priority.Enabled
       value: 1
@@ -15297,6 +15407,10 @@ PrefabInstance:
       propertyPath: _jumpVelocitySprinting
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7934488458921102730, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+      propertyPath: m_Name
+      value: FreeLook Camera
+      objectReference: {fileID: 0}
     - target: {fileID: 8530698756758159354, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
       propertyPath: Priority.Enabled
       value: 1
@@ -15317,7 +15431,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 118031197161441436, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+    - {fileID: 644614228644159017, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+    - {fileID: 8530698756758159354, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+    - {fileID: 7397748607678048935, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+    - {fileID: 5227287913082615935, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+    - {fileID: 8460512955054543601, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+    - {fileID: 639404159480645034, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+    - {fileID: 9153283274878647879, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+    - {fileID: 5725679889928933456, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+    - {fileID: 1890885221600596109, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
+    - {fileID: 4187632980395428062, guid: cd4f8eab076872e45a795c7dee3e5e48, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
