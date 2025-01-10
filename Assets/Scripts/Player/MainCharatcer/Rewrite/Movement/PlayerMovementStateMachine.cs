@@ -1,20 +1,21 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovementStateMachine : MonoBehaviour
 {
-    public Vector3 CharacterVelocity;
+    [SerializeField] private PlayerMovementStateConfig configuration;
+    public Vector3 CharacterVelocity { get; set; }
 
     [SerializeField] private MovementInputEventHandler movementInputEventHandler;
-    [SerializeField] private List<PlayerMovementStateConfigBase> moveStatesList;
-    [SerializeField] private string startMovementStateName;
-    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private PlayerMovementStateType startState;
 
-    private Dictionary<int, IPlayerMovementState> movementStates;
-    private IPlayerMovementState currentMovementState;
+
+    private Dictionary<PlayerMovementStateType, IPlayerMovementState> movementStates;
+    private PlayerMovementStateType currentMovementState;
 
     // нужно для предотвращения "приклеивания" игрока к полу сразу после прыжка
     private float lastTimeJump;
@@ -29,49 +30,33 @@ public class PlayerMovementStateMachine : MonoBehaviour
     {
         cc = GetComponent<CharacterController>();
         lastTimeJump = -1;
-
-        movementStates = new Dictionary<int, IPlayerMovementState>();
     }
     private void Start()
     {
-        foreach (var stateConfig in moveStatesList)
-        {
-            int hash = stateConfig.StateName.GetHashCode();
-            IPlayerMovementState state = stateConfig.CreateMovementStateInstance(
-                this,
-                movementInputEventHandler
-                );
-            movementStates.Add(hash, state);
-        }
+        movementStates = configuration.CreateAllMovementStates(this, movementInputEventHandler).ToDictionary(
+            elem => elem.Key, elem => elem.Value);
 
-        SetCurrentState(startMovementStateName);
+        SetCurrentState(startState);
         CharacterVelocity = Vector3.zero;
         GroundNormal = Vector3.up;
         PlayerDefaultHeight = cc.height;
     }
     private void Update()
     {
-        currentMovementState.UpdateMovementVelocity(Time.deltaTime);
+        GetCurrentState().UpdateMovementVelocity(Time.deltaTime);
 
-        Vector3 capsuleBottomBeforeMove = transform.position + transform.up * cc.radius;
-        Vector3 capsuleTopBeforeMove = transform.position + transform.up * (cc.height - cc.radius);
+        Vector3 startHandlePosition = transform.position;
         Vector3 moveVec = CharacterVelocity * Time.deltaTime;
-
         cc.Move(moveVec);
+
         RaycastHit hitResult;
-        if (Physics.CapsuleCast(
-                capsuleBottomBeforeMove,
-                capsuleTopBeforeMove,
-                cc.radius,
-                CharacterVelocity.normalized,
-                out hitResult,
-                CharacterVelocity.magnitude * Time.deltaTime,
-                -1, QueryTriggerInteraction.Ignore))
+
+        if (TryHandleObstacle(startHandlePosition, moveVec, out hitResult))
         {
             CharacterVelocity = Vector3.ProjectOnPlane(CharacterVelocity, hitResult.normal);
         }
 
-        currentMovementState.HandleObstacleAfterMovement(Time.deltaTime, hitResult);
+        GetCurrentState().HandleObstacleAfterMovement(Time.deltaTime, hitResult);
 
         movementInputEventHandler.jumpPressed = false;
     }
@@ -79,30 +64,22 @@ public class PlayerMovementStateMachine : MonoBehaviour
     #region [ States Management Methods ]
     public IPlayerMovementState GetCurrentState()
     {
-        return currentMovementState;
+        return movementStates[currentMovementState];
+    }
+    public PlayerMovementStateType GetCurrentStateType() => currentMovementState;
+    public IPlayerMovementState GetStateByType(PlayerMovementStateType type)
+    {
+        return movementStates[type];
     }
 
-    public IPlayerMovementState GetStateByNameHash(int hash)
+    public void SetCurrentState(PlayerMovementStateType state)
     {
-        return movementStates[hash];
-    }
-    public IPlayerMovementState GetStateByName(string name)
-    {
-        return GetStateByNameHash(name.GetHashCode());
-    }
-
-    public void SetCurrentState(string stateName)
-    {
-        SetCurrentState(stateName.GetHashCode());
-    }
-    public void SetCurrentState(int hash)
-    {
-        IPlayerMovementState newState = movementStates[hash];
-        if (newState == currentMovementState)
+        IPlayerMovementState newState = movementStates[state];
+        if (newState == GetCurrentState())
             return;
 
-        IPlayerMovementState oldState = currentMovementState;
-        currentMovementState = newState;
+        IPlayerMovementState oldState = movementStates[currentMovementState];
+        currentMovementState = state;
         oldState?.OnStateDeactivated(newState);
         newState?.OnStateActivated(oldState);
     }
@@ -167,10 +144,27 @@ public class PlayerMovementStateMachine : MonoBehaviour
     }
     #endregion
 
+    #region [ Obstacle resolve ]
+    private bool TryHandleObstacle(Vector3 startPoint, Vector3 moveVector, out RaycastHit hit)
+    {
+        Vector3 capsuleBottomBeforeMove = startPoint + transform.up * cc.radius;
+        Vector3 capsuleTopBeforeMove = startPoint + transform.up * (cc.height - cc.radius);
+
+        return Physics.CapsuleCast(
+                capsuleBottomBeforeMove,
+                capsuleTopBeforeMove,
+                cc.radius,
+                moveVector.normalized,
+                out hit,
+                moveVector.magnitude,
+                configuration.GroundLayer, QueryTriggerInteraction.Ignore); 
+    }
+    #endregion
+
     #region [ Ground and Jump ]
     public bool GroundCheck()
     {
-        float chosenGroundCheckDistance = cc.isGrounded ? cc.skinWidth + 1 : 0.2f;
+        float chosenGroundCheckDistance = cc.skinWidth + cc.stepOffset;
         GroundNormal = Vector3.up;
         bool isGrounded = false;
         float afterJumpTime = Time.time - lastTimeJump;
@@ -186,7 +180,7 @@ public class PlayerMovementStateMachine : MonoBehaviour
         //    groundLayer,
         //    QueryTriggerInteraction.Ignore))
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 
-            chosenGroundCheckDistance, groundLayer, QueryTriggerInteraction.Ignore))
+            chosenGroundCheckDistance, configuration.GroundLayer, QueryTriggerInteraction.Ignore))
         {
             if (Vector3.Dot(hit.normal, Vector3.up) > 0 &&
                 IsNormalUnderSlope(hit.normal))
@@ -210,6 +204,7 @@ public class PlayerMovementStateMachine : MonoBehaviour
     #endregion
 
     #region [ Direction Correction Methods ]
+
     public Vector3 GetDirectionOnSlope(Vector3 direction, Vector3 slopeNormal)
     {
         Vector3 directionRight = Vector3.Cross(direction, Vector3.up);
@@ -220,5 +215,7 @@ public class PlayerMovementStateMachine : MonoBehaviour
         float angle = Vector3.Angle(transform.up, normal);
         return angle <= cc.slopeLimit;
     }
+
+    
     #endregion
 }

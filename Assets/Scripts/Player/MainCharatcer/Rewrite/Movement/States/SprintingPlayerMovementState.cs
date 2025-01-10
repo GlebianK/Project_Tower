@@ -3,14 +3,10 @@ using UnityEngine.Windows;
 
 public class SprintingPlayerMovementState : GroundedPlayerMovementState
 {
-    private float jumpHorizontalSpeed;
-    private float toWalkSpeedThreshold;
-
-    public SprintingPlayerMovementState(SprintingPlayerMovementStateConfig config)
+    public SprintingPlayerMovementState(PlayerMovementStateConfig config)
         : base(config)
     {
-        jumpHorizontalSpeed = config.JumpHorizontalSpeed;
-        toWalkSpeedThreshold = config.ToWalkSpeedThreshold;
+        maxSpeed = config.SprintMaxSpeed;
     }
 
     public override bool MakeTransitions(float deltaTime)
@@ -24,12 +20,12 @@ public class SprintingPlayerMovementState : GroundedPlayerMovementState
             {
                 Vector3 velocity = movementController.CharacterVelocity;
                 velocity.y = 0;
-                velocity = velocity.normalized * jumpHorizontalSpeed;
+                velocity = velocity.normalized * config.SprintJumpHorizontalSpeed;
                 movementController.CharacterVelocity = velocity;
 
-                movementController.Jump(ComputeJumpVelocity(deltaTime));
+                movementController.Jump(ComputeJumpVelocity(config.SprintJumpVelocity, deltaTime));
             }
-            movementController.SetCurrentState(airStateHash);
+            movementController.SetCurrentState(PlayerMovementStateType.Air);
             movementController.GetCurrentState().UpdateMovementVelocity(deltaTime);
             return true;
         }
@@ -45,47 +41,36 @@ public class SprintingPlayerMovementState : GroundedPlayerMovementState
             {
                 inputController.sprintModifier = false;
             }
-            movementController.SetCurrentState(walkStateHash);
+            movementController.SetCurrentState(PlayerMovementStateType.Walk);
             movementController.GetCurrentState().UpdateMovementVelocity(deltaTime);
             return true;
         }
 
         if (inputController.crouchModifier)
         {
-            movementController.SetCurrentState(crouchStateHash);
+            PlayerMovementStateType newState =
+                movementController.GetStateByType(PlayerMovementStateType.Slide) != null ?
+                PlayerMovementStateType.Slide : PlayerMovementStateType.Crouch;
+
+            movementController.SetCurrentState(newState);
             movementController.GetCurrentState().UpdateMovementVelocity(deltaTime);
             return true;
         }
 
         return false;
     }
-    public override void HandleObstacleAfterMovement(float deltaTime, in RaycastHit hit)
+    public override void HandleObstacleAfterMovement(float deltaTime, in RaycastHit hits)
     {
-        if (movementController.CharacterVelocity.magnitude < toWalkSpeedThreshold)
+
+        if (movementController.CharacterVelocity.magnitude < config.SprintToWalkSpeedThreshold)
         {
             inputController.sprintModifier = false;
-            movementController.SetCurrentState(walkStateHash);
+            movementController.SetCurrentState(PlayerMovementStateType.Walk);
         }
     }
 
     public override void OnStateDeactivated(IPlayerMovementState nextState)
     {
         base.OnStateDeactivated(nextState);
-    }
-}
-
-[CreateAssetMenu(fileName = "SprintingPlayerMovementStateConfig", menuName = "Character/Movement/Sprinting Move State")]
-public class SprintingPlayerMovementStateConfig : GroundedPlayerMovementStateConfig
-{
-    [SerializeField] private float jumpHorizontalSpeed;
-    [Tooltip("Скорость, порог итоговой скорости, меньше которой персонаж переходит на шаг(например, после того как уперся в стену)")]
-    [SerializeField] private float toWalkSpeedThreshold;
-
-    public float JumpHorizontalSpeed => jumpHorizontalSpeed;
-    public float ToWalkSpeedThreshold => toWalkSpeedThreshold;
-
-    protected override IPlayerMovementState CreateMovementState()
-    {
-        return new SprintingPlayerMovementState(this);
     }
 }

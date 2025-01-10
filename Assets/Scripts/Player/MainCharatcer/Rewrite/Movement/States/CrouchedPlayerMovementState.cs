@@ -2,12 +2,11 @@ using UnityEngine;
 
 public class CrouchedPlayerMovementState : GroundedPlayerMovementState
 {
-    private float capsuleHeight;
 
-    public CrouchedPlayerMovementState(CrouchedPlayerMovementStateConfig config)
+    public CrouchedPlayerMovementState(PlayerMovementStateConfig config)
         : base(config)
     {
-        capsuleHeight = config.PlayerHeight;
+        maxSpeed = config.CrouchMaxSpeed;
     }
 
     public override bool MakeTransitions(float deltaTime)
@@ -15,14 +14,14 @@ public class CrouchedPlayerMovementState : GroundedPlayerMovementState
         bool isGrounded = movementController.GroundCheck();
         if (!isGrounded)
         {
-            movementController.SetCurrentState(airStateHash);
+            movementController.SetCurrentState(PlayerMovementStateType.Air);
             movementController.GetCurrentState().UpdateMovementVelocity(deltaTime);
             return true;
         }
         if (!inputController.crouchModifier &&
             movementController.CanSetHeight(movementController.PlayerDefaultHeight))
         {
-            movementController.SetCurrentState(walkStateHash);
+            movementController.SetCurrentState(PlayerMovementStateType.Walk);
             movementController.GetCurrentState().UpdateMovementVelocity(deltaTime);
             return true;
         }
@@ -30,27 +29,19 @@ public class CrouchedPlayerMovementState : GroundedPlayerMovementState
         return false;
     }
 
+    public override void HandleObstacleAfterMovement(float deltaTime, in RaycastHit hit)
+    {
+        
+    }
+
     public override void OnStateActivated(IPlayerMovementState prevState)
     {
-        movementController.SetHeight(capsuleHeight, false);
+        movementController.SetHeight(config.CrouchHeight, false);
         base.OnStateActivated(prevState);
     }
     public override void OnStateDeactivated(IPlayerMovementState nextState)
     {
         base.OnStateDeactivated(nextState);
         movementController.ResetHeight();
-    }
-}
-
-[CreateAssetMenu(fileName = "CrouchedPlayerMovementStateConfig", menuName = "Character/Movement/Crouched Movement State")]
-public class CrouchedPlayerMovementStateConfig : GroundedPlayerMovementStateConfig
-{
-    [SerializeField] private float playerHeight;
-
-    public float PlayerHeight => playerHeight;
-
-    protected override IPlayerMovementState CreateMovementState()
-    {
-        return new CrouchedPlayerMovementState(this);
     }
 }

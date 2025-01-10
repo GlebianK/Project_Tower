@@ -1,20 +1,12 @@
 using UnityEngine;
+using UnityEngine.ProBuilder;
 
 public class AirPlayerMovementState : PlayerMovementStateBase
 {
-    private float acceleration;
-    private float airMaxSpeed;
-    private float gravityForce;
     private float airDelimitSpeed;
-
-    private int groundStateHash;
-
-    public AirPlayerMovementState(AirPlayerMovementStateConfig config)
+    public AirPlayerMovementState(PlayerMovementStateConfig config) : base(config)
     {
-        acceleration = config.Acceleration;
-        airMaxSpeed = config.AirMaxSpeed;
-        gravityForce = config.GravityForce;
-        groundStateHash = config.GroundStateHash;
+
     }
 
     #region [ Movement Cycle Methods ]
@@ -25,7 +17,7 @@ public class AirPlayerMovementState : PlayerMovementStateBase
         bool isJumping = inputController.jumpPressed;
         if (isGrounded && !isJumping)
         {
-            movementController.SetCurrentState(groundStateHash);
+            movementController.SetCurrentState(PlayerMovementStateType.Walk);
             movementController.GetCurrentState().UpdateMovementVelocity(deltaTime);
             return true;
         }
@@ -38,14 +30,14 @@ public class AirPlayerMovementState : PlayerMovementStateBase
 
         Vector3 velocity = movementController.CharacterVelocity;
 
-        velocity += WSmovementInput * acceleration * deltaTime;
+        velocity += WSmovementInput * config.Acceleration * deltaTime;
         float VertVelocity = velocity.y;
         Vector3 HorizontalVelocity = Vector3.ProjectOnPlane(velocity, Vector3.up);
 
         HorizontalVelocity = Vector3.ClampMagnitude(HorizontalVelocity, airDelimitSpeed);
         velocity = HorizontalVelocity + Vector3.up * VertVelocity;
 
-        velocity += Vector3.down * gravityForce * deltaTime;
+        velocity += Vector3.down * config.GravityForce * deltaTime;
 
         return velocity;
     }
@@ -60,31 +52,10 @@ public class AirPlayerMovementState : PlayerMovementStateBase
         Vector3 velocity = movementController.CharacterVelocity;
         if (inputController.jumpPressed)
             velocity.y = 0;
-        airDelimitSpeed = velocity.magnitude > airMaxSpeed ? velocity.magnitude : airMaxSpeed;
+        airDelimitSpeed = velocity.magnitude > config.AirMaxSpeed ? velocity.magnitude : config.AirMaxSpeed;
     }
     public override void OnStateDeactivated(IPlayerMovementState nextState)
     {
 
-    }
-}
-
-[CreateAssetMenu(fileName = "AirPlayerMovementState", menuName = "Character/Movement/Air Move State")]
-public class AirPlayerMovementStateConfig : PlayerMovementStateConfigBase
-{
-    [SerializeField] private float acceleration;
-    [SerializeField] private float gravityForce;
-    [SerializeField] private float airMaxSpeed;
-    [SerializeField] private string groundStateName;
-
-    public float Acceleration => acceleration;
-    public float GravityForce => gravityForce;
-    public float AirMaxSpeed => airMaxSpeed;
-
-    public string GroundStateName => groundStateName;
-    public int GroundStateHash => groundStateName.GetHashCode();
-
-    protected override IPlayerMovementState CreateMovementState()
-    {
-        return new AirPlayerMovementState(this);
     }
 }

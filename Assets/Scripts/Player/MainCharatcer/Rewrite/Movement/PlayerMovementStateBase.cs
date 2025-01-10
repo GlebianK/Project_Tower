@@ -16,16 +16,17 @@ public interface IPlayerMovementState
 
 public abstract class PlayerMovementStateBase : IPlayerMovementState
 {
-    private PlayerMovementStateMachine _machine;
-    private MovementInputEventHandler _inputHandler;
-
-    protected PlayerMovementStateMachine movementController => _machine;
-    protected MovementInputEventHandler inputController => _inputHandler;
-
+    protected PlayerMovementStateMachine movementController { get; private set; }
+    protected MovementInputEventHandler inputController { get; private set; }
+    protected PlayerMovementStateConfig config { get; private set; }
+    public PlayerMovementStateBase(PlayerMovementStateConfig config)
+    {
+        this.config = config;
+    }
     public void InitializeContext(PlayerMovementStateMachine machine, MovementInputEventHandler inputHandler)
     {
-        _machine = machine;
-        _inputHandler = inputHandler;
+        movementController = machine;
+        inputController = inputHandler;
     }
 
     public abstract void OnStateActivated(IPlayerMovementState prevState);
@@ -38,25 +39,8 @@ public abstract class PlayerMovementStateBase : IPlayerMovementState
         if (MakeTransitions(deltaTime))
             return;
 
-        _machine.CharacterVelocity = ComputeVelocity(deltaTime);
+        movementController.CharacterVelocity = ComputeVelocity(deltaTime);
     }
     protected abstract Vector3 ComputeVelocity(float deltaTime);
     public abstract void HandleObstacleAfterMovement(float deltaTime, in RaycastHit hit);
-}
-
-public abstract class PlayerMovementStateConfigBase : ScriptableObject
-{
-    [SerializeField]
-    private string stateName;
-    public string StateName => stateName;
-
-    public IPlayerMovementState CreateMovementStateInstance(
-        PlayerMovementStateMachine machine, 
-        MovementInputEventHandler inputHandler)
-    {
-        IPlayerMovementState newState = CreateMovementState();
-        newState.InitializeContext(machine, inputHandler);
-        return newState;
-    }
-    protected abstract IPlayerMovementState CreateMovementState();
 }
