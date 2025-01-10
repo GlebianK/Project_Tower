@@ -18,7 +18,7 @@ public class ProceduralTransformApplier : PlayableBehaviour
         Quaternion newRotation = Quaternion.Slerp(Quaternion.identity, input.rotation, info.weight);
         Vector3 newScale = input.scale * info.weight;
 
-        Quaternion rotOffset = Quaternion.Inverse(oldRot) * newRotation;
+        Quaternion rotOffset = newRotation * Quaternion.Inverse(oldRot);
 
         handledTransform.localPosition += newPosition - oldOffset;
         handledTransform.localRotation = rotOffset * handledTransform.localRotation;

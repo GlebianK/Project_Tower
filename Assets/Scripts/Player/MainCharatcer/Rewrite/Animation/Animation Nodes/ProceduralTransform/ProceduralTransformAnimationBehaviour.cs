@@ -7,6 +7,7 @@ public class ProceduralTransformAnimationBehaviourBase : PlayableBehaviour
     public virtual Vector3 position { get => Vector3.zero; }
     public virtual Quaternion rotation { get => Quaternion.identity; }
     public virtual Vector3 scale { get => Vector3.zero; }
+    public float speed = 1;
 }
 
 // A behaviour that is attached to a playable

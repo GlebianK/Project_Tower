@@ -31,6 +31,13 @@ public class ProceduralTransformAnimationAsset : PlayableAsset
     [SerializeField] private ProceduralVector3AnimationProperties proceduralRotation;
     [SerializeField] private ProceduralVector3AnimationProperties proceduralScale;
 
+    public Vector3 TargetOffset => targetOffset;
+    public Quaternion TargetRotationOffset => targetRotationOffset;
+    public Vector3 TargetLocalScaleOffset => targetLocalScaleOffset;
+    public ProceduralVector3AnimationProperties ProceduralPosition => proceduralPosition;
+    public ProceduralVector3AnimationProperties ProceduralRotation => proceduralRotation;
+    public ProceduralVector3AnimationProperties ProceduralScale => proceduralScale;
+
     public override Playable CreatePlayable(PlayableGraph graph, GameObject go)
     {
         var playable = ScriptPlayable<ProceduralTransformAnimationBehaviour>.Create(graph);

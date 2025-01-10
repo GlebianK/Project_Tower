@@ -1,7 +1,17 @@
 using UnityEngine;
 using UnityEngine.Playables;
-using UnityEditor.Experimental.GraphView;
 using Unity.Cinemachine;
+using NUnit.Framework;
+using System.Collections.Generic;
+using System;
+using System.Linq;
+
+[Serializable]
+public struct AnimationAssetDescriptor
+{
+    public PlayerMovementStateType type;
+    public AnimationStateAssetBase asset;
+}
 
 public class PlayerAnimationSystem : MonoBehaviour
 {
@@ -9,17 +19,16 @@ public class PlayerAnimationSystem : MonoBehaviour
     [SerializeField] private CinemachineCamera playerCamera;
     [SerializeField] private Transform meshRoot;
 
-    [SerializeField] private ProceduralTransformAnimationAsset baseCameraAnimation;
-    [SerializeField] private ProceduralTransformAnimationAsset crouchCameraAnimation;
+    [SerializeField] private List<AnimationAssetDescriptor> animationStates;
 
-    [SerializeField] private float slideDutch;
-    [SerializeField] private float slideFOV;
-
+    private Dictionary<PlayerMovementStateType, AnimationStateControllerBase> animationControllers
+        = new Dictionary<PlayerMovementStateType, AnimationStateControllerBase>();
+    private PlayerMovementStateType currentMovementStateType;
     private PlayableGraph graph;
-    private ScriptPlayable<ProceduralTransformApplier> cameraRootPlayable;
 
     private Playable cameraPosMixer;
     private Playable cameraPropertyMixer;
+    private Playable handsPosMixer;
 
     private void Awake()
     {
@@ -28,33 +37,32 @@ public class PlayerAnimationSystem : MonoBehaviour
 
     private void Start()
     {
+        currentMovementStateType = PlayerMovementStateType.Walk;
+        if (animationControllers.ContainsKey(currentMovementStateType))
+            StartCoroutine(animationControllers[currentMovementStateType].BlendIn());
+    }
 
+    private void Update()
+    {
+        foreach (var animState in animationControllers)
+        {
+            animState.Value.UpdateState(this, Time.deltaTime);
+        }
     }
 
     private void LateUpdate()
     {
         PlayerMovementStateType movementType = movementController.GetCurrentStateType();
 
-        if (movementType == PlayerMovementStateType.Crouch || movementType == PlayerMovementStateType.Slide)
+        if (movementType != currentMovementStateType)
         {
-            cameraPosMixer.SetInputWeight(0, 0);
-            cameraPosMixer.SetInputWeight(1, 1);
-        }
-        else
-        {
-            cameraPosMixer.SetInputWeight(1, 0);
-            cameraPosMixer.SetInputWeight(0, 1);
-        }
+            if (animationControllers.ContainsKey(currentMovementStateType))
+                StartCoroutine(animationControllers[currentMovementStateType].BlendOut());
 
-        if (movementType == PlayerMovementStateType.Slide)
-        {
-            cameraPropertyMixer.SetInputWeight(0, 0);
-            cameraPropertyMixer.SetInputWeight(1, 1);
-        }
-        else
-        {
-            cameraPropertyMixer.SetInputWeight(0, 1);
-            cameraPropertyMixer.SetInputWeight(1, 0);
+            currentMovementStateType = movementType;
+
+            if (animationControllers.ContainsKey(currentMovementStateType))
+                StartCoroutine(animationControllers[currentMovementStateType].BlendIn());
         }
 
         graph.Evaluate(Time.deltaTime);
@@ -71,42 +79,107 @@ public class PlayerAnimationSystem : MonoBehaviour
         graph = PlayableGraph.Create("Player Animation System");
         graph.SetTimeUpdateMode(DirectorUpdateMode.Manual);
 
-        ScriptPlayableOutput generalProceduralAnimationOutput = ScriptPlayableOutput.Create(graph, "General Procedural Animation Output");
-        
-        cameraRootPlayable = ScriptPlayable<ProceduralTransformApplier>.Create(graph, 2);
-        generalProceduralAnimationOutput.SetSourcePlayable(cameraRootPlayable);
+
+        int cameraPoseCount = 1 + animationStates.Where(descriptor => descriptor.asset.CameraAnimation != null).Count();
+        int cameraPropertiesCount = 1 + animationStates.Where(descriptor => descriptor.asset.CameraFOV >= 0
+                                                            || descriptor.asset.CameraAnimation != null).Count();
+        int meshPoseCount = 1 + animationStates.Where(descriptor => descriptor.asset.ArmsProceduralAnimation != null).Count();
+
+
+        ScriptPlayableOutput generalCameraAnimationOutput = ScriptPlayableOutput.Create(graph, "General Camera Animation Output");
+        ScriptPlayableOutput generalHandsProceduralAnimationOutput = ScriptPlayableOutput.Create(graph, "General Hands ProceduralAnimation Output");
+
+        // setup camera graph mix nodes
+        var cameraRootPlayable = ScriptPlayable<ProceduralTransformApplier>.Create(graph, 2);
+        generalCameraAnimationOutput.SetSourcePlayable(cameraRootPlayable);
 
         cameraRootPlayable.GetBehaviour().handledTransform = playerCamera.Follow;
 
-        cameraPosMixer = ScriptPlayable<ProceduralTransformMixer>.Create(graph, 2);
+        cameraPosMixer = ScriptPlayable<ProceduralTransformMixer>.Create(graph, cameraPoseCount);
         cameraRootPlayable.ConnectInput(0, cameraPosMixer, 0);
         cameraRootPlayable.SetInputWeight(0, 1);
-
-        var cameraBasePose = baseCameraAnimation.CreatePlayable(graph, gameObject);
-        cameraPosMixer.ConnectInput(0, cameraBasePose, 0);
-        cameraPosMixer.SetInputWeight(0, 1);
-        var cameraCrouchPose = crouchCameraAnimation.CreatePlayable(graph, gameObject);
-        cameraPosMixer.ConnectInput(1, cameraCrouchPose, 0);
-        cameraPosMixer.SetInputWeight(1, 0);
-
-        cameraPropertyMixer = Playable.Create(graph, 2);
+        cameraPropertyMixer = Playable.Create(graph, cameraPropertiesCount);
         cameraRootPlayable.ConnectInput(1, cameraPropertyMixer, 0);
         cameraRootPlayable.SetInputWeight(1, 1);
 
-        var cameraBaseProperty = ScriptPlayable<CinemachinePropertyPlayableBehaviour>.Create(graph);
-        cameraBaseProperty.GetBehaviour().Camera = playerCamera;
-        cameraBaseProperty.GetBehaviour().targetDutch = 0;
-        cameraBaseProperty.GetBehaviour().targetFOV = playerCamera.Lens.FieldOfView;
-        cameraPropertyMixer.ConnectInput(0, cameraBaseProperty, 0);
-        cameraPropertyMixer.SetInputWeight(0, 1);
+        // setup mesh graph mix nodes
+        var handsRootPlayable = ScriptPlayable<ProceduralTransformApplier>.Create(graph, 2);
+        generalHandsProceduralAnimationOutput.SetSourcePlayable(handsRootPlayable);
 
-        var cameraSlideProperty = ScriptPlayable<CinemachinePropertyPlayableBehaviour>.Create(graph);
-        cameraSlideProperty.GetBehaviour().Camera = playerCamera;
-        cameraSlideProperty.GetBehaviour().targetDutch = slideDutch;
-        cameraSlideProperty.GetBehaviour().targetFOV = slideFOV;
-        cameraPropertyMixer.ConnectInput(1, cameraSlideProperty, 0);
-        cameraPropertyMixer.SetInputWeight(1, 0);
+        handsRootPlayable.GetBehaviour().handledTransform = meshRoot;
+
+        handsPosMixer = ScriptPlayable<ProceduralTransformMixer>.Create(graph, meshPoseCount);
+        handsRootPlayable.ConnectInput(0, handsPosMixer, 0);
+        handsRootPlayable.SetInputWeight(0, 1);
+
+        /*
+            Here connect animationclip mixer
+         */
+
+        int cameraPosIndex = 0;
+        int cameraPropIndex = 0;
+        int meshPosIndex = 0;
+        foreach (var animAsset in animationStates)
+        {
+            InitAnimationStateController(animAsset, ref cameraPosIndex, ref cameraPropIndex, ref meshPosIndex);
+        }
 
         graph.Play();
+    }
+
+    private void InitAnimationStateController(AnimationAssetDescriptor asset, 
+        ref int cameraAnimationIndex, ref int cameraPropertyIndex, ref int handsPoseIndex)
+    {
+        AnimationStateControllerBase state = asset.asset.CreateState();
+
+        if (asset.asset.CameraFOV >= 0 || asset.asset.CameraAnimation != null)
+        {
+            var cameraProperty = ScriptPlayable<CinemachinePropertyPlayableBehaviour>.Create(graph);
+            cameraProperty.GetBehaviour().Camera = playerCamera;
+            cameraProperty.GetBehaviour().targetDutch = asset.asset.CameraAnimation != null
+                ? asset.asset.CameraAnimation.TargetRotationOffset.eulerAngles.z : 0;
+            cameraProperty.GetBehaviour().targetFOV = asset.asset.CameraFOV >= 0
+                ? asset.asset.CameraFOV : playerCamera.Lens.FieldOfView;
+
+            int inputIndex = cameraPropertyIndex;
+            cameraPropertyMixer.ConnectInput(inputIndex, cameraProperty, 0);
+            state.SetControll(cameraPropertyMixer, inputIndex);
+            cameraPropertyIndex++;
+        }
+        else
+        {
+            state.SetControll(cameraPropertyMixer, 0);
+        }
+
+        if (asset.asset.CameraAnimation != null)
+        {
+            var cameraPlayable = asset.asset.CameraAnimation.CreatePlayable(graph, gameObject);
+            // flush z rotation because of dutch camera property
+            var behaviour = ((ScriptPlayable<ProceduralTransformAnimationBehaviour>)cameraPlayable).GetBehaviour();
+            Vector3 targetCameraRotationEuler = behaviour.targetLocalRotationOffset.eulerAngles;
+            targetCameraRotationEuler.z = 0;
+            behaviour.targetLocalRotationOffset = Quaternion.Euler(targetCameraRotationEuler);
+
+            int inputIndex = cameraAnimationIndex;
+            cameraPosMixer.ConnectInput(inputIndex, cameraPlayable, 0);
+            state.SetControll(cameraPosMixer, inputIndex);
+            cameraAnimationIndex++;
+        } 
+        else
+        {
+            state.SetControll(cameraPosMixer, 0);
+        }
+
+        if (asset.asset.ArmsProceduralAnimation != null)
+        {
+            var handsPos = asset.asset.ArmsProceduralAnimation.CreatePlayable(graph, gameObject);
+
+            int inputIndex = handsPoseIndex;
+            handsPosMixer.ConnectInput(inputIndex, handsPos, 0);
+            state.SetControll(handsPosMixer, inputIndex);
+            handsPoseIndex++;
+        }
+
+        animationControllers.Add(asset.type, state);
     }
 }
