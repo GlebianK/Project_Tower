@@ -29,13 +29,13 @@ public class AnimationStateControllerBase
     public IEnumerator BlendIn()
     {
         yield return Blend(asset.BlendIn, asset.BlendInDuration);
-        SetAllWeights(1);
+        //SetAllWeights(1);
     }
 
     public IEnumerator BlendOut()
     {
         yield return Blend(asset.BlendOut, asset.BlendOutDuration);
-        SetAllWeights(0);
+        //SetAllWeights(0);
     }
 
     private IEnumerator Blend(AnimationCurve curve, float duration)
@@ -51,6 +51,8 @@ public class AnimationStateControllerBase
             prevWeight = weight;
             yield return null;
         }
+        float finalWeight = curve.Evaluate(1);
+        AddAllWeights(finalWeight - prevWeight);
     }
 
     private void AddAllWeights(float weight)
