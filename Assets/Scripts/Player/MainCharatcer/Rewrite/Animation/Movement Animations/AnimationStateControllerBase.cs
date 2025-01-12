@@ -10,6 +10,8 @@ public class AnimationStateControllerBase
 
     private List<Tuple<Playable, int>> controlledWeights;
 
+    private float currentWeight = 0;
+
     public AnimationStateControllerBase(AnimationStateAssetBase asset)
     {
         this.asset = asset;
@@ -29,13 +31,11 @@ public class AnimationStateControllerBase
     public IEnumerator BlendIn()
     {
         yield return Blend(asset.BlendIn, asset.BlendInDuration);
-        //SetAllWeights(1);
     }
 
     public IEnumerator BlendOut()
     {
         yield return Blend(asset.BlendOut, asset.BlendOutDuration);
-        //SetAllWeights(0);
     }
 
     private IEnumerator Blend(AnimationCurve curve, float duration)
@@ -57,14 +57,15 @@ public class AnimationStateControllerBase
 
     private void AddAllWeights(float weight)
     {
+        float prevWeight = currentWeight;
+        currentWeight = prevWeight + weight;
+
         foreach (var playableTuple in  controlledWeights)
         {
             var playable = playableTuple.Item1;
             var inputIndex = playableTuple.Item2;
 
-            float prevWeight = playable.GetInputWeight(inputIndex);
-
-            playable.SetInputWeight(inputIndex, prevWeight + weight);
+            playable.SetInputWeight(inputIndex, Mathf.Clamp01(currentWeight));
         }
     }
 
@@ -75,7 +76,8 @@ public class AnimationStateControllerBase
             var playable = playableTuple.Item1;
             var inputIndex = playableTuple.Item2;
 
-            playable.SetInputWeight(inputIndex, Mathf.Clamp01(weight));
+            currentWeight = weight;
+            playable.SetInputWeight(inputIndex, Mathf.Clamp01(currentWeight));
         }
     }
 }
