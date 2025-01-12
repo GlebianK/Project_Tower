@@ -9587,14 +9587,39 @@ MonoBehaviour:
   playerCamera: {fileID: 818958263}
   meshRoot: {fileID: 617192547}
   animationStates:
-  - type: 1
+  - animationName: Walk
     asset: {fileID: 11400000, guid: e3d576e872d8e6541a4411c16eb7b78c, type: 2}
-  - type: 3
+  - animationName: Sprint
     asset: {fileID: 11400000, guid: 0a627af67bdcee84f889a20f565e0134, type: 2}
-  - type: 2
+  - animationName: Crouch
     asset: {fileID: 11400000, guid: a3de2d35c91bc7f4fa0e250468ad5714, type: 2}
-  - type: 4
+  - animationName: Slide
     asset: {fileID: 11400000, guid: 9438932e55ab6d44683a8a2a386d2dbd, type: 2}
+  defaultAnimationName: Walk
+--- !u!114 &1646780188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646780164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 439555cc7cd246b499a96987ee62df6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementController: {fileID: 1646780177}
+  animationSystem: {fileID: 1646780181}
+  defaultStateName: Walk
+  states:
+  - type: 1
+    name: Walk
+  - type: 2
+    name: Crouch
+  - type: 3
+    name: Sprint
+  - type: 4
+    name: Slide
 --- !u!1 &1669912819
 GameObject:
   m_ObjectHideFlags: 0
@@ -13757,6 +13782,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3270539087432558519, guid: 782e8e10e72bc824c93655e76c20fe08, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1646780181}
+    - targetCorrespondingSourceObject: {fileID: 3270539087432558519, guid: 782e8e10e72bc824c93655e76c20fe08, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1646780188}
   m_SourcePrefab: {fileID: 100100000, guid: 782e8e10e72bc824c93655e76c20fe08, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

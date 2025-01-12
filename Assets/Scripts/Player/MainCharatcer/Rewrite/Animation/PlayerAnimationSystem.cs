@@ -9,7 +9,7 @@ using System.Linq;
 [Serializable]
 public struct AnimationAssetDescriptor
 {
-    public PlayerMovementStateType type;
+    public string animationName;
     public AnimationStateAssetBase asset;
 }
 
@@ -20,15 +20,18 @@ public class PlayerAnimationSystem : MonoBehaviour
     [SerializeField] private Transform meshRoot;
 
     [SerializeField] private List<AnimationAssetDescriptor> animationStates;
+    [SerializeField] private string defaultAnimationName;
 
-    private Dictionary<PlayerMovementStateType, AnimationStateControllerBase> animationControllers
-        = new Dictionary<PlayerMovementStateType, AnimationStateControllerBase>();
-    private PlayerMovementStateType currentMovementStateType;
+    private Dictionary<string, AnimationStateControllerBase> animationControllers
+        = new Dictionary<string, AnimationStateControllerBase>();
+    private string currentMovementStateName;
     private PlayableGraph graph;
 
     private Playable cameraPosMixer;
     private Playable cameraPropertyMixer;
     private Playable handsPosMixer;
+
+    public PlayerMovementStateMachine MovementController => movementController;
 
     private void Awake()
     {
@@ -37,9 +40,9 @@ public class PlayerAnimationSystem : MonoBehaviour
 
     private void Start()
     {
-        currentMovementStateType = PlayerMovementStateType.Walk;
-        if (animationControllers.ContainsKey(currentMovementStateType))
-            StartCoroutine(animationControllers[currentMovementStateType].BlendIn());
+        currentMovementStateName = defaultAnimationName;
+        if (animationControllers.ContainsKey(currentMovementStateName))
+            StartCoroutine(animationControllers[currentMovementStateName].BlendIn());
     }
 
     private void Update()
@@ -52,19 +55,6 @@ public class PlayerAnimationSystem : MonoBehaviour
 
     private void LateUpdate()
     {
-        PlayerMovementStateType movementType = movementController.GetCurrentStateType();
-
-        if (movementType != currentMovementStateType)
-        {
-            if (animationControllers.ContainsKey(currentMovementStateType))
-                StartCoroutine(animationControllers[currentMovementStateType].BlendOut());
-
-            currentMovementStateType = movementType;
-
-            if (animationControllers.ContainsKey(currentMovementStateType))
-                StartCoroutine(animationControllers[currentMovementStateType].BlendIn());
-        }
-
         graph.Evaluate(Time.deltaTime);
     }
 
@@ -87,8 +77,9 @@ public class PlayerAnimationSystem : MonoBehaviour
 
 
         ScriptPlayableOutput generalCameraAnimationOutput = ScriptPlayableOutput.Create(graph, "General Camera Animation Output");
+        generalCameraAnimationOutput.SetUserData(this);
         ScriptPlayableOutput generalHandsProceduralAnimationOutput = ScriptPlayableOutput.Create(graph, "General Hands ProceduralAnimation Output");
-
+        generalHandsProceduralAnimationOutput.SetUserData(this);
         // setup camera graph mix nodes
         var cameraRootPlayable = ScriptPlayable<ProceduralTransformApplier>.Create(graph, 2);
         generalCameraAnimationOutput.SetSourcePlayable(cameraRootPlayable);
@@ -130,7 +121,7 @@ public class PlayerAnimationSystem : MonoBehaviour
     private void InitAnimationStateController(AnimationAssetDescriptor asset, 
         ref int cameraAnimationIndex, ref int cameraPropertyIndex, ref int handsPoseIndex)
     {
-        AnimationStateControllerBase state = asset.asset.CreateState();
+        AnimationStateControllerBase state = asset.asset.CreateState(this);
 
         if (asset.asset.CameraFOV >= 0 || asset.asset.CameraAnimation != null)
         {
@@ -180,6 +171,20 @@ public class PlayerAnimationSystem : MonoBehaviour
             handsPoseIndex++;
         }
 
-        animationControllers.Add(asset.type, state);
+        animationControllers.Add(asset.animationName, state);
+    }
+
+    public void SetState(string stateName)
+    {
+        if (stateName != currentMovementStateName)
+        {
+            if (animationControllers.ContainsKey(currentMovementStateName))
+                StartCoroutine(animationControllers[currentMovementStateName].BlendOut());
+
+            currentMovementStateName = stateName;
+
+            if (animationControllers.ContainsKey(currentMovementStateName))
+                StartCoroutine(animationControllers[currentMovementStateName].BlendIn());
+        }
     }
 }

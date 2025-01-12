@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovementStateMachine : MonoBehaviour
@@ -13,14 +14,15 @@ public class PlayerMovementStateMachine : MonoBehaviour
     [SerializeField] private MovementInputEventHandler movementInputEventHandler;
     [SerializeField] private PlayerMovementStateType startState;
 
-
     private Dictionary<PlayerMovementStateType, IPlayerMovementState> movementStates;
     private PlayerMovementStateType currentMovementState;
+
+    public UnityEvent<PlayerMovementStateMachine, PlayerMovementStateType> StateChanged;
 
     // нужно для предотвращения "приклеивания" игрока к полу сразу после прыжка
     private float lastTimeJump;
     // если есть, пытается восстановить высоту персонажа
-    Coroutine uncrouchCoroutine = null;
+    private Coroutine uncrouchCoroutine = null;
 
     public CharacterController cc { get; private set; }
     public Vector3 GroundNormal { get; private set; }
@@ -43,6 +45,8 @@ public class PlayerMovementStateMachine : MonoBehaviour
     }
     private void Update()
     {
+        PlayerMovementStateType oldState = GetCurrentStateType();
+
         GetCurrentState().UpdateMovementVelocity(Time.deltaTime);
 
         Vector3 startHandlePosition = transform.position;
@@ -58,6 +62,10 @@ public class PlayerMovementStateMachine : MonoBehaviour
 
         GetCurrentState().HandleObstacleAfterMovement(Time.deltaTime, hitResult);
 
+        if (oldState != GetCurrentStateType())
+        {
+            StateChanged.Invoke(this, GetCurrentStateType());
+        }
         movementInputEventHandler.jumpPressed = false;
     }
 

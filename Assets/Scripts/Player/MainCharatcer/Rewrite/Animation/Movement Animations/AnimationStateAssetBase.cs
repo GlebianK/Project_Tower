@@ -21,7 +21,7 @@ public class AnimationStateAssetBase : ScriptableObject
     public float CameraFOV => targetFov;
     public ProceduralTransformAnimationAsset ArmsProceduralAnimation => armsProceduralAnimationAsset;
 
-    public virtual AnimationStateControllerBase CreateState()
+    public virtual AnimationStateControllerBase CreateState(PlayerAnimationSystem animSystem)
     {
         return new AnimationStateControllerBase(this);
     }

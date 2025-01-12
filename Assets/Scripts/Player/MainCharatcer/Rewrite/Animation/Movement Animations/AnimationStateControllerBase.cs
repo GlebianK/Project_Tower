@@ -16,7 +16,7 @@ public class AnimationStateControllerBase
         controlledWeights = new List<Tuple<Playable, int>>();
     }
 
-    public void SetControll(Playable playable, int inputPort)
+    public virtual void SetControll(Playable playable, int inputPort)
     {
         controlledWeights.Add(new Tuple<Playable, int>(playable, inputPort));
     }
