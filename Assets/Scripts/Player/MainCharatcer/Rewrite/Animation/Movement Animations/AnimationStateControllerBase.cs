@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 using UnityEngine.Playables;
 
 public class AnimationStateControllerBase
@@ -40,19 +41,26 @@ public class AnimationStateControllerBase
 
     private IEnumerator Blend(AnimationCurve curve, float duration)
     {
-        float prevTime = 0;
-        float prevWeight = curve.Evaluate(prevTime / duration);
-        while (prevTime < duration)
+        if (duration <= 0)
         {
-            float time = prevTime + Time.deltaTime;
-            float weight = curve.Evaluate(time / duration);
-            AddAllWeights(weight - prevWeight);
-            prevTime = time;
-            prevWeight = weight;
-            yield return null;
+            SetAllWeights(curve.Evaluate(1));
         }
-        float finalWeight = curve.Evaluate(1);
-        AddAllWeights(finalWeight - prevWeight);
+        else
+        {
+            float prevTime = 0;
+            float prevWeight = curve.Evaluate(prevTime / duration);
+            while (prevTime <= duration)
+            {
+                float time = prevTime + Time.deltaTime;
+                float weight = curve.Evaluate(time / duration);
+                AddAllWeights(weight - prevWeight);
+                prevTime = time;
+                prevWeight = weight;
+                yield return null;
+            }
+            float finalWeight = curve.Evaluate(1);
+            AddAllWeights(finalWeight - prevWeight);
+        }
     }
 
     private void AddAllWeights(float weight)

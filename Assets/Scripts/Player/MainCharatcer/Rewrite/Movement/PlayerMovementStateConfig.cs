@@ -8,6 +8,7 @@ public enum PlayerMovementStateType
     Crouch,
     Sprint,
     Slide,
+    Dash,
     Climb
 }
 
@@ -39,7 +40,15 @@ public class PlayerMovementStateConfig : ScriptableObject
     [SerializeField] private float slideDecceleration = 8;
     [Tooltip("Скорость, при достожении которой персонаж переходит в состояние присяда или бега")]
     [SerializeField] private float slideEndSpeedThreshold = 2;
-
+    [Header("Dash")]
+    [SerializeField] private float dashRange = 5;
+    [SerializeField] private float dashTime = 0.2f;
+    [Header("Climb")]
+    [SerializeField] private float climbCheckForwardRange;
+    [SerializeField] private float climbCheckpointHeight;
+    [SerializeField] private float climbDownCheckRange;
+    [SerializeField] private float climbMaxDuration;
+    [SerializeField] private LayerMask groundObstacleLayer;
     public float Acceleration => acceleration;
     public LayerMask GroundLayer => groundLayer;
     public float WalkMaxSpeed => walkMaxSpeed;
@@ -55,6 +64,13 @@ public class PlayerMovementStateConfig : ScriptableObject
     public float SlideStartSpeed => slideStartSpeed;
     public float SlideDecceleration => slideDecceleration;
     public float SlideEndSpeedThreshold => slideEndSpeedThreshold;
+    public float DashRange => dashRange; 
+    public float DashTime => dashTime;
+    public float ClimbCheckForwardRange => climbCheckForwardRange;
+    public float ClimbCheckpointHeight => climbCheckpointHeight;
+    public float ClimbDownCheckRange => climbDownCheckRange;  
+    public float ClimbMaxDuration => climbMaxDuration;
+    public LayerMask ClimbObstacleLayer => groundObstacleLayer;
 
     public IEnumerable<KeyValuePair<PlayerMovementStateType, IPlayerMovementState>> CreateAllMovementStates(
         PlayerMovementStateMachine machine,
@@ -67,6 +83,8 @@ public class PlayerMovementStateConfig : ScriptableObject
             yield return CreateMovementStateInstance(PlayerMovementStateType.Sprint, machine, inputHandler);
         if (enableSlide)
             yield return CreateMovementStateInstance(PlayerMovementStateType.Slide, machine, inputHandler);
+        yield return CreateMovementStateInstance(PlayerMovementStateType.Dash, machine, inputHandler);
+        yield return CreateMovementStateInstance(PlayerMovementStateType.Climb, machine, inputHandler);
     }
 
     private KeyValuePair<PlayerMovementStateType, IPlayerMovementState> CreateMovementStateInstance(
@@ -92,6 +110,10 @@ public class PlayerMovementStateConfig : ScriptableObject
                 return new SprintingPlayerMovementState(this);
             case PlayerMovementStateType.Slide:
                 return new SlidePlayerMovementState(this);
+            case PlayerMovementStateType.Dash:
+                return new DashPlayerMovementState(this);
+            case PlayerMovementStateType.Climb:
+                return new ClimbPlayerMovementState(this);
             default:
                 throw new System.ArgumentException();
                 return null;

@@ -50,6 +50,9 @@ public class GroundedPlayerMovementState : PlayerMovementStateBase
             {
                 // TODO Dash transition
                 inputController.sprintModifier = false;
+                movementController.SetCurrentState(PlayerMovementStateType.Dash);
+                movementController.GetCurrentState().UpdateMovementVelocity(deltaTime);
+                return true;
             }
            
         }
@@ -78,7 +81,10 @@ public class GroundedPlayerMovementState : PlayerMovementStateBase
     #endregion
     public override void OnStateActivated(IPlayerMovementState prevState)
     {
-        
+        if (inputController.GetMovementDirectionRaw().y < 1)
+        {
+            inputController.sprintModifier = false;
+        }
     }
     public override void OnStateDeactivated(IPlayerMovementState nextState)
     {

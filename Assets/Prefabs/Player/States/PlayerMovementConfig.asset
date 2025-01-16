@@ -17,17 +17,26 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   walkMaxSpeed: 5
-  jumpVelocity: 7
+  jumpVelocity: 8
   gravityForce: 15
   airMaxSpeed: 5
   crouchMaxSpeed: 3
   crouchHeight: 1
   enableSprint: 1
   sprintMaxSpeed: 7
-  sprintJumpVelocity: 5
+  sprintJumpVelocity: 6.5
   sprintJumpHorizontalSpeed: 9
   sprintToWalkSpeedThreshold: 4
   enableSlide: 1
   slideStartSpeed: 12
   slideDecceleration: 8
   slideEndSpeedThreshold: 5
+  dashRange: 3
+  dashTime: 0.2
+  climbCheckForwardRange: 1
+  climbCheckpointHeight: 2.5
+  climbDownCheckRange: 2.2
+  climbMaxDuration: 0.44
+  groundObstacleLayer:
+    serializedVersion: 2
+    m_Bits: 1

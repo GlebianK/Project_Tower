@@ -22,7 +22,7 @@ public class ProceduralTransformApplier : PlayableBehaviour
 
         handledTransform.localPosition += newPosition - oldOffset;
         handledTransform.localRotation = rotOffset * handledTransform.localRotation;
-        handledTransform.localScale += newScale;
+        handledTransform.localScale += newScale - oldScale;
 
         oldOffset = newPosition;
         oldRot = newRotation;

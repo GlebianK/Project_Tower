@@ -22,6 +22,17 @@ public class AirPlayerMovementState : PlayerMovementStateBase
             return true;
         }
 
+        if (isJumping)
+        {
+            RaycastHit climbPointHit;
+            if (movementController.TryGetClimbPoint(out climbPointHit))
+            {
+                movementController.SetCurrentState(PlayerMovementStateType.Climb);
+                movementController.GetCurrentState().UpdateMovementVelocity(deltaTime);
+                return true;
+            }
+        }
+
         return false;
     }
     protected override Vector3 ComputeVelocity(float deltaTime)

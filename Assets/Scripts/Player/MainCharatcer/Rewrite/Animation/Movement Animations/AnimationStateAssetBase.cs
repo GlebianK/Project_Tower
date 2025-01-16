@@ -12,6 +12,8 @@ public class AnimationStateAssetBase : ScriptableObject
     [Tooltip("Для отключения анимации FOV установить его меньше нуля")]
     [SerializeField] private float targetFov;
     [SerializeField] private ProceduralTransformAnimationAsset armsProceduralAnimationAsset;
+    [Tooltip("Задает позу IK для анимации. Задать -1 для игнорирования позы IK")]
+    [SerializeField] private int ikRigIndex = -1;
 
     public AnimationCurve BlendIn => blendIn;
     public float BlendInDuration => blendInDuration;
@@ -20,6 +22,8 @@ public class AnimationStateAssetBase : ScriptableObject
     public ProceduralTransformAnimationAsset CameraAnimation => cameraAnimationAsset;
     public float CameraFOV => targetFov;
     public ProceduralTransformAnimationAsset ArmsProceduralAnimation => armsProceduralAnimationAsset;
+
+    public int IKRigIndex => ikRigIndex;
 
     public virtual AnimationStateControllerBase CreateState(PlayerAnimationSystem animSystem)
     {

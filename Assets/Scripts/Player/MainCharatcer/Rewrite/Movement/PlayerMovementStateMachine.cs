@@ -28,6 +28,8 @@ public class PlayerMovementStateMachine : MonoBehaviour
     public Vector3 GroundNormal { get; private set; }
     public float PlayerDefaultHeight { get; private set; }
 
+    public PlayerMovementStateConfig Properties => configuration;
+
     private void Awake()
     {
         cc = GetComponent<CharacterController>();
@@ -51,8 +53,14 @@ public class PlayerMovementStateMachine : MonoBehaviour
 
         Vector3 startHandlePosition = transform.position;
         Vector3 moveVec = CharacterVelocity * Time.deltaTime;
-        cc.Move(moveVec);
-
+        if (cc.enabled)
+        {
+            cc.Move(moveVec);
+        }
+        else
+        {
+            transform.position += moveVec;
+        }
         RaycastHit hitResult;
 
         if (TryHandleObstacle(startHandlePosition, moveVec, out hitResult))
@@ -69,6 +77,10 @@ public class PlayerMovementStateMachine : MonoBehaviour
         movementInputEventHandler.jumpPressed = false;
     }
 
+    private void OnDrawGizmos()
+    {
+        
+    }
     #region [ States Management Methods ]
     public IPlayerMovementState GetCurrentState()
     {
@@ -101,18 +113,19 @@ public class PlayerMovementStateMachine : MonoBehaviour
     }
     public bool CanSetHeight(float height)
     {
-        Collider[] standingOverlaps = Physics.OverlapCapsule(
+        /*Collider[] standingOverlaps = */
+        return !Physics.CheckCapsule(
                     transform.position + Vector3.up * cc.radius,
                     transform.position + Vector3.up * (height - cc.radius),
                     cc.radius,
-                    -1,
+                    Properties.GroundLayer,
                     QueryTriggerInteraction.Ignore);
 
-        foreach (Collider c in standingOverlaps)
-        {
-            if (c != this.cc) return false;
-        }
-        return true;
+        //foreach (Collider c in standingOverlaps)
+        //{
+        //    if (c != this.cc) return false;
+        //}
+        //return true;
     }
     public void ResetHeight()
     {
@@ -169,7 +182,7 @@ public class PlayerMovementStateMachine : MonoBehaviour
     }
     #endregion
 
-    #region [ Ground and Jump ]
+    #region [ Ground, Jump and Climb ]
     public bool GroundCheck()
     {
         float chosenGroundCheckDistance = cc.skinWidth + cc.stepOffset;
@@ -180,23 +193,13 @@ public class PlayerMovementStateMachine : MonoBehaviour
         {
             return false;
         }
-        //Vector3 p1 = transform.position + Vector3.up * cc.radius;
-        //Vector3 p2 = transform.position + Vector3.up * (cc.height - cc.radius);
-        //if (Physics.CapsuleCast(p1,
-        //    p2,
-        //    cc.radius, Vector3.down, out RaycastHit hit, chosenGroundCheckDistance,
-        //    groundLayer,
-        //    QueryTriggerInteraction.Ignore))
+
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 
             chosenGroundCheckDistance, configuration.GroundLayer, QueryTriggerInteraction.Ignore))
         {
             if (Vector3.Dot(hit.normal, Vector3.up) > 0 &&
                 IsNormalUnderSlope(hit.normal))
             {
-                if (hit.distance > cc.skinWidth)
-                {
-                    cc.Move(Vector3.down * hit.distance);
-                }
                 GroundNormal = hit.normal;
                 isGrounded = true;
             }
@@ -208,6 +211,56 @@ public class PlayerMovementStateMachine : MonoBehaviour
     {
         CharacterVelocity = jumpVelocity;
         lastTimeJump = Time.time;
+    }
+
+    public bool TryGetClimbPoint(out RaycastHit climbHit)
+    {
+        climbHit = new RaycastHit();
+
+        Transform playerTransform = transform;
+
+        Vector3 forwardCheckVector = playerTransform.forward * Properties.ClimbCheckForwardRange;
+
+        RaycastHit[] hits = Physics.CapsuleCastAll(
+            playerTransform.position + Vector3.up * (cc.radius + cc.skinWidth),
+            playerTransform.position + Vector3.up * (cc.height - cc.radius),
+            cc.radius,
+            forwardCheckVector.normalized,
+            forwardCheckVector.magnitude,
+            Properties.ClimbObstacleLayer,
+            QueryTriggerInteraction.Ignore);
+        // проверяем, есть ли впереди игрока какие то препятствия для карабканья
+        foreach (RaycastHit hit in hits)
+        {
+            Vector3 climbDownRaycastStart = playerTransform.position
+                + playerTransform.forward * (hit.distance + cc.radius)
+                + Vector3.up * Properties.ClimbCheckpointHeight + transform.forward * cc.radius;
+
+            RaycastHit climbDownRaycast;
+
+            if (Physics.Raycast(
+                climbDownRaycastStart,
+                Vector3.down,
+                out climbDownRaycast,
+                Properties.ClimbDownCheckRange,
+                Properties.ClimbObstacleLayer,
+                QueryTriggerInteraction.Ignore
+                ))
+            {
+                
+                if (!Physics.CheckCapsule(
+                    climbDownRaycast.point + Vector3.up * (cc.radius + cc.skinWidth),
+                    climbDownRaycast.point + Vector3.up * (Properties.CrouchHeight - cc.radius + cc.skinWidth),
+                    cc.radius, Properties.GroundLayer,
+                    QueryTriggerInteraction.Ignore))
+                {
+                    climbHit = climbDownRaycast;
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
     #endregion
 

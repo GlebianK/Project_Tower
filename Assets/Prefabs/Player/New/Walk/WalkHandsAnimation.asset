@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39afc27102a46f94094b61a25390e52d, type: 3}
-  m_Name: SprintHandsPose
+  m_Script: {fileID: 11500000, guid: d3d2e6ffe04505e4cbee9cd8b582520d, type: 3}
+  m_Name: WalkHandsAnimation
   m_EditorClassIdentifier: 
-  targetOffset: {x: 0.01, y: -0.003, z: 0}
-  targetRotationOffset: {x: 0.013545548, y: 0.25846443, z: -0.050552655, w: -0.964602}
+  targetOffset: {x: 0, y: 0, z: 0}
+  targetRotationOffset: {x: 0, y: 0, z: 0, w: 1}
   targetLocalScaleOffset: {x: 0, y: 0, z: 0}
   proceduralPosition:
     x:
@@ -30,7 +30,7 @@ MonoBehaviour:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.3749233
+          time: 0.4997037
           value: 1.0018888
           inSlope: 0
           outSlope: 0
@@ -39,7 +39,7 @@ MonoBehaviour:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.7498466
+          time: 0.9994074
           value: -1
           inSlope: 0
           outSlope: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: -0.0006662241
+          time: -0.0006662318
           value: -1
           inSlope: 3.7517374
           outSlope: 3.7517374
@@ -65,7 +65,7 @@ MonoBehaviour:
           inWeight: 0.33333334
           outWeight: 0.17058368
         - serializedVersion: 3
-          time: 0.22480457
+          time: 0.30007717
           value: 1.0027105
           inSlope: 0.021811405
           outSlope: 0
@@ -74,7 +74,7 @@ MonoBehaviour:
           inWeight: 0.19803445
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.37396258
+          time: 0.49903107
           value: -1
           inSlope: -10.15416
           outSlope: 1.986878
@@ -83,7 +83,7 @@ MonoBehaviour:
           inWeight: 0.24866422
           outWeight: 0.33897442
         - serializedVersion: 3
-          time: 0.5979391
+          time: 0.79778135
           value: 1.0033048
           inSlope: 0
           outSlope: 0
@@ -92,7 +92,7 @@ MonoBehaviour:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.7490869
+          time: 0.99938935
           value: -1
           inSlope: -9.625776
           outSlope: -9.625776
@@ -103,7 +103,7 @@ MonoBehaviour:
         m_PreInfinity: 1
         m_PostInfinity: 1
         m_RotationOrder: 4
-      multiplier: 0.001
+      multiplier: 0.00075
     z:
       offsetCurve:
         serializedVersion: 2
@@ -161,7 +161,7 @@ MonoBehaviour:
           inWeight: 0.33333334
           outWeight: 0.33656427
         - serializedVersion: 3
-          time: 0.11286119
+          time: 0.15033035
           value: -1
           inSlope: -0.011959637
           outSlope: -0.011959637
@@ -170,16 +170,16 @@ MonoBehaviour:
           inWeight: 0.33333334
           outWeight: 0.14743207
         - serializedVersion: 3
-          time: 0.48714864
+          time: 0.6488787
           value: 1.0009551
-          inSlope: -0.41727686
-          outSlope: -0.41727686
+          inSlope: -0.31327248
+          outSlope: -0.31327248
           tangentMode: 34
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.7502039
+          time: 0.9992665
           value: -0.6248822
           inSlope: -0.10562825
           outSlope: -0.10562825
@@ -190,7 +190,7 @@ MonoBehaviour:
         m_PreInfinity: 1
         m_PostInfinity: 1
         m_RotationOrder: 4
-      multiplier: -1
+      multiplier: -0.6
   proceduralScale:
     x:
       offsetCurve:
@@ -216,3 +216,4 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       multiplier: 0
+  velocityDirectionMultiplier: {x: 1, y: 1, z: 1}

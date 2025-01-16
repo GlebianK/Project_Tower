@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70a6372056551ae4da87fdc4d780fdf2, type: 3}
-  m_Name: CrouchPlayerAnimatorState
+  m_Name: ClimbPlayerAnimatorState
   m_EditorClassIdentifier: 
   blendIn:
     serializedVersion: 2
@@ -36,33 +36,33 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  blendInDuration: 0.15
+  blendInDuration: 0
   blendOut:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
+      inSlope: -1.0019569
+      outSlope: -1.0019569
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1
+      time: 0.9980469
       value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
+      inSlope: -1.0019569
+      outSlope: -1.0019569
+      tangentMode: 34
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  blendOutDuration: 0.15
-  cameraAnimationAsset: {fileID: 11400000, guid: acc275c02a5b5b04aadb741bd0c3ae94, type: 2}
+  blendOutDuration: 0.25
+  cameraAnimationAsset: {fileID: 11400000, guid: 3bf99a278723f2b4e97dc44b752588f3, type: 2}
   targetFov: -1
-  armsProceduralAnimationAsset: {fileID: 11400000, guid: 5e54a15488d21704f8fccedd31a345c5, type: 2}
-  ikRigLayerIndex: -1
+  armsProceduralAnimationAsset: {fileID: 11400000, guid: 45e7a5931b1c01b4abefab5487a2d7b4, type: 2}
+  ikRigIndex: 0

@@ -12,7 +12,7 @@ public class ProceduralTransformAnimationBehaviourBase : PlayableBehaviour
 // A behaviour that is attached to a playable
 public class ProceduralTransformAnimationBehaviour : ProceduralTransformAnimationBehaviourBase
 {
-    private float time = 0;
+    protected float time = 0;
 
     public Vector3 targetLocalPositionOffset;
     public Quaternion targetLocalRotationOffset = Quaternion.identity;
@@ -22,9 +22,9 @@ public class ProceduralTransformAnimationBehaviour : ProceduralTransformAnimatio
     public ProceduralVector3AnimationProperties proceduralRotation;
     public ProceduralVector3AnimationProperties proceduralScale;
 
-    private Vector3 resultPositionOffset = Vector3.zero;
-    private Quaternion resultRotationOffset = Quaternion.identity;
-    private Vector3 resultScaleOffset = Vector3.zero;
+    protected Vector3 resultPositionOffset = Vector3.zero;
+    protected Quaternion resultRotationOffset = Quaternion.identity;
+    protected Vector3 resultScaleOffset = Vector3.zero;
 
     public override Vector3 position => resultPositionOffset;
 
@@ -32,14 +32,16 @@ public class ProceduralTransformAnimationBehaviour : ProceduralTransformAnimatio
 
     public override Vector3 scale => resultScaleOffset;
 
-
     public override void PrepareFrame(Playable playable, FrameData info)
     {
         resultPositionOffset = Vector3.zero;
         resultRotationOffset = Quaternion.identity;
         resultScaleOffset = Vector3.zero;
 
-        time += Time.deltaTime * info.effectiveSpeed;
+        float scaledDeltaTime = Time.deltaTime * info.effectiveSpeed;
+        time += scaledDeltaTime;
+        if (info.weight == 0)
+            time = 0;
 
         resultPositionOffset += GetPropertiesOffsetByTime(proceduralPosition, time);
         resultRotationOffset = Quaternion.Euler(GetPropertiesOffsetByTime(proceduralRotation, time)) * resultRotationOffset;
@@ -54,7 +56,7 @@ public class ProceduralTransformAnimationBehaviour : ProceduralTransformAnimatio
         resultScaleOffset *= info.weight;
     }
 
-    private Vector3 GetPropertiesOffsetByTime(in ProceduralVector3AnimationProperties properties, float time)
+    protected Vector3 GetPropertiesOffsetByTime(in ProceduralVector3AnimationProperties properties, float time)
     {
         float x = GetOffsetByTime(properties.x, time);
         float y = GetOffsetByTime(properties.y, time);
@@ -63,15 +65,13 @@ public class ProceduralTransformAnimationBehaviour : ProceduralTransformAnimatio
         return new Vector3(x, y, z);
     }
 
-    private float GetOffsetByTime(in ProceduralValueAnimationProperties properties, float time)
+    protected float GetOffsetByTime(in ProceduralValueAnimationProperties properties, float time)
     {
         if (properties.offsetCurve.length == 0) 
             return 0;
 
-        float maxTime = properties.offsetCurve.keys[properties.offsetCurve.length - 1].time;
-
-        float loopedTime = time % maxTime;
-
+        //float loopedTime = time % maxTime;
+        float loopedTime = time;
         return properties.offsetCurve.Evaluate(loopedTime) * properties.multiplier;
     }
 }

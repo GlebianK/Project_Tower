@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Playables;
+using static UnityEngine.InputSystem.OnScreen.OnScreenStick;
 
 [System.Serializable]
 public struct ProceduralValueAnimationProperties
@@ -41,8 +42,15 @@ public class ProceduralTransformAnimationAsset : PlayableAsset
     public override Playable CreatePlayable(PlayableGraph graph, GameObject go)
     {
         var playable = ScriptPlayable<ProceduralTransformAnimationBehaviour>.Create(graph);
-        
         ProceduralTransformAnimationBehaviour behaviour = playable.GetBehaviour();
+        //configure behaviour here
+        SetPropertiesTo(behaviour);
+
+        return playable;
+    }
+
+    protected void SetPropertiesTo(ProceduralTransformAnimationBehaviour behaviour)
+    {
         behaviour.targetLocalPositionOffset = targetOffset;
         behaviour.targetLocalRotationOffset = targetRotationOffset;
         behaviour.targetLocalScaleOffset = targetLocalScaleOffset;
@@ -50,10 +58,5 @@ public class ProceduralTransformAnimationAsset : PlayableAsset
         behaviour.proceduralPosition = proceduralPosition;
         behaviour.proceduralRotation = proceduralRotation;
         behaviour.proceduralScale = proceduralScale;
-        //configure behaviour here
-
-        return playable;
     }
-
-    
 }

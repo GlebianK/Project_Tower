@@ -5,6 +5,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using UnityEngine.Animations.Rigging;
 
 [Serializable]
 public struct AnimationAssetDescriptor
@@ -18,6 +19,7 @@ public class PlayerAnimationSystem : MonoBehaviour
     [SerializeField] private PlayerMovementStateMachine movementController;
     [SerializeField] private CinemachineCamera playerCamera;
     [SerializeField] private Transform meshRoot;
+    [SerializeField] private RigBuilder meshRigBuilder;
 
     [SerializeField] private List<AnimationAssetDescriptor> animationStates;
     [SerializeField] private string defaultAnimationName;
@@ -30,6 +32,7 @@ public class PlayerAnimationSystem : MonoBehaviour
     private Playable cameraPosMixer;
     private Playable cameraPropertyMixer;
     private Playable handsPosMixer;
+    private Playable meshIKMixer;
 
     public PlayerMovementStateMachine MovementController => movementController;
 
@@ -69,11 +72,11 @@ public class PlayerAnimationSystem : MonoBehaviour
         graph = PlayableGraph.Create("Player Animation System");
         graph.SetTimeUpdateMode(DirectorUpdateMode.Manual);
 
-
         int cameraPoseCount = 1 + animationStates.Where(descriptor => descriptor.asset.CameraAnimation != null).Count();
         int cameraPropertiesCount = 1 + animationStates.Where(descriptor => descriptor.asset.CameraFOV >= 0
                                                             || descriptor.asset.CameraAnimation != null).Count();
         int meshPoseCount = 1 + animationStates.Where(descriptor => descriptor.asset.ArmsProceduralAnimation != null).Count();
+        int ikRigCount = 1 + animationStates.Where(descriptor => descriptor.asset.IKRigIndex >= 0).Count();
 
 
         ScriptPlayableOutput generalCameraAnimationOutput = ScriptPlayableOutput.Create(graph, "General Camera Animation Output");
@@ -103,23 +106,26 @@ public class PlayerAnimationSystem : MonoBehaviour
         handsRootPlayable.ConnectInput(0, handsPosMixer, 0);
         handsRootPlayable.SetInputWeight(0, 1);
 
-        /*
-            Here connect animationclip mixer
-         */
+        meshIKMixer = Playable.Create(graph, ikRigCount);
+        handsRootPlayable.ConnectInput(1, meshIKMixer, 0);
+        handsRootPlayable.SetInputWeight(1, 1);
 
         int cameraPosIndex = 0;
         int cameraPropIndex = 0;
         int meshPosIndex = 0;
+        int ikRigIndex = 0;
         foreach (var animAsset in animationStates)
         {
-            InitAnimationStateController(animAsset, ref cameraPosIndex, ref cameraPropIndex, ref meshPosIndex);
+            InitAnimationStateController(animAsset, ref cameraPosIndex, ref cameraPropIndex, 
+                ref meshPosIndex, ref ikRigIndex);
         }
 
         graph.Play();
+        //meshIKgraph.Play();
     }
 
     private void InitAnimationStateController(AnimationAssetDescriptor asset, 
-        ref int cameraAnimationIndex, ref int cameraPropertyIndex, ref int handsPoseIndex)
+        ref int cameraAnimationIndex, ref int cameraPropertyIndex, ref int handsPoseIndex, ref int ikRigIndex)
     {
         AnimationStateControllerBase state = asset.asset.CreateState(this);
 
@@ -137,10 +143,6 @@ public class PlayerAnimationSystem : MonoBehaviour
             state.SetControll(cameraPropertyMixer, inputIndex);
             cameraPropertyIndex++;
         }
-        else
-        {
-            state.SetControll(cameraPropertyMixer, 0);
-        }
 
         if (asset.asset.CameraAnimation != null)
         {
@@ -155,10 +157,6 @@ public class PlayerAnimationSystem : MonoBehaviour
             cameraPosMixer.ConnectInput(inputIndex, cameraPlayable, 0);
             state.SetControll(cameraPosMixer, inputIndex);
             cameraAnimationIndex++;
-        } 
-        else
-        {
-            state.SetControll(cameraPosMixer, 0);
         }
 
         if (asset.asset.ArmsProceduralAnimation != null)
@@ -169,6 +167,19 @@ public class PlayerAnimationSystem : MonoBehaviour
             handsPosMixer.ConnectInput(inputIndex, handsPos, 0);
             state.SetControll(handsPosMixer, inputIndex);
             handsPoseIndex++;
+        }
+
+        if (asset.asset.IKRigIndex >= 0)
+        {
+            var rigPlayable = ScriptPlayable<RigLayerPlayable>.Create(graph);
+
+            RigLayerPlayable behaviour = rigPlayable.GetBehaviour();
+            behaviour.controlledRig = meshRigBuilder.layers[asset.asset.IKRigIndex].rig;
+
+            int inputIndex = ikRigIndex;
+            meshIKMixer.ConnectInput(inputIndex, rigPlayable, 0);
+            state.SetControll(meshIKMixer, inputIndex);
+            ikRigIndex++;
         }
 
         animationControllers.Add(asset.animationName, state);
