@@ -21,13 +21,13 @@ public class IKClimbPointsPlacer : MonoBehaviour
                 machine.cc.radius - 0.1f,
                 forwardCheckVector.normalized,
                 out wallHit,
-                forwardCheckVector.magnitude,
+                forwardCheckVector.magnitude + 0.15f + machine.cc.radius,
                 machine.Properties.ClimbObstacleLayer,
                 QueryTriggerInteraction.Ignore);
 
             Vector3 wallNormal = wallHit.normal;
 
-            climbPointsObject.position = climpPointHit.point + wallNormal * machine.cc.radius;
+            climbPointsObject.position = climpPointHit.point;
             climbPointsObject.rotation = Quaternion.LookRotation(wallNormal, climpPointHit.normal);
         }
     }

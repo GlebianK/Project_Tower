@@ -224,17 +224,17 @@ public class PlayerMovementStateMachine : MonoBehaviour
         RaycastHit[] hits = Physics.CapsuleCastAll(
             playerTransform.position + Vector3.up * (cc.radius + cc.skinWidth),
             playerTransform.position + Vector3.up * (cc.height - cc.radius),
-            cc.radius,
+            cc.radius - 0.1f,
             forwardCheckVector.normalized,
-            forwardCheckVector.magnitude,
+            forwardCheckVector.magnitude + 0.1f + cc.radius,
             Properties.ClimbObstacleLayer,
             QueryTriggerInteraction.Ignore);
         // проверяем, есть ли впереди игрока какие то препятствия для карабканья
         foreach (RaycastHit hit in hits)
         {
             Vector3 climbDownRaycastStart = playerTransform.position
-                + playerTransform.forward * (hit.distance + cc.radius)
-                + Vector3.up * Properties.ClimbCheckpointHeight + transform.forward * cc.radius;
+                + Vector3.ProjectOnPlane(hit.point - playerTransform.position, Vector3.up).normalized * (hit.distance + cc.radius)
+                + Vector3.up * Properties.ClimbCheckpointHeight;
 
             RaycastHit climbDownRaycast;
 
