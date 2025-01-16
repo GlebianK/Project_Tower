@@ -249,7 +249,7 @@ public class PlayerMovementStateMachine : MonoBehaviour
             {
                 
                 if (!Physics.CheckCapsule(
-                    climbDownRaycast.point + Vector3.up * (cc.radius + cc.skinWidth),
+                    climbDownRaycast.point + Vector3.up * (cc.radius + cc.skinWidth + cc.stepOffset),
                     climbDownRaycast.point + Vector3.up * (Properties.CrouchHeight - cc.radius + cc.skinWidth),
                     cc.radius, Properties.GroundLayer,
                     QueryTriggerInteraction.Ignore))
