@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70a6372056551ae4da87fdc4d780fdf2, type: 3}
-  m_Name: WalkPlayerAnimatorState
+  m_Name: CrouchPlayerAnimatorState
   m_EditorClassIdentifier: 
   blendIn:
     serializedVersion: 2
@@ -36,7 +36,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  blendInDuration: 0.15
+  blendInDuration: 0.3
   blendOut:
     serializedVersion: 2
     m_Curve:
@@ -61,8 +61,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  blendOutDuration: 0.15
-  cameraAnimationAsset: {fileID: 11400000, guid: b9fd4d6c7f3278448967f426ce1ab938, type: 2}
+  blendOutDuration: 0.3
+  cameraAnimationAsset: {fileID: 11400000, guid: acc275c02a5b5b04aadb741bd0c3ae94, type: 2}
   targetFov: -1
-  armsProceduralAnimationAsset: {fileID: 11400000, guid: 5226899b7955d81448ed49112d223e06, type: 2}
-  ikRigLayerIndex: -1
+  armsProceduralAnimationAsset: {fileID: 11400000, guid: 5e54a15488d21704f8fccedd31a345c5, type: 2}
+  ikRigIndex: -1
+  isInfinite: 1
+  animationTime: 1
+  nextAnimationName: 

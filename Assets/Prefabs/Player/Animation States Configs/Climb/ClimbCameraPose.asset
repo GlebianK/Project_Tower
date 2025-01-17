@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 39afc27102a46f94094b61a25390e52d, type: 3}
-  m_Name: ClimbPlayerHandsPose
+  m_Name: ClimbCameraPose
   m_EditorClassIdentifier: 
   targetOffset: {x: 0, y: 0, z: 0}
   targetRotationOffset: {x: 0, y: 0, z: 0, w: 1}
-  targetLocalScaleOffset: {x: 0.9, y: 0.9, z: 0.9}
+  targetLocalScaleOffset: {x: 0, y: 0, z: 0}
   proceduralPosition:
     x:
       offsetCurve:
@@ -27,19 +27,73 @@ MonoBehaviour:
     y:
       offsetCurve:
         serializedVersion: 2
-        m_Curve: []
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 3.9666083
+          outSlope: 3.9666083
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 0.25109524
+          value: 0.9959964
+          inSlope: 3.9879777
+          outSlope: 3.9879777
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 1
+          outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-      multiplier: 0
+      multiplier: -0.62
     z:
       offsetCurve:
         serializedVersion: 2
-        m_Curve: []
+        m_Curve:
+        - serializedVersion: 3
+          time: 0.0004005432
+          value: 0.0025634766
+          inSlope: 6.936888
+          outSlope: 6.936888
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0.12144157
+        - serializedVersion: 3
+          time: 0.070737995
+          value: 0.78302217
+          inSlope: 3.490029
+          outSlope: 3.490029
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.14983857
+          outWeight: 0.08236947
+        - serializedVersion: 3
+          time: 0.19456553
+          value: 0.86218107
+          inSlope: -2.127868
+          outSlope: -2.127868
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.1258312
+          outWeight: 0.1700695
+        - serializedVersion: 3
+          time: 0.30546492
+          value: 0.0018615723
+          inSlope: -4.252213
+          outSlope: -4.252213
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.1613048
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-      multiplier: 0
+      multiplier: -0.2
   proceduralRotation:
     x:
       offsetCurve:
@@ -69,25 +123,7 @@ MonoBehaviour:
     x:
       offsetCurve:
         serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 1
-          outSlope: 1
-          tangentMode: 34
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 1
-          outSlope: 1
-          tangentMode: 34
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
+        m_Curve: []
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
@@ -95,25 +131,7 @@ MonoBehaviour:
     y:
       offsetCurve:
         serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 1
-          outSlope: 1
-          tangentMode: 34
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 1
-          outSlope: 1
-          tangentMode: 34
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
+        m_Curve: []
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
@@ -121,25 +139,7 @@ MonoBehaviour:
     z:
       offsetCurve:
         serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 1
-          outSlope: 1
-          tangentMode: 34
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 1
-          outSlope: 1
-          tangentMode: 34
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
+        m_Curve: []
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4

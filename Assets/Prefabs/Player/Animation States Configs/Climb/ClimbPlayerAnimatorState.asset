@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70a6372056551ae4da87fdc4d780fdf2, type: 3}
-  m_Name: DashPlayerAnimatorState
+  m_Name: ClimbPlayerAnimatorState
   m_EditorClassIdentifier: 
   blendIn:
     serializedVersion: 2
@@ -36,33 +36,36 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  blendInDuration: 0.25
+  blendInDuration: 0
   blendOut:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1.0018845
-      inSlope: -2.298877
-      outSlope: -2.298877
+      value: 1
+      inSlope: 0.0734904
+      outSlope: 0.0734904
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.03197868
+      outWeight: 0.102598265
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -3.147717
+      outSlope: -3.147717
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.026648879
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  blendOutDuration: 0.25
-  cameraAnimationAsset: {fileID: 11400000, guid: 3c9ff1acacc0d2d4d9cd86167c20a3bc, type: 2}
-  targetFov: 78
-  armsProceduralAnimationAsset: {fileID: 11400000, guid: 5bf6896592b8b7b49bd4b1386ccdf293, type: 2}
-  ikRigIndex: -1
+  blendOutDuration: 0.3
+  cameraAnimationAsset: {fileID: 11400000, guid: 3bf99a278723f2b4e97dc44b752588f3, type: 2}
+  targetFov: -1
+  armsProceduralAnimationAsset: {fileID: 11400000, guid: d9a5186b97de4504f8f9685e78d1dbb3, type: 2}
+  ikRigIndex: 0
+  isInfinite: 0
+  animationTime: 0.4
+  nextAnimationName: Crouch

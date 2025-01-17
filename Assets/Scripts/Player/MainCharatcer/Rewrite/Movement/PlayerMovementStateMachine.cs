@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem.XInput;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovementStateMachine : MonoBehaviour
@@ -23,7 +24,7 @@ public class PlayerMovementStateMachine : MonoBehaviour
     private float lastTimeJump;
     // если есть, пытается восстановить высоту персонажа
     private Coroutine uncrouchCoroutine = null;
-
+    private bool lastGroundedCheck = false;
     public CharacterController cc { get; private set; }
     public Vector3 GroundNormal { get; private set; }
     public float PlayerDefaultHeight { get; private set; }
@@ -185,8 +186,9 @@ public class PlayerMovementStateMachine : MonoBehaviour
     #region [ Ground, Jump and Climb ]
     public bool GroundCheck()
     {
-        float chosenGroundCheckDistance = cc.skinWidth + cc.stepOffset;
+        float chosenGroundCheckDistance = cc.skinWidth + (lastGroundedCheck ? cc.stepOffset : 0.01f);
         GroundNormal = Vector3.up;
+
         bool isGrounded = false;
         float afterJumpTime = Time.time - lastTimeJump;
         if (afterJumpTime < 0.12f)
@@ -202,8 +204,13 @@ public class PlayerMovementStateMachine : MonoBehaviour
             {
                 GroundNormal = hit.normal;
                 isGrounded = true;
+                if (hit.distance > cc.skinWidth)
+                {
+                    cc.Move(Vector3.down * (hit.distance - cc.skinWidth));
+                }
             }
         }
+        lastGroundedCheck = isGrounded;
         return isGrounded;
 
     }
@@ -211,6 +218,56 @@ public class PlayerMovementStateMachine : MonoBehaviour
     {
         CharacterVelocity = jumpVelocity;
         lastTimeJump = Time.time;
+        movementInputEventHandler.jumpPressed = false;
+        lastGroundedCheck = false;
+    }
+
+    private bool IsClimbDestinationCorrect(in RaycastHit hit)
+    {
+        Transform playerTransform = transform;
+        Vector3 verticalMoveVector = Vector3.up * (hit.point.y - playerTransform.position.y);
+        //Проверяем, можно ли подняться наверх
+        if (Physics.CapsuleCast(
+            playerTransform.position + Vector3.up * cc.radius,
+            playerTransform.position + Vector3.up * (Properties.CrouchHeight - cc.radius),
+            cc.radius - 0.05f,
+            verticalMoveVector.normalized,
+            verticalMoveVector.magnitude,
+            Properties.GroundLayer,
+            QueryTriggerInteraction.Ignore
+            ))
+        {
+            return false;
+        }
+
+        Vector3 horizontalMoveVector = hit.point - playerTransform.position;
+        horizontalMoveVector.y = 0;
+        //проверяем, можно ли переместиться по горизонтали
+        if (Physics.CapsuleCast(
+
+            playerTransform.position + verticalMoveVector + Vector3.up * (cc.radius + cc.skinWidth),
+            playerTransform.position + verticalMoveVector + Vector3.up * (Properties.CrouchHeight - cc.radius),
+            cc.radius - 0.05f,
+            horizontalMoveVector.normalized,
+            horizontalMoveVector.magnitude,
+            Properties.GroundLayer,
+            QueryTriggerInteraction.Ignore
+            ))
+        {
+            return false;
+        }
+
+        // проверяем, может ли капсула встать в положенное место
+        if (!Physics.CheckCapsule(
+            hit.point + Vector3.up * (cc.radius + cc.skinWidth + cc.stepOffset),
+            hit.point + Vector3.up * (Properties.CrouchHeight - cc.radius + cc.skinWidth),
+            cc.radius, Properties.GroundLayer,
+            QueryTriggerInteraction.Ignore))
+        {
+            return true;
+        }
+
+        return false;
     }
 
     public bool TryGetClimbPoint(out RaycastHit climbHit)
@@ -219,48 +276,57 @@ public class PlayerMovementStateMachine : MonoBehaviour
 
         Transform playerTransform = transform;
 
-        Vector3 forwardCheckVector = playerTransform.forward * Properties.ClimbCheckForwardRange;
+        float climbDownRaycastForwardOffset = cc.radius;
 
-        RaycastHit[] hits = Physics.CapsuleCastAll(
-            playerTransform.position + Vector3.up * (cc.radius + cc.skinWidth),
-            playerTransform.position + Vector3.up * (cc.height - cc.radius),
-            cc.radius - 0.1f,
-            forwardCheckVector.normalized,
-            forwardCheckVector.magnitude + 0.1f + cc.radius,
-            Properties.ClimbObstacleLayer,
-            QueryTriggerInteraction.Ignore);
-        // проверяем, есть ли впереди игрока какие то препятствия для карабканья
-        foreach (RaycastHit hit in hits)
+        RaycastHit climbDestinationHit = new RaycastHit();
+
+        Vector3 climbDownRaycastStart = playerTransform.position
+            + Vector3.up * Properties.ClimbCheckpointHeight;
+        
+        while (climbDownRaycastForwardOffset < Properties.ClimbCheckForwardRange + cc.radius)
         {
-            Vector3 climbDownRaycastStart = playerTransform.position
-                + Vector3.ProjectOnPlane(hit.point - playerTransform.position, Vector3.up).normalized * (hit.distance + cc.radius)
-                + Vector3.up * Properties.ClimbCheckpointHeight;
-
-            RaycastHit climbDownRaycast;
-
             if (Physics.Raycast(
-                climbDownRaycastStart,
+                climbDownRaycastStart + playerTransform.forward * climbDownRaycastForwardOffset,
                 Vector3.down,
-                out climbDownRaycast,
+                out climbDestinationHit,
                 Properties.ClimbDownCheckRange,
                 Properties.ClimbObstacleLayer,
-                QueryTriggerInteraction.Ignore
+                QueryTriggerInteraction.Collide
                 ))
             {
-                
-                if (!Physics.CheckCapsule(
-                    climbDownRaycast.point + Vector3.up * (cc.radius + cc.skinWidth + cc.stepOffset),
-                    climbDownRaycast.point + Vector3.up * (Properties.CrouchHeight - cc.radius + cc.skinWidth),
-                    cc.radius, Properties.GroundLayer,
-                    QueryTriggerInteraction.Ignore))
+                if (IsClimbDestinationCorrect(in climbDestinationHit))
                 {
-                    climbHit = climbDownRaycast;
+                    climbHit = climbDestinationHit;
                     return true;
                 }
+            }
+            climbDownRaycastForwardOffset += 0.1f;
+        }
+
+        if (climbDestinationHit.collider == null)
+        {
+            climbDownRaycastForwardOffset = Properties.ClimbCheckForwardRange + cc.radius;
+            if (!Physics.Raycast(
+                climbDownRaycastStart + playerTransform.forward * climbDownRaycastForwardOffset,
+                Vector3.down,
+                out climbDestinationHit,
+                Properties.ClimbDownCheckRange,
+                Properties.ClimbObstacleLayer,
+                QueryTriggerInteraction.Collide
+                ))
+            {
+                return false;
+            }
+            
+            if (IsClimbDestinationCorrect(in climbDestinationHit))
+            {
+                climbHit = climbDestinationHit;
+                return true;
             }
         }
 
         return false;
+
     }
     #endregion
 

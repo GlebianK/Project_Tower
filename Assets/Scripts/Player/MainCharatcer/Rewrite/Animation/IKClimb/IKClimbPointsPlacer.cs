@@ -15,6 +15,7 @@ public class IKClimbPointsPlacer : MonoBehaviour
             Vector3 forwardCheckVector = machine.transform.forward * machine.Properties.ClimbCheckForwardRange;
 
             RaycastHit wallHit;
+
             Physics.CapsuleCast(
                 machine.transform.position + Vector3.up * (machine.cc.radius + machine.cc.skinWidth),
                 machine.transform.position + Vector3.up * (machine.cc.height - machine.cc.radius),

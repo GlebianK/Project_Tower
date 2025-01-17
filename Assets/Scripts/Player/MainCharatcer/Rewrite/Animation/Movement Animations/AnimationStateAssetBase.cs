@@ -15,6 +15,11 @@ public class AnimationStateAssetBase : ScriptableObject
     [Tooltip("Задает позу IK для анимации. Задать -1 для игнорирования позы IK")]
     [SerializeField] private int ikRigIndex = -1;
 
+    [SerializeField] private bool isInfinite = false;
+    [SerializeField] private float animationTime = 1;
+    [Tooltip("Имя следующей анимации в AnimationSystem")]
+    [SerializeField] private string nextAnimationName;
+
     public AnimationCurve BlendIn => blendIn;
     public float BlendInDuration => blendInDuration;
     public AnimationCurve BlendOut => blendOut;
@@ -24,6 +29,10 @@ public class AnimationStateAssetBase : ScriptableObject
     public ProceduralTransformAnimationAsset ArmsProceduralAnimation => armsProceduralAnimationAsset;
 
     public int IKRigIndex => ikRigIndex;
+
+    public bool IsInfinite => isInfinite; 
+    public float AnimationTime => animationTime; 
+    public string NextAnimationName => nextAnimationName;
 
     public virtual AnimationStateControllerBase CreateState(PlayerAnimationSystem animSystem)
     {

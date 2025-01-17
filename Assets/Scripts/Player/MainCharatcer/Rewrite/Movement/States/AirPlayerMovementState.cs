@@ -61,8 +61,7 @@ public class AirPlayerMovementState : PlayerMovementStateBase
     public override void OnStateActivated(IPlayerMovementState prevState)
     {
         Vector3 velocity = movementController.CharacterVelocity;
-        if (inputController.jumpPressed)
-            velocity.y = 0;
+        velocity.y = 0;
         airDelimitSpeed = velocity.magnitude > config.AirMaxSpeed ? velocity.magnitude : config.AirMaxSpeed;
     }
     public override void OnStateDeactivated(IPlayerMovementState nextState)

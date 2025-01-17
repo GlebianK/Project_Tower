@@ -16,26 +16,26 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
-  walkMaxSpeed: 5
-  jumpVelocity: 8
-  gravityForce: 15
-  airMaxSpeed: 5
-  crouchMaxSpeed: 3
+  walkMaxSpeed: 3
+  jumpVelocity: 3.7
+  gravityForce: 9.81
+  airMaxSpeed: 3
+  crouchMaxSpeed: 1.5
   crouchHeight: 1
   enableSprint: 1
-  sprintMaxSpeed: 7
-  sprintJumpVelocity: 6.5
-  sprintJumpHorizontalSpeed: 9
-  sprintToWalkSpeedThreshold: 4
+  sprintMaxSpeed: 4.5
+  sprintJumpVelocity: 3.5
+  sprintJumpHorizontalSpeed: 4.2
+  sprintToWalkSpeedThreshold: 2.5
   enableSlide: 1
-  slideStartSpeed: 12
-  slideDecceleration: 8
-  slideEndSpeedThreshold: 5
+  slideStartSpeed: 7
+  slideDecceleration: 5
+  slideEndSpeedThreshold: 2
   dashRange: 3
   dashTime: 0.2
-  climbCheckForwardRange: 1.2
+  climbCheckForwardRange: 0.6
   climbCheckpointHeight: 2.5
-  climbDownCheckRange: 2
+  climbDownCheckRange: 1.8
   climbMaxDuration: 0.44
   groundObstacleLayer:
     serializedVersion: 2

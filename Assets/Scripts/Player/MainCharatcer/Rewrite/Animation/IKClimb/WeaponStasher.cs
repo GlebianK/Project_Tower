@@ -13,13 +13,16 @@ public class WeaponStasher : MonoBehaviour
 
     public void OnStateChanged(PlayerMovementStateMachine machine, PlayerMovementStateType type)
     {
-        if (type == PlayerMovementStateType.Climb)
+        if (enabled)
         {
-            weapon.localScale = Vector3.zero;
-        }
-        else
-        {
-            weapon.localScale = scale;
+            if (type == PlayerMovementStateType.Climb)
+            {
+                weapon.localScale = Vector3.zero;
+            }
+            else
+            {
+                weapon.localScale = scale;
+            }
         }
     }
 }

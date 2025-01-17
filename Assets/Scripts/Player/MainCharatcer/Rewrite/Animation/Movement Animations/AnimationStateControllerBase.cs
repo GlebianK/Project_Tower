@@ -12,6 +12,9 @@ public class AnimationStateControllerBase
     private List<Tuple<Playable, int>> controlledWeights;
 
     private float currentWeight = 0;
+    private float internalTimer = 0;
+
+    private bool isActive = false;
 
     public AnimationStateControllerBase(AnimationStateAssetBase asset)
     {
@@ -26,17 +29,32 @@ public class AnimationStateControllerBase
 
     public virtual void UpdateState(PlayerAnimationSystem system, float deltaTime)
     {
-
+        if (!asset.IsInfinite && isActive)
+        {
+            internalTimer += deltaTime;
+            if (internalTimer > asset.AnimationTime - asset.BlendOutDuration && isActive)
+            {
+                system.SetState(asset.NextAnimationName);
+            }
+        } 
+        else
+        {
+            internalTimer = 0;
+        }
     }
 
     public IEnumerator BlendIn()
     {
+        internalTimer = 0;
+        isActive = true;
         yield return Blend(asset.BlendIn, asset.BlendInDuration);
     }
 
     public IEnumerator BlendOut()
     {
+        isActive = false;
         yield return Blend(asset.BlendOut, asset.BlendOutDuration);
+        internalTimer = 0;
     }
 
     private IEnumerator Blend(AnimationCurve curve, float duration)
@@ -75,6 +93,7 @@ public class AnimationStateControllerBase
 
             playable.SetInputWeight(inputIndex, Mathf.Clamp01(currentWeight));
         }
+
     }
 
     private void SetAllWeights(float weight)

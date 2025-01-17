@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70a6372056551ae4da87fdc4d780fdf2, type: 3}
-  m_Name: ClimbPlayerAnimatorState
+  m_Name: AirPlayerAnimatorState
   m_EditorClassIdentifier: 
   blendIn:
     serializedVersion: 2
@@ -36,33 +36,36 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  blendInDuration: 0
+  blendInDuration: 0.15
   blendOut:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: -1.0019569
-      outSlope: -1.0019569
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.33333334
+      outWeight: 0
     - serializedVersion: 3
-      time: 0.9980469
+      time: 1
       value: 0
-      inSlope: -1.0019569
-      outSlope: -1.0019569
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  blendOutDuration: 0.25
-  cameraAnimationAsset: {fileID: 11400000, guid: 3bf99a278723f2b4e97dc44b752588f3, type: 2}
+  blendOutDuration: 0.15
+  cameraAnimationAsset: {fileID: 11400000, guid: 66eb5f0abf463164ba9ce4dbb8ce10c5, type: 2}
   targetFov: -1
-  armsProceduralAnimationAsset: {fileID: 11400000, guid: 45e7a5931b1c01b4abefab5487a2d7b4, type: 2}
-  ikRigIndex: 0
+  armsProceduralAnimationAsset: {fileID: 11400000, guid: bee7a84a390a356449d3abda08388191, type: 2}
+  ikRigIndex: -1
+  isInfinite: 1
+  animationTime: 1
+  nextAnimationName: 
