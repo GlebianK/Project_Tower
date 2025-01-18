@@ -8,7 +8,7 @@ public class Health : MonoBehaviour
     public UnityEvent TookDamage;
 
     [SerializeField] private float maxHp = 1f;
-    [SerializeField] private float hp;
+    private float hp;
 
     private void Start()
     {
@@ -25,6 +25,7 @@ public class Health : MonoBehaviour
     public void TakeDamage(float damageValue)
     {
         hp -= damageValue;
+        Debug.Log(hp);
       //  TookDamage.Invoke();
         if(hp <= 0f)
         {

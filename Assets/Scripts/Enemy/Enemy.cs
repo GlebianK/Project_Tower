@@ -21,21 +21,25 @@ public class Enemy : MonoBehaviour
     }
     private void Update()
     {
-        float distance = Vector3.Distance(transform.position, player.position);
-        if (distance < attackStartRange)
+        if (player != null)
         {
-            agent.SetDestination(transform.position);
-            attack.TryAttack();
-            agent.speed = 0;
-            agent.acceleration = 0;
-            agent.angularSpeed = 0;
-        }
-        if (distance > attackStartRange)
-        {
-            agent.SetDestination(player.position);
-            agent.speed = speedAgent;
-            agent.acceleration = accelerationAgent;
-            agent.angularSpeed = angularSpeedAgent;
+            float distance = Vector3.Distance(transform.position, player.position);
+
+            if (distance < attackStartRange)
+            {
+                agent.SetDestination(transform.position);
+                attack.TryAttack();
+                agent.speed = 0;
+                agent.acceleration = 0;
+                agent.angularSpeed = 0;
+            }
+            if (distance > attackStartRange)
+            {
+                agent.SetDestination(player.position);
+                agent.speed = speedAgent;
+                agent.acceleration = accelerationAgent;
+                agent.angularSpeed = angularSpeedAgent;
+            }
         }
     }
     public void EnemyDied()
