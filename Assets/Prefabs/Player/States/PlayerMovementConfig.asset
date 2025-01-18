@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb8c664a870d1574d9df7fef827c3ede, type: 3}
+  m_Name: PlayerMovementConfig
+  m_EditorClassIdentifier: 
+  acceleration: 15
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  walkMaxSpeed: 3
+  jumpVelocity: 3.7
+  gravityForce: 9.81
+  airMaxSpeed: 3
+  crouchMaxSpeed: 1.5
+  crouchHeight: 1
+  enableSprint: 1
+  sprintMaxSpeed: 4.5
+  sprintJumpVelocity: 3.5
+  sprintJumpHorizontalSpeed: 4.2
+  sprintToWalkSpeedThreshold: 2.5
+  enableSlide: 1
+  slideStartSpeed: 7
+  slideDecceleration: 5
+  slideEndSpeedThreshold: 2
+  dashRange: 3
+  dashTime: 0.2
+  climbCheckForwardRange: 0.6
+  climbCheckpointHeight: 2.5
+  climbDownCheckRange: 1.8
+  climbMaxDuration: 0.44
+  groundObstacleLayer:
+    serializedVersion: 2
+    m_Bits: 1

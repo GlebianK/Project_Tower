@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class RotateOnLook : MonoBehaviour
 {
-    [SerializeField]
-    private MovementInputEventHandler _movementHandler;
-
-    [SerializeField]
-    private Transform _cameraFollow;
+    [SerializeField] private MovementInputEventHandler movementHandler;
+    [SerializeField] private Transform cameraFollow;
 
     private void OnEnable()
     {
-        _movementHandler.LookInputAction.AddListener(OnLookChanged);
+        movementHandler.LookInputAction.AddListener(OnLookChanged);
     }
     private void OnDisable()
     {
-        _movementHandler.LookInputAction.RemoveListener(OnLookChanged);
+        movementHandler.LookInputAction.RemoveListener(OnLookChanged);
     }
 
     private void OnLookChanged(Vector2 lookInput)
@@ -25,6 +22,6 @@ public class RotateOnLook : MonoBehaviour
         float ySway = lookInput.y;
 
         transform.rotation = Quaternion.Euler(Vector3.up * xSway);
-        _cameraFollow.transform.localRotation = Quaternion.Euler(Vector3.right * ySway); 
+        cameraFollow.transform.localRotation = Quaternion.Euler(Vector3.right * ySway); 
     }
 }
