@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private Health health;
     [SerializeField] private Attack attack;
+    [SerializeField] private MotionEnemy motionEnemy;
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private float attackStartRange;
     [Header("PlayerTransform")]
@@ -28,13 +29,13 @@ public class Enemy : MonoBehaviour
             if (distance < attackStartRange)
             {
                 agent.SetDestination(transform.position);
+                motionEnemy.StopMovingAnimations();
                 attack.TryAttack();
-                agent.speed = 0;
-                agent.acceleration = 0;
-                agent.angularSpeed = 0;
             }
             if (distance > attackStartRange)
             {
+                motionEnemy.StartMovingAnimations();
+                attack.StopAttackAnimations();
                 agent.SetDestination(player.position);
                 agent.speed = speedAgent;
                 agent.acceleration = accelerationAgent;
@@ -46,4 +47,5 @@ public class Enemy : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
 }

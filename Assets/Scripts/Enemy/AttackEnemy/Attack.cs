@@ -17,6 +17,7 @@ public class Attack : MonoBehaviour
     private bool canAttack = true;
     #region
     public bool CanAttack() => canAttack;
+    public void StopAttackAnimations() => AttackEnded.Invoke();
     public void TryAttack()
     {
         if(CanAttack())
@@ -38,7 +39,7 @@ public class Attack : MonoBehaviour
             health = hit.transform.GetComponent<Health>();
             health.TakeDamage(damage);
         }
-        yield return new WaitForSeconds(durationOfTheAttack);
+        yield return new WaitForSeconds(damageDealingDelay-durationOfTheAttack);
         AttackEnded.Invoke();
         canAttack = true;
     }
