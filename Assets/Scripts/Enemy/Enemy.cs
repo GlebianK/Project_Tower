@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour
 {
@@ -12,34 +13,28 @@ public class Enemy : MonoBehaviour
     [Header("PlayerTransform")]
     [SerializeField] private Transform player;
     private float speedAgent;
-    private float accelerationAgent;
-    private float angularSpeedAgent;
     private void Start()
     {
         speedAgent = agent.speed;
-        accelerationAgent = agent.acceleration;
-        angularSpeedAgent = agent.angularSpeed;
     }
     private void Update()
     {
         if (player != null)
         {
             float distance = Vector3.Distance(transform.position, player.position);
-
             if (distance < attackStartRange)
             {
-                agent.SetDestination(transform.position);
+                transform.LookAt(player.position);
+                agent.speed = 0;
                 motionEnemy.StopMovingAnimations();
                 attack.TryAttack();
+                
             }
             if (distance > attackStartRange)
             {
-                motionEnemy.StartMovingAnimations();
-                attack.StopAttackAnimations();
-                agent.SetDestination(player.position);
                 agent.speed = speedAgent;
-                agent.acceleration = accelerationAgent;
-                agent.angularSpeed = angularSpeedAgent;
+                motionEnemy.StartMovingAnimations();
+                agent.SetDestination(player.position);
             }
         }
     }

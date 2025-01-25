@@ -17,12 +17,11 @@ public class Attack : MonoBehaviour
     private bool canAttack = true;
     #region
     public bool CanAttack() => canAttack;
-    public void StopAttackAnimations() => AttackEnded.Invoke();
     public void TryAttack()
     {
         if(CanAttack())
         StartCoroutine(PerformAttackCoroutine());
-    }
+    } 
     #endregion
     private IEnumerator PerformAttackCoroutine()
     {
@@ -31,7 +30,7 @@ public class Attack : MonoBehaviour
         Health health;
         RaycastHit hit;
         Ray ray;
-        yield return new WaitForSeconds(durationOfTheAttack);
+        yield return new WaitForSeconds(damageDealingDelay);
         ray = new Ray(AttackRaycastPointPosition.position, transform.forward);
         Debug.DrawRay(ray.origin, ray.direction * rangeAttack, Color.cyan);
         if (Physics.Raycast(ray, out hit, rangeAttack, layerMask))
