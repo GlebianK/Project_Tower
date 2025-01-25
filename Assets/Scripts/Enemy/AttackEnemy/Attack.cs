@@ -31,7 +31,7 @@ public class Attack : MonoBehaviour
         Health health;
         RaycastHit hit;
         Ray ray;
-        yield return new WaitForSeconds(damageDealingDelay);
+        yield return new WaitForSeconds(durationOfTheAttack);
         ray = new Ray(AttackRaycastPointPosition.position, transform.forward);
         Debug.DrawRay(ray.origin, ray.direction * rangeAttack, Color.cyan);
         if (Physics.Raycast(ray, out hit, rangeAttack, layerMask))
@@ -39,7 +39,7 @@ public class Attack : MonoBehaviour
             health = hit.transform.GetComponent<Health>();
             health.TakeDamage(damage);
         }
-        yield return new WaitForSeconds(damageDealingDelay-durationOfTheAttack);
+        yield return new WaitForSeconds(durationOfTheAttack-damageDealingDelay);
         AttackEnded.Invoke();
         canAttack = true;
     }
