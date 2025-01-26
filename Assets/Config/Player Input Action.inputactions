@@ -18,7 +18,7 @@
                     "name": "Jump",
                     "type": "Button",
                     "id": "cac12f7e-bcc2-4986-bf79-9a95d65e8859",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press",
                     "initialStateCheck": true
@@ -36,7 +36,7 @@
                     "name": "Crouch",
                     "type": "Button",
                     "id": "29a40840-d24f-471d-b6c5-0f376ce30497",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -45,9 +45,36 @@
                     "name": "Sprint",
                     "type": "Button",
                     "id": "603733ae-2e21-4106-9faa-8fc9f813bb5e",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "AttackPrepare",
+                    "type": "Button",
+                    "id": "47581d5c-23d0-4b36-8294-c76a5e111b60",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "AttackInitiate",
+                    "type": "Button",
+                    "id": "27aaf8bd-70ff-4740-9aa5-a9757028d7fb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Block",
+                    "type": "Button",
+                    "id": "40b1c063-5dcd-4377-9ef0-7d48ae294a27",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
                     "initialStateCheck": false
                 }
             ],
@@ -148,6 +175,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a94a2802-6e9d-4352-bd30-a38699de5a38",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AttackPrepare",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c6143711-10af-47bb-b407-4ec97d9a8ed2",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AttackInitiate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d231037a-762d-46d1-a162-52bb8ccf2d65",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Block",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
