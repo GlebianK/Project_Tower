@@ -5,20 +5,23 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private Health health;
-    [SerializeField] private Attack attack;
+    [SerializeField] private AttackEnemy attack;
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private float attackStartRange;
+
     [Header("PlayerTransform")]
     [SerializeField] private Transform player;
     private float speedAgent;
     private float accelerationAgent;
     private float angularSpeedAgent;
+
     private void Start()
     {
         speedAgent = agent.speed;
         accelerationAgent = agent.acceleration;
         angularSpeedAgent = agent.angularSpeed;
     }
+
     private void Update()
     {
         if (player != null)
@@ -33,6 +36,7 @@ public class Enemy : MonoBehaviour
                 agent.acceleration = 0;
                 agent.angularSpeed = 0;
             }
+
             if (distance > attackStartRange)
             {
                 agent.SetDestination(player.position);
@@ -42,6 +46,7 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+
     public void EnemyDied()
     {
         Destroy(gameObject);
