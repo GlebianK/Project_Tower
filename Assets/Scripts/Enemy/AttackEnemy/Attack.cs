@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEditor.PackageManager;
 using UnityEngine;
@@ -27,7 +28,6 @@ public class Attack : MonoBehaviour
     {
         canAttack = false;
         AttackStarted.Invoke();
-        Health health;
         RaycastHit hit;
         Ray ray;
         yield return new WaitForSeconds(damageDealingDelay);
@@ -35,8 +35,10 @@ public class Attack : MonoBehaviour
         Debug.DrawRay(ray.origin, ray.direction * rangeAttack, Color.cyan);
         if (Physics.Raycast(ray, out hit, rangeAttack, layerMask))
         {
-            health = hit.transform.GetComponent<Health>();
-            health.TakeDamage(damage);
+            if (hit.transform.TryGetComponent(out Health health))
+                health.TakeDamage(damage);
+            else
+                Debug.Log("Повесь компонент Health");
         }
         yield return new WaitForSeconds(durationOfTheAttack-damageDealingDelay);
         AttackEnded.Invoke();

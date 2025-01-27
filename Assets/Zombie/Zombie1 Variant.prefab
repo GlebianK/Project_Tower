@@ -133,6 +133,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6075947288287216795}
     - target: {fileID: 2968523261841218110, guid: e45ed97c4cf19f14a8a5474cd7605e87, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968523261841218110, guid: e45ed97c4cf19f14a8a5474cd7605e87, type: 3}
       propertyPath: motionEnemy
       value: 
       objectReference: {fileID: 1947891563021367724}
@@ -411,7 +415,7 @@ PrefabInstance:
     - target: {fileID: 7161567084786902701, guid: e45ed97c4cf19f14a8a5474cd7605e87, type: 3}
       propertyPath: Died.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4539072891538623946}
     - target: {fileID: 7161567084786902701, guid: e45ed97c4cf19f14a8a5474cd7605e87, type: 3}
       propertyPath: Died.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnDied
