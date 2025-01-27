@@ -6,13 +6,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerCombatSystemController : MonoBehaviour
 {
-    public UnityEvent AttackPrepare;
-    public UnityEvent AttackInitiate;
-
     private float attackPreparationTimer;
     private bool timerIsCounting;
 
-    public bool CanAttack { get; set; }
+    public bool CanAttack { get; set; } // есть в классе атаки, убрать!!!
 
 
     private void Start()
