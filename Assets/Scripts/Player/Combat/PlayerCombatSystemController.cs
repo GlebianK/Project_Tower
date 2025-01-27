@@ -1,14 +1,19 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerCombatSystemController : MonoBehaviour
 {
+    public UnityEvent AttackPrepare;
+    public UnityEvent AttackInitiate;
+
     private float attackPreparationTimer;
     private bool timerIsCounting;
 
     public bool CanAttack { get; set; }
+
 
     private void Start()
     {
@@ -41,7 +46,7 @@ public class PlayerCombatSystemController : MonoBehaviour
     public void OnAttackPrepare(InputAction.CallbackContext context)
     {
 
-        CanAttack = true;
+        CanAttack = true; // сапюрэ щрн мюуси б пекхгмни бепяхх, вхярн бпелеммюъ гюршвйю !!!!!!!!!!!!!!!
 
         if (context.performed)
         {
