@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using UnityEngine.Animations.Rigging;
+using UnityEngine.Animations;
 
 [Serializable]
 public struct AnimationAssetDescriptor
@@ -17,6 +18,7 @@ public struct AnimationAssetDescriptor
 public class PlayerAnimationSystem : MonoBehaviour
 {
     [SerializeField] private PlayerMovementStateMachine movementController;
+    [SerializeField] private Animator handsAnimator;
     [SerializeField] private CinemachineCamera playerCamera;
     [SerializeField] private Transform meshRoot;
     [SerializeField] private RigBuilder meshRigBuilder;
@@ -33,6 +35,7 @@ public class PlayerAnimationSystem : MonoBehaviour
     private Playable cameraPropertyMixer;
     private Playable handsPosMixer;
     private Playable meshIKMixer;
+    private AnimationMixerPlayable animationClipMixer;
 
     public PlayerMovementStateMachine MovementController => movementController;
 
@@ -54,6 +57,7 @@ public class PlayerAnimationSystem : MonoBehaviour
         {
             animState.Value.UpdateState(this, Time.deltaTime);
         }
+
     }
 
     private void LateUpdate()
@@ -78,11 +82,15 @@ public class PlayerAnimationSystem : MonoBehaviour
         int meshPoseCount = 1 + animationStates.Where(descriptor => descriptor.asset.ArmsProceduralAnimation != null).Count();
         int ikRigCount = 1 + animationStates.Where(descriptor => descriptor.asset.IKRigIndex >= 0).Count();
 
+        int clipsCount = animationStates.Where(descriptor => descriptor.asset.Clip != null).Count();
 
         ScriptPlayableOutput generalCameraAnimationOutput = ScriptPlayableOutput.Create(graph, "General Camera Animation Output");
         generalCameraAnimationOutput.SetUserData(this);
         ScriptPlayableOutput generalHandsProceduralAnimationOutput = ScriptPlayableOutput.Create(graph, "General Hands ProceduralAnimation Output");
         generalHandsProceduralAnimationOutput.SetUserData(this);
+        AnimationPlayableOutput animationPlayableOutput = AnimationPlayableOutput.Create(graph, "General Animation clip Output", handsAnimator);
+        animationPlayableOutput.SetUserData(this);
+
         // setup camera graph mix nodes
         var cameraRootPlayable = ScriptPlayable<ProceduralTransformApplier>.Create(graph, 2);
         generalCameraAnimationOutput.SetSourcePlayable(cameraRootPlayable);
@@ -110,22 +118,29 @@ public class PlayerAnimationSystem : MonoBehaviour
         handsRootPlayable.ConnectInput(1, meshIKMixer, 0);
         handsRootPlayable.SetInputWeight(1, 1);
 
+        if (clipsCount > 0)
+        {
+            animationClipMixer = AnimationMixerPlayable.Create(graph, clipsCount);
+            animationPlayableOutput.SetSourcePlayable(animationClipMixer);
+        }
+
+
         int cameraPosIndex = 0;
         int cameraPropIndex = 0;
         int meshPosIndex = 0;
         int ikRigIndex = 0;
+        int clipIndex = 0;
         foreach (var animAsset in animationStates)
         {
             InitAnimationStateController(animAsset, ref cameraPosIndex, ref cameraPropIndex, 
-                ref meshPosIndex, ref ikRigIndex);
+                ref meshPosIndex, ref ikRigIndex, ref clipIndex);
         }
 
         graph.Play();
-        //meshIKgraph.Play();
     }
 
     private void InitAnimationStateController(AnimationAssetDescriptor asset, 
-        ref int cameraAnimationIndex, ref int cameraPropertyIndex, ref int handsPoseIndex, ref int ikRigIndex)
+        ref int cameraAnimationIndex, ref int cameraPropertyIndex, ref int handsPoseIndex, ref int ikRigIndex, ref int clipIndex)
     {
         AnimationStateControllerBase state = asset.asset.CreateState(this);
 
@@ -182,6 +197,18 @@ public class PlayerAnimationSystem : MonoBehaviour
             ikRigIndex++;
         }
 
+        if (asset.asset.Clip != null)
+        {
+            AnimationClipPlayable clipPlayable = AnimationClipPlayable.Create(graph, asset.asset.Clip);
+            
+            int inputIndex = clipIndex;
+            animationClipMixer.ConnectInput(inputIndex, clipPlayable, 0);
+            animationClipMixer.SetInputWeight(inputIndex, 0);
+            state.SetControll(animationClipMixer, inputIndex);
+            clipIndex++;
+
+        }
+
         animationControllers.Add(asset.animationName, state);
     }
 
@@ -189,13 +216,15 @@ public class PlayerAnimationSystem : MonoBehaviour
     {
         if (stateName != currentMovementStateName)
         {
+            float blendTime = Mathf.Min(animationControllers[currentMovementStateName].Asset.BlendOutDuration,
+                animationControllers[stateName].Asset.BlendInDuration);
             if (animationControllers.ContainsKey(currentMovementStateName))
-                StartCoroutine(animationControllers[currentMovementStateName].BlendOut());
+                StartCoroutine(animationControllers[currentMovementStateName].BlendOut(blendTime));
 
             currentMovementStateName = stateName;
 
             if (animationControllers.ContainsKey(currentMovementStateName))
-                StartCoroutine(animationControllers[currentMovementStateName].BlendIn());
+                StartCoroutine(animationControllers[currentMovementStateName].BlendIn(blendTime));
         }
     }
 }

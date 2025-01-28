@@ -8,6 +8,7 @@ public class AnimationStateAssetBase : ScriptableObject
     [SerializeField] private AnimationCurve blendOut;
     [SerializeField] private float blendOutDuration;
 
+    [SerializeField] private AnimationClip clipToPlay;
     [SerializeField] private ProceduralTransformAnimationAsset cameraAnimationAsset;
     [Tooltip("Для отключения анимации FOV установить его меньше нуля")]
     [SerializeField] private float targetFov;
@@ -24,6 +25,7 @@ public class AnimationStateAssetBase : ScriptableObject
     public float BlendInDuration => blendInDuration;
     public AnimationCurve BlendOut => blendOut;
     public float BlendOutDuration => blendOutDuration;
+    public AnimationClip Clip => clipToPlay;
     public ProceduralTransformAnimationAsset CameraAnimation => cameraAnimationAsset;
     public float CameraFOV => targetFov;
     public ProceduralTransformAnimationAsset ArmsProceduralAnimation => armsProceduralAnimationAsset;

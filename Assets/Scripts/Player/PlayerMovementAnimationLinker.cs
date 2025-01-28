@@ -27,7 +27,7 @@ public class PlayerMovementAnimationLinker : MonoBehaviour
         movementController.StateChanged.RemoveListener(OnStateChanged);
     }
 
-    private void OnStateChanged(PlayerMovementStateMachine _, PlayerMovementStateType stateType)
+    private void OnStateChanged(PlayerMovementStateMachine machine, PlayerMovementStateType stateType)
     {
         IEnumerable<StateToNameDescriptor> state = states.Where(pair => pair.type == stateType);
         string stateName;
