@@ -32,7 +32,8 @@ public class PlayerHandsShakeAnimationBehaviour : ProceduralTransformAnimationBe
         lagPos = Vector3.ClampMagnitude(lagPos, 0.04f);
         walkAnimLagPos = Vector3.MoveTowards(walkAnimLagPos, lagPos, Time.deltaTime * 0.1f);
 
-        resultPositionOffset = walkAnimLagPos * 0.1f;
+        //resultPositionOffset = walkAnimLagPos * 0.1f;
+        resultPositionOffset = Vector3.zero;
         resultRotationOffset = Quaternion.identity;
         resultScaleOffset = Vector3.zero;
 

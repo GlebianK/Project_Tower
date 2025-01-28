@@ -53,15 +53,16 @@ public class PlayerAnimationSystem : MonoBehaviour
 
     private void Update()
     {
-        foreach (var animState in animationControllers)
-        {
-            animState.Value.UpdateState(this, Time.deltaTime);
-        }
+        
 
     }
 
     private void LateUpdate()
     {
+        foreach (var animState in animationControllers)
+        {
+            animState.Value.UpdateState(this, Time.deltaTime);
+        }
         graph.Evaluate(Time.deltaTime);
     }
 

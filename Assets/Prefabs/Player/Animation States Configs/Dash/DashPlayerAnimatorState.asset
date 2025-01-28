@@ -36,19 +36,19 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  blendInDuration: 0.25
+  blendInDuration: 0.15
   blendOut:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1.0018845
-      inSlope: -2.298877
-      outSlope: -2.298877
+      value: 1
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.03197868
+      outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 0
@@ -61,8 +61,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  blendOutDuration: 0.25
-  clipToPlay: {fileID: 8993902097722301239, guid: a18942a67654de541a6c3e48864c8946, type: 3}
+  blendOutDuration: 0.15
+  clipToPlay: {fileID: 8993902097722301239, guid: d51bf3d98d9c13d4586b37ba1da8a325, type: 3}
   cameraAnimationAsset: {fileID: 11400000, guid: 3c9ff1acacc0d2d4d9cd86167c20a3bc, type: 2}
   targetFov: 78
   armsProceduralAnimationAsset: {fileID: 11400000, guid: 5bf6896592b8b7b49bd4b1386ccdf293, type: 2}

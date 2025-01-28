@@ -196,7 +196,10 @@ public class PlayerMovementStateMachine : MonoBehaviour
             return false;
         }
 
-        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 
+        Vector3 capsuleBottom = transform.position + Vector3.up * cc.radius;
+        Vector3 capsuleTop = transform.position + Vector3.up * (cc.height - cc.radius);
+
+        if (Physics.CapsuleCast(capsuleBottom, capsuleTop, cc.radius, Vector3.down, out RaycastHit hit,
             chosenGroundCheckDistance, configuration.GroundLayer, QueryTriggerInteraction.Ignore))
         {
             if (Vector3.Dot(hit.normal, Vector3.up) > 0 &&

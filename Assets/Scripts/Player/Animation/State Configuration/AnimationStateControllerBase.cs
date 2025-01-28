@@ -71,12 +71,13 @@ public class AnimationStateControllerBase
         isActive = false;
         yield return Blend(asset.BlendOut, blendTime);
         internalTimer = 0;
-        foreach (var controlledWeight in controlledWeights)
-        {
-            Playable mixer = controlledWeight.Item1;
-            int inputIndex = controlledWeight.Item2;
-            mixer.GetInput(inputIndex).Pause();
-        }
+        if (!isActive)
+            foreach (var controlledWeight in controlledWeights)
+            {
+                Playable mixer = controlledWeight.Item1;
+                int inputIndex = controlledWeight.Item2;
+                mixer.GetInput(inputIndex).Pause();
+            }
     }
 
     private IEnumerator Blend(AnimationCurve curve, float duration)

@@ -12,7 +12,7 @@ public class DashPlayerMovementState : PlayerMovementStateBase
     {
         if (time > config.DashTime)
         {
-            movementController.CharacterVelocity = movementController.CharacterVelocity.normalized * config.AirMaxSpeed;
+            movementController.CharacterVelocity = Vector3.zero;
             movementController.SetCurrentState(PlayerMovementStateType.Air);
         }
     }
