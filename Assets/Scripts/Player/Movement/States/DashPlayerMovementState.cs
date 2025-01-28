@@ -10,15 +10,18 @@ public class DashPlayerMovementState : PlayerMovementStateBase
 
     public override void HandleObstacleAfterMovement(float deltaTime, in RaycastHit hit)
     {
-        if (time > config.DashTime)
-        {
-            movementController.CharacterVelocity = Vector3.zero;
-            movementController.SetCurrentState(PlayerMovementStateType.Air);
-        }
+       
     }
 
     public override bool MakeTransitions(float deltaTime)
     {
+        if (time > config.DashTime)
+        {
+            movementController.CharacterVelocity = movementController.CharacterVelocity.normalized * config.AirMaxSpeed;
+            movementController.SetCurrentState(PlayerMovementStateType.Air);
+            movementController.GetCurrentState().UpdateMovementVelocity(deltaTime);
+            return true;
+        }
         return false;
     }
 
