@@ -13,6 +13,7 @@ public class AttackBase : MonoBehaviour
     [SerializeField] protected LayerMask layerMask;
     [SerializeField] protected Transform AttackRaycastPointPosition;
 
+    //protected RaycastHit hit; 
     protected bool canAttack = true;
 
     public UnityEvent AttackStarted;
@@ -32,7 +33,7 @@ public class AttackBase : MonoBehaviour
         yield return null;
     }
 
-    private void ApplyDamageToHealthComponents(IEnumerable<Health> healthComponentsCollection)
+    protected virtual void ApplyDamageToHealthComponents(IEnumerable<Health> healthComponentsCollection)
     {
         if (healthComponentsCollection != null)
         {

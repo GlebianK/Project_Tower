@@ -12,8 +12,8 @@ public class PlayerCombatSystemController : MonoBehaviour
     private float attackPreparationTimer;
     private bool timerIsCounting;
 
-    private AttackPlayerLight attackPlayerLight; // delete on rework
-    private AttackPlayerHeavy attackPlayerHeavy; // delete on rework
+    [SerializeField] private AttackPlayerLight attackPlayerLight; // delete on rework
+    [SerializeField] private AttackPlayerHeavy attackPlayerHeavy; // delete on rework
 
 
     private void Start()
@@ -27,6 +27,8 @@ public class PlayerCombatSystemController : MonoBehaviour
         timerIsCounting = false;
 
         (attackPlayerLight, attackPlayerHeavy) = TryGetAttackComponents(attackLightGO, attackHeavyGO); // delete on rework
+        attackLightGO.SetActive(false); // delete on rework
+        attackHeavyGO.SetActive(false); // delete on rework
     }
 
     // delete on rework
@@ -81,9 +83,16 @@ public class PlayerCombatSystemController : MonoBehaviour
             Debug.LogWarning("ATTACK !!!");
             timerIsCounting = false;
             if (attackPreparationTimer <= attackTypeTimerThreshold)
+            {
+                attackLightGO.SetActive(true);
                 attackPlayerLight.TryAttack();
+            }
             else
+            {
+                attackHeavyGO.SetActive(true);
                 attackPlayerHeavy.TryAttack();
+            }
+            // TODO: ÇÀÏÐÅÒ ÀÒÀÊÈ, ÏÎÊÀ ÍÅ ÇÀÊÎÍ×ÈÒÑß ÓÄÀÐ
         }
     }
 
