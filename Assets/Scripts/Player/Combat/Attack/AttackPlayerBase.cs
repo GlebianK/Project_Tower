@@ -13,10 +13,13 @@ public class AttackPlayerBase : AttackBase
     //TODO: добавить создание коллекции задетых объектов (каждый RaycastHit хранит инфу лишь об одном объекте)
     protected override IEnumerable<Health> CastAttackZone()
     {
-        
-        collidersWereHit = Physics.BoxCast(AttackRaycastPointPosition.position, boxCastSizes, transform.forward,
-            out RaycastHit hit, Quaternion.identity, maxDistance: attackRange, layerMask: layerMask);
-        Debug.Log($"hit:{hit}, ");
+
+        //collidersWereHit = Physics.BoxCast(AttackRaycastPointPosition.position, boxCastSizes, transform.forward,
+        //out hit, Quaternion.identity, maxDistance: attackRange, layerMask: layerMask);
+
+        collidersWereHit = Physics.BoxCast(AttackRaycastPointPosition.position, boxCastSizes, AttackRaycastPointPosition.forward,
+            out hit, AttackRaycastPointPosition.rotation, maxDistance: attackRange, layerMask: layerMask);
+        Debug.Log($"hit:{(hit.distance).ToString()}, GENERAL TEXT");
         if (collidersWereHit)
         {
             Debug.LogWarning("HIT !");
@@ -24,7 +27,7 @@ public class AttackPlayerBase : AttackBase
             {
                 Debug.LogWarning("Object with Health component was hit!");
                 Debug.Log($"if-stats1: range:{attackRange}, box:{boxCastSizes.x},{boxCastSizes.x},{boxCastSizes.z}, posZ:{AttackRaycastPointPosition.position.z}");
-                Debug.Log($"if-stats2: hit:{hit.point}, col:{hit.collider.name}");
+                Debug.Log($"if-stats2: hit:{hit.distance}, col:{hit.collider.name}, hitZ:{hit.point.z}");
                 yield return health;
             }
         }
@@ -55,17 +58,17 @@ public class AttackPlayerBase : AttackBase
         if (collidersWereHit)
         {
             //Draw a Ray forward from GameObject toward the hit
-            Gizmos.DrawRay(transform.position, transform.forward * attackRange);
+            Gizmos.DrawRay(AttackRaycastPointPosition.position, AttackRaycastPointPosition.forward * hit.distance);
             //Draw a cube that extends to where the hit exists
-            Gizmos.DrawWireCube(transform.position + transform.forward * attackRange, boxCastSizes);
+            Gizmos.DrawWireCube(AttackRaycastPointPosition.position + AttackRaycastPointPosition.forward * hit.distance, boxCastSizes * 2);
         }
         //If there hasn't been a hit yet, draw the ray at the maximum distance
         else
         {
             //Draw a Ray forward from GameObject toward the maximum distance
-            Gizmos.DrawRay(transform.position, transform.forward * attackRange);
+            Gizmos.DrawRay(AttackRaycastPointPosition.position, AttackRaycastPointPosition.forward * attackRange);
             //Draw a cube at the maximum distance
-            Gizmos.DrawWireCube(transform.position + transform.forward * attackRange, boxCastSizes);
+            Gizmos.DrawWireCube(AttackRaycastPointPosition.position + AttackRaycastPointPosition.forward * attackRange, boxCastSizes * 2);
         }
     }
 

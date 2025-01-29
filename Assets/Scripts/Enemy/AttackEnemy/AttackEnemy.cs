@@ -8,7 +8,7 @@ public class AttackEnemy : AttackBase
         Ray ray = new(AttackRaycastPointPosition.position, transform.forward);
         Debug.DrawRay(ray.origin, ray.direction * attackRange, Color.cyan);
 
-        if (Physics.Raycast(ray, out RaycastHit hit, attackRange, layerMask))
+        if (Physics.Raycast(ray, out hit, attackRange, layerMask))
         {
             if (hit.transform.TryGetComponent<Health>(out Health health))
             {

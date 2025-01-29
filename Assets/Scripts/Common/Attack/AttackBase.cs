@@ -13,7 +13,7 @@ public class AttackBase : MonoBehaviour
     [SerializeField] protected LayerMask layerMask;
     [SerializeField] protected Transform AttackRaycastPointPosition;
 
-    //protected RaycastHit hit; 
+    protected RaycastHit hit; 
     protected bool canAttack = true;
 
     public UnityEvent AttackStarted;
