@@ -1,40 +1,64 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerCombatSystemController : MonoBehaviour
 {
+    [SerializeField] private float attackTypeTimerThreshold = 0.35f;
+    [SerializeField] private GameObject attackLightGO; // delete on rework
+    [SerializeField] private GameObject attackHeavyGO; // delete on rework
+
     private float attackPreparationTimer;
     private bool timerIsCounting;
 
-    public bool CanAttack { get; set; } // ÂÒÚ¸ ‚ ÍÎ‡ÒÒÂ ‡Ú‡ÍË, Û·‡Ú¸!!!
+    private AttackPlayerLight attackPlayerLight; // delete on rework
+    private AttackPlayerHeavy attackPlayerHeavy; // delete on rework
 
 
     private void Start()
     {
-        CanAttack = true;
+        InitializeCombatController();
+    }
+
+    private void InitializeCombatController()
+    {
         attackPreparationTimer = 0f;
         timerIsCounting = false;
+
+        (attackPlayerLight, attackPlayerHeavy) = TryGetAttackComponents(attackLightGO, attackHeavyGO); // delete on rework
+    }
+
+    // delete on rework
+    private (AttackPlayerLight, AttackPlayerHeavy) TryGetAttackComponents(GameObject attackGO1, GameObject attackGO2)
+    {
+        if (attackGO1.TryGetComponent<AttackPlayerLight>(out AttackPlayerLight temp_light)
+            && attackGO2.TryGetComponent<AttackPlayerHeavy>(out AttackPlayerHeavy temp_heavy))
+        {
+            return (temp_light, temp_heavy);
+        }
+        else
+        {
+            throw new Exception("Cpmbat Controller: SOMETHING WENT WRONG WHILE TRYING TO RETRIEVE ATTACK COMPONENTS !!!");
+        }
+        
     }
 
     private IEnumerator AttackPreparationTimer()
     {
         Debug.LogWarning("AttackPreparationTimer coroutine started!");
-        if (CanAttack)
-        {
-            attackPreparationTimer = 0f;
-            timerIsCounting = true;
 
-            while (timerIsCounting)
-            {
-                attackPreparationTimer += Time.deltaTime;
-                Debug.Log($"TIMER! value = {attackPreparationTimer}");
-                yield return null;
-            }
-            Debug.Log($"timer ends, value = {attackPreparationTimer}");
+        attackPreparationTimer = 0f;
+        timerIsCounting = true;
+
+        while (timerIsCounting)
+        {
+            attackPreparationTimer += Time.deltaTime;
+            Debug.Log($"TIMER! value = {attackPreparationTimer}");
+            yield return null;
         }
+        Debug.Log($"timer ends, value = {attackPreparationTimer}");
+        
         Debug.LogWarning("End of coroutine");
         yield return null;
     }
@@ -42,14 +66,11 @@ public class PlayerCombatSystemController : MonoBehaviour
     #region INPUT CALLBACKS
     public void OnAttackPrepare(InputAction.CallbackContext context)
     {
-
-        CanAttack = true; // ”¡–¿“‹ ›“Œ Õ¿’”… ¬ –≈À»«ÕŒ… ¬≈–—»», ◊»—“Œ ¬–≈Ã≈ÕÕ¿ﬂ «¿“€◊ ¿ !!!!!!!!!!!!!!!
-
         if (context.performed)
         {
             Debug.LogWarning("Ready to attack!!!");
             StartCoroutine(AttackPreparationTimer());
-            //TODO: Invoke attack preparation event (run the animation?)
+            //TODO: Invoke attack preparation event (run the animation?) OR do nothing if there's no preparation animation
         }
     }
 
@@ -58,9 +79,11 @@ public class PlayerCombatSystemController : MonoBehaviour
         if (context.performed)
         {
             Debug.LogWarning("ATTACK !!!");
-            CanAttack = false;
             timerIsCounting = false;
-            //TODO: Ivoke attack event from attack system (run the animation?)
+            if (attackPreparationTimer <= attackTypeTimerThreshold)
+                attackPlayerLight.TryAttack();
+            else
+                attackPlayerHeavy.TryAttack();
         }
     }
 

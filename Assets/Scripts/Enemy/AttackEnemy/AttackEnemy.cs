@@ -1,10 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackEnemy : AttackBase
 {
-    private protected override IEnumerable<Health> CastAttackZone()
+    protected override IEnumerable<Health> CastAttackZone()
     {
         Ray ray = new(AttackRaycastPointPosition.position, transform.forward);
         Debug.DrawRay(ray.origin, ray.direction * attackRange, Color.cyan);
