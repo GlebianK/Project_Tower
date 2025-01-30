@@ -26,7 +26,7 @@ public class AttackPlayerBase : AttackBase
             if (hit.transform.TryGetComponent<Health>(out Health health))
             {
                 Debug.LogWarning("Object with Health component was hit!");
-                Debug.Log($"if-stats1: range:{attackRange}, box:{boxCastSizes.x},{boxCastSizes.x},{boxCastSizes.z}, posZ:{AttackRaycastPointPosition.position.z}");
+                Debug.Log($"if-stats1: range:{attackRange}, box:{boxCastSizes.x},{boxCastSizes.y},{boxCastSizes.z}, posZ:{AttackRaycastPointPosition.position.z}");
                 Debug.Log($"if-stats2: hit:{hit.distance}, col:{hit.collider.name}, hitZ:{hit.point.z}");
                 yield return health;
             }
