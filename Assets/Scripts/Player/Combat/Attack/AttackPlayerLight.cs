@@ -3,8 +3,14 @@ using UnityEngine;
 
 public class AttackPlayerLight : AttackPlayerBase
 {
-    public override void DeactivateParentGameObject()
+    protected override void DeactivateParentGameObject() // см. класс AttackPlayerBase
     {
         gameObject.SetActive(false);
+    }
+
+    public override void OnAttackEnded()
+    {
+        base.OnAttackEnded();
+        DeactivateParentGameObject();
     }
 }

@@ -48,20 +48,15 @@ public class PlayerCombatSystemController : MonoBehaviour
 
     private IEnumerator AttackPreparationTimer()
     {
-        Debug.LogWarning("AttackPreparationTimer coroutine started!");
-
         attackPreparationTimer = 0f;
         timerIsCounting = true;
 
         while (timerIsCounting)
         {
             attackPreparationTimer += Time.deltaTime;
-            Debug.Log($"TIMER! value = {attackPreparationTimer}");
             yield return null;
         }
-        Debug.Log($"timer ends, value = {attackPreparationTimer}");
-        
-        Debug.LogWarning("End of coroutine");
+
         yield return null;
     }
 
@@ -70,9 +65,8 @@ public class PlayerCombatSystemController : MonoBehaviour
     {
         if (context.performed)
         {
-            Debug.LogWarning("Ready to attack!!!");
-            StartCoroutine(AttackPreparationTimer());
-            //TODO: Invoke attack preparation event (run the animation?) OR do nothing if there's no preparation animation
+            if(attackPlayerLight.CanAttack() && attackPlayerHeavy.CanAttack())
+                StartCoroutine(AttackPreparationTimer());
         }
     }
 
@@ -80,7 +74,6 @@ public class PlayerCombatSystemController : MonoBehaviour
     {
         if (context.performed)
         {
-            Debug.LogWarning("ATTACK !!!");
             timerIsCounting = false;
             if (attackPreparationTimer <= attackTypeTimerThreshold)
             {
@@ -92,7 +85,6 @@ public class PlayerCombatSystemController : MonoBehaviour
                 attackHeavyGO.SetActive(true);
                 attackPlayerHeavy.TryAttack();
             }
-            // TODO: ÇÀÏÐÅÒ ÀÒÀÊÈ, ÏÎÊÀ ÍÅ ÇÀÊÎÍ×ÈÒÑß ÓÄÀÐ
         }
     }
 

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class AttackPlayerBase : AttackBase
 {
+    [Tooltip("Check this box for heavy attack")]
     [SerializeField] private bool canBreakArmor;
 
     [Tooltip("Half the size of the casted hit box in each dimension")]
@@ -14,41 +15,44 @@ public class AttackPlayerBase : AttackBase
     protected override IEnumerable<Health> CastAttackZone()
     {
 
-        //collidersWereHit = Physics.BoxCast(AttackRaycastPointPosition.position, boxCastSizes, transform.forward,
-        //out hit, Quaternion.identity, maxDistance: attackRange, layerMask: layerMask);
-
         collidersWereHit = Physics.BoxCast(AttackRaycastPointPosition.position, boxCastSizes, AttackRaycastPointPosition.forward,
             out hit, AttackRaycastPointPosition.rotation, maxDistance: attackRange, layerMask: layerMask);
-        Debug.Log($"hit:{(hit.distance).ToString()}, GENERAL TEXT");
+        Debug.Log($"hit:{hit.distance} (GENERAL TEXT)");
         if (collidersWereHit)
         {
             Debug.LogWarning("HIT !");
             if (hit.transform.TryGetComponent<Health>(out Health health))
             {
                 Debug.LogWarning("Object with Health component was hit!");
-                Debug.Log($"if-stats1: range:{attackRange}, box:{boxCastSizes.x},{boxCastSizes.y},{boxCastSizes.z}, posZ:{AttackRaycastPointPosition.position.z}");
-                Debug.Log($"if-stats2: hit:{hit.distance}, col:{hit.collider.name}, hitZ:{hit.point.z}");
+                Debug.Log($"if-stats: hit distance:{hit.distance}, col:{hit.collider.name}, hitZ:{hit.point.z}");
                 yield return health;
             }
         }
         else
         {
             Debug.LogError("AttackEnemy: No health components found!");
-            Debug.Log($"else-stats: range:{attackRange}, box:{boxCastSizes.x},{boxCastSizes.x},{boxCastSizes.z}, posZ:{AttackRaycastPointPosition.position.z}");
             yield return null;
         }
-        
-
-        /*
-        Debug.LogWarning("This is a base player CastAttackZone class, be sure to use the overriden one");
-        return null;
-        */
     }
 
-    public virtual void DeactivateParentGameObject()
+    protected virtual void DeactivateParentGameObject() // используется в коллбэках ивента OnAttackEnded для отключения Game Object'ов атак
     {
         Debug.LogWarning("You're using base DeactivateParentGameObject method! Be sure to use the overriden one.");
     }
+
+    
+    public virtual void OnAttackStarted()
+    {
+        Debug.Log("Player OnAttackStarted callback (base)");
+    }
+
+    public virtual void OnAttackEnded()
+    {
+        Debug.Log("Player OnAttackEnded callback (base)");
+    }
+    
+
+// ============================================================= GIZMOS ========================================= //
 
     private void OnDrawGizmos()
     {

@@ -59,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 293949389859931608}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.6, z: 0}
+  m_LocalPosition: {x: 0, y: 1.6000001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -509,7 +509,7 @@ Transform:
   m_GameObject: {fileID: 2070052247887952116}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.6, z: 0}
+  m_LocalPosition: {x: 0, y: 1.6000001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1086,6 +1086,7 @@ GameObject:
   - component: {fileID: 5258806614685471267}
   - component: {fileID: 7250583599182096195}
   - component: {fileID: 8167838381989491401}
+  - component: {fileID: 2265216242573025364}
   m_Layer: 6
   m_Name: PlayerCapsule
   m_TagString: Player
@@ -1106,6 +1107,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 8778297734307366953}
+  - {fileID: 1072317031414158863}
   - {fileID: 3656529678849182304}
   m_Father: {fileID: 304418703057540999}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1251,6 +1254,54 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 603733ae-2e21-4106-9faa-8fc9f813bb5e
     m_ActionName: 'Movement/Dash[/Keyboard/leftShift]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2265216242573025364}
+        m_TargetAssemblyTypeName: PlayerCombatSystemController, Assembly-CSharp
+        m_MethodName: OnAttackPrepare
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 47581d5c-23d0-4b36-8294-c76a5e111b60
+    m_ActionName: 'Movement/AttackPrepare[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2265216242573025364}
+        m_TargetAssemblyTypeName: PlayerCombatSystemController, Assembly-CSharp
+        m_MethodName: OnAttackInitiate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 27aaf8bd-70ff-4740-9aa5-a9757028d7fb
+    m_ActionName: 'Movement/AttackInitiate[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2265216242573025364}
+        m_TargetAssemblyTypeName: PlayerCombatSystemController, Assembly-CSharp
+        m_MethodName: OnBlock
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 40b1c063-5dcd-4377-9ef0-7d48ae294a27
+    m_ActionName: 'Movement/Block[/Mouse/rightButton]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement
@@ -1398,6 +1449,23 @@ MonoBehaviour:
     name: Dash
   - type: 6
     name: Climb
+--- !u!114 &2265216242573025364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3270539087432558519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e04f9e1ce4bd6a43998915412c8df1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackTypeTimerThreshold: 0.35
+  attackLightGO: {fileID: 3561418811092371695}
+  attackHeavyGO: {fileID: 8791146679616447162}
+  attackPlayerLight: {fileID: 9125926721831790667}
+  attackPlayerHeavy: {fileID: 6420265720500962627}
 --- !u!1 &3290044196282662706
 GameObject:
   m_ObjectHideFlags: 0
@@ -1522,6 +1590,78 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   climbPointsObject: {fileID: 1512749229650997863}
+--- !u!1 &3561418811092371695
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8778297734307366953}
+  - component: {fileID: 9125926721831790667}
+  m_Layer: 6
+  m_Name: AttackLight
+  m_TagString: Untagged
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8778297734307366953
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3561418811092371695}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9180136779809305306}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9125926721831790667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3561418811092371695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9a266eeed877ab429959b616d32ad4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
+  attackRange: 1.25
+  damageDealingDelay: 0.5
+  durationOfAttack: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  AttackRaycastPointPosition: {fileID: 8778297734307366953}
+  AttackStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  AttackEnded:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9125926721831790667}
+        m_TargetAssemblyTypeName: AttackPlayerLight, Assembly-CSharp
+        m_MethodName: DeactivateParentGameObject
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  canBreakArmor: 0
+  boxCastSizes: {x: 1.5, y: 1, z: 0.4}
 --- !u!1 &3743836808490583049
 GameObject:
   m_ObjectHideFlags: 0
@@ -2819,7 +2959,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8207889714419108809}
   - component: {fileID: 4275591380605879417}
-  - component: {fileID: 1595973131356020437}
   - component: {fileID: 8743598534945643605}
   m_Layer: 6
   m_Name: FPS arms
@@ -2868,205 +3007,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1595973131356020437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7470485159042375537}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98fe10ab3c967a64a8e7181d81c7090b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weaponTransform: {fileID: 1143986001001575202}
-  _moveController: {fileID: 0}
-  _movementInputEventHandler: {fileID: 1189981589719707330}
-  _positionTransitSpeed: 0.04
-  _rotationTransitAngularSpeed: 75
-  _swayAmount: 0.002
-  _maxSwayAmount: 0.15
-  _swaySmooth: 25
-  _swayCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _swaySmoothCounteraction: 0.95
-  _rotationSwayMultiplier: 0
-  _positionSwayMultiplier: 0.6
-  _bobLeftRightCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: -0.004712463
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 136
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.49966687
-      value: 1.0018888
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 136
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.99933374
-      value: -0.00094249257
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 136
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _bobUpCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: -0.00066622184
-      value: 0.00094256445
-      inSlope: 3.7517374
-      outSlope: 3.7517374
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.17058368
-    - serializedVersion: 3
-      time: 0.30046117
-      value: 1.0027105
-      inSlope: 0.021811405
-      outSlope: 0
-      tangentMode: 1
-      weightedMode: 0
-      inWeight: 0.19803445
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.49966905
-      value: -0.00023913383
-      inSlope: -10.15416
-      outSlope: 1.986878
-      tangentMode: 1
-      weightedMode: 0
-      inWeight: 0.24866422
-      outWeight: 0.33897442
-    - serializedVersion: 3
-      time: 0.7988008
-      value: 1.0033048
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 136
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1.0006661
-      value: 0.004712607
-      inSlope: -9.625776
-      outSlope: -9.625776
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.25446463
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _bobRollAlpha:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.18189587
-      inSlope: -0.14861862
-      outSlope: -0.14861862
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33656427
-    - serializedVersion: 3
-      time: 0.15075132
-      value: 0.0012822747
-      inSlope: -0.011959637
-      outSlope: -0.011959637
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.14743207
-    - serializedVersion: 3
-      time: 0.6506958
-      value: 1.0009551
-      inSlope: -0.15768325
-      outSlope: -0.15768325
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1.0020648
-      value: 0.18755889
-      inSlope: -0.10562825
-      outSlope: -0.10562825
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.53021216
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _bobFadeCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 5.4497457
-      outSlope: 5.4497457
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.051382136
-    - serializedVersion: 3
-      time: 0.49611998
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _bobPositionOffsetMultiplier: 0.1
-  _walkPosAmount: {x: 0.001, y: 0.01, z: 0.003}
 --- !u!114 &8743598534945643605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3369,6 +3309,78 @@ Transform:
   - {fileID: 8025053812283477088}
   m_Father: {fileID: 9200309634283843683}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8791146679616447162
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1072317031414158863}
+  - component: {fileID: 6420265720500962627}
+  m_Layer: 6
+  m_Name: AttackHeavy
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1072317031414158863
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8791146679616447162}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9180136779809305306}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6420265720500962627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8791146679616447162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17fecde3330fc604990a81f70a33bbd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 7.5
+  attackRange: 1.25
+  damageDealingDelay: 0.75
+  durationOfAttack: 1.25
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  AttackRaycastPointPosition: {fileID: 1072317031414158863}
+  AttackStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  AttackEnded:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6420265720500962627}
+        m_TargetAssemblyTypeName: AttackPlayerHeavy, Assembly-CSharp
+        m_MethodName: DeactivateParentGameObject
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  canBreakArmor: 1
+  boxCastSizes: {x: 1.5, y: 1, z: 0.4}
 --- !u!1 &8845169660743240095
 GameObject:
   m_ObjectHideFlags: 0
