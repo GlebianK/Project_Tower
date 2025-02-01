@@ -52,6 +52,8 @@ public class ClimbPlayerMovementState : PlayerMovementStateBase
     {
         movementController.cc.enabled = true;
         movementController.CharacterVelocity = Vector3.zero;
+
+        inputController.jumpPressed = false;
     }
 
     protected override Vector3 ComputeVelocity(float deltaTime)

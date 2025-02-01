@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.InputSystem.XInput;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovementStateMachine : MonoBehaviour
@@ -78,10 +77,6 @@ public class PlayerMovementStateMachine : MonoBehaviour
         movementInputEventHandler.jumpPressed = false;
     }
 
-    private void OnDrawGizmos()
-    {
-        
-    }
     #region [ States Management Methods ]
     public IPlayerMovementState GetCurrentState()
     {

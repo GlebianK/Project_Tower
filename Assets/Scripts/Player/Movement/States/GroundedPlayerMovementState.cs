@@ -13,15 +13,31 @@ public class GroundedPlayerMovementState : PlayerMovementStateBase
     // возвращает true, если был совершен переход в новое состояние
     public override bool MakeTransitions(float deltaTime)
     {
+        Vector3 wsInput = inputController.GetMovementDirectionInTransformSpace(movementController.transform);
+
         bool isGrounded = movementController.GroundCheck();
         bool isJumping = inputController.jumpPressed;
 
-        if (!isGrounded || isJumping)
+        bool isRunningForward = wsInput.magnitude < 0.1 || // stay unmoved
+            (wsInput.magnitude > 0.1 && Vector3.Dot(movementController.transform.forward, wsInput) > 0.70); // running backward
+
+        if (isJumping)
         {
-            if (isJumping)
+            if (isRunningForward || movementController.GetStateByType(PlayerMovementStateType.Dash).IsBlocked())
             {
                 movementController.Jump(ComputeJumpVelocity(config.JumpVelocity, deltaTime));
             }
+            else
+            {
+                movementController.SetCurrentState(PlayerMovementStateType.Dash);
+                movementController.GetCurrentState().UpdateMovementVelocity(deltaTime);
+                return true;
+            }
+        }
+
+        if (!isGrounded || isJumping)
+        {
+            
             movementController.SetCurrentState(PlayerMovementStateType.Air);
             movementController.GetCurrentState().UpdateMovementVelocity(deltaTime);
             return true;
@@ -34,13 +50,10 @@ public class GroundedPlayerMovementState : PlayerMovementStateBase
             return true;
         }
 
-        Vector3 wsInput = inputController.GetMovementDirectionInTransformSpace(movementController.transform);
-        bool isRunningForward = wsInput.magnitude > 0 &&
-            Vector3.Dot(movementController.transform.forward, wsInput) > 0.70;
-
         if (inputController.sprintModifier)
         {
-            if (isRunningForward)
+            if (isRunningForward 
+                && !movementController.GetStateByType(PlayerMovementStateType.Sprint).IsBlocked())
             {
                 movementController.SetCurrentState(PlayerMovementStateType.Sprint);
                 movementController.GetCurrentState().UpdateMovementVelocity(deltaTime);
@@ -50,9 +63,7 @@ public class GroundedPlayerMovementState : PlayerMovementStateBase
             {
                 // TODO Dash transition
                 inputController.sprintModifier = false;
-                movementController.SetCurrentState(PlayerMovementStateType.Dash);
-                movementController.GetCurrentState().UpdateMovementVelocity(deltaTime);
-                return true;
+
             }
            
         }

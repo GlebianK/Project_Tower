@@ -87,10 +87,7 @@ public class MovementInputEventHandler : MonoBehaviour
     }
     public void OnSprint(InputAction.CallbackContext context)
     {
-        if (context.started)
-        {
-            sprintModifier ^= true;
-        }
+        sprintModifier = context.started ? true : context.canceled ? false : sprintModifier;
     }
     public void OnCrouch(InputAction.CallbackContext context)
     {

@@ -10,18 +10,25 @@ public interface IPlayerMovementState
     void UpdateMovementVelocity(float deltaTime);
     void HandleObstacleAfterMovement(float deltaTime, in RaycastHit hit);
 
+    void Block();
+    void Unblock();
+    bool IsBlocked();
+
     void OnStateActivated(IPlayerMovementState prevState);
     void OnStateDeactivated(IPlayerMovementState nextState);
 }
 
 public abstract class PlayerMovementStateBase : IPlayerMovementState
 {
+    private bool isBlocked;
+
     protected PlayerMovementStateMachine movementController { get; private set; }
     protected MovementInputEventHandler inputController { get; private set; }
     protected PlayerMovementStateConfig config { get; private set; }
     public PlayerMovementStateBase(PlayerMovementStateConfig config)
     {
         this.config = config;
+        isBlocked = false;
     }
     public void InitializeContext(PlayerMovementStateMachine machine, MovementInputEventHandler inputHandler)
     {
@@ -36,6 +43,13 @@ public abstract class PlayerMovementStateBase : IPlayerMovementState
     public abstract bool MakeTransitions(float deltaTime);
     public void UpdateMovementVelocity(float deltaTime)
     {
+        if (IsBlocked())
+        {
+            movementController.SetCurrentState(PlayerMovementStateType.Air);
+            movementController.GetCurrentState().UpdateMovementVelocity(deltaTime);
+            return;
+        }
+
         if (MakeTransitions(deltaTime))
             return;
 
@@ -43,4 +57,18 @@ public abstract class PlayerMovementStateBase : IPlayerMovementState
     }
     protected abstract Vector3 ComputeVelocity(float deltaTime);
     public abstract void HandleObstacleAfterMovement(float deltaTime, in RaycastHit hit);
+
+    public void Block()
+    {
+        isBlocked = true;
+    }
+    public void Unblock()
+    {
+        isBlocked = false;
+    }
+
+    public bool IsBlocked()
+    {
+        return isBlocked;
+    }
 }
