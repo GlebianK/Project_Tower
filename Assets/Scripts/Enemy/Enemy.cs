@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private Health health;
-    [SerializeField] private Attack attack;
+    [SerializeField] private AttackEnemy attack;
     [SerializeField] private MotionEnemy motionEnemy;
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private float attackStartRange;
