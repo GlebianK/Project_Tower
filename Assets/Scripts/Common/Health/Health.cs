@@ -19,14 +19,23 @@ public class Health : MonoBehaviour
         if(hp <= maxHp)
         {
             hp += healValue;
-           // Healed.Invoke();
+            if (hp > maxHp)
+            {
+                hp = maxHp;
+                Healed.Invoke();
+            }
+            else
+            {
+                Healed.Invoke();
+            }
         }
+
     }
     public void TakeDamage(float damageValue)
     {
         hp -= damageValue;
         Debug.Log(hp);
-      //  TookDamage.Invoke();
+        TookDamage.Invoke();
         if(hp <= 0f)
         {
             Died.Invoke();
