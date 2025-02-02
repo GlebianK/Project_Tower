@@ -15,6 +15,7 @@ public class PlayerCombatSystemController : MonoBehaviour
     [SerializeField] private AttackPlayerLight attackPlayerLight; // delete on rework
     [SerializeField] private AttackPlayerHeavy attackPlayerHeavy; // delete on rework
 
+    private bool isAttackBlockedByClimb;
 
     private void Start()
     {
@@ -25,6 +26,7 @@ public class PlayerCombatSystemController : MonoBehaviour
     {
         attackPreparationTimer = 0f;
         timerIsCounting = false;
+        isAttackBlockedByClimb = false;
 
         (attackPlayerLight, attackPlayerHeavy) = TryGetAttackComponents(attackLightGO, attackHeavyGO); // delete on rework
         attackLightGO.SetActive(false); // delete on rework
@@ -51,7 +53,7 @@ public class PlayerCombatSystemController : MonoBehaviour
         attackPreparationTimer = 0f;
         timerIsCounting = true;
 
-        while (timerIsCounting)
+        while (timerIsCounting && !isAttackBlockedByClimb)
         {
             attackPreparationTimer += Time.deltaTime;
             yield return null;
@@ -75,6 +77,8 @@ public class PlayerCombatSystemController : MonoBehaviour
         if (context.performed)
         {
             timerIsCounting = false;
+            if (isAttackBlockedByClimb) return;
+
             if (attackPreparationTimer <= attackTypeTimerThreshold)
             {
                 attackLightGO.SetActive(true);
@@ -97,4 +101,16 @@ public class PlayerCombatSystemController : MonoBehaviour
         }
     }
     #endregion
+
+    public void OnMovementStateChanged(PlayerMovementStateMachine machine, PlayerMovementStateType type)
+    {
+        if (type == PlayerMovementStateType.Climb)
+        {
+            isAttackBlockedByClimb = true;
+        }
+        else
+        {
+            isAttackBlockedByClimb = false;
+        }
+    }
 }

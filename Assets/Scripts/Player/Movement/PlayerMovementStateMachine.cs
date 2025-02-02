@@ -87,7 +87,14 @@ public class PlayerMovementStateMachine : MonoBehaviour
     {
         return movementStates[type];
     }
-
+    public void BlockMovementState(PlayerMovementStateType type)
+    {
+        GetStateByType(type).Block();
+    }
+    public void UnblockMovementState(PlayerMovementStateType type)
+    {
+        GetStateByType(type).Unblock();
+    }
     public void SetCurrentState(PlayerMovementStateType state)
     {
         IPlayerMovementState newState = movementStates[state];

@@ -137,6 +137,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2968523261841218110, guid: e45ed97c4cf19f14a8a5474cd7605e87, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968523261841218110, guid: e45ed97c4cf19f14a8a5474cd7605e87, type: 3}
       propertyPath: motionEnemy
       value: 
       objectReference: {fileID: 1947891563021367724}
@@ -415,6 +419,10 @@ PrefabInstance:
     - target: {fileID: 7018109722592896405, guid: e45ed97c4cf19f14a8a5474cd7605e87, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7161567084786902701, guid: e45ed97c4cf19f14a8a5474cd7605e87, type: 3}
+      propertyPath: maxHp
+      value: 14.95
       objectReference: {fileID: 0}
     - target: {fileID: 7161567084786902701, guid: e45ed97c4cf19f14a8a5474cd7605e87, type: 3}
       propertyPath: Healed.m_PersistentCalls.m_Calls.Array.size

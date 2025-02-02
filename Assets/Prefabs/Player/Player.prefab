@@ -192,7 +192,7 @@ Transform:
   m_GameObject: {fileID: 1900610418692116123}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.6, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -211,13 +211,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
-  attackRange: 0.75
-  damageDealingDelay: 0
-  durationOfAttack: 1
+  attackRange: 0.87
+  damageDealingDelay: 0.5
+  durationOfAttack: 1.4
   layerMask:
     serializedVersion: 2
     m_Bits: 128
-  AttackRaycastPointPosition: {fileID: 1733214868431255386}
+  AttackRaycastPointPosition: {fileID: 439072003315056397}
   AttackStarted:
     m_PersistentCalls:
       m_Calls:
@@ -237,6 +237,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: PlayerAnimationLinker, Assembly-CSharp
         m_MethodName: OnAttackSterted
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6427503918161266272}
+        m_TargetAssemblyTypeName: CombatMovementBlocker, Assembly-CSharp
+        m_MethodName: OnAttackStarted
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -272,8 +284,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6427503918161266272}
+        m_TargetAssemblyTypeName: CombatMovementBlocker, Assembly-CSharp
+        m_MethodName: OnAttackEnded
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   canBreakArmor: 0
-  boxCastSizes: {x: 0.31, y: 0.18, z: 0.25}
+  boxCastSizes: {x: 0.31, y: 0.27, z: 0.55}
 --- !u!1 &2070052247887952116
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,6 +563,7 @@ GameObject:
   - component: {fileID: 7250583599182096195}
   - component: {fileID: 8167838381989491401}
   - component: {fileID: 6105288590793062887}
+  - component: {fileID: 6427503918161266272}
   - component: {fileID: 4281959944678571339}
   m_Layer: 6
   m_Name: PlayerCapsule
@@ -828,6 +853,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6105288590793062887}
+        m_TargetAssemblyTypeName: PlayerCombatSystemController, Assembly-CSharp
+        m_MethodName: OnMovementStateChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7250583599182096195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -914,6 +951,19 @@ MonoBehaviour:
   attackHeavyGO: {fileID: 8985030451354610364}
   attackPlayerLight: {fileID: 0}
   attackPlayerHeavy: {fileID: 0}
+--- !u!114 &6427503918161266272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3270539087432558519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a7b6bc0e0aef114898f4430bbb168e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementController: {fileID: 5258806614685471267}
 --- !u!114 &4281959944678571339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -998,6 +1048,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   climbPointsObject: {fileID: 1512749229650997863}
+--- !u!1 &4220618276359197172
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6875547668858443546}
+  m_Layer: 6
+  m_Name: AttackHeavyStartPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6875547668858443546
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4220618276359197172}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3656529678849182304}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5359951617830628308
 GameObject:
   m_ObjectHideFlags: 0
@@ -1028,6 +1109,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1143986001001575202}
+  - {fileID: 439072003315056397}
+  - {fileID: 6875547668858443546}
   m_Father: {fileID: 9180136779809305306}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5752342075509909780
@@ -1215,6 +1298,37 @@ Transform:
   - {fileID: 8514157189112677634}
   m_Father: {fileID: 3656529678849182304}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8519978226016287895
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 439072003315056397}
+  m_Layer: 6
+  m_Name: AttackLightStartPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &439072003315056397
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8519978226016287895}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3656529678849182304}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8985030451354610364
 GameObject:
   m_ObjectHideFlags: 0
@@ -1241,7 +1355,7 @@ Transform:
   m_GameObject: {fileID: 8985030451354610364}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.6, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1260,13 +1374,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 7.5
-  attackRange: 0.75
-  damageDealingDelay: 0
-  durationOfAttack: 1.5
+  attackRange: 0.87
+  damageDealingDelay: 0.5
+  durationOfAttack: 1.7
   layerMask:
     serializedVersion: 2
     m_Bits: 128
-  AttackRaycastPointPosition: {fileID: 7475447092982615515}
+  AttackRaycastPointPosition: {fileID: 6875547668858443546}
   AttackStarted:
     m_PersistentCalls:
       m_Calls:
@@ -1286,6 +1400,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: PlayerAnimationLinker, Assembly-CSharp
         m_MethodName: OnAttackSterted
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 6427503918161266272}
+        m_TargetAssemblyTypeName: CombatMovementBlocker, Assembly-CSharp
+        m_MethodName: OnAttackStarted
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1321,8 +1447,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6427503918161266272}
+        m_TargetAssemblyTypeName: CombatMovementBlocker, Assembly-CSharp
+        m_MethodName: OnAttackEnded
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   canBreakArmor: 1
-  boxCastSizes: {x: 0.31, y: 0.18, z: 0.25}
+  boxCastSizes: {x: 0.31, y: 0.27, z: 0.55}
 --- !u!1 &9035541138851197130
 GameObject:
   m_ObjectHideFlags: 0
