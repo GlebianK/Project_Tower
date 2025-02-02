@@ -11,7 +11,6 @@ public class AnimationStateControllerBase
     private AnimationStateAssetBase asset;
 
     private List<Tuple<Playable, int>> controlledWeights;
-    private Playable clip;
 
     private float currentWeight = 0;
     private float internalTimer = 0;

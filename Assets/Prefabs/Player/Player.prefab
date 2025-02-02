@@ -211,8 +211,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
-  attackRange: 1.25
-  damageDealingDelay: 0.5
+  attackRange: 0.75
+  damageDealingDelay: 0
   durationOfAttack: 1
   layerMask:
     serializedVersion: 2
@@ -225,6 +225,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: AttackPlayerBase, Assembly-CSharp
         m_MethodName: OnAttackStarted
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8167838381989491401}
+        m_TargetAssemblyTypeName: PlayerAnimationLinker, Assembly-CSharp
+        m_MethodName: OnAttackSterted
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -248,8 +260,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8167838381989491401}
+        m_TargetAssemblyTypeName: PlayerAnimationLinker, Assembly-CSharp
+        m_MethodName: OnAttackEnded
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   canBreakArmor: 0
-  boxCastSizes: {x: 1, y: 0.5, z: 0.25}
+  boxCastSizes: {x: 0.31, y: 0.18, z: 0.25}
 --- !u!1 &2070052247887952116
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,6 +539,7 @@ GameObject:
   - component: {fileID: 7250583599182096195}
   - component: {fileID: 8167838381989491401}
   - component: {fileID: 6105288590793062887}
+  - component: {fileID: 4281959944678571339}
   m_Layer: 6
   m_Name: PlayerCapsule
   m_TagString: Player
@@ -835,6 +860,10 @@ MonoBehaviour:
     asset: {fileID: 11400000, guid: b7de7af902a0b7f478420a9b2139e8e9, type: 2}
   - animationName: Climb
     asset: {fileID: 11400000, guid: 34ecbd1bc9acb3a4594f42cd5ad4d478, type: 2}
+  - animationName: AttackLight
+    asset: {fileID: 11400000, guid: d6ccb724588a57a408b320eb8659a940, type: 2}
+  - animationName: AttackHeavy
+    asset: {fileID: 11400000, guid: 01f81b240bc5693499e63ee96360b08c, type: 2}
   defaultAnimationName: Walk
 --- !u!114 &8167838381989491401
 MonoBehaviour:
@@ -866,6 +895,8 @@ MonoBehaviour:
     name: Dash
   - type: 6
     name: Climb
+  attackLightAnimState: AttackLight
+  attackHeavyAnimState: AttackHeavy
 --- !u!114 &6105288590793062887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -883,6 +914,28 @@ MonoBehaviour:
   attackHeavyGO: {fileID: 8985030451354610364}
   attackPlayerLight: {fileID: 0}
   attackPlayerHeavy: {fileID: 0}
+--- !u!114 &4281959944678571339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3270539087432558519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1bfbdb6efa5fab4fb2e5500162ac94e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Died:
+    m_PersistentCalls:
+      m_Calls: []
+  Healed:
+    m_PersistentCalls:
+      m_Calls: []
+  TookDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  maxHp: 100
 --- !u!1 &3483624445662189585
 GameObject:
   m_ObjectHideFlags: 0
@@ -1207,8 +1260,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 7.5
-  attackRange: 1.25
-  damageDealingDelay: 0.5
+  attackRange: 0.75
+  damageDealingDelay: 0
   durationOfAttack: 1.5
   layerMask:
     serializedVersion: 2
@@ -1229,6 +1282,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8167838381989491401}
+        m_TargetAssemblyTypeName: PlayerAnimationLinker, Assembly-CSharp
+        m_MethodName: OnAttackSterted
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   AttackEnded:
     m_PersistentCalls:
       m_Calls:
@@ -1244,8 +1309,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8167838381989491401}
+        m_TargetAssemblyTypeName: PlayerAnimationLinker, Assembly-CSharp
+        m_MethodName: OnAttackEnded
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   canBreakArmor: 1
-  boxCastSizes: {x: 1, y: 0.5, z: 0.25}
+  boxCastSizes: {x: 0.31, y: 0.18, z: 0.25}
 --- !u!1 &9035541138851197130
 GameObject:
   m_ObjectHideFlags: 0

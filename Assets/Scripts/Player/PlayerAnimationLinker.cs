@@ -10,12 +10,18 @@ public struct StateToNameDescriptor
     public string name;
 }
 
-public class PlayerMovementAnimationLinker : MonoBehaviour
+public class PlayerAnimationLinker : MonoBehaviour
 {
     [SerializeField] private PlayerMovementStateMachine movementController;
     [SerializeField] private PlayerAnimationSystem animationSystem;
     [SerializeField] private string defaultStateName;
     [SerializeField] private List<StateToNameDescriptor> states;
+
+    [SerializeField] private string attackLightAnimState;
+    [SerializeField] private string attackHeavyAnimState;
+
+    private bool isAttacking = false;
+    private string movementAnimStateName = "";
 
     private void OnEnable()
     {
@@ -36,6 +42,26 @@ public class PlayerMovementAnimationLinker : MonoBehaviour
         else
             stateName = state.First().name;
 
+        movementAnimStateName = stateName;
+
+        if (!isAttacking)
+        {
+            animationSystem.SetState(movementAnimStateName);
+        }
+    }
+
+    public void OnAttackSterted(bool isHeavy)
+    {
+        string stateName = isHeavy ? attackHeavyAnimState : attackLightAnimState;
         animationSystem.SetState(stateName);
+
+        isAttacking = true;
+    }
+
+    public void OnAttackEnded()
+    {
+        isAttacking = false;
+
+        animationSystem.SetState(movementAnimStateName);
     }
 }

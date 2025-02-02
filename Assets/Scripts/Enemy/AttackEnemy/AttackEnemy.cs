@@ -17,7 +17,7 @@ public class AttackEnemy : AttackBase
         }
         else
         {
-            Debug.LogError("AttackEnemy: No health components found!");
+            Debug.Log("AttackEnemy: No health components found!");
             yield return null;
         }
     }
