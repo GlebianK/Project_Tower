@@ -10,13 +10,17 @@ public class Enemy : MonoBehaviour
     [SerializeField] private MotionEnemy motionEnemy;
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private float attackStartRange;
+
     [Header("PlayerTransform")]
     [SerializeField] private Transform player;
+
     private float speedAgent;
+
     private void Start()
     {
         speedAgent = agent.speed;
     }
+
     private void Update()
     {
         if (player != null)
@@ -38,6 +42,7 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+
     public void EnemyDied()
     {
         Destroy(gameObject);
