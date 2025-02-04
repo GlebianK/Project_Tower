@@ -9,7 +9,7 @@ public class MotionAnimation: MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    #region
+    #region MOTION ANIMATION CALLBACKS
     public void MovingStarted()
     {
         animator.SetBool("canMove", true);

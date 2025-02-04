@@ -9,7 +9,7 @@ public class AttackAnimations : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    #region animation actions
+    #region ATTACK ANIMATION CALLBACKS
     public void OnAttackStarted()
     {
         animator.SetBool("OnAttack",true);
