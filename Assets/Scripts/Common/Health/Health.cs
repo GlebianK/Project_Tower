@@ -3,14 +3,17 @@ using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
+    [SerializeField] private float maxHp = 1f;
+    private float hp;
+
+    public float MaxHP => maxHp;
+    public float HP => hp;
+
     public UnityEvent Died;
     public UnityEvent Healed;
     public UnityEvent TookDamage;
 
-    [SerializeField] private float maxHp = 1f;
-    private float hp;
-
-    private void Start()
+    private void Awake()
     {
         hp = maxHp;
     }
