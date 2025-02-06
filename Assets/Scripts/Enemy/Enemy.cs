@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class Enemy : MonoBehaviour
 {
