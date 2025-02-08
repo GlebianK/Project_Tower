@@ -1993,8 +1993,11 @@ MonoBehaviour:
   health: {fileID: 5621479349805749603}
   attack: {fileID: 7681651604051579858}
   motionEnemy: {fileID: 894099426770770240}
-  agent: {fileID: 1955260278559091209}
   attackStartRange: 2
+  maxPlayerDetectViewAngle: 15
+  agent: {fileID: 1955260278559091209}
+  speedAgent: 3.5
+  angularSpeedAgent: 300
 --- !u!114 &7681651604051579858
 MonoBehaviour:
   m_ObjectHideFlags: 0
