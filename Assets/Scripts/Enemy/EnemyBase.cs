@@ -20,7 +20,7 @@ public class EnemyBase : MonoBehaviour
     #region UNITY METHODS
     private void Update()
     {
-        EnemyBehaviorCycle();
+        EnemyBehaviourCycle();
     }
     
     private void OnTriggerEnter(Collider other)
@@ -36,7 +36,7 @@ public class EnemyBase : MonoBehaviour
 
     #region USER PROTECTED METHODS
 
-    protected virtual void EnemyBehaviorCycle()
+    protected virtual void EnemyBehaviourCycle()
     {
         if (player != null)
         {
@@ -45,12 +45,13 @@ public class EnemyBase : MonoBehaviour
 
             if (distance <= attackStartRange)
             {
-                agent.speed = 0f;
+                //agent.speed = 0f;
                 if (attack.CanAttack())
                 {
                     float angle = Vector3.Angle(transform.forward, (player.position - transform.position).normalized);
                     if (angle < maxPlayerDetectViewAngle)
                     {
+                        agent.speed = 0f;
                         AttackPlayer();
                     }
                 }
