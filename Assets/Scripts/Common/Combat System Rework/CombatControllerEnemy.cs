@@ -2,13 +2,19 @@ using UnityEngine;
 
 public class CombatControllerEnemy : CombatControllerBase
 {
-    protected override void Attack()
+    [SerializeField] private NewAttackEnemy attackEnemy;
+    [SerializeField] private NewBlockEnemy blockEnemy;
+
+    public override bool IsAttackAllowed() => attackEnemy.CanPerform();
+    public override bool IsBlockAllowed() => blockEnemy.CanPerform();
+
+    public override void Attack()
     {
-        throw new System.NotImplementedException("No attack for enemy!");
+        attackEnemy.Perform();
     }
 
-    protected override void Block()
+    public override void Block()
     {
-        throw new System.NotImplementedException("No block for enemy!");
+        blockEnemy.Perform();
     }
 }

@@ -709,6 +709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1bfbdb6efa5fab4fb2e5500162ac94e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHp: 1
   Died:
     m_PersistentCalls:
       m_Calls:
@@ -730,7 +731,6 @@ MonoBehaviour:
   TookDamage:
     m_PersistentCalls:
       m_Calls: []
-  maxHp: 1
 --- !u!114 &4884298949995905311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -746,9 +746,11 @@ MonoBehaviour:
   health: {fileID: 5268251951011371227}
   attack: {fileID: 9104335875871787630}
   motionEnemy: {fileID: 198587656446535189}
+  attackStartRange: 1.5
+  maxPlayerDetectViewAngle: 15
   agent: {fileID: 1270950364334003495}
   speedAgent: 1.5
-  attackStartRange: 1.5
+  angularSpeedAgent: 0
   isShielded: 0
 --- !u!114 &9104335875871787630
 MonoBehaviour:
@@ -851,7 +853,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2681294244345039639}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ff00ea3fd6e40b4d95797d0799a8171, type: 3}
+  m_Script: {fileID: 11500000, guid: b1fc31a2b5f883a4caadb6d3ece452a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1446043790066600179

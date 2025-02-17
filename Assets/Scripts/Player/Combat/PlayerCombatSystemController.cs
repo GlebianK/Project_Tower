@@ -43,7 +43,7 @@ public class PlayerCombatSystemController : MonoBehaviour
         }
         else
         {
-            throw new Exception("Cpmbat Controller: SOMETHING WENT WRONG WHILE TRYING TO RETRIEVE ATTACK COMPONENTS !!!");
+            throw new Exception("Combat Controller: SOMETHING WENT WRONG WHILE TRYING TO RETRIEVE ATTACK COMPONENTS !!!");
         }
         
     }

@@ -1,7 +1,6 @@
 using UnityEngine;
 
-
-public class EnemyLight : EnemyBase
+public class NewEnemyLight : NewEnemyBase
 {
     private void Update()
     {

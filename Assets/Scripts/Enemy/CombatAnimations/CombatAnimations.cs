@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AttackAnimations : MonoBehaviour
+public class CombatAnimations : MonoBehaviour
 {
     private Animator animator;
 
