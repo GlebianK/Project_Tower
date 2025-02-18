@@ -69,7 +69,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "BlockStart",
+                    "name": "BlockInitiate",
                     "type": "Button",
                     "id": "40b1c063-5dcd-4377-9ef0-7d48ae294a27",
                     "expectedControlType": "",
@@ -78,7 +78,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "BlockEnd",
+                    "name": "BlockCancel",
                     "type": "Button",
                     "id": "2c355494-1fbf-47d8-8812-87af2161d151",
                     "expectedControlType": "",
@@ -216,7 +216,7 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": "",
-                    "action": "BlockStart",
+                    "action": "BlockInitiate",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -227,7 +227,7 @@
                     "interactions": "Press(behavior=1)",
                     "processors": "",
                     "groups": "",
-                    "action": "BlockEnd",
+                    "action": "BlockCancel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

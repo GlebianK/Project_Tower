@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class CombatControllerPlayer : CombatControllerBase
 {
+    [SerializeField] private Health playerHealthComponent;
     [SerializeField] private float attackTypeTimerThreshold = 0.35f;
 
     [Tooltip("Add light and heavy attacks in the array. Start with the light attack")]
@@ -48,13 +49,6 @@ public class CombatControllerPlayer : CombatControllerBase
         isAttackBlockedByClimb = false;
     }
 
-    /*
-    private NewAttackPlayer GetAttackByType(NewAttackPlayer[] attack)
-    {
-
-    }
-    */
-
     private IEnumerator AttackPreparationTimer()
     {
         attackPreparationTimer = 0f;
@@ -75,16 +69,18 @@ public class CombatControllerPlayer : CombatControllerBase
 
         if (attackPreparationTimer <= attackTypeTimerThreshold)
         {
+            Debug.Log("Light attack");
             currentAttack = attacksPlayer[0];
         }
         else
         {
-            currentAttack = attacksPlayer[0];
+            Debug.Log("HeavyAttack");
+            currentAttack = attacksPlayer[1];
         }
 
         if (currentAttack.CanPerform())
         {
-            Debug.Log("CC_Player: can perform attack, so performing one !!!!!!");
+            Debug.LogWarning("CC_Player: ATTACK !!!!!!");
             currentAttack.Perform();
         }
            
@@ -93,7 +89,9 @@ public class CombatControllerPlayer : CombatControllerBase
     public override void Block()
     {
         if (IsBlockAllowed())
+        {
             blockPlayer.Perform();
+        }
     }
 
     #region INPUT CALLBACKS
@@ -101,9 +99,14 @@ public class CombatControllerPlayer : CombatControllerBase
     {
         if (context.performed)
         {
+            if (!IsBlockAllowed())
+                return;
+
             if (IsAttackAllowed())
+            {
                 StartCoroutine(AttackPreparationTimer());
-            prepareAttack.Invoke();
+                prepareAttack.Invoke();
+            }
         }
     }
 
@@ -115,22 +118,33 @@ public class CombatControllerPlayer : CombatControllerBase
             if (isAttackBlockedByClimb) 
                 return;
 
+            if (!IsBlockAllowed())
+                return;
+
             Attack();            
         }
     }
 
-    public void OnBlockStart(InputAction.CallbackContext context)
+    public void OnBlockInitiate(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
+            if (!IsAttackAllowed())
+                return;
+
+            Debug.LogWarning("Block initiated!");
+            playerHealthComponent.ActivateDamageReduction();
             Block();
+
         }
     }
 
-    public void OnBlockEnd(InputAction.CallbackContext context)
+    public void OnBlockCancel(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
+            Debug.LogWarning("Block stopped!");
+            playerHealthComponent.DeactivateDamageReduction();
             blockPlayer.Cancel();
         }
     }
