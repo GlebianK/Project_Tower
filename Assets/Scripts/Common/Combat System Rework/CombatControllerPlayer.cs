@@ -7,7 +7,11 @@ using UnityEngine.InputSystem;
 public class CombatControllerPlayer : CombatControllerBase
 {
     [SerializeField] private float attackTypeTimerThreshold = 0.35f;
+
+    [Tooltip("Add light and heavy attacks in the array. Start with the light attack")]
     [SerializeField] private NewAttackPlayer[] attacksPlayer;
+
+    [Tooltip("Player block settings")]
     [SerializeField] private NewBlockPlayer blockPlayer;
 
     public UnityEvent prepareAttack;
@@ -67,12 +71,29 @@ public class CombatControllerPlayer : CombatControllerBase
 
     public override void Attack()
     {
-        throw new NotImplementedException("No attack for player!");
+        NewAttackPlayer currentAttack;
+
+        if (attackPreparationTimer <= attackTypeTimerThreshold)
+        {
+            currentAttack = attacksPlayer[0];
+        }
+        else
+        {
+            currentAttack = attacksPlayer[0];
+        }
+
+        if (currentAttack.CanPerform())
+        {
+            Debug.Log("CC_Player: can perform attack, so performing one !!!!!!");
+            currentAttack.Perform();
+        }
+           
     }
 
     public override void Block()
     {
-        throw new NotImplementedException("No block for player!");
+        if (IsBlockAllowed())
+            blockPlayer.Perform();
     }
 
     #region INPUT CALLBACKS
@@ -94,17 +115,7 @@ public class CombatControllerPlayer : CombatControllerBase
             if (isAttackBlockedByClimb) 
                 return;
 
-            if (attackPreparationTimer <= attackTypeTimerThreshold)
-            {
-                //attackLightGO.SetActive(true);
-                //attackPlayerLight.TryAttack();
-            }
-            else
-            {
-                //attackHeavyGO.SetActive(true);
-                //attackPlayerHeavy.TryAttack();
-            }
-            
+            Attack();            
         }
     }
 
@@ -112,8 +123,7 @@ public class CombatControllerPlayer : CombatControllerBase
     {
         if (context.performed)
         {
-            if (IsBlockAllowed())
-                blockPlayer.Perform();
+            Block();
         }
     }
 

@@ -70,10 +70,8 @@ public class NewAttackBase : ICombatAction
 
     public void Perform()
     {
-        Debug.LogWarning("Wanna ATTACK!");
         if (CanPerform())
         {
-            Debug.LogWarning("ATTACK THIS BITCH!");
             PerformAttack();
         }
         

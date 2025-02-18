@@ -4,7 +4,7 @@ using UnityEngine.Events;
 public class Health : MonoBehaviour
 {
     [SerializeField] private float maxHp = 1f;
-    [SerializeField] private float damageReductionCoef = 0.25f;
+    [Range(0f, 1f), SerializeField] private float damageReductionCoef = 0.25f;
 
     private float hp;
     private float currentDamageReductionCoef;

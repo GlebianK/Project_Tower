@@ -22,8 +22,8 @@ public class NewAttackPlayer : NewAttackBase
             Debug.LogWarning("HIT !");
             if (collider.transform.TryGetComponent(out Health health))
             {
-                Debug.LogWarning("Object with Health component was hit!");
-                Debug.Log($"if-stats: col:{collider.name}");
+                Debug.Log("Object with Health component was hit!");
+                Debug.Log($"if-state: collider name:{collider.name}");
                 yield return health;
             }
         }
