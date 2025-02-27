@@ -9432,6 +9432,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7250583599182096195, guid: 782e8e10e72bc824c93655e76c20fe08, type: 3}
+      propertyPath: animationStates.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250583599182096195, guid: 782e8e10e72bc824c93655e76c20fe08, type: 3}
+      propertyPath: animationStates.Array.data[8].asset
+      value: 
+      objectReference: {fileID: 11400000, guid: 1f189c83d37b9af4c910559cd9f7577c, type: 2}
+    - target: {fileID: 7250583599182096195, guid: 782e8e10e72bc824c93655e76c20fe08, type: 3}
+      propertyPath: animationStates.Array.data[9].asset
+      value: 
+      objectReference: {fileID: 11400000, guid: dd853458f9cae7d4db50bf35a29d2036, type: 2}
+    - target: {fileID: 7250583599182096195, guid: 782e8e10e72bc824c93655e76c20fe08, type: 3}
+      propertyPath: animationStates.Array.data[10].asset
+      value: 
+      objectReference: {fileID: 11400000, guid: 01f81b240bc5693499e63ee96360b08c, type: 2}
+    - target: {fileID: 7250583599182096195, guid: 782e8e10e72bc824c93655e76c20fe08, type: 3}
+      propertyPath: animationStates.Array.data[8].animationName
+      value: AttackLightHit
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250583599182096195, guid: 782e8e10e72bc824c93655e76c20fe08, type: 3}
+      propertyPath: animationStates.Array.data[9].animationName
+      value: AttackLightEnd
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250583599182096195, guid: 782e8e10e72bc824c93655e76c20fe08, type: 3}
+      propertyPath: animationStates.Array.data[10].animationName
+      value: AttackHeavy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8080946206251268427, guid: 782e8e10e72bc824c93655e76c20fe08, type: 3}
+      propertyPath: durationOfAttack
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8080946206251268427, guid: 782e8e10e72bc824c93655e76c20fe08, type: 3}
+      propertyPath: damageDealingDelay
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

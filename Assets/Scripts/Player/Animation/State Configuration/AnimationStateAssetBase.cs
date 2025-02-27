@@ -8,6 +8,8 @@ public class AnimationStateAssetBase : ScriptableObject
     [SerializeField] private AnimationCurve blendOut;
     [SerializeField] private float blendOutDuration;
 
+    [SerializeField] private float speed = 1.0f;
+
     [SerializeField] private AnimationClip clipToPlay;
     [SerializeField] private ProceduralTransformAnimationAsset cameraAnimationAsset;
     [Tooltip("Для отключения анимации FOV установить его меньше нуля")]
@@ -17,14 +19,16 @@ public class AnimationStateAssetBase : ScriptableObject
     [SerializeField] private int ikRigIndex = -1;
 
     [SerializeField] private bool isInfinite = false;
+    [Tooltip("На время анимации влияет параметр Speed")]
     [SerializeField] private float animationTime = 1;
-    [Tooltip("Имя следующей анимации в AnimationSystem")]
+    [Tooltip("Имя следующей анимации в PlayerAnimationSystem")]
     [SerializeField] private string nextAnimationName;
 
     public AnimationCurve BlendIn => blendIn;
     public float BlendInDuration => blendInDuration;
     public AnimationCurve BlendOut => blendOut;
     public float BlendOutDuration => blendOutDuration;
+    public float Speed => speed;
     public AnimationClip Clip => clipToPlay;
     public ProceduralTransformAnimationAsset CameraAnimation => cameraAnimationAsset;
     public float CameraFOV => targetFov;

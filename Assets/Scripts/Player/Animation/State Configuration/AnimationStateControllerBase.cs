@@ -30,6 +30,7 @@ public class AnimationStateControllerBase
         controlledWeights.Add(new Tuple<Playable, int>(playable, inputPort));
 
         playable.GetInput(inputPort).Pause();
+        playable.GetInput(inputPort).SetSpeed(asset.Speed);
     }
 
     public virtual void UpdateState(PlayerAnimationSystem system, float deltaTime)
@@ -37,8 +38,8 @@ public class AnimationStateControllerBase
         
         if (!asset.IsInfinite && isActive)
         {
-            internalTimer += deltaTime;
-            if (internalTimer > asset.AnimationTime - asset.BlendOutDuration && isActive)
+            internalTimer += deltaTime * asset.Speed;
+            if (internalTimer > asset.AnimationTime - asset.BlendOutDuration * asset.Speed && isActive)
             {
                 system.SetState(asset.NextAnimationName);
             }

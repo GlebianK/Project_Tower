@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70a6372056551ae4da87fdc4d780fdf2, type: 3}
-  m_Name: AttackLightAnimationState
+  m_Name: AttackLightHitAnimationState 1
   m_EditorClassIdentifier: 
   blendIn:
     serializedVersion: 2
@@ -36,7 +36,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  blendInDuration: 0.2
+  blendInDuration: 0
   blendOut:
     serializedVersion: 2
     m_Curve:
@@ -61,12 +61,13 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  blendOutDuration: 0.2
-  clipToPlay: {fileID: 5265579501467580601, guid: 2fdf9ed8d61a5cf46b177e46eb57bba0, type: 3}
+  blendOutDuration: 0
+  speed: 3
+  clipToPlay: {fileID: -5317483269194982637, guid: 2206b55eb7526c8449cb9a9e3f7e3106, type: 3}
   cameraAnimationAsset: {fileID: 0}
   targetFov: -1
   armsProceduralAnimationAsset: {fileID: 0}
   ikRigIndex: -1
   isInfinite: 0
-  animationTime: 1.7
-  nextAnimationName: Walk
+  animationTime: 0.1
+  nextAnimationName: AttackLightEnd
