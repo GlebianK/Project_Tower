@@ -62,6 +62,6 @@ public class PlayerAnimationLinker : MonoBehaviour
     {
         isAttacking = false;
 
-        animationSystem.SetState(movementAnimStateName);
+        //animationSystem.SetState(movementAnimStateName);
     }
 }
