@@ -8,6 +8,7 @@ using System.Linq;
 using UnityEngine.Animations.Rigging;
 using UnityEngine.Animations;
 
+
 [Serializable]
 public struct AnimationAssetDescriptor
 {
@@ -31,21 +32,24 @@ public class PlayerAnimationSystem : MonoBehaviour
     private string currentMovementStateName;
     private PlayableGraph graph;
 
+
     private Playable cameraPosMixer;
     private Playable cameraPropertyMixer;
     private Playable handsPosMixer;
     private Playable meshIKMixer;
     private AnimationMixerPlayable animationClipMixer;
 
+
     public PlayerMovementStateMachine MovementController => movementController;
 
     private void Awake()
     {
-        ConfigureAnimationGraph();
+        
     }
 
     private void Start()
     {
+        ConfigureAnimationGraph();
         currentMovementStateName = defaultAnimationName;
         if (animationControllers.ContainsKey(currentMovementStateName))
             StartCoroutine(animationControllers[currentMovementStateName].BlendIn());
@@ -54,7 +58,6 @@ public class PlayerAnimationSystem : MonoBehaviour
     private void Update()
     {
         
-
     }
 
     private void LateUpdate()
@@ -63,19 +66,30 @@ public class PlayerAnimationSystem : MonoBehaviour
         {
             animState.Value.UpdateState(this, Time.deltaTime);
         }
-        graph.Evaluate(Time.deltaTime);
+        //foreach (var animState in animationControllers)
+        //{
+        //    animState.Value.UpdateState(this, Time.deltaTime);
+        //}
+        //meshRigBuilder.SyncLayers();
+        //meshRigBuilder.Evaluate(Time.deltaTime);
+        //graph.Evaluate(Time.deltaTime);
+
     }
 
     private void OnDestroy()
     {
         if (graph.IsValid())
             graph.Destroy();
+
+        if (meshRigBuilder.graph.IsValid())
+            meshRigBuilder.graph.Destroy();
     }
 
     private void ConfigureAnimationGraph()
     {
+
         graph = PlayableGraph.Create("Player Animation System");
-        graph.SetTimeUpdateMode(DirectorUpdateMode.Manual);
+        //graph.SetTimeUpdateMode(DirectorUpdateMode.Manual);
 
         int cameraPoseCount = 1 + animationStates.Where(descriptor => descriptor.asset.CameraAnimation != null).Count();
         int cameraPropertiesCount = 1 + animationStates.Where(descriptor => descriptor.asset.CameraFOV >= 0
@@ -121,9 +135,18 @@ public class PlayerAnimationSystem : MonoBehaviour
 
         if (clipsCount > 0)
         {
+            var meshLayerMixer = AnimationLayerMixerPlayable.Create(graph, 1);
+            animationPlayableOutput.SetSourcePlayable(meshLayerMixer);
             animationClipMixer = AnimationMixerPlayable.Create(graph, clipsCount);
-            animationPlayableOutput.SetSourcePlayable(animationClipMixer);
+            meshLayerMixer.ConnectInput(0, animationClipMixer, 0);
+            meshLayerMixer.SetInputWeight(0, 1);
         }
+
+        var animatorOutput = AnimationPlayableOutput.Create(graph, "Animator for IK", handsAnimator);
+
+        var animatorPlayable = AnimatorControllerPlayable.Create(graph, handsAnimator.runtimeAnimatorController);
+        animatorOutput.SetSourcePlayable(animatorPlayable);
+        animatorOutput.SetWeight(1);
 
 
         int cameraPosIndex = 0;
@@ -138,6 +161,11 @@ public class PlayerAnimationSystem : MonoBehaviour
         }
 
         graph.Play();
+        //PlayableGraph IKgraph = PlayableGraph.Create("IK Graph");
+        //IKgraph.SetTimeUpdateMode(DirectorUpdateMode.Manual);
+        //meshRigBuilder.Build(IKgraph);
+
+        //meshRigBuilder.graph.SetTimeUpdateMode(DirectorUpdateMode.Manual);
     }
 
     private void InitAnimationStateController(AnimationAssetDescriptor asset, 
@@ -191,7 +219,7 @@ public class PlayerAnimationSystem : MonoBehaviour
 
             RigLayerPlayable behaviour = rigPlayable.GetBehaviour();
             behaviour.controlledRig = meshRigBuilder.layers[asset.asset.IKRigIndex].rig;
-
+            
             int inputIndex = ikRigIndex;
             meshIKMixer.ConnectInput(inputIndex, rigPlayable, 0);
             state.SetControll(meshIKMixer, inputIndex);
@@ -201,10 +229,15 @@ public class PlayerAnimationSystem : MonoBehaviour
         if (asset.asset.Clip != null)
         {
             AnimationClipPlayable clipPlayable = AnimationClipPlayable.Create(graph, asset.asset.Clip);
-            
+            clipPlayable.SetApplyFootIK(false);
+            clipPlayable.SetApplyPlayableIK(false);
             int inputIndex = clipIndex;
             animationClipMixer.ConnectInput(inputIndex, clipPlayable, 0);
             animationClipMixer.SetInputWeight(inputIndex, 0);
+            //if (asset.asset.IKRigIndex >= 0)
+            //{
+            //    clipPlayable.SetApplyPlayableIK(false);
+            //}
             state.SetControll(animationClipMixer, inputIndex);
             clipIndex++;
 

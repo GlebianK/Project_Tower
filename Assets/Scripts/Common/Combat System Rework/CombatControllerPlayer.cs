@@ -97,7 +97,7 @@ public class CombatControllerPlayer : CombatControllerBase
     #region INPUT CALLBACKS
     public void OnAttackPrepare(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !isAttackBlockedByClimb)
         {
             if (!IsBlockAllowed())
                 return;
@@ -112,7 +112,7 @@ public class CombatControllerPlayer : CombatControllerBase
 
     public void OnAttackInitiate(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !isAttackBlockedByClimb)
         {
             timerIsCounting = false;
             if (isAttackBlockedByClimb) 
@@ -127,7 +127,7 @@ public class CombatControllerPlayer : CombatControllerBase
 
     public void OnBlockInitiate(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !isAttackBlockedByClimb)
         {
             if (!IsAttackAllowed())
                 return;

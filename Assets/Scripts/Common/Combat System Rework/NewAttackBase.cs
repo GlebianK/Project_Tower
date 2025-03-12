@@ -35,7 +35,8 @@ public class NewAttackBase : ICombatAction
         IEnumerable<Health> healthComponentsCollection = CastAttackZone();
         ApplyDamageToHealthComponents(healthComponentsCollection);
 
-        await Task.Delay((int)((durationOfAttack - damageDealingDelay) * 1000));
+        if (durationOfAttack - damageDealingDelay > 0)
+            await Task.Delay((int)((durationOfAttack - damageDealingDelay) * 1000));
 
         AttackEnded.Invoke();
         canAttack = true;

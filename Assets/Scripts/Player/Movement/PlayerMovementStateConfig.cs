@@ -49,6 +49,7 @@ public class PlayerMovementStateConfig : ScriptableObject
     [SerializeField] private float climbDownCheckRange;
     [SerializeField] private float climbMaxDuration;
     [SerializeField] private LayerMask groundObstacleLayer;
+    [SerializeField] private float climbSnapHorizontalRange;
     public float Acceleration => acceleration;
     public LayerMask GroundLayer => groundLayer;
     public float WalkMaxSpeed => walkMaxSpeed;
@@ -71,7 +72,7 @@ public class PlayerMovementStateConfig : ScriptableObject
     public float ClimbDownCheckRange => climbDownCheckRange;  
     public float ClimbMaxDuration => climbMaxDuration;
     public LayerMask ClimbObstacleLayer => groundObstacleLayer;
-
+    public float ClimbSnapXZRange => climbSnapHorizontalRange;
     public IEnumerable<KeyValuePair<PlayerMovementStateType, IPlayerMovementState>> CreateAllMovementStates(
         PlayerMovementStateMachine machine,
         MovementInputEventHandler inputHandler)

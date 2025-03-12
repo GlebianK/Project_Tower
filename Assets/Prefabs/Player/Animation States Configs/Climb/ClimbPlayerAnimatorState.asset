@@ -62,11 +62,12 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   blendOutDuration: 0.3
-  clipToPlay: {fileID: 5265579501467580601, guid: fff8b57c1898aed46979bafe37e1b036, type: 3}
+  speed: 1
+  clipToPlay: {fileID: 5265579501467580601, guid: 0b25512460a4f764f86bac89d46c4eb0, type: 3}
   cameraAnimationAsset: {fileID: 11400000, guid: 3bf99a278723f2b4e97dc44b752588f3, type: 2}
   targetFov: -1
   armsProceduralAnimationAsset: {fileID: 11400000, guid: 459a29f88200f5c4c9460ab871fdfbca, type: 2}
-  ikRigIndex: -1
+  ikRigIndex: 0
   isInfinite: 0
-  animationTime: 0.4
+  animationTime: 1
   nextAnimationName: Walk
