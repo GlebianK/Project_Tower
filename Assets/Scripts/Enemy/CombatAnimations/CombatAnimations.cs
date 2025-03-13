@@ -19,4 +19,15 @@ public class CombatAnimations : MonoBehaviour
         animator.SetBool("OnAttack", false);
     }
     #endregion
+
+    #region INJURE ANIMATION CALLBACKS
+    public void OnGetHit()
+    {
+        animator.SetTrigger("isHit");
+    }
+    public void OnStun()
+    {
+        animator.SetBool("isStunned", true);
+    }
+    #endregion
 }
