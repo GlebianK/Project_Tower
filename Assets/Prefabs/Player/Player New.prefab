@@ -1023,7 +1023,11 @@ MonoBehaviour:
     asset: {fileID: 11400000, guid: 1f189c83d37b9af4c910559cd9f7577c, type: 2}
   - animationName: AttackLightEnd
     asset: {fileID: 11400000, guid: dd853458f9cae7d4db50bf35a29d2036, type: 2}
-  - animationName: AttackHeavy
+  - animationName: AttackHeavyStart
+    asset: {fileID: 11400000, guid: e7c1b7ed654a01b45a387ff497cfa4ea, type: 2}
+  - animationName: AttackHeavyHit
+    asset: {fileID: 11400000, guid: b560b92be9b0f7c41a42b28a5b1946ae, type: 2}
+  - animationName: AttackHeavyEnd
     asset: {fileID: 11400000, guid: 01f81b240bc5693499e63ee96360b08c, type: 2}
   defaultAnimationName: Walk
 --- !u!114 &8344945236981926310
@@ -1057,7 +1061,7 @@ MonoBehaviour:
   - type: 6
     name: Climb
   attackLightAnimState: AttackLightHit
-  attackHeavyAnimState: AttackHeavy
+  attackHeavyAnimState: AttackHeavyStart
 --- !u!114 &4237570111673985315
 MonoBehaviour:
   m_ObjectHideFlags: 0
