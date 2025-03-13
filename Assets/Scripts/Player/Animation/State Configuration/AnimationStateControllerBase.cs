@@ -84,7 +84,7 @@ public class AnimationStateControllerBase
     {
         if (duration <= 0)
         {
-            SetAllWeights(curve.Evaluate(1));
+            AddAllWeights(curve.Evaluate(1) - curve.Evaluate(0));
         }
         else
         {
@@ -118,17 +118,5 @@ public class AnimationStateControllerBase
             
         }
 
-    }
-
-    private void SetAllWeights(float weight)
-    {
-        foreach (var playableTuple in controlledWeights)
-        {
-            var playable = playableTuple.Item1;
-            var inputIndex = playableTuple.Item2;
-
-            currentWeight = weight;
-            playable.SetInputWeight(inputIndex, Mathf.Clamp01(currentWeight));
-        }
     }
 }
