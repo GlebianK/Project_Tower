@@ -36,7 +36,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  blendInDuration: 0.2
+  blendInDuration: 0
   blendOut:
     serializedVersion: 2
     m_Curve:
@@ -61,12 +61,13 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  blendOutDuration: 0.2
-  clipToPlay: {fileID: 5265579501467580601, guid: 0d94898eafad9ed47a3a773e3d453b1f, type: 3}
+  blendOutDuration: 0
+  speed: 1
+  clipToPlay: {fileID: -4812438920967081763, guid: 6d7dbf8eb3c6eb4428a6efca9489d456, type: 3}
   cameraAnimationAsset: {fileID: 0}
   targetFov: -1
   armsProceduralAnimationAsset: {fileID: 0}
   ikRigIndex: -1
   isInfinite: 0
-  animationTime: 1.7
-  nextAnimationName: Walk
+  animationTime: 0.1
+  nextAnimationName: AttackHeavyEnd
