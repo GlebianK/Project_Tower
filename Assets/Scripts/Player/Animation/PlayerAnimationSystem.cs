@@ -32,6 +32,8 @@ public class PlayerAnimationSystem : MonoBehaviour
     private string currentMovementStateName;
     private PlayableGraph graph;
 
+    private string recoveryStateName;
+    private bool isStateLocked;
 
     private Playable cameraPosMixer;
     private Playable cameraPropertyMixer;
@@ -41,7 +43,7 @@ public class PlayerAnimationSystem : MonoBehaviour
 
 
     public PlayerMovementStateMachine MovementController => movementController;
-
+    public bool IsStateLocked => isStateLocked;
     private void Awake()
     {
         
@@ -234,10 +236,6 @@ public class PlayerAnimationSystem : MonoBehaviour
             int inputIndex = clipIndex;
             animationClipMixer.ConnectInput(inputIndex, clipPlayable, 0);
             animationClipMixer.SetInputWeight(inputIndex, 0);
-            //if (asset.asset.IKRigIndex >= 0)
-            //{
-            //    clipPlayable.SetApplyPlayableIK(false);
-            //}
             state.SetControll(animationClipMixer, inputIndex);
             clipIndex++;
 
@@ -246,7 +244,7 @@ public class PlayerAnimationSystem : MonoBehaviour
         animationControllers.Add(asset.animationName, state);
     }
 
-    public void SetState(string stateName)
+    private void ChangeState(string stateName)
     {
         if (stateName != currentMovementStateName)
         {
@@ -260,5 +258,34 @@ public class PlayerAnimationSystem : MonoBehaviour
             if (animationControllers.ContainsKey(currentMovementStateName))
                 StartCoroutine(animationControllers[currentMovementStateName].BlendIn(blendTime));
         }
+    }
+
+    public void SetState(string stateName)
+    {
+        if (!isStateLocked)
+        {
+            ChangeState(stateName);
+        } else
+        {
+            recoveryStateName = stateName;
+        }
+    }
+
+    public void SetStateForced(string stateName)
+    {
+        ChangeState(stateName);
+        recoveryStateName = stateName;
+    }
+
+    public void LockState()
+    {
+        isStateLocked = true;
+        recoveryStateName = currentMovementStateName;
+    }
+
+    public void UnlockState()
+    {
+        isStateLocked = false;
+        ChangeState(recoveryStateName);
     }
 }
