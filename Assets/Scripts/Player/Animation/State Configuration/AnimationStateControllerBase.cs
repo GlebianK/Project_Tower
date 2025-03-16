@@ -41,7 +41,14 @@ public class AnimationStateControllerBase
             internalTimer += deltaTime * asset.Speed;
             if (internalTimer > asset.AnimationTime - asset.BlendOutDuration * asset.Speed && activeStatesCount > 0)
             {
-                system.SetState(asset.NextAnimationName);
+                if (system.IsStateLocked)
+                {
+                    system.SetStateForced(asset.NextAnimationName);
+                }
+                else
+                {
+                    system.SetState(asset.NextAnimationName);
+                }
             }
         } 
         else

@@ -1114,18 +1114,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 4237570111673985315}
-          m_TargetAssemblyTypeName: CombatMovementBlocker, Assembly-CSharp
-          m_MethodName: OnAttackStarted
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
     AttackEnded:
       m_PersistentCalls:
         m_Calls:
@@ -1144,6 +1132,18 @@ MonoBehaviour:
         - m_Target: {fileID: 4237570111673985315}
           m_TargetAssemblyTypeName: CombatMovementBlocker, Assembly-CSharp
           m_MethodName: OnAttackEnded
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 2551911977988341565}
+          m_TargetAssemblyTypeName: PlayerAnimationSystem, Assembly-CSharp
+          m_MethodName: UnlockState
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1178,18 +1178,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 4237570111673985315}
-          m_TargetAssemblyTypeName: CombatMovementBlocker, Assembly-CSharp
-          m_MethodName: OnAttackStarted
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
     AttackEnded:
       m_PersistentCalls:
         m_Calls:
@@ -1217,6 +1205,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 2551911977988341565}
+          m_TargetAssemblyTypeName: PlayerAnimationSystem, Assembly-CSharp
+          m_MethodName: UnlockState
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     boxCastSizes: {x: 0.31, y: 0.27, z: 0.55}
   blockPlayer:
     BlockStarted:
@@ -1228,10 +1228,34 @@ MonoBehaviour:
   prepareAttack:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 4237570111673985315}
+        m_TargetAssemblyTypeName: CombatMovementBlocker, Assembly-CSharp
+        m_MethodName: OnAttackStarted
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: AttackLightStart
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 2551911977988341565}
         m_TargetAssemblyTypeName: PlayerAnimationSystem, Assembly-CSharp
         m_MethodName: SetState
         m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: AttackLightStart
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2551911977988341565}
+        m_TargetAssemblyTypeName: PlayerAnimationSystem, Assembly-CSharp
+        m_MethodName: LockState
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3516,7 +3540,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4977495839390242583}
-  - component: {fileID: 4960964560863646207}
   m_Layer: 6
   m_Name: AttackZoneCastingPoint
   m_TagString: Untagged
@@ -3539,106 +3562,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8233570061401362304}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4960964560863646207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8824229503485268581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9a266eeed877ab429959b616d32ad4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 5
-  attackRange: 0.87
-  damageDealingDelay: 0.5
-  durationOfAttack: 1.4
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 128
-  AttackRaycastPointPosition: {fileID: 7016783766128235692}
-  AttackStarted:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4960964560863646207}
-        m_TargetAssemblyTypeName: AttackPlayerBase, Assembly-CSharp
-        m_MethodName: OnAttackStarted
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 8344945236981926310}
-        m_TargetAssemblyTypeName: PlayerAnimationLinker, Assembly-CSharp
-        m_MethodName: OnAttackStarted
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 4237570111673985315}
-        m_TargetAssemblyTypeName: CombatMovementBlocker, Assembly-CSharp
-        m_MethodName: OnAttackStarted
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  AttackEnded:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4960964560863646207}
-        m_TargetAssemblyTypeName: AttackPlayerLight, Assembly-CSharp
-        m_MethodName: OnAttackEnded
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 8344945236981926310}
-        m_TargetAssemblyTypeName: PlayerAnimationLinker, Assembly-CSharp
-        m_MethodName: OnAttackEnded
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 4237570111673985315}
-        m_TargetAssemblyTypeName: CombatMovementBlocker, Assembly-CSharp
-        m_MethodName: OnAttackEnded
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  canBreakArmor: 0
-  boxCastSizes: {x: 0.31, y: 0.27, z: 0.55}
 --- !u!1 &9056056224486156151
 GameObject:
   m_ObjectHideFlags: 0
