@@ -126,12 +126,12 @@ public class NewEnemyBase : MonoBehaviour
 
     public void OnBlockStarted()
     {
-        health.ActivateDamageReduction();
+        health.ActivateDamageReductionByBlock();
     }
 
     public void OnBlockEnded()
     {
-        health.DeactivateDamageReduction();
+        health.DeactivateDamageReductionByBlock();
     }
 
     public void EnemyDied()

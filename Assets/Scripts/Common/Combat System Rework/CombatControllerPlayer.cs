@@ -133,7 +133,7 @@ public class CombatControllerPlayer : CombatControllerBase
                 return;
 
             Debug.LogWarning("Block initiated!");
-            playerHealthComponent.ActivateDamageReduction();
+            playerHealthComponent.ActivateDamageReductionByBlock();
             Block();
 
         }
@@ -144,7 +144,7 @@ public class CombatControllerPlayer : CombatControllerBase
         if (context.performed)
         {
             Debug.LogWarning("Block stopped!");
-            playerHealthComponent.DeactivateDamageReduction();
+            playerHealthComponent.DeactivateDamageReductionByBlock();
             blockPlayer.Cancel();
         }
     }

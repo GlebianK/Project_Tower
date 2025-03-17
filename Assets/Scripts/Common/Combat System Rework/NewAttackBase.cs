@@ -56,7 +56,7 @@ public class NewAttackBase : ICombatAction
             foreach (Health health in healthComponentsCollection)
             {
                 if (health != null)
-                    health.TakeDamage(damage * (1 - health.DamageReductionCoef));
+                    health.TakeDamage(damage * (1 - health.DamageReductionCoef), attackType);
             }
         }
         else

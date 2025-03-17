@@ -36,10 +36,13 @@ public class AttackBase : MonoBehaviour
     {
         if (healthComponentsCollection != null)
         {
+            Debug.LogError("AttackBase.cs: YOU'RE CALLING THE OLD ATTACK METHOD WHICH IS NOT WORKING ANYMORE!");
             foreach (Health health in healthComponentsCollection)
             {
+                /*
                 if (health != null)
                     health.TakeDamage(damage);
+                */
             }
         }
         else
