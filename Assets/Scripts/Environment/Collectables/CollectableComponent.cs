@@ -2,25 +2,9 @@ using UnityEngine;
 
 public class CollectableComponent : InteractiveComponent
 {
-    /*
-    public override void Interact()
+    public virtual void OnCollected()
     {
-        Debug.Log("Used override version");
+        Debug.LogWarning("Generic version of OnCollected is used! Be sure to use the overriden one!");
     }
-    public override void Deinteract()
-    {
-        Debug.Log("Used override version");
-    }
-    
-    public override void InteractionAction()
-    {
-        Debug.Log("Used override version");
-        base.InteractionAction();
-        OnCollected();
-    }
-    */
-    public void OnCollected()
-    {
-        Destroy(gameObject);
-    }
+
 }
