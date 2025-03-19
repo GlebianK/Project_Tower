@@ -333,6 +333,11 @@ public class PlayerMovementStateMachine : MonoBehaviour
         return false;
 
     }
+
+    public bool TryGetHangRail()
+    {
+        return false;
+    }
     #endregion
 
     #region [ Direction Correction Methods ]
