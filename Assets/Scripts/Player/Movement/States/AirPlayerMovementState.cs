@@ -24,10 +24,26 @@ public class AirPlayerMovementState : PlayerMovementStateBase
 
         if (isJumping)
         {
+
             RaycastHit climbPointHit;
             if (movementController.TryGetClimbPoint(out climbPointHit))
             {
                 movementController.SetCurrentState(PlayerMovementStateType.Climb);
+                movementController.GetCurrentState().UpdateMovementVelocity(deltaTime);
+                return true;
+            }
+
+            Vector3 position = movementController.transform.position;
+            Vector3 direction = movementController.transform.forward * config.HangCheckOffset.z
+                + movementController.transform.right * config.HangCheckOffset.x
+                + movementController.transform.up * config.HangCheckOffset.y;
+            if (Physics.Raycast(position,
+                direction.normalized,
+                out RaycastHit hit,
+                direction.magnitude,
+                config.HangDetectionLayer, QueryTriggerInteraction.Collide))
+            {
+                movementController.SetCurrentState(PlayerMovementStateType.Hang);
                 movementController.GetCurrentState().UpdateMovementVelocity(deltaTime);
                 return true;
             }
