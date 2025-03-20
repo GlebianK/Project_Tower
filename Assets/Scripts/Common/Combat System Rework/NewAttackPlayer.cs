@@ -29,12 +29,6 @@ public class NewAttackPlayer : NewAttackBase
         }
     }
 
-    protected virtual void DeactivateParentGameObject() // используется в коллбэках ивента OnAttackEnded для отключения Game Object'ов атак
-    {
-        Debug.LogWarning("You're using base DeactivateParentGameObject method! Be sure to use the overriden one.");
-    }
-
-
     public virtual void OnAttackStarted()
     {
         Debug.Log("Player OnAttackStarted callback (base)");

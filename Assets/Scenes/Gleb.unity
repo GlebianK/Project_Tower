@@ -3207,6 +3207,7 @@ MonoBehaviour:
       m_Bits: 64
     AttackRaycastPointPosition: {fileID: 8816895325929941166}
     attackType: 0
+    attackIsAborted: 0
     AttackStarted:
       m_PersistentCalls:
         m_Calls:
@@ -3941,6 +3942,62 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2000074269634815421, guid: c59066d3b0c40bb419b0cf1537715aeb, type: 3}
+      propertyPath: TookDamage.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000074269634815421, guid: c59066d3b0c40bb419b0cf1537715aeb, type: 3}
+      propertyPath: TookHeavyDamage.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000074269634815421, guid: c59066d3b0c40bb419b0cf1537715aeb, type: 3}
+      propertyPath: TookDamage.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000074269634815421, guid: c59066d3b0c40bb419b0cf1537715aeb, type: 3}
+      propertyPath: TookDamage.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 9144021878480738316}
+    - target: {fileID: 2000074269634815421, guid: c59066d3b0c40bb419b0cf1537715aeb, type: 3}
+      propertyPath: TookDamage.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000074269634815421, guid: c59066d3b0c40bb419b0cf1537715aeb, type: 3}
+      propertyPath: TookHeavyDamage.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000074269634815421, guid: c59066d3b0c40bb419b0cf1537715aeb, type: 3}
+      propertyPath: TookDamage.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnAttackAborted
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000074269634815421, guid: c59066d3b0c40bb419b0cf1537715aeb, type: 3}
+      propertyPath: TookHeavyDamage.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 9144021878480738316}
+    - target: {fileID: 2000074269634815421, guid: c59066d3b0c40bb419b0cf1537715aeb, type: 3}
+      propertyPath: TookHeavyDamage.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000074269634815421, guid: c59066d3b0c40bb419b0cf1537715aeb, type: 3}
+      propertyPath: TookHeavyDamage.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: OnAttackAborted
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000074269634815421, guid: c59066d3b0c40bb419b0cf1537715aeb, type: 3}
+      propertyPath: TookDamage.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: CombatControllerEnemy, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000074269634815421, guid: c59066d3b0c40bb419b0cf1537715aeb, type: 3}
+      propertyPath: TookHeavyDamage.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: CombatControllerEnemy, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000074269634815421, guid: c59066d3b0c40bb419b0cf1537715aeb, type: 3}
+      propertyPath: TookDamage.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000074269634815421, guid: c59066d3b0c40bb419b0cf1537715aeb, type: 3}
+      propertyPath: TookHeavyDamage.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2969703615726719853, guid: c59066d3b0c40bb419b0cf1537715aeb, type: 3}
       propertyPath: m_Name
       value: Enemy Light New
@@ -3950,6 +4007,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c59066d3b0c40bb419b0cf1537715aeb, type: 3}
+--- !u!114 &9144021878480738316 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 155655734408334181, guid: c59066d3b0c40bb419b0cf1537715aeb, type: 3}
+  m_PrefabInstance: {fileID: 9144021878480738315}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c8b8423e873a9946aaa7df728e9c9f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &9146600082260398212
 Transform:
   m_ObjectHideFlags: 0

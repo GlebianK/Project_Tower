@@ -17,4 +17,9 @@ public class CombatControllerEnemy : CombatControllerBase
     {
         blockEnemy.Perform();
     }
+     // Колбэк на аборт атаки при получении урона (подписан на TookDamage и TookHeavyDamage компонента Health) 
+    public void OnAttackAborted()
+    {
+        attackEnemy.attackIsAborted = true;
+    }
 }

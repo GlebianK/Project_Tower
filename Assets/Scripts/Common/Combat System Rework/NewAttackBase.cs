@@ -13,6 +13,11 @@ public class NewAttackBase : ICombatAction
     [SerializeField] protected Transform AttackRaycastPointPosition;
     [SerializeField] protected AttackType attackType;
 
+    protected RaycastHit hit;
+    protected bool canAttack = true;
+    
+    public bool attackIsAborted = false;
+
     public UnityEvent AttackStarted;
     public UnityEvent AttackEnded;
 
@@ -22,9 +27,6 @@ public class NewAttackBase : ICombatAction
         heavy
     }
 
-    protected RaycastHit hit;
-    protected bool canAttack = true;
-
     private async void PerformAttack()
     {
         canAttack = false;
@@ -33,13 +35,18 @@ public class NewAttackBase : ICombatAction
         await Task.Delay((int)(damageDealingDelay * 1000)); // Delay считает в миллисекундах
 
         IEnumerable<Health> healthComponentsCollection = CastAttackZone();
-        ApplyDamageToHealthComponents(healthComponentsCollection);
+
+        if (!attackIsAborted)
+            ApplyDamageToHealthComponents(healthComponentsCollection);
+        else
+            Debug.LogWarning("Enemy attack aborted!");
 
         if (durationOfAttack - damageDealingDelay > 0)
             await Task.Delay((int)((durationOfAttack - damageDealingDelay) * 1000));
 
         AttackEnded.Invoke();
         canAttack = true;
+        attackIsAborted = false;
     }
 
     #region PROTECTED METHODS
