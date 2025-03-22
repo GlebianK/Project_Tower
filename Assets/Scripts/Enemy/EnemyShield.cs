@@ -7,7 +7,7 @@ public class EnemyShield : EnemyBase
 
     private void Update()
     {
-        EnemyBehaviorCycle();
+        EnemyBehaviourCycle();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -20,9 +20,9 @@ public class EnemyShield : EnemyBase
         LosePlayer(other);
     }
 
-    protected override void EnemyBehaviorCycle()
+    protected override void EnemyBehaviourCycle()
     {
-        base.EnemyBehaviorCycle();
+        base.EnemyBehaviourCycle();
     }
     
 }

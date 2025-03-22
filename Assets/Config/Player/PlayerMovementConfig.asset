@@ -33,10 +33,11 @@ MonoBehaviour:
   slideEndSpeedThreshold: 2
   dashRange: 3
   dashTime: 0.2
-  climbCheckForwardRange: 0.6
+  climbCheckForwardRange: 1.2
   climbCheckpointHeight: 2.5
   climbDownCheckRange: 1.8
   climbMaxDuration: 0.8
   groundObstacleLayer:
     serializedVersion: 2
     m_Bits: 1
+  climbSnapHorizontalRange: 0.5

@@ -8,31 +8,21 @@ public class InteractiveComponent : MonoBehaviour
     public string GetObjectName() => objectName;
     public string GetActionName() => actionName;
 
+
     public virtual void Interact()
     {
-        Debug.LogWarning("A basic implementation is used instead of a specific one");
-    }
-    public virtual void Deinteract()
-    {
-        Debug.LogWarning("A basic implementation is used instead of a specific one");
-    }
-    public virtual void InteractionAction()
-    {
-        Debug.LogWarning("A basic implementation is used instead of a specific one");
+        Debug.LogWarning("A basic implementation of Interact is used instead of a specific one");
+        
     }
 
-    private void OnTriggerEnter(Collider other)
+    public virtual void Deinteract()
     {
-        if (other.CompareTag("Player"))
-        {
-            Interact();
-        }
+        Debug.LogWarning("A basic implementation of Deinteract is used instead of a specific one");
+        
     }
-    private void OnTriggerExit(Collider other)
+
+    public virtual void InteractionAction()
     {
-        if (other.CompareTag("Player"))
-        {
-            Deinteract();
-        }
+        Debug.LogWarning("A basic implementation of InteractionAction is used instead of a specific one");
     }
 }

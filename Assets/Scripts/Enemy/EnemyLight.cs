@@ -1,13 +1,11 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.Events;
+
 
 public class EnemyLight : EnemyBase
 {
     private void Update()
     {
-        EnemyBehaviorCycle();
+        EnemyBehaviourCycle();
     }
 
     private void OnTriggerEnter(Collider other)

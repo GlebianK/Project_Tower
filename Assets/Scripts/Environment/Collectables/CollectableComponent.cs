@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class CollectableComponent : InteractiveComponent
 {
-    public void OnCollected()
+    public virtual void OnCollected()
     {
-        Destroy(gameObject);
+        Debug.LogWarning("Generic version of OnCollected is used! Be sure to use the overriden one!");
     }
+
 }

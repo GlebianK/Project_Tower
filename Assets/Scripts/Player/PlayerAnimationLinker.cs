@@ -50,10 +50,10 @@ public class PlayerAnimationLinker : MonoBehaviour
         }
     }
 
-    public void OnAttackSterted(bool isHeavy)
+    public void OnAttackStarted(bool isHeavy)
     {
         string stateName = isHeavy ? attackHeavyAnimState : attackLightAnimState;
-        animationSystem.SetState(stateName);
+        animationSystem.SetStateForced(stateName);
 
         isAttacking = true;
     }
@@ -62,6 +62,6 @@ public class PlayerAnimationLinker : MonoBehaviour
     {
         isAttacking = false;
 
-        animationSystem.SetState(movementAnimStateName);
+        //animationSystem.SetState(movementAnimStateName);
     }
 }

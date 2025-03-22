@@ -15,7 +15,7 @@ public class AnimationStateControllerBase
     private float currentWeight = 0;
     private float internalTimer = 0;
 
-    private bool isActive = false;
+    private int activeStatesCount = 0;
 
     public AnimationStateAssetBase Asset => asset;
 
@@ -30,17 +30,25 @@ public class AnimationStateControllerBase
         controlledWeights.Add(new Tuple<Playable, int>(playable, inputPort));
 
         playable.GetInput(inputPort).Pause();
+        playable.GetInput(inputPort).SetSpeed(asset.Speed);
     }
 
     public virtual void UpdateState(PlayerAnimationSystem system, float deltaTime)
     {
         
-        if (!asset.IsInfinite && isActive)
+        if (!asset.IsInfinite && activeStatesCount > 0)
         {
-            internalTimer += deltaTime;
-            if (internalTimer > asset.AnimationTime - asset.BlendOutDuration && isActive)
+            internalTimer += deltaTime * asset.Speed;
+            if (internalTimer > asset.AnimationTime - asset.BlendOutDuration * asset.Speed && activeStatesCount > 0)
             {
-                system.SetState(asset.NextAnimationName);
+                if (system.IsStateLocked)
+                {
+                    system.SetStateForced(asset.NextAnimationName);
+                }
+                else
+                {
+                    system.SetState(asset.NextAnimationName);
+                }
             }
         } 
         else
@@ -52,7 +60,7 @@ public class AnimationStateControllerBase
     public IEnumerator BlendIn(float blendTime = 0)
     {
         internalTimer = 0;
-        isActive = true;
+        activeStatesCount++;
         foreach (var controlledWeight in controlledWeights)
         {
             Playable mixer = controlledWeight.Item1;
@@ -67,10 +75,10 @@ public class AnimationStateControllerBase
 
     public IEnumerator BlendOut(float blendTime = 0)
     {
-        isActive = false;
+        activeStatesCount--;
         yield return Blend(asset.BlendOut, blendTime);
         internalTimer = 0;
-        if (!isActive)
+        if (activeStatesCount == 0)
             foreach (var controlledWeight in controlledWeights)
             {
                 Playable mixer = controlledWeight.Item1;
@@ -83,7 +91,7 @@ public class AnimationStateControllerBase
     {
         if (duration <= 0)
         {
-            SetAllWeights(curve.Evaluate(1));
+            AddAllWeights(curve.Evaluate(1) - curve.Evaluate(0));
         }
         else
         {
@@ -117,17 +125,5 @@ public class AnimationStateControllerBase
             
         }
 
-    }
-
-    private void SetAllWeights(float weight)
-    {
-        foreach (var playableTuple in controlledWeights)
-        {
-            var playable = playableTuple.Item1;
-            var inputIndex = playableTuple.Item2;
-
-            currentWeight = weight;
-            playable.SetInputWeight(inputIndex, Mathf.Clamp01(currentWeight));
-        }
     }
 }

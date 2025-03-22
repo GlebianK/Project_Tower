@@ -11,7 +11,7 @@ public class ClimbPlayerMovementState : PlayerMovementStateBase
     private Vector3 movementVector;
     public ClimbPlayerMovementState(PlayerMovementStateConfig config) : base(config)
     {
-        maxClimbRange = (Vector3.forward * config.ClimbCheckForwardRange + Vector3.up * config.ClimbCheckpointHeight).magnitude;
+        maxClimbRange = (Vector3.forward * config.ClimbSnapXZRange + Vector3.up * config.ClimbCheckpointHeight).magnitude;
         climbSpeed = maxClimbRange / config.ClimbMaxDuration;
     }
 
@@ -23,8 +23,7 @@ public class ClimbPlayerMovementState : PlayerMovementStateBase
     public override bool MakeTransitions(float deltaTime)
     {
         if (climbTime >= config.ClimbMaxDuration)
-        {
-
+        { 
             movementController.transform.position = climbPointHit.point;
 
             movementController.SetCurrentState(PlayerMovementStateType.Crouch);
@@ -41,7 +40,27 @@ public class ClimbPlayerMovementState : PlayerMovementStateBase
         movementController.cc.enabled = false;
         movementController.TryGetClimbPoint(out climbPointHit);
 
-        movementVector = climbPointHit.point - cc.transform.position;
+        Vector3 startPosition = cc.transform.position;
+
+        Vector3 startPositionXZ = startPosition;
+        startPositionXZ.y = 0;
+        Vector3 endPositionXZ = climbPointHit.point;
+        endPositionXZ.y = 0;
+
+        Vector3 snapVector = endPositionXZ - startPositionXZ;
+        // если игрок слишком далеко для корректного(визуально) клаймба
+        if (snapVector.sqrMagnitude > Mathf.Pow(config.ClimbSnapXZRange, 2))
+        {
+            Vector3 maxSnap = Vector3.ClampMagnitude(snapVector, config.ClimbSnapXZRange);
+            snapVector -= maxSnap;
+
+            Vector3 snappedPos = startPosition + snapVector;
+
+            startPosition = snappedPos;
+            cc.transform.position = snappedPos;
+        }
+
+        movementVector = climbPointHit.point - startPosition;
 
         float startTimeMinMaxed = 1 - movementVector.magnitude / maxClimbRange;
 
