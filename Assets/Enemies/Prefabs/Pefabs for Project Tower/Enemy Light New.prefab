@@ -1183,7 +1183,7 @@ GameObject:
   - component: {fileID: 7959505364153772310}
   m_Layer: 7
   m_Name: Enemy Light New
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1368,7 +1368,7 @@ MonoBehaviour:
   health: {fileID: 2000074269634815421}
   combatController: {fileID: 155655734408334181}
   motionEnemy: {fileID: 1654603853866340406}
-  attackStartRange: 2
+  attackStartRange: 0
   maxPlayerDetectViewAngle: 15
   agent: {fileID: 7959505364153772310}
   speedAgent: 3.5
@@ -1395,6 +1395,7 @@ MonoBehaviour:
       m_Bits: 64
     AttackRaycastPointPosition: {fileID: 6303674062321704649}
     attackType: 0
+    attackIsAborted: 0
     AttackStarted:
       m_PersistentCalls:
         m_Calls:

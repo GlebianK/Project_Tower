@@ -12,7 +12,7 @@ public class NewEnemyBase : MonoBehaviour
     [SerializeField] protected float speedAgent;
     [SerializeField] protected float angularSpeedAgent;
 
-    protected Transform player;
+    [SerializeField] protected Transform player;
 
     #region UNITY METHODS
     private void Update()

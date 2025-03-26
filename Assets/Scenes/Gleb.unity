@@ -311,6 +311,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92d9784891c7ee84f9809edffc7c4158, type: 3}
+--- !u!1 &2064053641
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2064053642}
+  m_Layer: 7
+  m_Name: AttackRaycastPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2064053642
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064053641}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.035, z: 0.15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1364173751959587804}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &34344203971251834
 GameObject:
   m_ObjectHideFlags: 0
@@ -942,6 +973,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 2064053642}
   - {fileID: 1518275489624031290}
   - {fileID: 8110318807892039910}
   m_Father: {fileID: 0}
@@ -1036,7 +1068,7 @@ Animator:
   m_GameObject: {fileID: 1847975993999282534}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d01e3aad05f0beb4b8b8345ef278d494, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1334,12 +1366,19 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1364173751959587804}
+  - component: {fileID: 1847975993999282537}
+  - component: {fileID: 1847975993999282540}
   - component: {fileID: 1541424806919606116}
   - component: {fileID: 1847975993999282535}
+  - component: {fileID: 1847975993999282539}
+  - component: {fileID: 1847975993999282538}
+  - component: {fileID: 1847975993999282543}
+  - component: {fileID: 1847975993999282542}
+  - component: {fileID: 1847975993999282541}
   - component: {fileID: 1847975993999282536}
   m_Layer: 7
   m_Name: Rat 2.0
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1356,20 +1395,80 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1bfbdb6efa5fab4fb2e5500162ac94e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 10
+  maxHp: 25
   damageReductionCoef: 0
   Died:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1847975993999282539}
+        m_TargetAssemblyTypeName: NewEnemyBase, Assembly-CSharp
+        m_MethodName: EnemyDied
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   Healed:
     m_PersistentCalls:
       m_Calls: []
   TookDamage:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1847975993999282543}
+        m_TargetAssemblyTypeName: CombatAnimations, Assembly-CSharp
+        m_MethodName: OnGetHit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1847975993999282538}
+        m_TargetAssemblyTypeName: CombatControllerEnemy, Assembly-CSharp
+        m_MethodName: OnAttackAborted
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   TookHeavyDamage:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1847975993999282543}
+        m_TargetAssemblyTypeName: CombatAnimations, Assembly-CSharp
+        m_MethodName: OnGetHit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1847975993999282538}
+        m_TargetAssemblyTypeName: CombatControllerEnemy, Assembly-CSharp
+        m_MethodName: OnAttackAborted
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!195 &1847975993999282536
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1379,7 +1478,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1847975993999282534}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.1
+  m_Radius: 0.175
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -1388,10 +1487,226 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 0.1
+  m_Height: 0.12
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!136 &1847975993999282537
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847975993999282534}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.07
+  m_Height: 0.32
+  m_Direction: 2
+  m_Center: {x: 0, y: 0.062, z: 0}
+--- !u!114 &1847975993999282538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847975993999282534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c8b8423e873a9946aaa7df728e9c9f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackEnemy:
+    damage: 3
+    attackRange: 2
+    damageDealingDelay: 0.37
+    durationOfAttack: 1
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 64
+    AttackRaycastPointPosition: {fileID: 2064053642}
+    attackType: 0
+    attackIsAborted: 0
+    AttackStarted:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1847975993999282543}
+          m_TargetAssemblyTypeName: CombatAnimations, Assembly-CSharp
+          m_MethodName: OnAttackStarted
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1847975993999282539}
+          m_TargetAssemblyTypeName: NewEnemyBase, Assembly-CSharp
+          m_MethodName: OnAttackStarted
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    AttackEnded:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1847975993999282543}
+          m_TargetAssemblyTypeName: CombatAnimations, Assembly-CSharp
+          m_MethodName: OnAttackEnded
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1847975993999282539}
+          m_TargetAssemblyTypeName: NewEnemyBase, Assembly-CSharp
+          m_MethodName: OnAttackEnded
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  blockEnemy:
+    BlockStarted:
+      m_PersistentCalls:
+        m_Calls: []
+    BlockEnded:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &1847975993999282539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847975993999282534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92950187d7665654ba89bd591f96359e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: {fileID: 1847975993999282535}
+  combatController: {fileID: 1847975993999282538}
+  motionEnemy: {fileID: 1847975993999282542}
+  attackStartRange: 2
+  maxPlayerDetectViewAngle: 20
+  agent: {fileID: 1847975993999282536}
+  speedAgent: 4.5
+  angularSpeedAgent: 300
+  player: {fileID: 0}
+--- !u!65 &1847975993999282540
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847975993999282534}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 0.05, z: 2}
+  m_Center: {x: 0, y: 0.015, z: 0}
+--- !u!114 &1847975993999282541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847975993999282534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce35f45686dc9e94cabf5a74f3c354c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1847975993999282542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847975993999282534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce91763601aad03409279ae7e3e05a93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveStarted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1847975993999282541}
+        m_TargetAssemblyTypeName: MotionAnimation, Assembly-CSharp
+        m_MethodName: MovingStarted
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  MoveEnded:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1847975993999282541}
+        m_TargetAssemblyTypeName: MotionAnimation, Assembly-CSharp
+        m_MethodName: MovingEnded
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1847975993999282543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847975993999282534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1fc31a2b5f883a4caadb6d3ece452a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stunnedAnimationTimer: 0
 --- !u!4 &2055638595204131945
 Transform:
   m_ObjectHideFlags: 0
@@ -3990,6 +4305,7 @@ MonoBehaviour:
   agent: {fileID: 6349516698016891198}
   speedAgent: 2
   angularSpeedAgent: 300
+  player: {fileID: 0}
 --- !u!4 &7835563163818537445
 Transform:
   m_ObjectHideFlags: 0
@@ -4887,6 +5203,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Light New
       objectReference: {fileID: 0}
+    - target: {fileID: 2969703615726719853, guid: c59066d3b0c40bb419b0cf1537715aeb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517421473917660244, guid: c59066d3b0c40bb419b0cf1537715aeb, type: 3}
+      propertyPath: attackStartRange
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4942,8 +5266,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 721067018}
   - {fileID: 231958514327600848}
+  - {fileID: 1364173751959587804}
   - {fileID: 9144021878480738315}
   - {fileID: 5727245635690610785}
   - {fileID: 980245296}
   - {fileID: 649849587}
-  - {fileID: 1364173751959587804}
