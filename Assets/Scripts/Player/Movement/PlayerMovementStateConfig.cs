@@ -53,10 +53,11 @@ public class PlayerMovementStateConfig : ScriptableObject
     [SerializeField] private float climbSnapHorizontalRange;
     [Header("Hang")]
     [SerializeField] private float hangHorizontalSpeed;
+    [SerializeField] private float hangJumpVelocity;
     [SerializeField] private Vector3 hangCheckOffset;
     [SerializeField] private Vector3 hangBodyOffset;
     [SerializeField] private LayerMask hangDetectionLayer;
-    [SerializeField] private float hangMaxVerticalStepHeight;
+    [SerializeField] private float hangSnapSpeed = 2.5f;
 
     public float Acceleration => acceleration;
     public LayerMask GroundLayer => groundLayer;
@@ -82,11 +83,12 @@ public class PlayerMovementStateConfig : ScriptableObject
     public LayerMask ClimbObstacleLayer => groundObstacleLayer;
     public float ClimbSnapXZRange => climbSnapHorizontalRange;
 
-    public float HangHorizontalSpeed => hangHorizontalSpeed; 
+    public float HangHorizontalSpeed => hangHorizontalSpeed;
+    public float HangJumpVelocity => hangJumpVelocity;
     public Vector3 HangCheckOffset => hangCheckOffset;
     public Vector3 HangBodyOffset => hangBodyOffset;
     public LayerMask HangDetectionLayer  => hangDetectionLayer;
-    public float HangMaxVerticalStepHeight => hangMaxVerticalStepHeight; 
+    public float HangSnapSpeed => hangSnapSpeed; 
 
     public IEnumerable<KeyValuePair<PlayerMovementStateType, IPlayerMovementState>> CreateAllMovementStates(
         PlayerMovementStateMachine machine,

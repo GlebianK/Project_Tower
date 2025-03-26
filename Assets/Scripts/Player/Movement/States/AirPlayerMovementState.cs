@@ -33,10 +33,11 @@ public class AirPlayerMovementState : PlayerMovementStateBase
                 return true;
             }
 
-            Vector3 position = movementController.transform.position;
+            Vector3 position = movementController.transform.position
+             + movementController.transform.up * config.HangCheckOffset.y;
+
             Vector3 direction = movementController.transform.forward * config.HangCheckOffset.z
-                + movementController.transform.right * config.HangCheckOffset.x
-                + movementController.transform.up * config.HangCheckOffset.y;
+                + movementController.transform.right * config.HangCheckOffset.x;
             if (Physics.Raycast(position,
                 direction.normalized,
                 out RaycastHit hit,
