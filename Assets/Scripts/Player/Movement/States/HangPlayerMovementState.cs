@@ -4,6 +4,8 @@ using UnityEngine.UIElements;
 public class HangPlayerMovementState : PlayerMovementStateBase
 {
     private HangRail rail;
+
+    private Vector3 targetPos;
     public HangPlayerMovementState(PlayerMovementStateConfig config) : 
         base(config)
     {
@@ -19,17 +21,27 @@ public class HangPlayerMovementState : PlayerMovementStateBase
 
         position = rail.GetPositionOnRail(position);
         rail = rail.GetRailSegment(position);
-        movementController.transform.position = position +
+        targetPos = position +
             (rail.forward * config.HangBodyOffset.z
             + rail.right * config.HangBodyOffset.x
             + Vector3.up * config.HangBodyOffset.y);
+
+
+        movementController.transform.position = Vector3.MoveTowards(
+            movementController.transform.position,
+            targetPos,
+            config.HangSnapSpeed * deltaTime);
     }
 
     public override bool MakeTransitions(float deltaTime)
     {
         if (inputController.jumpPressed)
         {
-            movementController.Jump(Vector3.up * config.JumpVelocity - rail.forward * config.HangHorizontalSpeed);
+            Vector3 forwardXZ = movementController.transform.forward;
+            forwardXZ.y = 0;
+            forwardXZ = forwardXZ.normalized;
+
+            movementController.Jump(Vector3.up * config.HangJumpVelocity - Mathf.Clamp01(Vector3.Dot(forwardXZ, -rail.forward)) * rail.forward * config.HangHorizontalSpeed);
             movementController.SetCurrentState(PlayerMovementStateType.Air);
             movementController.GetCurrentState().UpdateMovementVelocity(deltaTime);
             return true;
@@ -40,10 +52,11 @@ public class HangPlayerMovementState : PlayerMovementStateBase
 
     public override void OnStateActivated(IPlayerMovementState prevState)
     {
-        Vector3 position = movementController.transform.position;
+        Vector3 position = movementController.transform.position 
+            +movementController.transform.up * config.HangCheckOffset.y;
+
         Vector3 direction = movementController.transform.forward * config.HangCheckOffset.z
-            + movementController.transform.right * config.HangCheckOffset.x
-            + movementController.transform.up * config.HangCheckOffset.y;
+            + movementController.transform.right * config.HangCheckOffset.x;
         if (Physics.Raycast(position,
             direction.normalized, 
             out RaycastHit hit,
@@ -63,9 +76,9 @@ public class HangPlayerMovementState : PlayerMovementStateBase
                 + movementController.transform.up * config.HangBodyOffset.y;
 
             position = rail.GetPositionOnRail(position);
-            movementController.transform.position = position;
+            targetPos = position;
 
-            movementController.transform.rotation = Quaternion.LookRotation(rail.forward, Vector3.up);
+            //movementController.transform.rotation = Quaternion.LookRotation(rail.forward, Vector3.up);
             movementController.cc.enabled = false;
 
             inputController.jumpPressed = false;

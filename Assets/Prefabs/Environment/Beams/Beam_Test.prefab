@@ -154,8 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbourDetectionLayer:
     serializedVersion: 2
-    m_Bits: 2097152
-  searchRadius: 1
+    m_Bits: 1048576
+  searchRadius: 0.25
 --- !u!1 &5674489010131799265
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,8 +202,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbourDetectionLayer:
     serializedVersion: 2
-    m_Bits: 2097152
-  searchRadius: 1
+    m_Bits: 1048576
+  searchRadius: 0.25
 --- !u!1 &6997810730420361838
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,7 +259,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 7, y: 1, z: 1}
+  m_Size: {x: 7, y: 0.85, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1794387476660579280
 MonoBehaviour:
