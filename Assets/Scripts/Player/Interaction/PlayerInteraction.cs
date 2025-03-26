@@ -9,7 +9,7 @@ public class PlayerInteraction : MonoBehaviour
 
     public UnityEvent InteractionStarted;
     public UnityEvent InteractionEnded;
-
+    public UnityEvent MedKitAdd;
     private void Awake()
     {
         objectOfInteraction = null;

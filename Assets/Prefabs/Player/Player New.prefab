@@ -671,6 +671,8 @@ GameObject:
   - component: {fileID: 3169771758579818046}
   - component: {fileID: 416981915298296252}
   - component: {fileID: 3573884351195220690}
+  - component: {fileID: 9142435462681859255}
+  - component: {fileID: 7805450789544040447}
   m_Layer: 6
   m_Name: PlayerCapsule
   m_TagString: Player
@@ -917,6 +919,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 77bb5b6e-2ee8-4ced-860a-92d9b4c3446c
     m_ActionName: 'Movement/Interact[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7805450789544040447}
+        m_TargetAssemblyTypeName: UseMedKit, Assembly-CSharp
+        m_MethodName: OnHeal
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d36e692a-52ac-4b64-85b6-13ddfa6a0d9a
+    m_ActionName: 'Movement/Heal[/Keyboard/q]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement
@@ -1321,10 +1339,95 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InteractionStarted:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: InteractMedKit, Assembly-CSharp
+        m_MethodName: InteractionStarted
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   InteractionEnded:
     m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: InteractMedKit, Assembly-CSharp
+        m_MethodName: InteractionEnded
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  MedKitAdd:
+    m_PersistentCalls:
       m_Calls: []
+--- !u!114 &9142435462681859255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529439648169448341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 085bd1b5a57deed48b3efe12c870b856, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AddMedKitInText:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UIKitCounter, Assembly-CSharp
+        m_MethodName: AddMedKitText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  RemoveMedKitInText:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UIKitCounter, Assembly-CSharp
+        m_MethodName: RemoveMedKitText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  medKitTotal: 0
+--- !u!114 &7805450789544040447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529439648169448341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 569d5db2345c2b9489a52f7252f331b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  medKitCounter: {fileID: 9142435462681859255}
+  health: {fileID: 416981915298296252}
+  healthToAdd: 10
 --- !u!1 &1732062531632413327
 GameObject:
   m_ObjectHideFlags: 0

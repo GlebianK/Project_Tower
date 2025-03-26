@@ -1,8 +1,11 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class HealItem : CollectableComponent
 {
-    [SerializeField] private float healthToAdd;
+    public UnityEvent AddMedKit;
+
+    [SerializeField] private float healthToAdd; //Рудимент 
 
     public float GetHealthToAdd() => healthToAdd;
 
@@ -16,6 +19,7 @@ public class HealItem : CollectableComponent
     {
         //добавить добавление этого айтема в коллекцию игрока
         Debug.Log("Adding med kit...");
+        AddMedKit.Invoke();
         Destroy(gameObject);
         Debug.Log("Med kit added!");
     }
