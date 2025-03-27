@@ -42,6 +42,18 @@ public class Health : MonoBehaviour
 
     }
 
+    public void TakeDamage(float damageValue)
+    {
+        hp -= damageValue;
+        Debug.Log($"Damage recieved: {damageValue}, remaining HP: {hp}");
+
+        if (hp <= 0f)
+        {
+            Debug.LogWarning($"{gameObject.name} died!");
+            Died.Invoke();
+        }
+    }
+
     public void TakeDamage(float damageValue, NewAttackBase.AttackType attackType)
     {
         hp -= damageValue;
