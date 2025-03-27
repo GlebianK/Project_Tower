@@ -68,7 +68,7 @@ public class PlayerInteraction : MonoBehaviour
         if (objectOfInteraction != null)
         {
             InteractionEnded.Invoke();
-            objectOfInteraction.InteractionAction();
+            objectOfInteraction.InteractionAction(gameObject);
             ForgetObjectOfInteraction();
         }
     }

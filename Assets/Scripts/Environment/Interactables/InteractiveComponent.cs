@@ -21,7 +21,7 @@ public class InteractiveComponent : MonoBehaviour
         
     }
 
-    public virtual void InteractionAction()
+    public virtual void InteractionAction(GameObject player)
     {
         Debug.LogWarning("A basic implementation of InteractionAction is used instead of a specific one");
     }
