@@ -3,7 +3,12 @@ guid: c51f976112bdfe5419aec8e0008ad6c2
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Walk_Pipe_A
+    second: {fileID: 2100000, guid: 55a4c365c53e4014da748f6e13da4df2, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
