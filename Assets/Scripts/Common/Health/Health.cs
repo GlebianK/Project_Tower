@@ -47,6 +47,8 @@ public class Health : MonoBehaviour
         hp -= damageValue;
         Debug.Log($"Damage recieved: {damageValue}, remaining HP: {hp}");
 
+        TookDamage.Invoke();
+
         if (hp <= 0f)
         {
             Debug.LogWarning($"{gameObject.name} died!");
