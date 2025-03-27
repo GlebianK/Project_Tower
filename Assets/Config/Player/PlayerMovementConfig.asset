@@ -15,7 +15,7 @@ MonoBehaviour:
   acceleration: 15
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 2097153
   walkMaxSpeed: 3
   jumpVelocity: 3.7
   gravityForce: 9.81
@@ -43,7 +43,7 @@ MonoBehaviour:
   climbSnapHorizontalRange: 0.5
   hangHorizontalSpeed: 1
   hangJumpVelocity: 4.8
-  hangCheckOffset: {x: 0, y: 1.65, z: 1}
+  hangCheckOffset: {x: 0, y: 1.65, z: 2}
   hangBodyOffset: {x: 0, y: -1.5, z: -0.4}
   hangDetectionLayer:
     serializedVersion: 2
