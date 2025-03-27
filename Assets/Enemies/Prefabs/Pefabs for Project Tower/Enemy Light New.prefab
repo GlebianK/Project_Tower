@@ -1326,6 +1326,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 155655734408334181}
+        m_TargetAssemblyTypeName: CombatControllerEnemy, Assembly-CSharp
+        m_MethodName: OnAttackAborted
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   TookHeavyDamage:
     m_PersistentCalls:
       m_Calls:
@@ -1353,6 +1365,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 155655734408334181}
+        m_TargetAssemblyTypeName: CombatControllerEnemy, Assembly-CSharp
+        m_MethodName: OnAttackAborted
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5517421473917660244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1368,7 +1392,7 @@ MonoBehaviour:
   health: {fileID: 2000074269634815421}
   combatController: {fileID: 155655734408334181}
   motionEnemy: {fileID: 1654603853866340406}
-  attackStartRange: 0
+  attackStartRange: 2
   maxPlayerDetectViewAngle: 15
   agent: {fileID: 7959505364153772310}
   speedAgent: 3.5
