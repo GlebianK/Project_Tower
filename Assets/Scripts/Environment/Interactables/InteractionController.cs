@@ -12,8 +12,8 @@ public class InteractionController : MonoBehaviour
     {
         interComp.Deinteract();
     }
-    public void InteractionAction()
+    public void InteractionAction(GameObject player)
     {
-        interComp.InteractionAction();
+        interComp.InteractionAction(player);
     }
 }

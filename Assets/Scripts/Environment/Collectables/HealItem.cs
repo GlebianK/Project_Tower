@@ -6,17 +6,25 @@ public class HealItem : CollectableComponent
 
     public float GetHealthToAdd() => healthToAdd;
 
-    public override void InteractionAction()
+    public override void InteractionAction(GameObject player)
     {
         Debug.Log("Used override version of InteractionAction");
-        OnCollected();
+        OnCollected(player);
     }
 
-    public override void OnCollected()
+    public override void OnCollected(GameObject player)
     {
         //добавить добавление этого айтема в коллекцию игрока
-        Debug.Log("Adding med kit...");
-        Destroy(gameObject);
+        Debug.Log("Retrieving UseItem component...");
+
+        if(player.TryGetComponent<UseItem>(out UseItem useItemComponent))
+        {
+            Debug.Log("Adding med kit...");
+            useItemComponent.AddMedKit();
+        }
+
         Debug.Log("Med kit added!");
+        
+        Destroy(gameObject);
     }
 }
