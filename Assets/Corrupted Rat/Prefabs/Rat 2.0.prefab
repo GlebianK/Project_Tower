@@ -341,7 +341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1bfbdb6efa5fab4fb2e5500162ac94e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 25
+  maxHp: 60
   damageReductionCoef: 0
   Died:
     m_PersistentCalls:
@@ -449,7 +449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackEnemy:
-    damage: 3
+    damage: 10
     attackRange: 2
     damageDealingDelay: 0.37
     durationOfAttack: 1

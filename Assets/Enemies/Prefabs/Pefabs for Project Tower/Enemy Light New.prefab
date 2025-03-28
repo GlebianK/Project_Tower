@@ -1291,8 +1291,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1bfbdb6efa5fab4fb2e5500162ac94e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 50
-  damageReductionCoef: 0.75
+  maxHp: 80
+  damageReductionCoef: 0
   Died:
     m_PersistentCalls:
       m_Calls:
@@ -1411,7 +1411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackEnemy:
-    damage: 4
+    damage: 15
     attackRange: 2
     damageDealingDelay: 0.37
     durationOfAttack: 1
@@ -1572,7 +1572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1fc31a2b5f883a4caadb6d3ece452a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stunnedAnimationTimer: 3.75
+  stunnedAnimationTimer: 5
 --- !u!195 &7959505364153772310
 NavMeshAgent:
   m_ObjectHideFlags: 0
