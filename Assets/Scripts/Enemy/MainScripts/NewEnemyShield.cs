@@ -2,7 +2,17 @@ using UnityEngine;
 
 public class NewEnemyShield : NewEnemyBase
 {
+    [SerializeField] private CombatAnimations combatAnimationsComponent;
     [SerializeField] private GameObject shieldObject;
+
+    private bool hasShield;
+
+    public bool HasShield() => hasShield;
+
+    private void Awake()
+    {
+        hasShield = true;
+    }
 
     private void Update()
     {
@@ -19,6 +29,17 @@ public class NewEnemyShield : NewEnemyBase
         LosePlayer(other);
     }
 
+    private void SubscribeEventsToLightDamageWithoutShield()
+    {
+        health.TookDamage.AddListener(combatController.OnAttackAborted);
+        health.TookDamage.AddListener(combatAnimationsComponent.OnGetHit);
+    }
+
+    private void OnDisable()
+    {
+        health.TookDamage.RemoveListener(combatController.OnAttackAborted);
+        health.TookDamage.RemoveListener(combatAnimationsComponent.OnGetHit);
+    }
 
     public void DropShield()
     {
@@ -30,6 +51,9 @@ public class NewEnemyShield : NewEnemyBase
 
             if(shieldObject.activeSelf)
                 shieldObject.SetActive(false);
+
+            hasShield = false;
+            SubscribeEventsToLightDamageWithoutShield();
         }        
     }
 }

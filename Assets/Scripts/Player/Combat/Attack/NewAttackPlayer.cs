@@ -9,6 +9,30 @@ public class NewAttackPlayer : NewAttackBase
 
     protected bool collidersWereHit;
 
+    protected override void ApplyDamageToHealthComponents(IEnumerable<Health> healthComponentsCollection)
+    {
+        if (healthComponentsCollection != null)
+        {
+            foreach (Health health in healthComponentsCollection)
+            {
+                if (health != null)
+                {
+                    if (health.gameObject.TryGetComponent<NewEnemyShield>(out NewEnemyShield nes)) // переделать на теги??
+                    {
+                        if(nes.HasShield() && attackType == AttackType.light)
+                            continue;
+                    }
+
+                    health.TakeDamage(damage * (1 - health.DamageReductionCoef), attackType);
+                }
+            }
+        }
+        else
+        {
+            Debug.LogError("AttackBase: No health collection to work with!");
+        }
+    }
+
     protected override IEnumerable<Health> CastAttackZone()
     {
         Collider[] colliders = Physics.OverlapBox(
