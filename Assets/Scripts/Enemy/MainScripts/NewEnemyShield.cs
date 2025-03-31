@@ -4,6 +4,9 @@ public class NewEnemyShield : NewEnemyBase
 {
     [SerializeField] private CombatAnimations combatAnimationsComponent;
     [SerializeField] private GameObject shieldObject;
+    
+    [Tooltip("Остаток здоровья для исчезновения щита (в процентах от максимального здоровья)")]
+    [SerializeField, Range(0, 100)] private int dropShieldHPThreshold;
 
     private bool hasShield;
 
@@ -45,8 +48,8 @@ public class NewEnemyShield : NewEnemyBase
     {
         if(TryGetComponent<Health>(out Health health))
         {
-            Debug.Log($"Current Shield Enemy health: {health.HP}. Half max: {health.MaxHP/2f}");
-            if(health.HP > (health.MaxHP/2f))
+            Debug.Log($"Current Shield Enemy health: {health.HP}. Threshold: {health.MaxHP * (dropShieldHPThreshold / 100f)}");
+            if(health.HP > (health.MaxHP * (dropShieldHPThreshold/100f)))
                 return;
 
             if(shieldObject.activeSelf)
