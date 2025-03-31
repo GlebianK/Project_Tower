@@ -25,11 +25,13 @@ public class CombatAnimations : MonoBehaviour
     }
     #endregion
 
-    #region INJURE ANIMATION CALLBACKS FOR LIGHT ENEMY
+    // COMMON CALLBACK FOR ALL ENEMIES
     public void OnGetHit()
     {
         animator.SetTrigger("isHit");
     }
+
+    #region INJURE ANIMATION CALLBACKS FOR LIGHT ENEMY
     public void OnStun()
     {
         if (!isInStunnedState)

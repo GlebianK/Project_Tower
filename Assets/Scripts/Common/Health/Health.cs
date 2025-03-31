@@ -63,12 +63,12 @@ public class Health : MonoBehaviour
 
         if (attackType == NewAttackBase.AttackType.light)
         {
-            Debug.LogWarning("Got light hit!");
+            Debug.LogWarning($"Health: {gameObject} got light hit!");
             TookDamage.Invoke();
         }
         else if (attackType == NewAttackBase.AttackType.heavy)
         {
-            Debug.LogWarning("Got heavy hit!");
+            Debug.LogWarning($"Health: {gameObject} got heavy hit!");
             TookHeavyDamage.Invoke();
         }
 

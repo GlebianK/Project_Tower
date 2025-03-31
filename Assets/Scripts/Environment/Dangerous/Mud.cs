@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-// ÏÎÊÀ ÍÅ ĞÀÁÎÒÀÅÒ, ÂÈÄÈÌÎ, ×ÒÎ-ÒÎ Ñ ÒĞÈÃÃÅĞÀÌÈ, ÍÀÄÎ ÒÅÑÒÈĞÎÂÀÒÜ ÄÀËÜØÅ
+// ÏÎÊÀ ÍÅ ĞÀÁÎÒÀÅÒ ÏĞÎÒÈÂ ÂĞÀÃÎÂ, ÂÈÄÈÌÎ, ×ÒÎ-ÒÎ Ñ ÒĞÈÃÃÅĞÀÌÈ, ÍÀÄÎ ÒÅÑÒÈĞÎÂÀÒÜ ÄÀËÜØÅ
 public class Mud : MonoBehaviour
 {
     [SerializeField] private float frequencyOfAttacks;
     [SerializeField] private float damage;
 
     private bool canAttack = true;
-    //private List<GameObject> objectsToDamage = new List<GameObject>();
     private List<Health> objectsToDamage;
 
     private void Awake()
@@ -35,17 +34,6 @@ public class Mud : MonoBehaviour
 
             Debug.Log($"{other.gameObject.name} is in mud zone!");
         }
-        /*
-        if (other.CompareTag("Player"))
-        {
-            ActiveDangerIcon.Invoke();
-        }
-        */
-
-        /*
-        else if (other.GetComponent<Health>() == null)
-            Debug.LogWarning("Component Health not found");
-        */
     }
     private void OnTriggerStay(Collider other)
     {
@@ -57,14 +45,6 @@ public class Mud : MonoBehaviour
         {
             for (int i = 0; i < objectsToDamage.Count; i++)
             {
-                /*
-                if (objectsToDamage[i].GetComponent<Health>() != null)
-                {
-                    objectsToDamage[i].GetComponent<Health>().TakeDamage(damage);
-                }
-                else if (objectsToDamage[i].GetComponent<Health>() == null)
-                    Debug.LogWarning("Component Health not found");
-                */
                 if (objectsToDamage[i] != null)
                     objectsToDamage[i].TakeDamage(damage);
             }
@@ -78,12 +58,7 @@ public class Mud : MonoBehaviour
         {
             Debug.Log("bye enemy!");
         }
-        /*
-        if (other.CompareTag("Player"))
-        {
-            DeactiveDangerIcon.Invoke();
-        }
-        */
+
         if (other.TryGetComponent<Health>(out Health healthComponent))
         {
             if (objectsToDamage.Contains(healthComponent))

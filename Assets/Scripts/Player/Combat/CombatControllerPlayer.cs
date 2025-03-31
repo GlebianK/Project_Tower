@@ -69,12 +69,12 @@ public class CombatControllerPlayer : CombatControllerBase
 
         if (attackPreparationTimer <= attackTypeTimerThreshold)
         {
-            Debug.Log("Light attack");
+            Debug.Log("Player Light attack");
             currentAttack = attacksPlayer[0];
         }
         else
         {
-            Debug.Log("HeavyAttack");
+            Debug.Log("Player HeavyAttack");
             currentAttack = attacksPlayer[1];
         }
 
