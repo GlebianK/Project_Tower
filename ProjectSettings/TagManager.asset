@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Interactable
+  - Collectable
+  - Enemy
+  - Mud
   layers:
   - Default
   - TransparentFX
@@ -25,8 +29,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - HangRailNeighbourDetection
+  - HangRail
   - 
   - 
   - 

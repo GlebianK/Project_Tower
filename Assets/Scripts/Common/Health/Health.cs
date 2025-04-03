@@ -16,6 +16,7 @@ public class Health : MonoBehaviour
     public UnityEvent Died;
     public UnityEvent Healed;
     public UnityEvent TookDamage;
+    public UnityEvent TookHeavyDamage;
 
     private void Awake()
     {
@@ -44,20 +45,45 @@ public class Health : MonoBehaviour
     public void TakeDamage(float damageValue)
     {
         hp -= damageValue;
-        Debug.Log(hp);
+        Debug.Log($"Damage recieved: {damageValue}, remaining HP: {hp}");
+
         TookDamage.Invoke();
+
+        if (hp <= 0f)
+        {
+            Debug.LogWarning($"{gameObject.name} died!");
+            Died.Invoke();
+        }
+    }
+
+    public void TakeDamage(float damageValue, NewAttackBase.AttackType attackType)
+    {
+        hp -= damageValue;
+        Debug.Log($"Damage: {damageValue}, remaining HP: {hp}");
+
+        if (attackType == NewAttackBase.AttackType.light)
+        {
+            Debug.LogWarning($"Health: {gameObject} got light hit!");
+            TookDamage.Invoke();
+        }
+        else if (attackType == NewAttackBase.AttackType.heavy)
+        {
+            Debug.LogWarning($"Health: {gameObject} got heavy hit!");
+            TookHeavyDamage.Invoke();
+        }
+
         if(hp <= 0f)
         {
             Died.Invoke();
         }
     }
 
-    public void ActivateDamageReduction()
+    public void ActivateDamageReductionByBlock()
     {
         currentDamageReductionCoef = damageReductionCoef;
     }
 
-    public void DeactivateDamageReduction()
+    public void DeactivateDamageReductionByBlock()
     {
         currentDamageReductionCoef = 0f;
     }

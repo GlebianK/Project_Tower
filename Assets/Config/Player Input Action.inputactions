@@ -85,6 +85,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "77bb5b6e-2ee8-4ced-860a-92d9b4c3446c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UseMedkit",
+                    "type": "Button",
+                    "id": "0fbe58ed-24af-4252-8e54-9c5a4637dd4d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -168,7 +186,7 @@
                 {
                     "name": "",
                     "id": "de3a885a-2885-4dfb-8487-39f7b5b3bff4",
-                    "path": "<Keyboard>/leftCtrl",
+                    "path": "<Keyboard>/c",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -228,6 +246,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "BlockCancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e5d8f7e8-b59a-4ce6-bdbc-3e9723b5b9f0",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5dda4188-0635-4399-8439-a351cba66bb6",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UseMedkit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
