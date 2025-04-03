@@ -152,7 +152,9 @@ public class CombatControllerPlayer : CombatControllerBase
 
     public void OnMovementStateChanged(PlayerMovementStateMachine machine, PlayerMovementStateType type)
     {
-        if (type == PlayerMovementStateType.Climb)
+        if (type == PlayerMovementStateType.Climb 
+            || type == PlayerMovementStateType.Hang 
+            || type == PlayerMovementStateType.Crouch)
         {
             isAttackBlockedByClimb = true;
         }

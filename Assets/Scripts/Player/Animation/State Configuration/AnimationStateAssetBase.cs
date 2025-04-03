@@ -3,9 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerStateAnimationBase", menuName = "Player/Animation/PlayerStateAnimationBase")]
 public class AnimationStateAssetBase : ScriptableObject
 {
-    [SerializeField] private AnimationCurve blendIn;
+    [SerializeField] private AnimationCurve blendIn = AnimationCurve.EaseInOut(0, 0, 1, 1);
     [SerializeField] private float blendInDuration;
-    [SerializeField] private AnimationCurve blendOut;
+    [SerializeField] private AnimationCurve blendOut = AnimationCurve.EaseInOut(0, 0, 1, 1);
     [SerializeField] private float blendOutDuration;
 
     [SerializeField] private float speed = 1.0f;
@@ -13,7 +13,7 @@ public class AnimationStateAssetBase : ScriptableObject
     [SerializeField] private AnimationClip clipToPlay;
     [SerializeField] private ProceduralTransformAnimationAsset cameraAnimationAsset;
     [Tooltip("Для отключения анимации FOV установить его меньше нуля")]
-    [SerializeField] private float targetFov;
+    [SerializeField] private float targetFov = -1;
     [SerializeField] private ProceduralTransformAnimationAsset armsProceduralAnimationAsset;
     [Tooltip("Задает позу IK для анимации. Задать -1 для игнорирования позы IK")]
     [SerializeField] private int ikRigIndex = -1;

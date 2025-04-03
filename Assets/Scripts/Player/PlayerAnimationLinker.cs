@@ -19,8 +19,10 @@ public class PlayerAnimationLinker : MonoBehaviour
 
     [SerializeField] private string attackLightAnimState;
     [SerializeField] private string attackHeavyAnimState;
+    [SerializeField] private string blockAnimState;
 
     private bool isAttacking = false;
+
     private string movementAnimStateName = "";
 
     private void OnEnable()
@@ -63,5 +65,18 @@ public class PlayerAnimationLinker : MonoBehaviour
         isAttacking = false;
 
         //animationSystem.SetState(movementAnimStateName);
+    }
+
+    public void OnBlockStarted()
+    {
+        animationSystem.SetStateForced(blockAnimState);
+
+        isAttacking = true;
+    }
+
+    public void OnBlockEnded()
+    {
+        isAttacking = false;
+        animationSystem.SetState(movementAnimStateName);
     }
 }
