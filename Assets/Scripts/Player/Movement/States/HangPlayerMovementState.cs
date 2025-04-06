@@ -117,10 +117,15 @@ public class HangPlayerMovementState : PlayerMovementStateBase
 
     protected override Vector3 ComputeVelocity(float deltaTime)
     {
-        Vector3 input = inputController.GetMovementDirectionInTransformSpace(movementController.transform);
+        Vector2 input = inputController.GetMovementDirectionRaw();
 
-        if (input == Vector3.zero)
+        Vector3 leftRightInput = input.x * rail.right;
+        Vector3 forwardInput = Vector3.Project(input.y * movementController.transform.forward, rail.right);
+
+        Vector3 transformInput = Vector3.ClampMagnitude(forwardInput + leftRightInput, 1);
+
+        if (transformInput == Vector3.zero)
             return Vector3.zero;
-        return Vector3.Project(input, rail.right) * config.HangHorizontalSpeed;
+        return transformInput * config.HangHorizontalSpeed;
     }
 }
