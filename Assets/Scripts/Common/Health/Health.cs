@@ -12,6 +12,7 @@ public class Health : MonoBehaviour
     public float MaxHP => maxHp;
     public float HP => hp;
     public float DamageReductionCoef => currentDamageReductionCoef;
+    public bool IsInvulnerable {  get; set; }
 
     public UnityEvent Died;
     public UnityEvent Healed;
@@ -44,6 +45,12 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float damageValue)
     {
+        if (IsInvulnerable)
+        {
+            Debug.Log($"Damage hasnt been received, target {gameObject.name} is Invulnerable");
+            return;
+        }
+
         hp -= damageValue;
         Debug.Log($"Damage recieved: {damageValue}, remaining HP: {hp}");
 
@@ -58,6 +65,11 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float damageValue, NewAttackBase.AttackType attackType)
     {
+        if (IsInvulnerable)
+        {
+            Debug.Log($"Damage hasnt been received, target {gameObject.name} is Invulnerable");
+            return;
+        }
         hp -= damageValue;
         Debug.Log($"Damage: {damageValue}, remaining HP: {hp}");
 
