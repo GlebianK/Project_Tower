@@ -32,9 +32,6 @@ public class MovementInputEventHandler : MonoBehaviour
         movementDirection = Vector2.zero;
         lookInput = Vector2.zero;
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
         sprintModifier = false;
         crouchModifier = false;
     }

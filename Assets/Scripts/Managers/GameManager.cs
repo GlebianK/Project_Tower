@@ -1,17 +1,24 @@
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance { get; private set; }
-
+    private float fixedDeltaTime;
     private void Awake()
     {
-        Instance = this;
+        fixedDeltaTime = Time.fixedDeltaTime;
     }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
             Application.Quit();
+    }
+
+    public void LoadLevel(int levelIndex)
+    {
+        SceneManager.LoadScene(levelIndex);
+        Time.timeScale = 1;
+        Time.fixedDeltaTime = fixedDeltaTime * Time.timeScale;
     }
 }
