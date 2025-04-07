@@ -1230,7 +1230,7 @@ MonoBehaviour:
   - damage: 50
     attackRange: 0.87
     damageDealingDelay: 0.2
-    durationOfAttack: 0
+    durationOfAttack: 1
     layerMask:
       serializedVersion: 2
       m_Bits: 128
@@ -3518,7 +3518,7 @@ MonoBehaviour:
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 1
   Lens:
-    FieldOfView: 75
+    FieldOfView: 60
     OrthographicSize: 10
     NearClipPlane: 0.01
     FarClipPlane: 300
@@ -3910,7 +3910,7 @@ Transform:
   m_GameObject: {fileID: 7513629649302436536}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.7, z: -0.15}
+  m_LocalPosition: {x: 0, y: -1.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -4354,7 +4354,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7520830852255355189}
   m_Layer: 6
-  m_Name: Player And Gameplay
+  m_Name: Player and GM
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4862,7 +4862,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 300
-  field of view: 75
+  field of view: 60
   orthographic: 0
   orthographic size: 10
   m_Depth: 0
