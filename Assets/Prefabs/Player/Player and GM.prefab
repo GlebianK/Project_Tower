@@ -1292,6 +1292,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
     boxCastSizes: {x: 0.31, y: 0.27, z: 0.55}
+  attackCooldown: 0.25
   blockPlayer:
     BlockStarted:
       m_PersistentCalls:
@@ -3420,8 +3421,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2418305521750661536}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: LoadLevel
-        m_Mode: 3
+        m_MethodName: RestartLevel
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

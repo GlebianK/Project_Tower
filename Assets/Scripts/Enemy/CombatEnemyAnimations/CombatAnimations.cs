@@ -8,6 +8,8 @@ public class CombatAnimations : MonoBehaviour
     private Animator animator;
     private bool isInStunnedState = false;
 
+    public bool IsInStunnedState => isInStunnedState;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -41,10 +43,12 @@ public class CombatAnimations : MonoBehaviour
     private IEnumerator StunTimer(float timerValue)
     {
         isInStunnedState = true;
+        Debug.Log("Combat Animations: STUNNED!");
         animator.SetBool("isStunned", true);
         yield return new WaitForSeconds(timerValue);
         animator.SetBool("isStunned", false);
         isInStunnedState = false;
+        Debug.Log("Combat Animations: UNSTUNNED!");
     }
     #endregion
 }

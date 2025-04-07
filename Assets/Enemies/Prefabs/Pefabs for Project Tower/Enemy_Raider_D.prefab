@@ -1274,8 +1274,7 @@ MonoBehaviour:
   maxPlayerDetectViewAngle: 15
   agent: {fileID: 7048105651285985314}
   speedAgent: 2
-  angularSpeedAgent: 300
-  player: {fileID: 0}
+  angularSpeedAgent: 375
   combatAnimationsComponent: {fileID: 1716496027889720428}
   shieldObject: {fileID: 4457817270890242056}
   dropShieldHPThreshold: 50
@@ -1387,6 +1386,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  minAttackCooldown: 0.15
+  maxAttackCooldown: 0.75
 --- !u!114 &1716496027889720428
 MonoBehaviour:
   m_ObjectHideFlags: 0

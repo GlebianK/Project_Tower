@@ -12,6 +12,8 @@ public class CombatControllerPlayer : CombatControllerBase
     [Tooltip("Add light and heavy attacks in the array. Start with the light attack")]
     [SerializeField] private NewAttackPlayer[] attacksPlayer;
 
+    [SerializeField] private float attackCooldown = 0.25f;
+
     [Tooltip("Player block settings")]
     [SerializeField] private NewBlockPlayer blockPlayer;
 
@@ -20,6 +22,7 @@ public class CombatControllerPlayer : CombatControllerBase
     private float attackPreparationTimer;
     private bool timerIsCounting;
     private bool isAttackBlockedByClimb;
+    private bool attackIsOnCooldown;
 
     #region ABSTRACT BASE METHODS OVERRIDE
     public override bool IsBlockAllowed() => blockPlayer.CanPerform();
@@ -47,6 +50,7 @@ public class CombatControllerPlayer : CombatControllerBase
         attackPreparationTimer = 0f;
         timerIsCounting = false;
         isAttackBlockedByClimb = false;
+        attackIsOnCooldown = false;
     }
 
     private IEnumerator AttackPreparationTimer()
@@ -65,6 +69,9 @@ public class CombatControllerPlayer : CombatControllerBase
 
     public override void Attack()
     {
+        if (attackIsOnCooldown)
+            return;
+
         NewAttackPlayer currentAttack;
 
         if (attackPreparationTimer <= attackTypeTimerThreshold)
@@ -83,7 +90,8 @@ public class CombatControllerPlayer : CombatControllerBase
             Debug.LogWarning("CC_Player: ATTACK !!!!!!");
             currentAttack.Perform();
         }
-           
+
+        StartCoroutine(AttackCooldownCoroutine());
     }
 
     public override void Block()
@@ -150,6 +158,8 @@ public class CombatControllerPlayer : CombatControllerBase
     }
     #endregion
 
+    
+    
     public void OnMovementStateChanged(PlayerMovementStateMachine machine, PlayerMovementStateType type)
     {
         if (type == PlayerMovementStateType.Climb 
@@ -162,5 +172,12 @@ public class CombatControllerPlayer : CombatControllerBase
         {
             isAttackBlockedByClimb = false;
         }
+    }
+
+    private IEnumerator AttackCooldownCoroutine()
+    {
+        attackIsOnCooldown = true;
+        yield return new WaitForSeconds(attackCooldown);
+        attackIsOnCooldown = false;
     }
 }

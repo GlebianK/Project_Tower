@@ -435,7 +435,6 @@ MonoBehaviour:
   agent: {fileID: 2926257154609720659}
   speedAgent: 4.5
   angularSpeedAgent: 300
-  player: {fileID: 0}
 --- !u!114 &7598385798813954125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -520,6 +519,8 @@ MonoBehaviour:
     BlockEnded:
       m_PersistentCalls:
         m_Calls: []
+  minAttackCooldown: 0.15
+  maxAttackCooldown: 0.75
 --- !u!114 &5411932331353239351
 MonoBehaviour:
   m_ObjectHideFlags: 0

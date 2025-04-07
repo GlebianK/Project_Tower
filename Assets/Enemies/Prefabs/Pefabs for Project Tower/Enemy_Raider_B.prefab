@@ -1232,8 +1232,8 @@ MonoBehaviour:
   maxPlayerDetectViewAngle: 15
   agent: {fileID: 8898809597209464090}
   speedAgent: 3.5
-  angularSpeedAgent: 300
-  player: {fileID: 0}
+  angularSpeedAgent: 500
+  combatAnimationsComponent: {fileID: 3778422626924783959}
 --- !u!114 &788702527722500649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1318,6 +1318,8 @@ MonoBehaviour:
     BlockEnded:
       m_PersistentCalls:
         m_Calls: []
+  minAttackCooldown: 0.15
+  maxAttackCooldown: 0.75
 --- !u!114 &3778422626924783959
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2711,7 +2711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1bfbdb6efa5fab4fb2e5500162ac94e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 150
+  maxHp: 300
   damageReductionCoef: 0.75
   Died:
     m_PersistentCalls:
@@ -2761,6 +2761,18 @@ MonoBehaviour:
   TookHeavyDamage:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 6809598953991120079}
+        m_TargetAssemblyTypeName: NewEnemyLight, Assembly-CSharp
+        m_MethodName: OnStun
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7194380021103880042}
         m_TargetAssemblyTypeName: CombatAnimations, Assembly-CSharp
         m_MethodName: OnGetHit
@@ -2816,8 +2828,8 @@ MonoBehaviour:
   maxPlayerDetectViewAngle: 15
   agent: {fileID: 1234952901377208485}
   speedAgent: 3.5
-  angularSpeedAgent: 300
-  player: {fileID: 0}
+  angularSpeedAgent: 500
+  combatAnimationsComponent: {fileID: 7194380021103880042}
 --- !u!114 &6399436817430262353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2902,6 +2914,8 @@ MonoBehaviour:
     BlockEnded:
       m_PersistentCalls:
         m_Calls: []
+  minAttackCooldown: 0.15
+  maxAttackCooldown: 0.75
 --- !u!114 &7194380021103880042
 MonoBehaviour:
   m_ObjectHideFlags: 0

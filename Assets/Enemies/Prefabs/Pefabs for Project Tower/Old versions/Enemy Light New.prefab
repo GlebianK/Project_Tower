@@ -1341,6 +1341,18 @@ MonoBehaviour:
   TookHeavyDamage:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 5517421473917660244}
+        m_TargetAssemblyTypeName: NewEnemyLight, Assembly-CSharp
+        m_MethodName: OnStun
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 4126628762432187968}
         m_TargetAssemblyTypeName: CombatAnimations, Assembly-CSharp
         m_MethodName: OnGetHit
@@ -1397,7 +1409,7 @@ MonoBehaviour:
   agent: {fileID: 7959505364153772310}
   speedAgent: 3.5
   angularSpeedAgent: 300
-  player: {fileID: 0}
+  combatAnimationsComponent: {fileID: 4126628762432187968}
 --- !u!114 &155655734408334181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1506,6 +1518,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  minAttackCooldown: 0.15
+  maxAttackCooldown: 0.75
 --- !u!114 &1654603853866340406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1572,7 +1586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1fc31a2b5f883a4caadb6d3ece452a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stunnedAnimationTimer: 5
+  stunnedAnimationTimer: 2.5
 --- !u!195 &7959505364153772310
 NavMeshAgent:
   m_ObjectHideFlags: 0
