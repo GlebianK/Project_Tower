@@ -932,7 +932,7 @@ Transform:
   m_GameObject: {fileID: 2722757811292995878}
   serializedVersion: 2
   m_LocalRotation: {x: 0.44139025, y: 0.6258492, z: 0.45681754, w: 0.45255402}
-  m_LocalPosition: {x: -0.0309, y: -0.091, z: -0.3007}
+  m_LocalPosition: {x: -0.014991414, y: -0.081361346, z: -0.20193744}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2265,13 +2265,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6739648207831999472}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.043619405, w: 0.9990483}
+  m_LocalPosition: {x: -0.019923877, y: 0.023487058, z: 0.010000042}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2711338457376222950}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -5}
 --- !u!33 &2913828374654958249
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2711,7 +2711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1bfbdb6efa5fab4fb2e5500162ac94e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 300
+  maxHp: 100
   damageReductionCoef: 0.75
   Died:
     m_PersistentCalls:
@@ -2719,6 +2719,18 @@ MonoBehaviour:
       - m_Target: {fileID: 6809598953991120079}
         m_TargetAssemblyTypeName: NewEnemyBase, Assembly-CSharp
         m_MethodName: EnemyDied
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7194380021103880042}
+        m_TargetAssemblyTypeName: CombatAnimations, Assembly-CSharp
+        m_MethodName: OnDied
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
