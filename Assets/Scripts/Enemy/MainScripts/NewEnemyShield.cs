@@ -19,7 +19,8 @@ public class NewEnemyShield : NewEnemyBase
 
     private void Update()
     {
-        EnemyBehaviourCycle();
+        if (isAlive)
+            EnemyBehaviourCycle();
     }
 
     private void OnTriggerEnter(Collider other)

@@ -13,11 +13,18 @@ public class NewEnemyBase : MonoBehaviour
     [SerializeField] protected float angularSpeedAgent;
 
     protected Transform player;
+    protected bool isAlive = true;
 
     #region UNITY METHODS
+    private void Awake()
+    {
+        isAlive = true;
+    }
+
     private void Update()
     {
-        EnemyBehaviourCycle();
+        if (isAlive)
+            EnemyBehaviourCycle();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -136,7 +143,19 @@ public class NewEnemyBase : MonoBehaviour
 
     public void EnemyDied()
     {
-        Destroy(gameObject);
+        isAlive = false;
+        player = null;
+        agent.speed = 0;
+        agent.angularSpeed = 0;
+        agent.isStopped = true;
+        
+        if (TryGetComponent<CapsuleCollider>(out CapsuleCollider capsule)
+            && TryGetComponent<BoxCollider>(out BoxCollider box))
+        {
+            capsule.enabled = false;
+            box.enabled = false;
+        }
+        //Destroy(gameObject);
     }
     #endregion
 }

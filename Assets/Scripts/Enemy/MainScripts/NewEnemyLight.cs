@@ -6,9 +6,10 @@ public class NewEnemyLight : NewEnemyBase
 
     private void Update()
     {
-        if (!combatAnimationsComponent.IsInStunnedState)
+        if (isAlive && !combatAnimationsComponent.IsInStunnedState)
         {
-            agent.isStopped = false;
+            if (agent.isStopped)
+                agent.isStopped = false;
             EnemyBehaviourCycle();
         }
     }

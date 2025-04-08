@@ -285,7 +285,7 @@ CapsuleCollider:
   m_Radius: 0.08
   m_Height: 0.45
   m_Direction: 2
-  m_Center: {x: 0, y: 0.062, z: 0}
+  m_Center: {x: 0, y: 0.075, z: 0}
 --- !u!65 &3723604358142191387
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -349,6 +349,18 @@ MonoBehaviour:
       - m_Target: {fileID: 7344626188704782701}
         m_TargetAssemblyTypeName: NewEnemyBase, Assembly-CSharp
         m_MethodName: EnemyDied
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5411932331353239351}
+        m_TargetAssemblyTypeName: CombatAnimations, Assembly-CSharp
+        m_MethodName: OnDied
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -597,7 +609,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 5041792732846744763}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.25
+  m_Radius: 0.225
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50

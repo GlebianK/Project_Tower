@@ -33,6 +33,11 @@ public class CombatAnimations : MonoBehaviour
         animator.SetTrigger("isHit");
     }
 
+    public void OnDied()
+    {
+        animator.SetTrigger("isDead");
+    }
+
     #region INJURE ANIMATION CALLBACKS FOR LIGHT ENEMY
     public void OnStun()
     {
