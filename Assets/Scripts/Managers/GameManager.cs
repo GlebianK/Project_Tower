@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
             Application.Quit();
+        if (Input.GetKeyDown(KeyCode.R))
+            RestartLevel();
     }
 
     public void LoadLevel(int levelIndex)
