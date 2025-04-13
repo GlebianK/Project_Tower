@@ -5213,6 +5213,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7520830852255355189}
     m_Modifications:
+    - target: {fileID: 6056739360121877923, guid: 4ce95e2e1ad2ede47b4ffdfde5dce06b, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6056739360121877923, guid: 4ce95e2e1ad2ede47b4ffdfde5dce06b, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6056739360121877923, guid: 4ce95e2e1ad2ede47b4ffdfde5dce06b, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6056739360121877923, guid: 4ce95e2e1ad2ede47b4ffdfde5dce06b, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 6056739360121877923, guid: 4ce95e2e1ad2ede47b4ffdfde5dce06b, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7730261708100511570, guid: 4ce95e2e1ad2ede47b4ffdfde5dce06b, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -5392,6 +5412,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7520830852255355189}
     m_Modifications:
+    - target: {fileID: 3981698896032919581, guid: d06ffa99ec0ce5f47924c8a6de935238, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3981698896032919581, guid: d06ffa99ec0ce5f47924c8a6de935238, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3981698896032919581, guid: d06ffa99ec0ce5f47924c8a6de935238, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3981698896032919581, guid: d06ffa99ec0ce5f47924c8a6de935238, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5323531847517513537, guid: d06ffa99ec0ce5f47924c8a6de935238, type: 3}
       propertyPath: m_Name
       value: Tutorial Canvas
@@ -5474,6 +5510,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6718794449269379167, guid: d06ffa99ec0ce5f47924c8a6de935238, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8705081143435384330, guid: d06ffa99ec0ce5f47924c8a6de935238, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8705081143435384330, guid: d06ffa99ec0ce5f47924c8a6de935238, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8705081143435384330, guid: d06ffa99ec0ce5f47924c8a6de935238, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8705081143435384330, guid: d06ffa99ec0ce5f47924c8a6de935238, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
