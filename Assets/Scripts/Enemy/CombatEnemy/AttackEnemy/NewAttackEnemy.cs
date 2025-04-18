@@ -15,6 +15,7 @@ public class NewAttackEnemy : NewAttackBase
             {
                 if (hit.transform.TryGetComponent<Health>(out Health health))
                 {
+
                     yield return health;
                 }
             }

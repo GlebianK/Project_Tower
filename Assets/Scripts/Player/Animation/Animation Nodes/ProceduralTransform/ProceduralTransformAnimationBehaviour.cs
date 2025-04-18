@@ -70,7 +70,6 @@ public class ProceduralTransformAnimationBehaviour : ProceduralTransformAnimatio
         if (properties.offsetCurve.length == 0) 
             return 0;
 
-        //float loopedTime = time % maxTime;
         float loopedTime = time;
         return properties.offsetCurve.Evaluate(loopedTime) * properties.multiplier;
     }

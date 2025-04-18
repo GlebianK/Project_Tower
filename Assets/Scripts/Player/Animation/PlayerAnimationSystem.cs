@@ -66,7 +66,7 @@ public class PlayerAnimationSystem : MonoBehaviour
     {
         foreach (var animState in animationControllers)
         {
-            animState.Value.UpdateState(this, Time.deltaTime);
+            animState.Value.UpdateState(this, Time.timeScale *  Time.unscaledDeltaTime);
         }
         //foreach (var animState in animationControllers)
         //{
