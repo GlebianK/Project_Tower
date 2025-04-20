@@ -57,6 +57,7 @@ public class PlayerMovementStateConfig : ScriptableObject
     [SerializeField] private Vector3 hangCheckOffset;
     [SerializeField] private Vector3 hangBodyOffset;
     [SerializeField] private LayerMask hangDetectionLayer;
+    [SerializeField] private LayerMask hangExcludeCollisionLayer;
     [SerializeField] private float hangSnapSpeed = 2.5f;
 
     public float Acceleration => acceleration;
@@ -81,6 +82,7 @@ public class PlayerMovementStateConfig : ScriptableObject
     public float ClimbDownCheckRange => climbDownCheckRange;  
     public float ClimbMaxDuration => climbMaxDuration;
     public LayerMask ClimbObstacleLayer => groundObstacleLayer;
+    public LayerMask HangExcludeCollisionLayer => hangExcludeCollisionLayer;
     public float ClimbSnapXZRange => climbSnapHorizontalRange;
 
     public float HangHorizontalSpeed => hangHorizontalSpeed;

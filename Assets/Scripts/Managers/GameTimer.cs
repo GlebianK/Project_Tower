@@ -11,8 +11,7 @@ public class GameTimer : MonoBehaviour
     }
     private void Update()
     {
-        float timeScale = isScaled ? UnityEngine.Time.timeScale : 1;
-        Time += UnityEngine.Time.unscaledDeltaTime * timeScale;
+        Time += isScaled ? UnityEngine.Time.deltaTime : UnityEngine.Time.unscaledDeltaTime; //* timeScale;
     }
 
     public void RefreshTime()

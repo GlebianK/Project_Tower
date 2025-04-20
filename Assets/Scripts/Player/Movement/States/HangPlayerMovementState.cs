@@ -19,33 +19,7 @@ public class HangPlayerMovementState : PlayerMovementStateBase
 
     public override void HandleObstacleAfterMovement(float deltaTime, in RaycastHit hit)
     {
-        Vector3 position = movementController.transform.position
-            - (rail.forward * config.HangBodyOffset.z
-                + rail.right * config.HangBodyOffset.x
-                + Vector3.up * config.HangBodyOffset.y);
-
-        position = rail.GetPositionOnRail(position);
-
-        rail = rail.GetRailSegment(position);
-        targetPos = position +
-            (rail.forward * config.HangBodyOffset.z
-            + rail.right * config.HangBodyOffset.x
-            + Vector3.up * config.HangBodyOffset.y);
-
-        ikHandPlaceRoot.transform.position = position;
-        ikHandPlaceRoot.transform.rotation = Quaternion.LookRotation(rail.forward, Vector3.up);
-        Vector3 input = inputController.GetMovementDirectionInTransformSpace(movementController.transform);
-
-        Vector3 wsInput = Vector3.Project(input, rail.right).normalized;
-        float dot = Vector3.Dot(rail.right, wsInput);
-
-        ikHandPlaceRoot.SetRightMovementDirectionModifier(dot);
-
-
-        movementController.transform.position = Vector3.MoveTowards(
-            movementController.transform.position,
-            targetPos,
-            config.HangSnapSpeed * deltaTime);
+        
     }
 
     public override bool MakeTransitions(float deltaTime)
@@ -98,7 +72,10 @@ public class HangPlayerMovementState : PlayerMovementStateBase
             ikHandPlaceRoot.gameObject.SetActive(true);
 
             //movementController.transform.rotation = Quaternion.LookRotation(rail.forward, Vector3.up);
-            movementController.cc.enabled = false;
+
+
+            //movementController.cc.enabled = false;
+            movementController.cc.excludeLayers |= config.HangExcludeCollisionLayer;
 
             inputController.jumpPressed = false;
         }
@@ -111,7 +88,8 @@ public class HangPlayerMovementState : PlayerMovementStateBase
 
     public override void OnStateDeactivated(IPlayerMovementState nextState)
     {
-        movementController.cc.enabled = true;
+        //movementController.cc.enabled = true;
+        movementController.cc.excludeLayers = 0;
         ikHandPlaceRoot.gameObject.SetActive(false);
     }
 
@@ -124,8 +102,36 @@ public class HangPlayerMovementState : PlayerMovementStateBase
 
         Vector3 transformInput = Vector3.ClampMagnitude(forwardInput + leftRightInput, 1);
 
+        Vector3 targetVelocity = transformInput * config.HangHorizontalSpeed;
         if (transformInput == Vector3.zero)
-            return Vector3.zero;
-        return transformInput * config.HangHorizontalSpeed;
+            targetVelocity = Vector3.zero;
+
+        Vector3 position = movementController.transform.position + targetVelocity * deltaTime
+            - (rail.forward * config.HangBodyOffset.z
+                + rail.right * config.HangBodyOffset.x
+                + Vector3.up * config.HangBodyOffset.y);
+
+        position = rail.GetPositionOnRail(position);
+
+        rail = rail.GetRailSegment(position);
+        targetPos = position +
+            (rail.forward * config.HangBodyOffset.z
+            + rail.right * config.HangBodyOffset.x
+            + Vector3.up * config.HangBodyOffset.y);
+
+        ikHandPlaceRoot.transform.position = position;
+        ikHandPlaceRoot.transform.rotation = Quaternion.LookRotation(rail.forward, Vector3.up);
+        Vector3 transInput = inputController.GetMovementDirectionInTransformSpace(movementController.transform);
+
+        Vector3 wsInput = Vector3.Project(transInput, rail.right).normalized;
+        float dot = Vector3.Dot(rail.right, wsInput);
+
+        ikHandPlaceRoot.SetRightMovementDirectionModifier(dot);
+
+
+        return Vector3.MoveTowards(
+            Vector3.zero,
+            targetPos - movementController.transform.position,
+            config.HangSnapSpeed * deltaTime) / deltaTime;
     }
 }
