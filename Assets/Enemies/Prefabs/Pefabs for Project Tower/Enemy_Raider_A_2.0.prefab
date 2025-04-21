@@ -1109,7 +1109,7 @@ Transform:
   m_GameObject: {fileID: 3347994926271698150}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.1290001, z: -0.08793926}
+  m_LocalPosition: {x: 0, y: 1.1290001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2942,11 +2942,12 @@ MonoBehaviour:
   health: {fileID: 2222709706972014495}
   combatController: {fileID: 8810433414578241418}
   motionEnemy: {fileID: 4489702400080666215}
-  attackStartRange: 2
+  attackStartRange: 1.75
   maxPlayerDetectViewAngle: 15
   agent: {fileID: 351522251486779581}
   speedAgent: 3.5
   angularSpeedAgent: 475
+  destructionTimer: 5.5
   combatAnimationsComponent: {fileID: 5992165655238123155}
 --- !u!114 &8810433414578241418
 MonoBehaviour:
@@ -2962,7 +2963,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackEnemy:
     damage: 15
-    attackRange: 2
+    attackRange: 1.75
     damageDealingDelay: 0.7
     durationOfAttack: 1.25
     layerMask:

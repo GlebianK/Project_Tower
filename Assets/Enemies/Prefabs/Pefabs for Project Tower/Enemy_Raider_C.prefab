@@ -659,7 +659,7 @@ Transform:
   m_GameObject: {fileID: 1997987481314811981}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.2, z: 0.1500001}
+  m_LocalPosition: {x: 0, y: 1.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1021,6 +1021,7 @@ MonoBehaviour:
   agent: {fileID: 173867898177282197}
   speedAgent: 2
   angularSpeedAgent: 375
+  destructionTimer: 5.5
   combatAnimationsComponent: {fileID: 5548709662071400167}
   shieldObject: {fileID: 8207943633975042915}
   dropShieldHPThreshold: 50
