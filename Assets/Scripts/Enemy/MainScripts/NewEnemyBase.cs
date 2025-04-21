@@ -52,6 +52,7 @@ public class NewEnemyBase : MonoBehaviour
 
             if (distance <= attackStartRange)
             {
+                motionEnemy.StopMovingAnimations();
                 //agent.speed = 0f;
                 if (combatController.IsAttackAllowed())
                 {
@@ -83,8 +84,9 @@ public class NewEnemyBase : MonoBehaviour
     {
         agent.speed = speedAgent;
         agent.angularSpeed = angularSpeedAgent;
-        motionEnemy.StartMovingAnimations();
         agent.SetDestination(player.position);
+        agent.isStopped = false;
+        motionEnemy.StartMovingAnimations();
     }
 
     protected void AttackPlayer()
@@ -106,6 +108,7 @@ public class NewEnemyBase : MonoBehaviour
         {
             agent.speed = 0;
             agent.angularSpeed = 0;
+            agent.isStopped = true;
             motionEnemy.StopMovingAnimations();
             player = null;
         }
@@ -125,13 +128,17 @@ public class NewEnemyBase : MonoBehaviour
     {
         agent.speed = 0;
         agent.angularSpeed = 0;
+        agent.isStopped = true;
         motionEnemy.StopMovingAnimations();
     }
 
     public void OnAttackEnded()
     {
+        /*
         if (player != null)
             ChasePlayer();
+        */
+        Debug.Log($"Enemy ({gameObject.name}) attack finished!");
     }
 
     public void OnBlockStarted()
@@ -151,6 +158,7 @@ public class NewEnemyBase : MonoBehaviour
         agent.speed = 0;
         agent.angularSpeed = 0;
         agent.isStopped = true;
+        motionEnemy.StopMovingAnimations();
         
         if (TryGetComponent<CapsuleCollider>(out CapsuleCollider capsule)
             && TryGetComponent<BoxCollider>(out BoxCollider box))
