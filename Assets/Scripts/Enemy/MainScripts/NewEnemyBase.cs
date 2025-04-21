@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,6 +12,8 @@ public class NewEnemyBase : MonoBehaviour
     [SerializeField] protected NavMeshAgent agent;
     [SerializeField] protected float speedAgent;
     [SerializeField] protected float angularSpeedAgent;
+
+    [SerializeField] private float destructionTimer = 5.5f;
 
     protected Transform player;
     protected bool isAlive = true;
@@ -155,7 +158,14 @@ public class NewEnemyBase : MonoBehaviour
             capsule.enabled = false;
             box.enabled = false;
         }
+        StartCoroutine(DestroyAfterDeathCoroutine(gameObject));
         //Destroy(gameObject);
+    }
+
+    private IEnumerator DestroyAfterDeathCoroutine(GameObject objectToDestroy)
+    {
+        yield return new WaitForSeconds(destructionTimer);
+        Destroy(objectToDestroy);
     }
     #endregion
 }
