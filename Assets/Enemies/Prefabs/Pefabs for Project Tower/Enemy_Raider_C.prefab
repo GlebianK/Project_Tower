@@ -991,6 +991,18 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 5962977997049606169}
         m_TargetAssemblyTypeName: CombatControllerEnemy, Assembly-CSharp
+        m_MethodName: OnGetHit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5962977997049606169}
+        m_TargetAssemblyTypeName: CombatControllerEnemy, Assembly-CSharp
         m_MethodName: OnAttackAborted
         m_Mode: 1
         m_Arguments:
@@ -1016,7 +1028,7 @@ MonoBehaviour:
   health: {fileID: 1000085741665053029}
   combatController: {fileID: 5962977997049606169}
   motionEnemy: {fileID: 5014771220391163657}
-  attackStartRange: 2
+  attackStartRange: 1.75
   maxPlayerDetectViewAngle: 15
   agent: {fileID: 173867898177282197}
   speedAgent: 2
@@ -1039,9 +1051,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackEnemy:
     damage: 20
-    attackRange: 2
-    damageDealingDelay: 1
-    durationOfAttack: 1
+    attackRange: 1.75
+    damageDealingDelay: 0.42
+    durationOfAttack: 0.5
     layerMask:
       serializedVersion: 2
       m_Bits: 64
@@ -1133,8 +1145,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  minAttackCooldown: 0.15
-  maxAttackCooldown: 0.75
+  minAttackCooldown: 1.25
+  maxAttackCooldown: 2.55
+  afterHitRecoveryTimer: 1.75
 --- !u!114 &5548709662071400167
 MonoBehaviour:
   m_ObjectHideFlags: 0

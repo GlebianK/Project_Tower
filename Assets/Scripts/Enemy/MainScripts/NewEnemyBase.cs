@@ -53,7 +53,8 @@ public class NewEnemyBase : MonoBehaviour
             if (distance <= attackStartRange)
             {
                 motionEnemy.StopMovingAnimations();
-                //agent.speed = 0f;
+                agent.isStopped = true;
+                agent.speed = 0f;
                 if (combatController.IsAttackAllowed())
                 {
                     float angle = Vector3.Angle(transform.forward, (player.position - transform.position).normalized);

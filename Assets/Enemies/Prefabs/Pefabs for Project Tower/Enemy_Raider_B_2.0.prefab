@@ -2321,7 +2321,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &827741893211640738
 Transform:
   m_ObjectHideFlags: 0
@@ -2474,6 +2474,18 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 3922736392840904927}
         m_TargetAssemblyTypeName: CombatControllerEnemy, Assembly-CSharp
+        m_MethodName: OnGetHit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3922736392840904927}
+        m_TargetAssemblyTypeName: CombatControllerEnemy, Assembly-CSharp
         m_MethodName: OnAttackAborted
         m_Mode: 1
         m_Arguments:
@@ -2487,8 +2499,32 @@ MonoBehaviour:
   TookHeavyDamage:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 7511440189751364682}
+        m_TargetAssemblyTypeName: NewEnemyLight, Assembly-CSharp
+        m_MethodName: OnStun
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 4397146040343678384}
         m_TargetAssemblyTypeName: CombatAnimations, Assembly-CSharp
+        m_MethodName: OnGetHit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3922736392840904927}
+        m_TargetAssemblyTypeName: CombatControllerEnemy, Assembly-CSharp
         m_MethodName: OnGetHit
         m_Mode: 1
         m_Arguments:
@@ -2629,8 +2665,9 @@ MonoBehaviour:
     BlockEnded:
       m_PersistentCalls:
         m_Calls: []
-  minAttackCooldown: 0.25
-  maxAttackCooldown: 1.25
+  minAttackCooldown: 1.5
+  maxAttackCooldown: 2.75
+  afterHitRecoveryTimer: 1.75
 --- !u!114 &4397146040343678384
 MonoBehaviour:
   m_ObjectHideFlags: 0

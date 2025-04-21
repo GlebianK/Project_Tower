@@ -37,11 +37,13 @@ public class NewEnemyShield : NewEnemyBase
     {
         health.TookDamage.AddListener(combatController.OnAttackAborted);
         health.TookDamage.AddListener(combatAnimationsComponent.OnGetHit);
+        health.TookDamage.AddListener(combatAnimationsComponent.OnGetHit);
     }
 
     private void OnDisable()
     {
         health.TookDamage.RemoveListener(combatController.OnAttackAborted);
+        health.TookDamage.RemoveListener(combatAnimationsComponent.OnGetHit);
         health.TookDamage.RemoveListener(combatAnimationsComponent.OnGetHit);
     }
 
