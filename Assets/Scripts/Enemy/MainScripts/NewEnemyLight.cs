@@ -33,6 +33,7 @@ public class NewEnemyLight : NewEnemyBase
             agent.SetDestination(gameObject.transform.position);
             agent.speed = 0;
             agent.angularSpeed = 0;
+            agent.velocity = Vector3.zero;
             agent.isStopped = true;
             Debug.Log("New Enemy Light: STUNNED!");
         }
