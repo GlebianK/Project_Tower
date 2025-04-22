@@ -2,6 +2,12 @@ using UnityEngine;
 
 public class NewEnemyRat : NewEnemyBase
 {
+    protected void Awake()
+    {
+        base.Awake();
+
+        rewardResolveType = EnemyType.Rat;
+    }
     private void Update()
     {
         if (isAlive)

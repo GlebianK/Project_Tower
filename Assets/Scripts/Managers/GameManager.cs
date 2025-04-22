@@ -26,8 +26,6 @@ public class GameManager : MonoBehaviour
     
     public void RestartLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        Time.timeScale = 1;
-        Time.fixedDeltaTime = fixedDeltaTime * Time.timeScale;
+        LoadLevel(SceneManager.GetActiveScene().buildIndex);
     }
 }

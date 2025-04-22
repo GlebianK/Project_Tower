@@ -12,8 +12,10 @@ public class NewEnemyShield : NewEnemyBase
 
     public bool HasShield() => hasShield;
 
-    private void Awake()
+    protected void Awake()
     {
+        base.Awake();
+        rewardResolveType = EnemyType.Heavy;
         hasShield = true;
     }
 

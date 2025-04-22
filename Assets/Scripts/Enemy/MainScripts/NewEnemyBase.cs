@@ -15,8 +15,10 @@ public class NewEnemyBase : MonoBehaviour
     protected Transform player;
     protected bool isAlive = true;
 
+    protected EnemyType rewardResolveType;
+
     #region UNITY METHODS
-    private void Awake()
+    protected void Awake()
     {
         isAlive = true;
     }
@@ -154,6 +156,17 @@ public class NewEnemyBase : MonoBehaviour
         {
             capsule.enabled = false;
             box.enabled = false;
+        }
+
+        GameplayManager gm = FindAnyObjectByType<GameplayManager>();
+        if (gm)
+        {
+            gm.OnEnemyKilled(rewardResolveType);
+        }
+        else
+        {
+            Debug.LogWarning("Place GameplayManager script on scene to collect score reward for enemy "
+                + rewardResolveType.ToString());
         }
         //Destroy(gameObject);
     }

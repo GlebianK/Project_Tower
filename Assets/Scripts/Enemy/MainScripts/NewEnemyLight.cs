@@ -4,6 +4,13 @@ public class NewEnemyLight : NewEnemyBase
 {
     [SerializeField] private CombatAnimations combatAnimationsComponent;
 
+    protected void Awake()
+    {
+        base.Awake();
+
+        rewardResolveType = EnemyType.Light;
+    }
+
     private void Update()
     {
         if (isAlive && !combatAnimationsComponent.IsInStunnedState)
