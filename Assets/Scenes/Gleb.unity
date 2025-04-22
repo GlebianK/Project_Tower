@@ -191,6 +191,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 173867898177282197, guid: 3b9b04e5019d30249bef89cc5ec614bf, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 1.25
+      objectReference: {fileID: 0}
     - target: {fileID: 1385728402731658013, guid: 3b9b04e5019d30249bef89cc5ec614bf, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.961876
@@ -234,10 +238,6 @@ PrefabInstance:
     - target: {fileID: 2187700842882189711, guid: 3b9b04e5019d30249bef89cc5ec614bf, type: 3}
       propertyPath: m_Name
       value: Enemy_Raider_C
-      objectReference: {fileID: 0}
-    - target: {fileID: 2187700842882189711, guid: 3b9b04e5019d30249bef89cc5ec614bf, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -809,9 +809,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Raider_D
       objectReference: {fileID: 0}
-    - target: {fileID: 3205048880066735889, guid: d8d878537e4bd89488d5db7002428449, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 7048105651285985314, guid: d8d878537e4bd89488d5db7002428449, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 1.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

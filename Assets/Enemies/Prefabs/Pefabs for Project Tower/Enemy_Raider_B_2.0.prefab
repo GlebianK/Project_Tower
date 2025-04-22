@@ -2321,7 +2321,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &827741893211640738
 Transform:
   m_ObjectHideFlags: 0
@@ -2574,7 +2574,7 @@ MonoBehaviour:
   health: {fileID: 275301235421836816}
   combatController: {fileID: 3922736392840904927}
   motionEnemy: {fileID: 7253077586277809808}
-  attackStartRange: 1.75
+  attackStartRange: 1.5
   maxPlayerDetectViewAngle: 15
   agent: {fileID: 2293694163802157284}
   speedAgent: 3.5
@@ -2595,7 +2595,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackEnemy:
     damage: 15
-    attackRange: 1.75
+    attackRange: 1.5
     damageDealingDelay: 0.65
     durationOfAttack: 1.15
     layerMask:
@@ -2749,7 +2749,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 475
-  m_StoppingDistance: 1.15
+  m_StoppingDistance: 1.25
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

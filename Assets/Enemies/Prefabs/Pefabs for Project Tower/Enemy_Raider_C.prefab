@@ -1028,7 +1028,7 @@ MonoBehaviour:
   health: {fileID: 1000085741665053029}
   combatController: {fileID: 5962977997049606169}
   motionEnemy: {fileID: 5014771220391163657}
-  attackStartRange: 1.75
+  attackStartRange: 1.3
   maxPlayerDetectViewAngle: 15
   agent: {fileID: 173867898177282197}
   speedAgent: 2
@@ -1051,7 +1051,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackEnemy:
     damage: 20
-    attackRange: 1.75
+    attackRange: 1.32
     damageDealingDelay: 0.42
     durationOfAttack: 0.5
     layerMask:
