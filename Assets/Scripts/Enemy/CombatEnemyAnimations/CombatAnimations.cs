@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class CombatAnimations : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class CombatAnimations : MonoBehaviour
         isInStunnedState = false;
     }
 
+    // COMMON CALLBACK FOR ALL ENEMIES
     #region ATTACK ANIMATION CALLBACKS
     public void OnAttackStarted()
     {
@@ -27,7 +29,7 @@ public class CombatAnimations : MonoBehaviour
     }
     #endregion
 
-    // COMMON CALLBACK FOR ALL ENEMIES
+    
     public void OnGetHit()
     {
         animator.SetTrigger("isHit");

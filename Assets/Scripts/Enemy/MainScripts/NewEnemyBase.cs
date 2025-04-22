@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,7 +13,10 @@ public class NewEnemyBase : MonoBehaviour
     [SerializeField] protected float speedAgent;
     [SerializeField] protected float angularSpeedAgent;
 
+    [SerializeField] private float destructionTimer = 5.5f;
+
     protected Transform player;
+    protected float playerCCRadius = 0f;
     protected bool isAlive = true;
 
     protected EnemyType rewardResolveType;
@@ -21,6 +25,7 @@ public class NewEnemyBase : MonoBehaviour
     protected void Awake()
     {
         isAlive = true;
+        playerCCRadius = 0;
     }
 
     private void Update()
@@ -40,18 +45,28 @@ public class NewEnemyBase : MonoBehaviour
     }
     #endregion
 
-    #region USER PROTECTED METHODS
+    #region USER METHODS
 
     protected virtual void EnemyBehaviourCycle()
     {
         if (player != null)
         {
-            transform.rotation = RotateInDirectionOfPlayer();
-            float distance = Vector3.Distance(transform.position, player.position);
+            if (playerCCRadius == 0f)
+            {
+                if (player.gameObject.TryGetComponent<CharacterController>(out CharacterController player_cc))
+                    playerCCRadius = player_cc.radius;
+                else
+                    Debug.LogError("Cannot extract player's CC!");
+            }
 
+            transform.rotation = RotateInDirectionOfPlayer();
+            float distance = Vector3.Distance(transform.position, player.position) - playerCCRadius; // Radius to attack capsule surface
+            Debug.Log($"distance: {distance}, attack start distance: {attackStartRange}");
             if (distance <= attackStartRange)
             {
-                //agent.speed = 0f;
+                motionEnemy.StopMovingAnimations();
+                agent.isStopped = true;
+                agent.speed = 0f;
                 if (combatController.IsAttackAllowed())
                 {
                     float angle = Vector3.Angle(transform.forward, (player.position - transform.position).normalized);
@@ -80,10 +95,15 @@ public class NewEnemyBase : MonoBehaviour
 
     protected void ChasePlayer()
     {
-        agent.speed = speedAgent;
-        agent.angularSpeed = angularSpeedAgent;
-        motionEnemy.StartMovingAnimations();
-        agent.SetDestination(player.position);
+        if (player != null)
+        {
+            agent.speed = speedAgent;
+            agent.angularSpeed = angularSpeedAgent;
+            Vector3 playerCapsuleSurfacePos = GetPointOnSurface(gameObject.transform, player, playerCCRadius);
+            agent.SetDestination(player.position + playerCapsuleSurfacePos);  // CHANGED !!!!!!!!!!!!!!!!!!!!!! (����: player.position)
+            agent.isStopped = false;
+            motionEnemy.StartMovingAnimations();
+        }
     }
 
     protected void AttackPlayer()
@@ -105,8 +125,10 @@ public class NewEnemyBase : MonoBehaviour
         {
             agent.speed = 0;
             agent.angularSpeed = 0;
+            agent.isStopped = true;
             motionEnemy.StopMovingAnimations();
             player = null;
+            playerCCRadius = 0f;
         }
     }
 
@@ -117,6 +139,11 @@ public class NewEnemyBase : MonoBehaviour
             combatController.Block();
         }
     }
+
+    private Vector3 GetPointOnSurface(Transform start, Transform target, float distanceFromCenter)
+    {
+        return (target.position - start.position).normalized * distanceFromCenter;
+    }
     #endregion
 
     #region EVENT CALLBACKS
@@ -124,13 +151,17 @@ public class NewEnemyBase : MonoBehaviour
     {
         agent.speed = 0;
         agent.angularSpeed = 0;
+        agent.isStopped = true;
         motionEnemy.StopMovingAnimations();
     }
 
     public void OnAttackEnded()
     {
+        /*
         if (player != null)
             ChasePlayer();
+        */
+        Debug.Log($"Enemy ({gameObject.name}) attack finished!");
     }
 
     public void OnBlockStarted()
@@ -150,6 +181,7 @@ public class NewEnemyBase : MonoBehaviour
         agent.speed = 0;
         agent.angularSpeed = 0;
         agent.isStopped = true;
+        motionEnemy.StopMovingAnimations();
         
         if (TryGetComponent<CapsuleCollider>(out CapsuleCollider capsule)
             && TryGetComponent<BoxCollider>(out BoxCollider box))
@@ -157,6 +189,7 @@ public class NewEnemyBase : MonoBehaviour
             capsule.enabled = false;
             box.enabled = false;
         }
+        StartCoroutine(DestroyAfterDeathCoroutine(gameObject));
 
         GameplayManager gm = FindAnyObjectByType<GameplayManager>();
         if (gm)
@@ -170,5 +203,17 @@ public class NewEnemyBase : MonoBehaviour
         }
         //Destroy(gameObject);
     }
+
+    private IEnumerator DestroyAfterDeathCoroutine(GameObject objectToDestroy)
+    {
+        yield return new WaitForSeconds(destructionTimer);
+        Destroy(objectToDestroy);
+    }
     #endregion
+
+    //method for group fights
+    public void SetPlayer(Transform externalLinkToPlayer)
+    {
+        player = externalLinkToPlayer;
+    }
 }

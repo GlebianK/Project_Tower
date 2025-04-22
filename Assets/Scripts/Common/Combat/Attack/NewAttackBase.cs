@@ -15,7 +15,8 @@ public class NewAttackBase : ICombatAction
 
     protected RaycastHit hit;
     protected bool canAttack = true;
-    
+
+    public float DurationOfAttack => durationOfAttack;
     public bool attackIsAborted = false;
 
     public UnityEvent AttackStarted;
