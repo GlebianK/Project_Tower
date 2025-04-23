@@ -61,7 +61,7 @@ public class NewEnemyBase : MonoBehaviour
 
             transform.rotation = RotateInDirectionOfPlayer();
             float distance = Vector3.Distance(transform.position, player.position) - playerCCRadius; // Radius to attack capsule surface
-            Debug.Log($"distance: {distance}, attack start distance: {attackStartRange}");
+            //Debug.Log($"distance: {distance}, attack start distance: {attackStartRange}");
             if (distance <= attackStartRange)
             {
                 motionEnemy.StopMovingAnimations();

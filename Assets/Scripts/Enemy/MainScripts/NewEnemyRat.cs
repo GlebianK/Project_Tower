@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class NewEnemyRat : NewEnemyBase
 {
-    protected void Awake()
+    protected new void Awake()
     {
         base.Awake();
 

@@ -4,7 +4,7 @@ public class NewEnemyLight : NewEnemyBase
 {
     [SerializeField] private CombatAnimations combatAnimationsComponent;
 
-    protected void Awake()
+    protected new void Awake()
     {
         base.Awake();
 

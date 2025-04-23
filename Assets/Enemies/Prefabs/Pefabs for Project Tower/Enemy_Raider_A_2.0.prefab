@@ -1109,7 +1109,7 @@ Transform:
   m_GameObject: {fileID: 3347994926271698150}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.1290001, z: 0}
+  m_LocalPosition: {x: 0, y: 1.35, z: 0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2701,7 +2701,6 @@ GameObject:
   - component: {fileID: 2222709706972014495}
   - component: {fileID: 5240576199430911265}
   - component: {fileID: 2513900279432591625}
-  - component: {fileID: 8810433414578241418}
   - component: {fileID: 5992165655238123155}
   - component: {fileID: 4489702400080666215}
   - component: {fileID: 3506430197503193135}
@@ -2865,7 +2864,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8810433414578241418}
+      - m_Target: {fileID: 2513900279432591625}
         m_TargetAssemblyTypeName: CombatControllerEnemy, Assembly-CSharp
         m_MethodName: OnGetHit
         m_Mode: 1
@@ -2877,7 +2876,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8810433414578241418}
+      - m_Target: {fileID: 2513900279432591625}
         m_TargetAssemblyTypeName: CombatControllerEnemy, Assembly-CSharp
         m_MethodName: OnAttackAborted
         m_Mode: 1
@@ -2904,7 +2903,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8810433414578241418}
+      - m_Target: {fileID: 2513900279432591625}
         m_TargetAssemblyTypeName: CombatControllerEnemy, Assembly-CSharp
         m_MethodName: OnAttackAborted
         m_Mode: 1
@@ -2916,7 +2915,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8810433414578241418}
+      - m_Target: {fileID: 2513900279432591625}
         m_TargetAssemblyTypeName: CombatControllerEnemy, Assembly-CSharp
         m_MethodName: OnGetHit
         m_Mode: 1
@@ -2965,9 +2964,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 2222709706972014495}
-  combatController: {fileID: 8810433414578241418}
+  combatController: {fileID: 2513900279432591625}
   motionEnemy: {fileID: 4489702400080666215}
-  attackStartRange: 1.5
+  attackStartRange: 1.05
   maxPlayerDetectViewAngle: 15
   agent: {fileID: 351522251486779581}
   speedAgent: 3.5
@@ -2988,7 +2987,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackEnemy:
     damage: 15
-    attackRange: 1.5
+    attackRange: 1.35
     damageDealingDelay: 0.7
     durationOfAttack: 1.2
     layerMask:
@@ -3002,93 +3001,6 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 5240576199430911265}
           m_TargetAssemblyTypeName: NewEnemyBase, Assembly-CSharp
-          m_MethodName: 
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 5992165655238123155}
-          m_TargetAssemblyTypeName: CombatAnimations, Assembly-CSharp
-          m_MethodName: 
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    AttackEnded:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5240576199430911265}
-          m_TargetAssemblyTypeName: NewEnemyBase, Assembly-CSharp
-          m_MethodName: 
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 5992165655238123155}
-          m_TargetAssemblyTypeName: CombatAnimations, Assembly-CSharp
-          m_MethodName: 
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  blockEnemy:
-    BlockStarted:
-      m_PersistentCalls:
-        m_Calls: []
-    BlockEnded:
-      m_PersistentCalls:
-        m_Calls: []
-  minAttackCooldown: 1.6
-  maxAttackCooldown: 2.3
-  afterHitRecoveryTimer: 1.75
---- !u!114 &8810433414578241418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7718247951730083056}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c8b8423e873a9946aaa7df728e9c9f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackEnemy:
-    damage: 15
-    attackRange: 1.75
-    damageDealingDelay: 0.7
-    durationOfAttack: 1.25
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 64
-    AttackRaycastPointPosition: {fileID: 2728600030059834389}
-    attackType: 0
-    attackIsAborted: 0
-    AttackStarted:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5240576199430911265}
-          m_TargetAssemblyTypeName: NewEnemyBase, Assembly-CSharp
           m_MethodName: OnAttackStarted
           m_Mode: 1
           m_Arguments:
@@ -3145,9 +3057,9 @@ MonoBehaviour:
     BlockEnded:
       m_PersistentCalls:
         m_Calls: []
-  minAttackCooldown: 0.25
-  maxAttackCooldown: 1.1
-  afterHitRecoveryTimer: 1.75
+  minAttackCooldown: 0.35
+  maxAttackCooldown: 1.15
+  afterHitRecoveryTimer: 0.8
 --- !u!114 &5992165655238123155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3160,7 +3072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1fc31a2b5f883a4caadb6d3ece452a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stunnedAnimationTimer: 2
+  stunnedAnimationTimer: 1.75
 --- !u!114 &4489702400080666215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3226,10 +3138,10 @@ NavMeshAgent:
   m_AgentTypeID: -902729914
   m_Radius: 0.35
   m_Speed: 3.5
-  m_Acceleration: 8
+  m_Acceleration: 6.5
   avoidancePriority: 50
   m_AngularSpeed: 475
-  m_StoppingDistance: 1.25
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
