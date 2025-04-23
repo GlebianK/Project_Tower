@@ -67,12 +67,14 @@ public class NewEnemyBase : MonoBehaviour
                 motionEnemy.StopMovingAnimations();
                 agent.isStopped = true;
                 agent.speed = 0f;
+                agent.velocity = Vector3.zero;
                 if (combatController.IsAttackAllowed())
                 {
                     float angle = Vector3.Angle(transform.forward, (player.position - transform.position).normalized);
                     if (angle < maxPlayerDetectViewAngle)
                     {
                         agent.speed = 0f;
+                        agent.velocity = Vector3.zero;
                         AttackPlayer();
                     }
                 }
@@ -126,6 +128,7 @@ public class NewEnemyBase : MonoBehaviour
             agent.speed = 0;
             agent.angularSpeed = 0;
             agent.isStopped = true;
+            agent.velocity = Vector3.zero;
             motionEnemy.StopMovingAnimations();
             player = null;
             playerCCRadius = 0f;
@@ -151,6 +154,7 @@ public class NewEnemyBase : MonoBehaviour
     {
         agent.speed = 0;
         agent.angularSpeed = 0;
+        agent.velocity = Vector3.zero;
         agent.isStopped = true;
         motionEnemy.StopMovingAnimations();
     }
@@ -181,6 +185,7 @@ public class NewEnemyBase : MonoBehaviour
         agent.speed = 0;
         agent.angularSpeed = 0;
         agent.isStopped = true;
+        agent.velocity = Vector3.zero;
         motionEnemy.StopMovingAnimations();
         
         if (TryGetComponent<CapsuleCollider>(out CapsuleCollider capsule)
