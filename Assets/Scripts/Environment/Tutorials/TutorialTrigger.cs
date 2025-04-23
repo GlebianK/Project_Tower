@@ -1,9 +1,13 @@
+using System.Collections;
 using UnityEngine;
 
 public class TutorialTrigger : MonoBehaviour
 {
     [Tooltip("По этому ID ищется соответствующий туториал в UI")]
     [SerializeField] private int id;
+
+    [Tooltip("Время удержания туториала на экране (в секундах)")]
+    [SerializeField] private float hideTimer = 2.5f;
 
     private bool isPassed;
 
@@ -19,13 +23,25 @@ public class TutorialTrigger : MonoBehaviour
         {
             isPassed = true;
             TutorialCanvas.Instance.ShowTutorial(id);
+            StartCoroutine(HideTutorialPanelTimerCoroutine());
         }
     }
 
+    /*
     private void OnTriggerExit(Collider other)
     {
         Debug.Log($"{other.name} exited Tutor Zone with id {id}!");
         if (other.CompareTag("Player") && isPassed)
+        {
+            TutorialCanvas.Instance.HideTutorial();
+        }
+    }
+    */
+
+    private IEnumerator HideTutorialPanelTimerCoroutine()
+    {
+        yield return new WaitForSeconds(hideTimer);
+        if (isPassed )
         {
             TutorialCanvas.Instance.HideTutorial();
         }

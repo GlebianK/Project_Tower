@@ -841,49 +841,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2416856077942722434, guid: d8d878537e4bd89488d5db7002428449, type: 3}
-      propertyPath: attackStartRange
-      value: 1.15
-      objectReference: {fileID: 0}
     - target: {fileID: 3205048880066735889, guid: d8d878537e4bd89488d5db7002428449, type: 3}
       propertyPath: m_Name
       value: Enemy_Raider_D
-      objectReference: {fileID: 0}
-    - target: {fileID: 3205048880066735889, guid: d8d878537e4bd89488d5db7002428449, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5134204888741610866, guid: d8d878537e4bd89488d5db7002428449, type: 3}
-      propertyPath: maxAttackCooldown
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5134204888741610866, guid: d8d878537e4bd89488d5db7002428449, type: 3}
-      propertyPath: minAttackCooldown
-      value: 1.65
-      objectReference: {fileID: 0}
-    - target: {fileID: 5134204888741610866, guid: d8d878537e4bd89488d5db7002428449, type: 3}
-      propertyPath: afterHitRecoveryTimer
-      value: 1.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 5134204888741610866, guid: d8d878537e4bd89488d5db7002428449, type: 3}
-      propertyPath: attackEnemy.attackRange
-      value: 1.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 5134204888741610866, guid: d8d878537e4bd89488d5db7002428449, type: 3}
-      propertyPath: attackEnemy.durationOfAttack
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5134204888741610866, guid: d8d878537e4bd89488d5db7002428449, type: 3}
-      propertyPath: attackEnemy.damageDealingDelay
-      value: 0.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 7048105651285985314, guid: d8d878537e4bd89488d5db7002428449, type: 3}
-      propertyPath: m_Speed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7048105651285985314, guid: d8d878537e4bd89488d5db7002428449, type: 3}
-      propertyPath: m_StoppingDistance
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
