@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 [Serializable]
 public enum EnemyType
@@ -62,14 +63,14 @@ public class GameplayManager : MonoBehaviour
 
     public void OnPlayerDied()
     {
-        StopGameplay();
+        GameManager.Instance.StopGameplay();
 
         LostGameEvent.Invoke();
     }
 
     public void OnPlayerReachedEnd()
     {
-        StopGameplay();
+        GameManager.Instance.StopGameplay();
 
         CompleteGameEvent.Invoke();
     }
@@ -113,13 +114,5 @@ public class GameplayManager : MonoBehaviour
             else
                 OnGameNormEnded?.Invoke();
         }
-    }
-    private void StopGameplay()
-    {
-        Time.timeScale = 0;
-        Time.fixedDeltaTime = 0;
-
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
     }
 }

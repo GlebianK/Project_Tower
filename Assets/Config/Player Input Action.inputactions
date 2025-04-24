@@ -103,6 +103,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "AbortMovement",
+                    "type": "Button",
+                    "id": "d87c3eac-d7ee-43d1-aeda-7d1137442243",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -268,6 +277,45 @@
                     "processors": "",
                     "groups": "",
                     "action": "UseMedkit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "18122446-e3c9-4e9b-a9ad-d1006db60ae9",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AbortMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI Interaction",
+            "id": "e22a6955-dbf6-4fb8-8dc8-6e1caeac7a9b",
+            "actions": [
+                {
+                    "name": "ReturnMovement",
+                    "type": "Button",
+                    "id": "c6799046-cbc5-4ca2-b7d2-0ebf7b9af75f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "194e8ad4-d63f-42b1-b0b7-2edf93e47ac8",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ReturnMovement",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

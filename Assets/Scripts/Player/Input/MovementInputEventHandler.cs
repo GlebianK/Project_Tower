@@ -97,4 +97,31 @@ public class MovementInputEventHandler : MonoBehaviour
             jumpPressed = true;
         }
     }
+
+    public void OnBlockMovement(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            BlockMovement();
+        }
+    }
+
+    public void OnReturnMovement(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            ReturnMovement();
+        }
+    }
+
+    // костыльные дубликаты возвращения мувмента в обход CallbackContext'а для использщования в других скриптах
+    public void BlockMovement()
+    {
+        GameManager.Instance.StopGameplay(gameObject);
+    }
+
+    public void ReturnMovement()
+    {
+        GameManager.Instance.ReturnGameplay(gameObject);
+    }
 }
