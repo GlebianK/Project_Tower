@@ -6,6 +6,7 @@
  */
 
 using UnityEngine;
+using UnityEngine.Events;
 
 public class AudioManager : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class AudioManager : MonoBehaviour
 
     private float currentMusicMasterVolume;
     private float currentSFXMasterVolume;
+
+    public UnityEvent MusicVolumeChanged;
+    public UnityEvent SfxVolumeChanged;
 
     public float GetCurrentMusicMasterVolume() => currentMusicMasterVolume;
     public float GetCurrentSFXMasterVolume() => currentSFXMasterVolume;
@@ -54,13 +58,13 @@ public class AudioManager : MonoBehaviour
         if (PlayerPrefs.HasKey("MusicSFXVolume"))
         {
             currentSFXMasterVolume = PlayerPrefs.GetFloat("MusicSFXVolume");
-            Debug.Log($"Found saved music master volume value: {currentSFXMasterVolume}");
+            Debug.Log($"Found saved sfx master volume value: {currentSFXMasterVolume}");
         }
         else
         {
             currentSFXMasterVolume = defaultSFXMasterVolume;
             PlayerPrefs.SetFloat("MusicSFXVolume", currentSFXMasterVolume);
-            Debug.Log($"Applying default music master volume value: {currentSFXMasterVolume}");
+            Debug.Log($"Applying default sfx master volume value: {currentSFXMasterVolume}");
         }
 
         Debug.Log("AudioManager: Sound settings initiated!");
