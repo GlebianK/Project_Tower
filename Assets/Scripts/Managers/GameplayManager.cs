@@ -15,33 +15,21 @@ public enum EnemyType
 public class GameplayManager : MonoBehaviour
 {
     [SerializeField] private GameTimer timer;
-    [Header("Finals")]
-    [SerializeField] private int badEndMaximumScore;
-    [SerializeField] private int goodEndMinimumScore;
 
-    [Header("Score Rewards")]
-    [InspectorName("For Rat")]
-    [SerializeField] private int ratEnemyScoreReward;
-    [InspectorName("For Enemy")]
-    [SerializeField] private int lightEnemyScoreReward;
-    [InspectorName("For Heavy")]
-    [SerializeField] private int heavyEnemyScoreReward;
-    [InspectorName("For HealthKit")]
-    [SerializeField] private int healthkitScoreReward;
+    [Header("Time")]
+    [SerializeField] private bool enableTimeoutBadEnd;
 
-    [Header("Time reward")]
-    [SerializeField] private int scoresPerRemainingSeconds;
-    [SerializeField] private int maxScoresForTime;
+    [Header("Enemies")]
+    [SerializeField] private int enemyKillsForGoodEnd;
+    [InspectorName("Count Rat")]
+    [SerializeField] private bool ratKillCounted;
+    [InspectorName("Count Light Enemy")]
+    [SerializeField] private bool lightKillCounted;
+    [InspectorName("Count Heavy Enemy")]
+    [SerializeField] private bool heavyKillCounted;
 
-    public float Score { get
-        {
-            return Mathf.Max(Mathf.Min((int)timer.Time * maxScoresForTime, maxScoresForTime), 0)
-                + RatKilled * ratEnemyScoreReward
-                + LightKilled * lightEnemyScoreReward
-                + HeavyKilled * heavyEnemyScoreReward
-                + HealthkitCollected * healthkitScoreReward;
-        }
-    }
+    [Header("Health Kits")]
+    [SerializeField] private int healthKitsForGoodEnd;
 
     public int HealthkitCollected { get; private set; }
     public int RatKilled { get; private set; }
@@ -72,7 +60,7 @@ public class GameplayManager : MonoBehaviour
     {
         GameManager.Instance.StopGameplay();
 
-        CompleteGameEvent.Invoke();
+        ShowEnding();
     }
 
     public void OnHealthKitPickup()
@@ -101,18 +89,51 @@ public class GameplayManager : MonoBehaviour
         }
     }
 
-    public void ShowEnding()
+    public void ShowStatsOnComplete()
     {
-        if (Score < badEndMaximumScore)
+        CompleteGameEvent?.Invoke();
+    }
+
+    private void ShowEnding()
+    {
+        if (enableTimeoutBadEnd && timer.Time <= 0)
         {
             OnGameBadEnded?.Invoke();
+            return;
         }
-        else
+
+        int totalKills = GetEnemyKillsCounted();
+        if (totalKills < enemyKillsForGoodEnd)
         {
-            if (Score >= goodEndMinimumScore)
-                OnGameGoodEnded?.Invoke();
-            else
-                OnGameNormEnded?.Invoke();
+            OnGameBadEnded?.Invoke();
+            return;
         }
+
+        if (HealthkitCollected < healthKitsForGoodEnd)
+        {
+            OnGameNormEnded?.Invoke();
+            return;
+        }
+
+        OnGameGoodEnded?.Invoke();
+    }
+
+    private int GetEnemyKillsCounted()
+    {
+        int totalKills = 0;
+        if (ratKillCounted)
+        {
+            totalKills += RatKilled;
+        }
+        if (lightKillCounted)
+        {
+            totalKills += LightKilled;
+        }
+        if (heavyKillCounted)
+        {
+            totalKills += HeavyKilled;
+        }
+
+        return totalKills;
     }
 }

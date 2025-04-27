@@ -5,6 +5,7 @@ public class GameTimer : MonoBehaviour
     [SerializeField] private float initialTimeInSeconds;
     [SerializeField] private bool isScaled = false;
     public float Time { get; private set; }
+    public float TimeClamped => Mathf.Clamp(Time, 0, initialTimeInSeconds);
 
     private void Awake()
     {
@@ -12,8 +13,7 @@ public class GameTimer : MonoBehaviour
     }
     private void Update()
     {
-        Time -= isScaled ? UnityEngine.Time.deltaTime : UnityEngine.Time.unscaledDeltaTime; //* timeScale;
-        Time = Mathf.Clamp(Time, 0, initialTimeInSeconds);
+        Time -= isScaled ? UnityEngine.Time.deltaTime : UnityEngine.Time.unscaledDeltaTime;
     }
 
     public void RefreshTime()

@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 
 public class InGameTimerView : MonoBehaviour
 {
@@ -12,9 +11,11 @@ public class InGameTimerView : MonoBehaviour
     {
         if (timerHandler.enabled)
         {
-            int minute = Mathf.FloorToInt(timerHandler.Time / 60);
-            int second = Mathf.FloorToInt(timerHandler.Time) - minute * 60;
-            int millisec = Mathf.FloorToInt((timerHandler.Time * 1000) % 1000);
+            float gameTime = timerHandler.TimeClamped;
+            int minute = Mathf.FloorToInt(gameTime / 60);
+            int second = Mathf.FloorToInt(gameTime) - minute * 60;
+
+            int millisec = Mathf.FloorToInt((int)(timerHandler.Time * 1000) % 1000);
             textField.text = string.Format(format, minute, second, millisec);
         }
     }
@@ -23,6 +24,6 @@ public class InGameTimerView : MonoBehaviour
     {
         if (textField == null) return;
 
-        textField.text = string.Format(format, 0, 0, 0); ;
+        textField.text = string.Format(format, 0, 0, 0); 
     }
 }

@@ -296,7 +296,7 @@ public class PlayerMovementStateMachine : MonoBehaviour
                 out climbDestinationHit,
                 Properties.ClimbDownCheckRange,
                 Properties.ClimbObstacleLayer,
-                QueryTriggerInteraction.Collide
+                QueryTriggerInteraction.Ignore
                 ))
             {
                 if (IsClimbDestinationCorrect(in climbDestinationHit))
@@ -317,7 +317,7 @@ public class PlayerMovementStateMachine : MonoBehaviour
                 out climbDestinationHit,
                 Properties.ClimbDownCheckRange,
                 Properties.ClimbObstacleLayer,
-                QueryTriggerInteraction.Collide
+                QueryTriggerInteraction.Ignore
                 ))
             {
                 return false;
