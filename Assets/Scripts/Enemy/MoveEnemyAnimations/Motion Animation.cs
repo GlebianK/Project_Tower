@@ -16,7 +16,15 @@ public class MotionAnimation: MonoBehaviour
     }
     public void MovingEnded()
     {
-        animator.SetBool("canMove",false);
+        animator.SetBool("canMove", false);
+    }
+    public void FollowStarted()
+    {
+        animator.SetBool("canFollow", true);
+    }
+    public void FollowEnded()
+    {
+        animator.SetBool("canFollow", false);
     }
     #endregion
 }
