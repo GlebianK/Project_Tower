@@ -167,10 +167,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2416856077942722434, guid: d8d878537e4bd89488d5db7002428449, type: 3}
-      propertyPath: attackStartRange
-      value: 1.05
-      objectReference: {fileID: 0}
     - target: {fileID: 3205048880066735889, guid: d8d878537e4bd89488d5db7002428449, type: 3}
       propertyPath: m_Name
       value: Enemy_Raider_D
@@ -178,70 +174,6 @@ PrefabInstance:
     - target: {fileID: 3205048880066735889, guid: d8d878537e4bd89488d5db7002428449, type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4457817270890242056, guid: d8d878537e4bd89488d5db7002428449, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4996885776109548527, guid: d8d878537e4bd89488d5db7002428449, type: 3}
-      propertyPath: FollowEnded.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4996885776109548527, guid: d8d878537e4bd89488d5db7002428449, type: 3}
-      propertyPath: FollowStarted.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4996885776109548527, guid: d8d878537e4bd89488d5db7002428449, type: 3}
-      propertyPath: FollowEnded.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4996885776109548527, guid: d8d878537e4bd89488d5db7002428449, type: 3}
-      propertyPath: FollowEnded.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 366686126}
-    - target: {fileID: 4996885776109548527, guid: d8d878537e4bd89488d5db7002428449, type: 3}
-      propertyPath: FollowStarted.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4996885776109548527, guid: d8d878537e4bd89488d5db7002428449, type: 3}
-      propertyPath: FollowStarted.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 366686126}
-    - target: {fileID: 4996885776109548527, guid: d8d878537e4bd89488d5db7002428449, type: 3}
-      propertyPath: FollowEnded.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4996885776109548527, guid: d8d878537e4bd89488d5db7002428449, type: 3}
-      propertyPath: FollowEnded.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: FollowEnded
-      objectReference: {fileID: 0}
-    - target: {fileID: 4996885776109548527, guid: d8d878537e4bd89488d5db7002428449, type: 3}
-      propertyPath: FollowStarted.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4996885776109548527, guid: d8d878537e4bd89488d5db7002428449, type: 3}
-      propertyPath: FollowStarted.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: FollowStarted
-      objectReference: {fileID: 0}
-    - target: {fileID: 4996885776109548527, guid: d8d878537e4bd89488d5db7002428449, type: 3}
-      propertyPath: FollowEnded.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MotionAnimation, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4996885776109548527, guid: d8d878537e4bd89488d5db7002428449, type: 3}
-      propertyPath: FollowStarted.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MotionAnimation, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4996885776109548527, guid: d8d878537e4bd89488d5db7002428449, type: 3}
-      propertyPath: FollowEnded.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 4996885776109548527, guid: d8d878537e4bd89488d5db7002428449, type: 3}
-      propertyPath: FollowStarted.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 6391752666143194889, guid: d8d878537e4bd89488d5db7002428449, type: 3}
-      propertyPath: maxHp
-      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -309,17 +241,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ed490145d98b8141a89328c47b6f977, type: 3}
---- !u!114 &366686126 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 189803207094907398, guid: d8d878537e4bd89488d5db7002428449, type: 3}
-  m_PrefabInstance: {fileID: 96432817}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce35f45686dc9e94cabf5a74f3c354c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &424404956
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -328,10 +249,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 351522251486779581, guid: 7ffca485f0711e0498fa3a77b7cc73f5, type: 3}
-      propertyPath: m_Speed
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 2952232778851614848, guid: 7ffca485f0711e0498fa3a77b7cc73f5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.53
@@ -372,21 +289,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5240576199430911265, guid: 7ffca485f0711e0498fa3a77b7cc73f5, type: 3}
-      propertyPath: speedAgent
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 5240576199430911265, guid: 7ffca485f0711e0498fa3a77b7cc73f5, type: 3}
-      propertyPath: maxPlayerDetectViewAngle
-      value: 500
-      objectReference: {fileID: 0}
     - target: {fileID: 7718247951730083056, guid: 7ffca485f0711e0498fa3a77b7cc73f5, type: 3}
       propertyPath: m_Name
       value: Enemy_Raider_A_2.0
       objectReference: {fileID: 0}
     - target: {fileID: 7718247951730083056, guid: 7ffca485f0711e0498fa3a77b7cc73f5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

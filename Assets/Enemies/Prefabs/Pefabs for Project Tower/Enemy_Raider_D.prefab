@@ -1294,7 +1294,7 @@ MonoBehaviour:
   health: {fileID: 6391752666143194889}
   combatController: {fileID: 5134204888741610866}
   motionEnemy: {fileID: 4996885776109548527}
-  attackStartRange: 1.15
+  attackStartRange: 1.05
   maxPlayerDetectViewAngle: 15
   agent: {fileID: 7048105651285985314}
   speedAgent: 2
@@ -1319,7 +1319,7 @@ MonoBehaviour:
     damage: 20
     attackRange: 1.35
     damageDealingDelay: 0.45
-    durationOfAttack: 0.6
+    durationOfAttack: 0.9
     layerMask:
       serializedVersion: 2
       m_Bits: 64
@@ -1411,8 +1411,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  minAttackCooldown: 1.65
-  maxAttackCooldown: 2
+  minAttackCooldown: 0
+  maxAttackCooldown: 0
   afterHitRecoveryTimer: 1.05
 --- !u!114 &1716496027889720428
 MonoBehaviour:
@@ -1454,12 +1454,42 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  FollowStarted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 189803207094907398}
+        m_TargetAssemblyTypeName: MotionAnimation, Assembly-CSharp
+        m_MethodName: FollowStarted
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   MoveEnded:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 189803207094907398}
         m_TargetAssemblyTypeName: MotionAnimation, Assembly-CSharp
         m_MethodName: MovingEnded
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  FollowEnded:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 189803207094907398}
+        m_TargetAssemblyTypeName: MotionAnimation, Assembly-CSharp
+        m_MethodName: FollowEnded
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

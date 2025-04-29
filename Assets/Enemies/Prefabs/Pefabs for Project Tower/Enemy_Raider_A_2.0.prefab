@@ -2967,9 +2967,9 @@ MonoBehaviour:
   combatController: {fileID: 2513900279432591625}
   motionEnemy: {fileID: 4489702400080666215}
   attackStartRange: 1.05
-  maxPlayerDetectViewAngle: 15
+  maxPlayerDetectViewAngle: 500
   agent: {fileID: 351522251486779581}
-  speedAgent: 3.5
+  speedAgent: 50
   angularSpeedAgent: 475
   destructionTimer: 5.5
   combatAnimationsComponent: {fileID: 5992165655238123155}
@@ -2989,7 +2989,7 @@ MonoBehaviour:
     damage: 15
     attackRange: 1.35
     damageDealingDelay: 0.7
-    durationOfAttack: 1.2
+    durationOfAttack: 0.95
     layerMask:
       serializedVersion: 2
       m_Bits: 64
@@ -3057,8 +3057,8 @@ MonoBehaviour:
     BlockEnded:
       m_PersistentCalls:
         m_Calls: []
-  minAttackCooldown: 0.35
-  maxAttackCooldown: 1.15
+  minAttackCooldown: 0.05
+  maxAttackCooldown: 0.1
   afterHitRecoveryTimer: 0.8
 --- !u!114 &5992165655238123155
 MonoBehaviour:
@@ -3100,6 +3100,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  FollowStarted:
+    m_PersistentCalls:
+      m_Calls: []
   MoveEnded:
     m_PersistentCalls:
       m_Calls:
@@ -3115,6 +3118,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  FollowEnded:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3506430197503193135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3137,7 +3143,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: -902729914
   m_Radius: 0.35
-  m_Speed: 3.5
+  m_Speed: 10
   m_Acceleration: 6.5
   avoidancePriority: 50
   m_AngularSpeed: 475
