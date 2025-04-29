@@ -47,9 +47,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundsCollection:
+  - action: Ambience
+    clip: {fileID: 8300000, guid: 858e70fe1f560d6448df484095beb8bd, type: 3}
+    isLooped: 1
+    volume: 1
+    pitch: 1
   - action: Background music
     clip: {fileID: 8300000, guid: 543f918de622a7d468b41757b69391fc, type: 3}
+    isLooped: 1
     volume: 0.75
+    pitch: 1
   sfxSource: {fileID: 2705175860017235940}
   musicSource: {fileID: 4875422049258808087}
 --- !u!82 &2705175860017235940
@@ -67,7 +74,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

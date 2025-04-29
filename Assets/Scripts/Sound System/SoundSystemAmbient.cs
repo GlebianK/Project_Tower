@@ -11,6 +11,7 @@ public class SoundSystemAmbient : SoundSystemBase
         if (AudioManager.Instance != null)
         {
             AudioManager.Instance.MusicVolumeChanged.AddListener(OnMusicVolumeChanged);
+            AudioManager.Instance.SfxVolumeChanged.AddListener(OnSFXVolumeChanged);
             InitializeSources();
         }
         else
@@ -24,14 +25,23 @@ public class SoundSystemAmbient : SoundSystemBase
         AudioManager.Instance.MusicVolumeChanged.RemoveListener(OnMusicVolumeChanged);
     }
 
-    protected override void InitializeSources()
+    private void InitializeSources()
     {
         Debug.LogWarning($"{gameObject.name}'s sound INIT method");
-        base.InitializeSources();
+
+        if (sfxSource != null && AudioManager.Instance != null)
+        {
+            sfxSource.volume = AudioManager.Instance.GetCurrentSFXMasterVolume();
+        }
+        else
+        {
+            Debug.LogError($"{gameObject.name}: SFX source or AM.Instance is NULL!");
+            return;
+        }
 
         if (musicSource != null)
         {
-            musicSource.volume *= AudioManager.Instance.GetCurrentMusicMasterVolume();
+            musicSource.volume = AudioManager.Instance.GetCurrentMusicMasterVolume();
         }
         else
         {
@@ -44,20 +54,24 @@ public class SoundSystemAmbient : SoundSystemBase
             if (soundsCollection.Length == 1)
             {
                 currentMusicItem = soundsCollection[0];
-                musicSource.clip = soundsCollection[0].clip;
-                if(musicSource.volume > 0)
-                    musicSource.Play();
+                musicSource.clip = currentMusicItem.clip;
+                musicSource.loop = currentMusicItem.isLooped;
+                musicSource.Play();
             }
-            else
+            else if (soundsCollection.Length == 2)
             {
                 currentSFXItem = soundsCollection[0];
-                sfxSource.clip = soundsCollection[0].clip;
+                sfxSource.clip = currentSFXItem.clip;
+                sfxSource.loop = currentSFXItem.isLooped;
                 sfxSource.Play();
 
                 currentMusicItem = soundsCollection[1];
-                musicSource.clip = soundsCollection[1].clip;
+                musicSource.clip = currentMusicItem.clip;
+                musicSource.loop = currentMusicItem.isLooped;
                 musicSource.Play();
             }
+            else
+                Debug.LogError($"SSA: soundsCollection Length = {soundsCollection.Length} is invalid!");
         }
     }
     
@@ -71,12 +85,5 @@ public class SoundSystemAmbient : SoundSystemBase
             Debug.LogWarning("SSA music callback: no item to extract volume from!");
             return;
         }
-
-        /*
-        if (musicSource.volume == 0)
-            musicSource.Stop();
-        else if (!musicSource.isPlaying)
-            musicSource.Play();
-        */
     }
 }

@@ -11,6 +11,7 @@ using UnityEngine.Events;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
+
     [Tooltip("0 - без звука, 1 - громкость 100%")]
     [SerializeField, Range(0f, 1f)] private float defaultMusicMasterVolume = 0.55f;
 
