@@ -5,6 +5,7 @@
  * Одним из protected полей является словарь "действие-клип". Рекомендуется использовать его для доступа к элементам коллекции
  */
 
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -56,8 +57,7 @@ public class SoundSystemBase : MonoBehaviour
             AudioManager.Instance.SfxVolumeChanged.RemoveListener(OnSFXVolumeChanged);
     }
     
-
-    public void PlaySFXSound(string actionName)
+    public virtual void PlaySFXSound(string actionName)
     {
         if (soundsDict.TryGetValue(actionName, out SoundItem item))
         {
@@ -66,12 +66,21 @@ public class SoundSystemBase : MonoBehaviour
             sfxSource.clip = currentSFXItem.clip;
             sfxSource.loop = currentSFXItem.isLooped;
             sfxSource.pitch = currentSFXItem.pitch;
-            sfxSource.Play();
+            StartCoroutine(PlaySoundDelayCoroutine(sfxSource, currentSFXItem.delayTimer));
+            //sfxSource.Play();
         }
         else
             Debug.LogError($"No action named {actionName}!!!");
     }
 
+    private IEnumerator PlaySoundDelayCoroutine(AudioSource source, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        sfxSource.Play();
+        yield return null;
+    }
+
+    // Callback for sfx volume change in Settings panel
     public void OnSFXVolumeChanged()
     {
         if (currentSFXItem != null && AudioManager.Instance != null)

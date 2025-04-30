@@ -48,13 +48,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundsCollection:
   - action: Ambience
-    clip: {fileID: 8300000, guid: 858e70fe1f560d6448df484095beb8bd, type: 3}
+    clip: {fileID: 8300000, guid: d57714c3f52da7d49969289add15b032, type: 3}
     isLooped: 1
-    volume: 1
+    delayTimer: 0
+    volume: 0.03
     pitch: 1
   - action: Background music
     clip: {fileID: 8300000, guid: 543f918de622a7d468b41757b69391fc, type: 3}
     isLooped: 1
+    delayTimer: 0
     volume: 0.75
     pitch: 1
   sfxSource: {fileID: 2705175860017235940}

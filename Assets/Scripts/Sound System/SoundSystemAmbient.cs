@@ -49,6 +49,9 @@ public class SoundSystemAmbient : SoundSystemBase
             return;
         }
 
+        SetAndStartCurrentItems(soundsCollection);
+
+        /*
         if (soundsCollection != null)
         {
             if (soundsCollection.Length == 1)
@@ -73,8 +76,39 @@ public class SoundSystemAmbient : SoundSystemBase
             else
                 Debug.LogError($"SSA: soundsCollection Length = {soundsCollection.Length} is invalid!");
         }
+        */
     }
-    
+
+    private void SetAndStartCurrentItems(SoundItem[] collection)
+    {
+        if (collection != null)
+        {
+            if (soundsCollection.Length == 1)
+            {
+                currentMusicItem = soundsCollection[0];
+                musicSource.clip = currentMusicItem.clip;
+                musicSource.loop = currentMusicItem.isLooped;
+                musicSource.volume *= currentMusicItem.volume;
+                musicSource.Play();
+            }
+            else if (soundsCollection.Length == 2)
+            {
+                currentSFXItem = soundsCollection[0];
+                sfxSource.clip = currentSFXItem.clip;
+                sfxSource.loop = currentSFXItem.isLooped;
+                sfxSource.volume *= currentSFXItem.volume;
+                sfxSource.Play();
+
+                currentMusicItem = soundsCollection[1];
+                musicSource.clip = currentMusicItem.clip;
+                musicSource.loop = currentMusicItem.isLooped;
+                musicSource.volume *= currentMusicItem.volume;
+                musicSource.Play();
+            }
+            else
+                Debug.LogError($"SSA: soundsCollection Length = {soundsCollection.Length} is invalid!");
+        }
+    }
 
     public void OnMusicVolumeChanged()
     {
