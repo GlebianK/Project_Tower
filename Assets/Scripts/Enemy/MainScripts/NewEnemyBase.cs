@@ -51,7 +51,6 @@ public class NewEnemyBase : MonoBehaviour
     {
         if (player != null)
         {
-            motionEnemy.StartFollowAnimations();
             if (playerCCRadius == 0f)
             {
                 if (player.gameObject.TryGetComponent<CharacterController>(out CharacterController player_cc))
@@ -131,7 +130,6 @@ public class NewEnemyBase : MonoBehaviour
             agent.isStopped = true;
             agent.velocity = Vector3.zero;
             motionEnemy.StopMovingAnimations();
-            motionEnemy.StopFollowAnimations();
             player = null;
             playerCCRadius = 0f;
         }
