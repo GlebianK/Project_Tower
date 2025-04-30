@@ -2665,8 +2665,8 @@ MonoBehaviour:
     BlockEnded:
       m_PersistentCalls:
         m_Calls: []
-  minAttackCooldown: 0.85
-  maxAttackCooldown: 1.25
+  minAttackCooldown: 0.1
+  maxAttackCooldown: 0.2
   afterHitRecoveryTimer: 0.8
 --- !u!114 &4397146040343678384
 MonoBehaviour:
@@ -2708,6 +2708,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  FollowStarted:
+    m_PersistentCalls:
+      m_Calls: []
   MoveEnded:
     m_PersistentCalls:
       m_Calls:
@@ -2723,6 +2726,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  FollowEnded:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &8147348342817800057
 MonoBehaviour:
   m_ObjectHideFlags: 0

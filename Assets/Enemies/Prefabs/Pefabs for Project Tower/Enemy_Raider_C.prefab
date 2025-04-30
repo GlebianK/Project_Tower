@@ -1053,7 +1053,7 @@ MonoBehaviour:
     damage: 20
     attackRange: 1.35
     damageDealingDelay: 0.28
-    durationOfAttack: 0.285
+    durationOfAttack: 0.9
     layerMask:
       serializedVersion: 2
       m_Bits: 64
@@ -1145,8 +1145,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  minAttackCooldown: 1.2
-  maxAttackCooldown: 2
+  minAttackCooldown: 0.1
+  maxAttackCooldown: 0.2
   afterHitRecoveryTimer: 1
 --- !u!114 &5548709662071400167
 MonoBehaviour:
@@ -1188,6 +1188,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  FollowStarted:
+    m_PersistentCalls:
+      m_Calls: []
   MoveEnded:
     m_PersistentCalls:
       m_Calls:
@@ -1203,6 +1206,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  FollowEnded:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5719022877029348883
 MonoBehaviour:
   m_ObjectHideFlags: 0
