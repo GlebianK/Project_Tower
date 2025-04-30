@@ -167,9 +167,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2157402007811519007, guid: 3b9b04e5019d30249bef89cc5ec614bf, type: 3}
+      propertyPath: soundsCollection.Array.data[1].volume
+      value: 0.255
+      objectReference: {fileID: 0}
     - target: {fileID: 2187700842882189711, guid: 3b9b04e5019d30249bef89cc5ec614bf, type: 3}
       propertyPath: m_Name
       value: Enemy_Raider_C
+      objectReference: {fileID: 0}
+    - target: {fileID: 2187700842882189711, guid: 3b9b04e5019d30249bef89cc5ec614bf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -187,10 +195,6 @@ PrefabInstance:
     - target: {fileID: 5041792732846744763, guid: 7a175806e04b02945a485f2d3844899c, type: 3}
       propertyPath: m_Name
       value: Rat_2.0_B
-      objectReference: {fileID: 0}
-    - target: {fileID: 5041792732846744763, guid: 7a175806e04b02945a485f2d3844899c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7140131335075238603, guid: 7a175806e04b02945a485f2d3844899c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -376,10 +380,6 @@ PrefabInstance:
     - target: {fileID: 5041792732846744763, guid: 8bca4bd2ebd953645b0b18ecf64eed6d, type: 3}
       propertyPath: m_Name
       value: Rat_2.0_A
-      objectReference: {fileID: 0}
-    - target: {fileID: 5041792732846744763, guid: 8bca4bd2ebd953645b0b18ecf64eed6d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7140131335075238603, guid: 8bca4bd2ebd953645b0b18ecf64eed6d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -652,6 +652,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4123954492296616963, guid: 356242b48825a8345ac7aa62d2f62b62, type: 3}
+      propertyPath: defaultMusicMasterVolume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7851480219490298725, guid: 356242b48825a8345ac7aa62d2f62b62, type: 3}
       propertyPath: m_Name
       value: AudioManager
@@ -766,9 +770,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1459160240460650198, guid: d8d878537e4bd89488d5db7002428449, type: 3}
+      propertyPath: soundsCollection.Array.data[1].volume
+      value: 0.255
+      objectReference: {fileID: 0}
     - target: {fileID: 3205048880066735889, guid: d8d878537e4bd89488d5db7002428449, type: 3}
       propertyPath: m_Name
       value: Enemy_Raider_D
+      objectReference: {fileID: 0}
+    - target: {fileID: 3205048880066735889, guid: d8d878537e4bd89488d5db7002428449, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1051,6 +1063,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 611024232533695379, guid: 79fa68c0c35d23f46b452fa1d1d9c19c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -189.97998
+      objectReference: {fileID: 0}
+    - target: {fileID: 611024232533695379, guid: 79fa68c0c35d23f46b452fa1d1d9c19c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 61.7229
+      objectReference: {fileID: 0}
     - target: {fileID: 853886427700676977, guid: 79fa68c0c35d23f46b452fa1d1d9c19c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1163,6 +1183,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6132604362350635520, guid: 79fa68c0c35d23f46b452fa1d1d9c19c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -189.97998
+      objectReference: {fileID: 0}
+    - target: {fileID: 6132604362350635520, guid: 79fa68c0c35d23f46b452fa1d1d9c19c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 61.7229
+      objectReference: {fileID: 0}
     - target: {fileID: 7042042414131628625, guid: 79fa68c0c35d23f46b452fa1d1d9c19c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1194,6 +1222,14 @@ PrefabInstance:
     - target: {fileID: 7417432331494875721, guid: 79fa68c0c35d23f46b452fa1d1d9c19c, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7729082761606318921, guid: 79fa68c0c35d23f46b452fa1d1d9c19c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -189.97998
+      objectReference: {fileID: 0}
+    - target: {fileID: 7729082761606318921, guid: 79fa68c0c35d23f46b452fa1d1d9c19c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 61.7229
       objectReference: {fileID: 0}
     - target: {fileID: 7762390578197983732, guid: 79fa68c0c35d23f46b452fa1d1d9c19c, type: 3}
       propertyPath: m_LocalPosition.x
