@@ -11,6 +11,8 @@ public class CombatControllerEnemy : CombatControllerBase
 
     [SerializeField] private float afterHitRecoveryTimer = 1.75f;
 
+    [SerializeField] private AudioSource attackAudioSource;
+
     private bool attackIsOnCooldown = false;
     private bool isRecoveringAfterHit;
 
@@ -50,6 +52,14 @@ public class CombatControllerEnemy : CombatControllerBase
     public void OnAttackAborted()
     {
         attackEnemy.attackIsAborted = true;
+        if (attackAudioSource != null)
+            attackAudioSource.enabled = false;
+    }
+
+    // Колбек для включения аудиокомпонента
+    public void OnAttackEnded()
+    {
+        attackAudioSource.enabled = true;
     }
 
     // Коллбэк на получение удара (чтобы не было нанесения урона игроку при анимации отшатывания)

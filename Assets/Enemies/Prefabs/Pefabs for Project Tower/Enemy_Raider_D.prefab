@@ -1418,6 +1418,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 5134204888741610866}
+          m_TargetAssemblyTypeName: CombatControllerEnemy, Assembly-CSharp
+          m_MethodName: OnAttackEnded
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   blockEnemy:
     BlockStarted:
       m_PersistentCalls:
@@ -1449,9 +1461,10 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  minAttackCooldown: 1.65
-  maxAttackCooldown: 2
+  minAttackCooldown: 1.85
+  maxAttackCooldown: 2.2
   afterHitRecoveryTimer: 1.05
+  attackAudioSource: {fileID: 975477088483431310}
 --- !u!114 &1716496027889720428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1563,8 +1576,8 @@ MonoBehaviour:
   - action: Attack
     clip: {fileID: 8300000, guid: 9e94fab04fd5ec44f868b373699987b8, type: 3}
     isLooped: 0
-    delayTimer: 0
-    volume: 0.5
+    delayTimer: 0.3
+    volume: 0.255
     pitch: 1
   - action: Injure
     clip: {fileID: 8300000, guid: 4c4c71f4f24674147ae0a1268c87bd27, type: 3}
