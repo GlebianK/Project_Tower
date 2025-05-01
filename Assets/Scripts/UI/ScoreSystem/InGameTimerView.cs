@@ -15,7 +15,7 @@ public class InGameTimerView : MonoBehaviour
             int minute = Mathf.FloorToInt(gameTime / 60);
             int second = Mathf.FloorToInt(gameTime) - minute * 60;
 
-            int millisec = Mathf.FloorToInt((int)(timerHandler.Time * 1000) % 1000);
+            int millisec = Mathf.FloorToInt(Mathf.Max((int)(timerHandler.Time * 1000) % 1000, 0));
             textField.text = string.Format(format, minute, second, millisec);
         }
     }

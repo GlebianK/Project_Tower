@@ -118,7 +118,7 @@ public class GameplayManager : MonoBehaviour
         OnGameGoodEnded?.Invoke();
     }
 
-    private int GetEnemyKillsCounted()
+    public int GetEnemyKillsCounted()
     {
         int totalKills = 0;
         if (ratKillCounted)
