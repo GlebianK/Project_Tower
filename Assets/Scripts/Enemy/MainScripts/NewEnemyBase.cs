@@ -180,7 +180,6 @@ public class NewEnemyBase : MonoBehaviour
 
     public void EnemyDied()
     {
-        combatController.OnAttackEnded(); // для активации звуков
         isAlive = false;
         player = null;
         agent.speed = 0;

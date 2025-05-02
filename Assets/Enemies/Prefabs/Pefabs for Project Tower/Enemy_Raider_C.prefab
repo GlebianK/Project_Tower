@@ -820,6 +820,7 @@ GameObject:
   - component: {fileID: 173867898177282197}
   - component: {fileID: 2157402007811519007}
   - component: {fileID: 6570726152423300998}
+  - component: {fileID: 5229709777810706455}
   m_Layer: 7
   m_Name: Enemy_Raider_C
   m_TagString: Enemy
@@ -1027,18 +1028,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2157402007811519007}
-        m_TargetAssemblyTypeName: SoundSystemBase, Assembly-CSharp
-        m_MethodName: PlaySFXSound
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Injure
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &8007658088217799391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1062,6 +1051,7 @@ MonoBehaviour:
   destructionTimer: 5.5
   combatAnimationsComponent: {fileID: 5548709662071400167}
   shieldObject: {fileID: 8207943633975042915}
+  audioSourceForShield: {fileID: 5229709777810706455}
   dropShieldHPThreshold: 50
 --- !u!114 &5962977997049606169
 MonoBehaviour:
@@ -1113,18 +1103,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 2157402007811519007}
-          m_TargetAssemblyTypeName: SoundSystemBase, Assembly-CSharp
-          m_MethodName: PlaySFXSound
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Attack
-            m_BoolArgument: 0
-          m_CallState: 2
     AttackEnded:
       m_PersistentCalls:
         m_Calls:
@@ -1152,16 +1130,19 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 5962977997049606169}
-          m_TargetAssemblyTypeName: CombatControllerEnemy, Assembly-CSharp
-          m_MethodName: OnAttackEnded
-          m_Mode: 1
+    SomeoneIsHit:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2157402007811519007}
+          m_TargetAssemblyTypeName: SoundSystemBase, Assembly-CSharp
+          m_MethodName: PlaySFXSound
+          m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 
+            m_StringArgument: Attack
             m_BoolArgument: 0
           m_CallState: 2
   blockEnemy:
@@ -1301,29 +1282,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundsCollection:
-  - action: Steps
-    clip: {fileID: 0}
-    isLooped: 0
-    delayTimer: 0
-    volume: 0.5
-    pitch: 1
   - action: Attack
-    clip: {fileID: 8300000, guid: 9e94fab04fd5ec44f868b373699987b8, type: 3}
-    isLooped: 0
-    delayTimer: 0.01
-    volume: 0.255
-    pitch: 1
-  - action: Injure
-    clip: {fileID: 8300000, guid: 7af44aff4e8415640a765f20b756f5e2, type: 3}
+    clip: {fileID: 8300000, guid: b660e5ddb3d91e54e8f7dd277d2eb840, type: 3}
     isLooped: 0
     delayTimer: 0
-    volume: 0.5
-    pitch: 2
+    volume: 0.4
+    pitch: 1
   - action: Death
     clip: {fileID: 8300000, guid: 831974f61f78ef6469076d169c578323, type: 3}
     isLooped: 0
     delayTimer: 0
-    volume: 0.5
+    volume: 0.45
     pitch: 1
   sfxSource: {fileID: 6570726152423300998}
 --- !u!82 &6570726152423300998
@@ -1340,6 +1309,103 @@ AudioSource:
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &5229709777810706455
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2187700842882189711}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 4b6e9581bd674e44087ae6bb43cf9ce1, type: 3}
+  m_Resource: {fileID: 8300000, guid: 4b6e9581bd674e44087ae6bb43cf9ce1, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0

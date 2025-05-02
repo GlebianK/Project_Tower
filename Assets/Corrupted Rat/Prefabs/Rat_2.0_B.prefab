@@ -536,18 +536,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 3436655615630483464}
-          m_TargetAssemblyTypeName: SoundSystemBase, Assembly-CSharp
-          m_MethodName: PlaySFXSound
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Attack
-            m_BoolArgument: 0
-          m_CallState: 2
     AttackEnded:
       m_PersistentCalls:
         m_Calls:
@@ -575,16 +563,19 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 7598385798813954125}
-          m_TargetAssemblyTypeName: CombatControllerEnemy, Assembly-CSharp
-          m_MethodName: OnAttackEnded
-          m_Mode: 1
+    SomeoneIsHit:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3436655615630483464}
+          m_TargetAssemblyTypeName: SoundSystemBase, Assembly-CSharp
+          m_MethodName: PlaySFXSound
+          m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 
+            m_StringArgument: Attack
             m_BoolArgument: 0
           m_CallState: 2
   blockEnemy:
@@ -709,11 +700,11 @@ MonoBehaviour:
   - action: Attack
     clip: {fileID: 8300000, guid: 270e3c7db3fa5ef4286e35251ce6fb0e, type: 3}
     isLooped: 0
-    delayTimer: 0.05
+    delayTimer: 0
     volume: 0.4
     pitch: 1
   - action: Death
-    clip: {fileID: 8300000, guid: 0bb0dc639f9ef434f8a15f09ff7f1a29, type: 3}
+    clip: {fileID: 8300000, guid: 5a43b7dad3587f74491f271eab7a6988, type: 3}
     isLooped: 0
     delayTimer: 0
     volume: 0.45

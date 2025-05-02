@@ -3037,18 +3037,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 185090213765368505}
-          m_TargetAssemblyTypeName: SoundSystemBase, Assembly-CSharp
-          m_MethodName: PlaySFXSound
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Attack
-            m_BoolArgument: 0
-          m_CallState: 2
     AttackEnded:
       m_PersistentCalls:
         m_Calls:
@@ -3076,16 +3064,19 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 2513900279432591625}
-          m_TargetAssemblyTypeName: CombatControllerEnemy, Assembly-CSharp
-          m_MethodName: OnAttackEnded
-          m_Mode: 1
+    SomeoneIsHit:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 185090213765368505}
+          m_TargetAssemblyTypeName: SoundSystemBase, Assembly-CSharp
+          m_MethodName: PlaySFXSound
+          m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 
+            m_StringArgument: Attack
             m_BoolArgument: 0
           m_CallState: 2
   blockEnemy:
@@ -3226,8 +3217,8 @@ MonoBehaviour:
   - action: Attack
     clip: {fileID: 8300000, guid: 0a361a9b4ee1838478cca08f68100c65, type: 3}
     isLooped: 0
-    delayTimer: 0.4
-    volume: 0.25
+    delayTimer: 0
+    volume: 0.55
     pitch: 1
   - action: Injure
     clip: {fileID: 0}
@@ -3239,7 +3230,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: b5fe4d9e90d9bb740aa89a57d02673c2, type: 3}
     isLooped: 0
     delayTimer: 0
-    volume: 0.35
+    volume: 0.4
     pitch: 1
   sfxSource: {fileID: 1100282646761539540}
 --- !u!82 &1100282646761539540

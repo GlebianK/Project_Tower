@@ -21,6 +21,7 @@ public class NewAttackBase : ICombatAction
 
     public UnityEvent AttackStarted;
     public UnityEvent AttackEnded;
+    public UnityEvent SomeoneIsHit;
 
     public enum AttackType
     {
@@ -64,7 +65,10 @@ public class NewAttackBase : ICombatAction
             foreach (Health health in healthComponentsCollection)
             {
                 if (health != null)
+                {
+                    SomeoneIsHit.Invoke();
                     health.TakeDamage(damage * (1 - health.DamageReductionCoef), attackType);
+                }
             }
         }
         else
