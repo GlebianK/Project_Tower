@@ -93,8 +93,23 @@ public class PlayerSFXCustomizer : MonoBehaviour
         {
             if (prevState == PlayerMovementStateType.Air)
             {
-                PlayOneShot("Land");
+                //PlayOneShot("Land");
             }
+        }
+
+        if (state == PlayerMovementStateType.Air && prevState != PlayerMovementStateType.Climb)
+        {
+            PlayOneShot("Jump");
+        }
+
+        if (state == PlayerMovementStateType.Dash)
+        {
+            PlayOneShot("Dash");
+        }
+
+        if (state == PlayerMovementStateType.Climb)
+        {
+            PlayOneShot("Climb_Ooah");
         }
 
         prevState = state;

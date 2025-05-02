@@ -4797,6 +4797,135 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &3655828343644293442
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7164483530052694269}
+  - component: {fileID: 7919355156671153257}
+  m_Layer: 6
+  m_Name: OneShotSFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7164483530052694269
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3655828343644293442}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7422815514132904270}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &7919355156671153257
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3655828343644293442}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &3657235611545059642
 GameObject:
   m_ObjectHideFlags: 0
@@ -5345,6 +5474,135 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &4104283322218350453
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3493267611598342773}
+  - component: {fileID: 7235632461860916148}
+  m_Layer: 6
+  m_Name: MainSFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3493267611598342773
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4104283322218350453}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7422815514132904270}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &7235632461860916148
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4104283322218350453}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &4144719352459544449
 GameObject:
   m_ObjectHideFlags: 0
@@ -11978,6 +12236,7 @@ GameObject:
   - component: {fileID: 657718530578751992}
   - component: {fileID: 7996254985742825520}
   - component: {fileID: 3059474597616828984}
+  - component: {fileID: 3910278219256571470}
   m_Layer: 6
   m_Name: PlayerCapsule
   m_TagString: Player
@@ -12000,6 +12259,8 @@ Transform:
   m_Children:
   - {fileID: 7585716369544459850}
   - {fileID: 5911140153691130059}
+  - {fileID: 3493267611598342773}
+  - {fileID: 7164483530052694269}
   m_Father: {fileID: 7762390578197983732}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &6963893100484572713
@@ -12371,6 +12632,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementController: {fileID: 8806807569467557479}
   handsAnimator: {fileID: 4351869390083203175}
+  SFXSource: {fileID: 7235632461860916148}
   playerCamera: {fileID: 1135667329835936421}
   meshRoot: {fileID: 7827339333553074090}
   meshRigBuilder: {fileID: 7679701429272589287}
@@ -12482,6 +12744,18 @@ MonoBehaviour:
     AttackStarted:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 5744656628794620265}
+          m_TargetAssemblyTypeName: CombatMovementBlocker, Assembly-CSharp
+          m_MethodName: OnAttackStarted
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Swing
+            m_BoolArgument: 0
+          m_CallState: 2
         - m_Target: {fileID: 1411461926427365327}
           m_TargetAssemblyTypeName: PlayerAnimationLinker, Assembly-CSharp
           m_MethodName: OnAttackStarted
@@ -12494,9 +12768,33 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 3910278219256571470}
+          m_TargetAssemblyTypeName: PlayerSFXCustomizer, Assembly-CSharp
+          m_MethodName: PlayOneShot
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Swing
+            m_BoolArgument: 0
+          m_CallState: 2
     AttackEnded:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 118086190155083348}
+          m_TargetAssemblyTypeName: PlayerAnimationSystem, Assembly-CSharp
+          m_MethodName: UnlockState
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
         - m_Target: {fileID: 1411461926427365327}
           m_TargetAssemblyTypeName: PlayerAnimationLinker, Assembly-CSharp
           m_MethodName: OnAttackEnded
@@ -12512,18 +12810,6 @@ MonoBehaviour:
         - m_Target: {fileID: 5744656628794620265}
           m_TargetAssemblyTypeName: CombatMovementBlocker, Assembly-CSharp
           m_MethodName: OnAttackEnded
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 118086190155083348}
-          m_TargetAssemblyTypeName: PlayerAnimationSystem, Assembly-CSharp
-          m_MethodName: UnlockState
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -12550,6 +12836,18 @@ MonoBehaviour:
     AttackStarted:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 5744656628794620265}
+          m_TargetAssemblyTypeName: CombatMovementBlocker, Assembly-CSharp
+          m_MethodName: OnAttackStarted
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Swing
+            m_BoolArgument: 1
+          m_CallState: 2
         - m_Target: {fileID: 1411461926427365327}
           m_TargetAssemblyTypeName: PlayerAnimationLinker, Assembly-CSharp
           m_MethodName: OnAttackStarted
@@ -12562,9 +12860,33 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+        - m_Target: {fileID: 3910278219256571470}
+          m_TargetAssemblyTypeName: PlayerSFXCustomizer, Assembly-CSharp
+          m_MethodName: PlayOneShot
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Swing
+            m_BoolArgument: 1
+          m_CallState: 2
     AttackEnded:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 118086190155083348}
+          m_TargetAssemblyTypeName: PlayerAnimationSystem, Assembly-CSharp
+          m_MethodName: UnlockState
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
         - m_Target: {fileID: 1411461926427365327}
           m_TargetAssemblyTypeName: PlayerAnimationLinker, Assembly-CSharp
           m_MethodName: OnAttackEnded
@@ -12580,18 +12902,6 @@ MonoBehaviour:
         - m_Target: {fileID: 5744656628794620265}
           m_TargetAssemblyTypeName: CombatMovementBlocker, Assembly-CSharp
           m_MethodName: OnAttackEnded
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 118086190155083348}
-          m_TargetAssemblyTypeName: PlayerAnimationSystem, Assembly-CSharp
-          m_MethodName: UnlockState
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -12637,9 +12947,9 @@ MonoBehaviour:
     BlockEnded:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1411461926427365327}
-          m_TargetAssemblyTypeName: PlayerAnimationLinker, Assembly-CSharp
-          m_MethodName: OnBlockEnded
+        - m_Target: {fileID: 118086190155083348}
+          m_TargetAssemblyTypeName: PlayerAnimationSystem, Assembly-CSharp
+          m_MethodName: UnlockState
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -12649,9 +12959,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 118086190155083348}
-          m_TargetAssemblyTypeName: PlayerAnimationSystem, Assembly-CSharp
-          m_MethodName: UnlockState
+        - m_Target: {fileID: 1411461926427365327}
+          m_TargetAssemblyTypeName: PlayerAnimationLinker, Assembly-CSharp
+          m_MethodName: OnBlockEnded
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -12848,6 +13158,37 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3910278219256571470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7912131694403203269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74063d7ee2a7918439d85a1edaac98af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainSource: {fileID: 7235632461860916148}
+  oneshotSource: {fileID: 7919355156671153257}
+  movementController: {fileID: 8806807569467557479}
+  shots:
+  - action: Land
+    audioClip: {fileID: 8300000, guid: 91b3c89e65db2814da16530ce686c01b, type: 3}
+    volume: 0
+  - action: Swing
+    audioClip: {fileID: 8300000, guid: b0b39104bbbfc57438c05d20bc0c1a67, type: 3}
+    volume: 0.35
+  - action: Climb_Ooah
+    audioClip: {fileID: 8300000, guid: 4f9d1f785be40cc44be2a730bac912ff, type: 3}
+    volume: 0.5
+  - action: Dash
+    audioClip: {fileID: 8300000, guid: fa4757a35004d504383a7a92107246c9, type: 3}
+    volume: 0.5
+  - action: Jump
+    audioClip: {fileID: 8300000, guid: 3f83517ebf6c0fe428aac997a8341e45, type: 3}
+    volume: 0.5
 --- !u!1 &7917437497820838933
 GameObject:
   m_ObjectHideFlags: 0
@@ -15600,16 +15941,16 @@ MonoBehaviour:
   LostGameEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7198498862077062125}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 4086264719601063099}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: Play
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Appear Delay
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 5365086279200518402}
@@ -15634,6 +15975,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2338059108791923821}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Appear
           m_BoolArgument: 0
         m_CallState: 2
   CompleteGameEvent:
