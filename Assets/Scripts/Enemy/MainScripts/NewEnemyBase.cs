@@ -180,6 +180,7 @@ public class NewEnemyBase : MonoBehaviour
 
     public void EnemyDied()
     {
+        combatController.OnAttackEnded(); // для активации звуков
         isAlive = false;
         player = null;
         agent.speed = 0;
@@ -188,12 +189,16 @@ public class NewEnemyBase : MonoBehaviour
         agent.velocity = Vector3.zero;
         motionEnemy.StopMovingAnimations();
         
-        if (TryGetComponent<CapsuleCollider>(out CapsuleCollider capsule)
-            && TryGetComponent<BoxCollider>(out BoxCollider box))
+        if (TryGetComponent<CapsuleCollider>(out CapsuleCollider capsule))
         {
             capsule.enabled = false;
+        }
+
+        if (TryGetComponent<BoxCollider>(out BoxCollider box))
+        {
             box.enabled = false;
         }
+
         StartCoroutine(DestroyAfterDeathCoroutine(gameObject));
 
         GameplayManager gm = FindAnyObjectByType<GameplayManager>();
