@@ -55,6 +55,8 @@ public class AnimationStateControllerBase
         {
             internalTimer = 0;
         }
+
+
     }
 
     public IEnumerator BlendIn(float blendTime = 0)

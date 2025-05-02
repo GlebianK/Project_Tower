@@ -7,6 +7,7 @@ using System;
 using System.Linq;
 using UnityEngine.Animations.Rigging;
 using UnityEngine.Animations;
+using UnityEngine.Audio;
 
 
 [Serializable]
@@ -20,6 +21,7 @@ public class PlayerAnimationSystem : MonoBehaviour
 {
     [SerializeField] private PlayerMovementStateMachine movementController;
     [SerializeField] private Animator handsAnimator;
+    [SerializeField] private AudioSource SFXSource;
     [SerializeField] private CinemachineCamera playerCamera;
     [SerializeField] private Transform meshRoot;
     [SerializeField] private RigBuilder meshRigBuilder;
@@ -40,14 +42,11 @@ public class PlayerAnimationSystem : MonoBehaviour
     private Playable handsPosMixer;
     private Playable meshIKMixer;
     private AnimationMixerPlayable animationClipMixer;
-
+    private AudioMixerPlayable audioOutput;
 
     public PlayerMovementStateMachine MovementController => movementController;
     public bool IsStateLocked => isStateLocked;
-    private void Awake()
-    {
-        
-    }
+
 
     private void Start()
     {
@@ -55,6 +54,8 @@ public class PlayerAnimationSystem : MonoBehaviour
         currentMovementStateName = defaultAnimationName;
         if (animationControllers.ContainsKey(currentMovementStateName))
             StartCoroutine(animationControllers[currentMovementStateName].BlendIn());
+
+        
     }
 
     private void Update()
@@ -85,13 +86,14 @@ public class PlayerAnimationSystem : MonoBehaviour
 
         if (meshRigBuilder.graph.IsValid())
             meshRigBuilder.graph.Destroy();
+
     }
 
     private void ConfigureAnimationGraph()
     {
 
         graph = PlayableGraph.Create("Player Animation System");
-        //graph.SetTimeUpdateMode(DirectorUpdateMode.Manual);
+        graph.SetTimeUpdateMode(DirectorUpdateMode.GameTime);
 
         int cameraPoseCount = 1 + animationStates.Where(descriptor => descriptor.asset.CameraAnimation != null).Count();
         int cameraPropertiesCount = 1 + animationStates.Where(descriptor => descriptor.asset.CameraFOV >= 0
@@ -101,12 +103,17 @@ public class PlayerAnimationSystem : MonoBehaviour
 
         int clipsCount = animationStates.Where(descriptor => descriptor.asset.Clip != null).Count();
 
+        int audioCount = animationStates.Where(descriptor => descriptor.asset.AudioClip != null && descriptor.asset.Volume > 0).Count();
+
+
         ScriptPlayableOutput generalCameraAnimationOutput = ScriptPlayableOutput.Create(graph, "General Camera Animation Output");
         generalCameraAnimationOutput.SetUserData(this);
         ScriptPlayableOutput generalHandsProceduralAnimationOutput = ScriptPlayableOutput.Create(graph, "General Hands ProceduralAnimation Output");
         generalHandsProceduralAnimationOutput.SetUserData(this);
         AnimationPlayableOutput animationPlayableOutput = AnimationPlayableOutput.Create(graph, "General Animation clip Output", handsAnimator);
         animationPlayableOutput.SetUserData(this);
+        AudioPlayableOutput audioPlayableOutput = AudioPlayableOutput.Create(graph, "General Audio Output", SFXSource);
+        audioPlayableOutput.SetUserData(this);
 
         // setup camera graph mix nodes
         var cameraRootPlayable = ScriptPlayable<ProceduralTransformApplier>.Create(graph, 2);
@@ -150,28 +157,27 @@ public class PlayerAnimationSystem : MonoBehaviour
         animatorOutput.SetSourcePlayable(animatorPlayable);
         animatorOutput.SetWeight(1);
 
+        audioOutput = AudioMixerPlayable.Create(graph, audioCount);
+        audioPlayableOutput.SetSourcePlayable(audioOutput);
+        audioPlayableOutput.SetWeight(1);
 
         int cameraPosIndex = 0;
         int cameraPropIndex = 0;
         int meshPosIndex = 0;
         int ikRigIndex = 0;
         int clipIndex = 0;
+        int audioIndex = 0;
         foreach (var animAsset in animationStates)
         {
             InitAnimationStateController(animAsset, ref cameraPosIndex, ref cameraPropIndex, 
-                ref meshPosIndex, ref ikRigIndex, ref clipIndex);
+                ref meshPosIndex, ref ikRigIndex, ref clipIndex, ref audioIndex);
         }
 
         graph.Play();
-        //PlayableGraph IKgraph = PlayableGraph.Create("IK Graph");
-        //IKgraph.SetTimeUpdateMode(DirectorUpdateMode.Manual);
-        //meshRigBuilder.Build(IKgraph);
-
-        //meshRigBuilder.graph.SetTimeUpdateMode(DirectorUpdateMode.Manual);
     }
 
     private void InitAnimationStateController(AnimationAssetDescriptor asset, 
-        ref int cameraAnimationIndex, ref int cameraPropertyIndex, ref int handsPoseIndex, ref int ikRigIndex, ref int clipIndex)
+        ref int cameraAnimationIndex, ref int cameraPropertyIndex, ref int handsPoseIndex, ref int ikRigIndex, ref int clipIndex, ref int audioIndex)
     {
         AnimationStateControllerBase state = asset.asset.CreateState(this);
 
@@ -241,6 +247,21 @@ public class PlayerAnimationSystem : MonoBehaviour
 
         }
 
+       if (asset.asset.AudioClip != null && asset.asset.Volume > 0)
+        {
+            AudioMixerPlayable volumer = AudioMixerPlayable.Create(graph, 1, true);
+            AudioClipPlayable clipPlayable = AudioClipPlayable.Create(graph, asset.asset.AudioClip, asset.asset.IsInfinite);
+            volumer.ConnectInput(0, clipPlayable, 0);
+            volumer.SetInputWeight(0, asset.asset.Volume);
+            
+            int selfIndex = audioIndex;
+
+            audioOutput.ConnectInput(selfIndex, volumer, 0);
+            audioOutput.SetInputWeight(audioIndex, 0);
+            state.SetControll(audioOutput, audioIndex);
+            audioIndex++;
+        }
+
         animationControllers.Add(asset.animationName, state);
     }
 
@@ -288,4 +309,6 @@ public class PlayerAnimationSystem : MonoBehaviour
         isStateLocked = false;
         ChangeState(recoveryStateName);
     }
+
+    
 }

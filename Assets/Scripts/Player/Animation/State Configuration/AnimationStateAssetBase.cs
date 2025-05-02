@@ -23,6 +23,8 @@ public class AnimationStateAssetBase : ScriptableObject
     [SerializeField] private float animationTime = 1;
     [Tooltip("Имя следующей анимации в PlayerAnimationSystem")]
     [SerializeField] private string nextAnimationName;
+    [SerializeField] private AudioClip audioClip;
+    [SerializeField] private float volume = 1;
 
     public AnimationCurve BlendIn => blendIn;
     public float BlendInDuration => blendInDuration;
@@ -39,6 +41,9 @@ public class AnimationStateAssetBase : ScriptableObject
     public bool IsInfinite => isInfinite; 
     public float AnimationTime => animationTime; 
     public string NextAnimationName => nextAnimationName;
+
+    public AudioClip AudioClip => audioClip;
+    public float Volume => volume;
 
     public virtual AnimationStateControllerBase CreateState(PlayerAnimationSystem animSystem)
     {
