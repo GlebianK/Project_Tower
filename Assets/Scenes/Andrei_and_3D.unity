@@ -503,6 +503,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Raider_B_2.0 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6405096693824255516, guid: 8ed490145d98b8141a89328c47b6f977, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4319,6 +4323,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Raider_B_2.0 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6405096693824255516, guid: 8ed490145d98b8141a89328c47b6f977, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5713,6 +5721,10 @@ PrefabInstance:
     - target: {fileID: 7718247951730083056, guid: 7ffca485f0711e0498fa3a77b7cc73f5, type: 3}
       propertyPath: m_Name
       value: Enemy_Raider_A_2.0 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7718247951730083056, guid: 7ffca485f0711e0498fa3a77b7cc73f5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8311,6 +8323,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Raider_B_2.0
       objectReference: {fileID: 0}
+    - target: {fileID: 6405096693824255516, guid: 8ed490145d98b8141a89328c47b6f977, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9103,6 +9119,10 @@ PrefabInstance:
     - target: {fileID: 7718247951730083056, guid: 7ffca485f0711e0498fa3a77b7cc73f5, type: 3}
       propertyPath: m_Name
       value: Enemy_Raider_A_2.0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7718247951730083056, guid: 7ffca485f0711e0498fa3a77b7cc73f5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12242,6 +12262,10 @@ PrefabInstance:
     - target: {fileID: 6405096693824255516, guid: 8ed490145d98b8141a89328c47b6f977, type: 3}
       propertyPath: m_Name
       value: Enemy_Raider_B_2.0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405096693824255516, guid: 8ed490145d98b8141a89328c47b6f977, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24654,6 +24678,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Raider_A_2.0
       objectReference: {fileID: 0}
+    - target: {fileID: 7718247951730083056, guid: 7ffca485f0711e0498fa3a77b7cc73f5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -27854,6 +27882,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Raider_A_2.0
       objectReference: {fileID: 0}
+    - target: {fileID: 7718247951730083056, guid: 7ffca485f0711e0498fa3a77b7cc73f5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -29589,6 +29621,10 @@ PrefabInstance:
     - target: {fileID: 6405096693824255516, guid: 8ed490145d98b8141a89328c47b6f977, type: 3}
       propertyPath: m_Name
       value: Enemy_Raider_B_2.0 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405096693824255516, guid: 8ed490145d98b8141a89328c47b6f977, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -45048,7 +45084,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 657718530578751992, guid: 79fa68c0c35d23f46b452fa1d1d9c19c, type: 3}
       propertyPath: maxHp
-      value: 100
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 853886427700676977, guid: 79fa68c0c35d23f46b452fa1d1d9c19c, type: 3}
       propertyPath: m_AnchorMax.y

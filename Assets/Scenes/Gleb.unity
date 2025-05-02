@@ -171,10 +171,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Raider_C
       objectReference: {fileID: 0}
-    - target: {fileID: 2187700842882189711, guid: 3b9b04e5019d30249bef89cc5ec614bf, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -191,10 +187,6 @@ PrefabInstance:
     - target: {fileID: 5041792732846744763, guid: 7a175806e04b02945a485f2d3844899c, type: 3}
       propertyPath: m_Name
       value: Rat_2.0_B
-      objectReference: {fileID: 0}
-    - target: {fileID: 5041792732846744763, guid: 7a175806e04b02945a485f2d3844899c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7140131335075238603, guid: 7a175806e04b02945a485f2d3844899c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -383,7 +375,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5041792732846744763, guid: 8bca4bd2ebd953645b0b18ecf64eed6d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7140131335075238603, guid: 8bca4bd2ebd953645b0b18ecf64eed6d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -778,10 +770,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Raider_D
       objectReference: {fileID: 0}
-    - target: {fileID: 3205048880066735889, guid: d8d878537e4bd89488d5db7002428449, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -795,10 +783,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 185090213765368505, guid: 7ffca485f0711e0498fa3a77b7cc73f5, type: 3}
-      propertyPath: soundsCollection.Array.data[1].volume
-      value: 0.35
-      objectReference: {fileID: 0}
     - target: {fileID: 2952232778851614848, guid: 7ffca485f0711e0498fa3a77b7cc73f5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.1249685
@@ -842,10 +826,6 @@ PrefabInstance:
     - target: {fileID: 7718247951730083056, guid: 7ffca485f0711e0498fa3a77b7cc73f5, type: 3}
       propertyPath: m_Name
       value: Enemy_Raider_A_2.0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7718247951730083056, guid: 7ffca485f0711e0498fa3a77b7cc73f5, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -903,10 +883,6 @@ PrefabInstance:
     - target: {fileID: 6405096693824255516, guid: 8ed490145d98b8141a89328c47b6f977, type: 3}
       propertyPath: m_Name
       value: Enemy_Raider_B_2.0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6405096693824255516, guid: 8ed490145d98b8141a89328c47b6f977, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

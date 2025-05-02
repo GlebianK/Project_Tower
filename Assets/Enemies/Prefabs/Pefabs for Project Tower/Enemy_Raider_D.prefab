@@ -1293,18 +1293,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1459160240460650198}
-        m_TargetAssemblyTypeName: SoundSystemBase, Assembly-CSharp
-        m_MethodName: PlaySFXSound
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Injure
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &2416856077942722434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1574,13 +1562,13 @@ MonoBehaviour:
     volume: 0.5
     pitch: 1
   - action: Attack
-    clip: {fileID: 8300000, guid: 9e94fab04fd5ec44f868b373699987b8, type: 3}
+    clip: {fileID: 8300000, guid: f6f42c6de8f895542ba9788b62ecb876, type: 3}
     isLooped: 0
     delayTimer: 0.3
-    volume: 0.255
+    volume: 0.4
     pitch: 1
   - action: Injure
-    clip: {fileID: 8300000, guid: 4c4c71f4f24674147ae0a1268c87bd27, type: 3}
+    clip: {fileID: 0}
     isLooped: 0
     delayTimer: 0
     volume: 0.5
@@ -1589,7 +1577,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 831974f61f78ef6469076d169c578323, type: 3}
     isLooped: 0
     delayTimer: 0
-    volume: 0.5
+    volume: 0.45
     pitch: 1
   sfxSource: {fileID: 975477088483431310}
 --- !u!82 &975477088483431310
