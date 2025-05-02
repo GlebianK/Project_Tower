@@ -4,6 +4,7 @@ public class NewEnemyShield : NewEnemyBase
 {
     [SerializeField] private CombatAnimations combatAnimationsComponent;
     [SerializeField] private GameObject shieldObject;
+    [SerializeField] private AudioSource audioSourceForShield;
     
     [Tooltip("Остаток здоровья для исчезновения щита (в процентах от максимального здоровья)")]
     [SerializeField, Range(0, 100)] private int dropShieldHPThreshold;
@@ -61,17 +62,29 @@ public class NewEnemyShield : NewEnemyBase
 
     public void DropShield()
     {
-        if(TryGetComponent<Health>(out Health health))
+        if (hasShield)
         {
-            Debug.Log($"Current Shield Enemy health: {health.HP}. Threshold: {health.MaxHP * (dropShieldHPThreshold / 100f)}");
-            if(health.HP > (health.MaxHP * (dropShieldHPThreshold/100f)))
-                return;
+            if (TryGetComponent<Health>(out Health health))
+            {
+                Debug.Log($"Current Shield Enemy health: {health.HP}. Threshold: {health.MaxHP * (dropShieldHPThreshold / 100f)}");
+                if (health.HP > (health.MaxHP * (dropShieldHPThreshold / 100f)))
+                    return;
 
-            if(shieldObject.activeSelf)
-                shieldObject.SetActive(false);
+                if (shieldObject.activeSelf)
+                    shieldObject.SetActive(false);
 
-            hasShield = false;
-            SubscribeEventsToLightDamageWithoutShield();
-        }        
+                hasShield = false;
+
+                if (audioSourceForShield != null && audioSourceForShield.clip != null)
+                {
+                    audioSourceForShield.volume = 0.5f * AudioManager.Instance.GetCurrentSFXMasterVolume();
+                    audioSourceForShield.Play();
+                }
+                else
+                    Debug.LogError($"{gameObject.name}: SOMETHING IS WRONG WITH SHIELD SOURCE!");
+
+                SubscribeEventsToLightDamageWithoutShield();
+            }
+        }
     }
 }

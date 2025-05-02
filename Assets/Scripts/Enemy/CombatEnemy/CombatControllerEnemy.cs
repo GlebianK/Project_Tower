@@ -52,14 +52,10 @@ public class CombatControllerEnemy : CombatControllerBase
     public void OnAttackAborted()
     {
         attackEnemy.attackIsAborted = true;
+        /*
         if (attackAudioSource != null)
-            attackAudioSource.enabled = false;
-    }
-
-    // Колбек для включения аудиокомпонента
-    public void OnAttackEnded()
-    {
-        attackAudioSource.enabled = true;
+            attackAudioSource.clip = null;
+        */
     }
 
     // Коллбэк на получение удара (чтобы не было нанесения урона игроку при анимации отшатывания)

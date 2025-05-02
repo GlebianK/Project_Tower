@@ -76,7 +76,7 @@ public class SoundSystemBase : MonoBehaviour
     private IEnumerator PlaySoundDelayCoroutine(AudioSource source, float delay)
     {
         yield return new WaitForSeconds(delay);
-        if (sfxSource.isActiveAndEnabled)
+        if (sfxSource.isActiveAndEnabled && sfxSource.clip != null)
             sfxSource.Play();
         yield return null;
     }
