@@ -16,7 +16,7 @@ public class MotionAnimation: MonoBehaviour
     }
     public void MovingEnded()
     {
-        animator.SetBool("canMove",false);
+        animator.SetBool("canMove", false);
     }
     #endregion
 }

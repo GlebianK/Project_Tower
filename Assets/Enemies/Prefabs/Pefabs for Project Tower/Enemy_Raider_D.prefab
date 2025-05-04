@@ -1321,7 +1321,7 @@ MonoBehaviour:
   health: {fileID: 6391752666143194889}
   combatController: {fileID: 5134204888741610866}
   motionEnemy: {fileID: 4996885776109548527}
-  attackStartRange: 1.15
+  attackStartRange: 1.05
   maxPlayerDetectViewAngle: 15
   agent: {fileID: 7048105651285985314}
   speedAgent: 2
@@ -1348,7 +1348,7 @@ MonoBehaviour:
     damage: 20
     attackRange: 1.35
     damageDealingDelay: 0.45
-    durationOfAttack: 0.6
+    durationOfAttack: 0.9
     layerMask:
       serializedVersion: 2
       m_Bits: 64
@@ -1455,9 +1455,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  minAttackCooldown: 1.85
-  maxAttackCooldown: 2.2
-  afterHitRecoveryTimer: 1.05
+  minAttackCooldown: 0.1
+  maxAttackCooldown: 0.3
+  afterHitRecoveryTimer: 1.2
   attackAudioSource: {fileID: 975477088483431310}
 --- !u!114 &1716496027889720428
 MonoBehaviour:
