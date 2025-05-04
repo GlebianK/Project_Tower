@@ -1376,7 +1376,7 @@ MonoBehaviour:
   m_text: restart
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3cd94752f18766e428e47cfd5f1a6a9e, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 133883529103389091, guid: 3cd94752f18766e428e47cfd5f1a6a9e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1400,7 +1400,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 229.15
+  m_fontSize: 131.15
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3426,7 +3426,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1151612601307223151}
+  m_TargetGraphic: {fileID: 1924519905726552942}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -3970,7 +3970,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0412\u044B\u0445\u043E\u0434"
+  m_text: Exit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3cd94752f18766e428e47cfd5f1a6a9e, type: 2}
   m_sharedMaterial: {fileID: 133883529103389091, guid: 3cd94752f18766e428e47cfd5f1a6a9e, type: 2}
@@ -3997,7 +3997,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 34.65
+  m_fontSize: 65.8
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5488,6 +5488,7 @@ RectTransform:
   m_Children:
   - {fileID: 611024232533695379}
   - {fileID: 5142876705659152823}
+  - {fileID: 5993073825552925809}
   m_Father: {fileID: 7762463618559449049}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5636,8 +5637,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3cd94752f18766e428e47cfd5f1a6a9e, type: 2}
+  m_sharedMaterial: {fileID: 133883529103389091, guid: 3cd94752f18766e428e47cfd5f1a6a9e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8259,7 +8260,7 @@ GameObject:
   - component: {fileID: 5274409285087070103}
   - component: {fileID: 497026785014790867}
   m_Layer: 5
-  m_Name: Continue
+  m_Name: Continue (Gleb)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8363,20 +8364,20 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 5274409285087070103}
+  m_TargetGraphic: {fileID: 1924519905726552942}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4144719352459544449}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 944248893798188358}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: Play
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Disappear
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 7863996087057995277}
@@ -8684,7 +8685,7 @@ GameObject:
   - component: {fileID: 7835126820952078494}
   - component: {fileID: 7922672381854480099}
   m_Layer: 5
-  m_Name: Continue
+  m_Name: Continue (Gleb)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8788,20 +8789,20 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 7835126820952078494}
+  m_TargetGraphic: {fileID: 141185119018773994}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8878392651304311933}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 5668443163744778272}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: Play
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Disappear
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 7863996087057995277}
@@ -9553,8 +9554,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3cd94752f18766e428e47cfd5f1a6a9e, type: 2}
+  m_sharedMaterial: {fileID: 133883529103389091, guid: 3cd94752f18766e428e47cfd5f1a6a9e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -11292,10 +11293,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0423\u0431\u0438\u0439\u0441\u0442\u0432:"
+  m_text: 'Kills:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3cd94752f18766e428e47cfd5f1a6a9e, type: 2}
+  m_sharedMaterial: {fileID: 133883529103389091, guid: 3cd94752f18766e428e47cfd5f1a6a9e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -11532,10 +11533,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u041E\u0441\u0442\u0430\u043B\u043E\u0441\u044C \u0432\u0440\u0435\u043C\u0435\u043D\u0438:"
+  m_text: 'Time remaining:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3cd94752f18766e428e47cfd5f1a6a9e, type: 2}
+  m_sharedMaterial: {fileID: 133883529103389091, guid: 3cd94752f18766e428e47cfd5f1a6a9e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -12029,10 +12030,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0410\u043F\u0442\u0435\u0447\u0435\u043A \u0434\u043E\u0441\u0442\u0430\u0432\u043B\u0435\u043D\u043E:"
+  m_text: 'Medkits delivered:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3cd94752f18766e428e47cfd5f1a6a9e, type: 2}
+  m_sharedMaterial: {fileID: 133883529103389091, guid: 3cd94752f18766e428e47cfd5f1a6a9e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -14215,12 +14216,12 @@ GameObject:
   - component: {fileID: 1924519905726552942}
   - component: {fileID: 4747654331540214833}
   m_Layer: 5
-  m_Name: Continue
+  m_Name: Continue (Sergei)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &611024232533695379
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14800,8 +14801,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3cd94752f18766e428e47cfd5f1a6a9e, type: 2}
+  m_sharedMaterial: {fileID: 133883529103389091, guid: 3cd94752f18766e428e47cfd5f1a6a9e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -15018,12 +15019,12 @@ GameObject:
   - component: {fileID: 141185119018773994}
   - component: {fileID: 3675399905088021434}
   m_Layer: 5
-  m_Name: Continue
+  m_Name: Continue (Sergei)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7729082761606318921
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15539,6 +15540,7 @@ RectTransform:
   m_Children:
   - {fileID: 7729082761606318921}
   - {fileID: 9220811944656357546}
+  - {fileID: 9044809292131195702}
   m_Father: {fileID: 7762463618559449049}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
