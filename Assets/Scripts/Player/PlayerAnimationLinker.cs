@@ -63,7 +63,9 @@ public class PlayerAnimationLinker : MonoBehaviour
     public void OnAttackEnded()
     {
         isAttacking = false;
-        //animationSystem.SetState(movementAnimStateName);
+
+        
+        //OnStateChanged(movementController, movementController.GetCurrentStateType());
     }
 
     public void OnBlockStarted()
@@ -76,7 +78,7 @@ public class PlayerAnimationLinker : MonoBehaviour
     public void OnBlockEnded()
     {
         isAttacking = false;
-
+        animationSystem.SetState(movementAnimStateName);
         OnStateChanged(movementController, movementController.GetCurrentStateType());
     }
 }

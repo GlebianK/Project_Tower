@@ -35,7 +35,7 @@ public class PlayerAnimationSystem : MonoBehaviour
     private PlayableGraph graph;
 
     private string recoveryStateName;
-    private bool isStateLocked;
+    private int StateLockCount;
 
     private Playable cameraPosMixer;
     private Playable cameraPropertyMixer;
@@ -45,7 +45,7 @@ public class PlayerAnimationSystem : MonoBehaviour
     private AudioMixerPlayable audioOutput;
 
     public PlayerMovementStateMachine MovementController => movementController;
-    public bool IsStateLocked => isStateLocked;
+    public bool IsStateLocked => StateLockCount > 0;
 
 
     private void Start()
@@ -283,7 +283,7 @@ public class PlayerAnimationSystem : MonoBehaviour
 
     public void SetState(string stateName)
     {
-        if (!isStateLocked)
+        if (!IsStateLocked)
         {
             ChangeState(stateName);
         } else
@@ -294,21 +294,22 @@ public class PlayerAnimationSystem : MonoBehaviour
 
     public void SetStateForced(string stateName)
     {
+        recoveryStateName = currentMovementStateName;
         ChangeState(stateName);
-        recoveryStateName = stateName;
     }
 
     public void LockState()
     {
-        isStateLocked = true;
+        StateLockCount = 1;
         recoveryStateName = currentMovementStateName;
     }
 
-    public void UnlockState()
+    public void UnlockState(bool restoreState = false)
     {
-        isStateLocked = false;
-        ChangeState(recoveryStateName);
+        StateLockCount = 0;
+        if (restoreState)
+        {
+            ChangeState(recoveryStateName);
+        }
     }
-
-    
 }

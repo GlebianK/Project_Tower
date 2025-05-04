@@ -14,8 +14,9 @@ public class PlayerSFXCustomizer : MonoBehaviour
 {
     [SerializeField] private AudioSource mainSource;
     [SerializeField] private AudioSource oneshotSource;
+    [Header("Dependencies")]
     [SerializeField] private PlayerMovementStateMachine movementController;
-
+    [SerializeField] private Health health;
     [SerializeField] private SFXOneshotsPlayer[] shots;
 
     private float sfxMasterVolume;
@@ -63,10 +64,12 @@ public class PlayerSFXCustomizer : MonoBehaviour
     private void OnEnable()
     {
         movementController.StateChanged.AddListener(OnMovementStateChanged);
+        health.TookDamage.AddListener(OnTakeDamage);
     }
     private void OnDisable()
     {
         movementController.StateChanged.RemoveListener(OnMovementStateChanged);
+        health.TookDamage.RemoveListener(OnTakeDamage);
     }
 
     private void OnDestroy()
@@ -98,7 +101,8 @@ public class PlayerSFXCustomizer : MonoBehaviour
 
         if (state == PlayerMovementStateType.Air && prevState != PlayerMovementStateType.Climb)
         {
-            PlayOneShot("Jump");
+            if (machine.CharacterVelocity.y > 0.3f)
+                PlayOneShot("Jump");
         }
 
         if (state == PlayerMovementStateType.Dash)
@@ -119,4 +123,18 @@ public class PlayerSFXCustomizer : MonoBehaviour
         SFXOneshotsPlayer actionParams = shots.Where(desc => desc.action == action).First();
         oneshotSource.PlayOneShot(actionParams.audioClip, actionParams.volume);
     }
+
+    public void OnTakeDamage()
+    {
+        if (health.DamageReductionCoef > 0)
+        {
+            PlayOneShot("GetHit_Block");
+        }
+        else
+        {
+            PlayOneShot("GetHit");
+        }
+    }
+
+
 }
