@@ -8,29 +8,28 @@ public class MedKitCounter : MonoBehaviour
 
     private void Start()
     {
-        numberField.text = "x0";
+        numberField.text = "0";
     }
 
     public void IncreaseAmount()
     {
         int temp = TextToNumber();
         temp++; 
-        numberField.text = "x" + temp.ToString();
+        numberField.text = temp.ToString();
     }
 
     public void DecreaseAmount() 
     {
         int temp = TextToNumber();
         temp--;
-        numberField.text = "x" + temp.ToString();
+        numberField.text = temp.ToString();
     }
 
     private int TextToNumber()
     {
-        string temp_s = numberField.text.Remove(0, 1);
-        int temp_i = 0;
+        string temp_s = numberField.text;
 
-        if (Int32.TryParse(temp_s, out temp_i))
+        if (Int32.TryParse(temp_s, out int temp_i))
         {
             return temp_i;
         }
