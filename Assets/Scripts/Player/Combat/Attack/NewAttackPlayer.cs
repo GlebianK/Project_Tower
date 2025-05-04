@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
@@ -17,7 +18,7 @@ public class NewAttackPlayer : NewAttackBase
             {
                 if (health != null)
                 {
-                    if (health.gameObject.TryGetComponent<NewEnemyShield>(out NewEnemyShield nes)) // переделать на теги??
+                    if (health.gameObject.TryGetComponent<NewEnemyShield>(out NewEnemyShield nes)) // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ??
                     {
                         if(nes.HasShield() && attackType == AttackType.light)
                         {
@@ -25,7 +26,8 @@ public class NewAttackPlayer : NewAttackBase
                             continue;
                         }
                     }
-                    
+
+                    SomeoneIsHit.Invoke();
                     health.TakeDamage(damage * (1 - health.DamageReductionCoef), attackType);
                 }
             }

@@ -1441,7 +1441,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1126875613844959731
@@ -8046,7 +8046,7 @@ Transform:
   m_GameObject: {fileID: 5731088673532524834}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.508106, y: 2.516, z: -77.75279}
+  m_LocalPosition: {x: -7.932827, y: 3.5325584, z: -54.607586}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9198,7 +9198,7 @@ Transform:
   m_GameObject: {fileID: 6243404489616842721}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.508106, y: 2.516, z: -77.75279}
+  m_LocalPosition: {x: -7.932827, y: 3.5325584, z: -54.607586}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12246,7 +12246,7 @@ Transform:
   m_GameObject: {fileID: 7912131694403203269}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.508106, y: 0.916, z: -77.75279}
+  m_LocalPosition: {x: -7.932827, y: 1.9325585, z: -54.607586}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -12776,18 +12776,6 @@ MonoBehaviour:
     AttackEnded:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 118086190155083348}
-          m_TargetAssemblyTypeName: PlayerAnimationSystem, Assembly-CSharp
-          m_MethodName: UnlockState
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 1411461926427365327}
           m_TargetAssemblyTypeName: PlayerAnimationLinker, Assembly-CSharp
           m_MethodName: OnAttackEnded
@@ -12812,9 +12800,33 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 118086190155083348}
+          m_TargetAssemblyTypeName: PlayerAnimationSystem, Assembly-CSharp
+          m_MethodName: UnlockState
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     SomeoneIsHit:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 3910278219256571470}
+          m_TargetAssemblyTypeName: PlayerSFXCustomizer, Assembly-CSharp
+          m_MethodName: PlayOneShot
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Hit
+            m_BoolArgument: 0
+          m_CallState: 2
     boxCastSizes: {x: 0.31, y: 0.27, z: 0.55}
   - damage: 50
     attackRange: 0.87
@@ -12871,7 +12883,7 @@ MonoBehaviour:
         - m_Target: {fileID: 118086190155083348}
           m_TargetAssemblyTypeName: PlayerAnimationSystem, Assembly-CSharp
           m_MethodName: UnlockState
-          m_Mode: 1
+          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -12906,7 +12918,19 @@ MonoBehaviour:
           m_CallState: 2
     SomeoneIsHit:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 3910278219256571470}
+          m_TargetAssemblyTypeName: PlayerSFXCustomizer, Assembly-CSharp
+          m_MethodName: PlayOneShot
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Hit
+            m_BoolArgument: 0
+          m_CallState: 2
     boxCastSizes: {x: 0.31, y: 0.27, z: 0.55}
   attackCooldown: 0.25
   blockPlayer:
@@ -12937,12 +12961,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    BlockEnded:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 118086190155083348}
-          m_TargetAssemblyTypeName: PlayerAnimationSystem, Assembly-CSharp
-          m_MethodName: UnlockState
+        - m_Target: {fileID: 5744656628794620265}
+          m_TargetAssemblyTypeName: CombatMovementBlocker, Assembly-CSharp
+          m_MethodName: OnAttackStarted
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -12952,9 +12973,36 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    BlockEnded:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 118086190155083348}
+          m_TargetAssemblyTypeName: PlayerAnimationSystem, Assembly-CSharp
+          m_MethodName: UnlockState
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
         - m_Target: {fileID: 1411461926427365327}
           m_TargetAssemblyTypeName: PlayerAnimationLinker, Assembly-CSharp
           m_MethodName: OnBlockEnded
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 5744656628794620265}
+          m_TargetAssemblyTypeName: CombatMovementBlocker, Assembly-CSharp
+          m_MethodName: OnAttackEnded
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -12981,7 +13029,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 118086190155083348}
         m_TargetAssemblyTypeName: PlayerAnimationSystem, Assembly-CSharp
-        m_MethodName: SetState
+        m_MethodName: SetStateForced
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13124,6 +13172,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3910278219256571470}
+        m_TargetAssemblyTypeName: PlayerSFXCustomizer, Assembly-CSharp
+        m_MethodName: PlayOneShot
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MedkitPickup
+          m_BoolArgument: 0
+        m_CallState: 2
   UseTheItem:
     m_PersistentCalls:
       m_Calls:
@@ -13151,6 +13211,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3910278219256571470}
+        m_TargetAssemblyTypeName: PlayerSFXCustomizer, Assembly-CSharp
+        m_MethodName: PlayOneShot
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MedkitUse
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3910278219256571470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13166,22 +13238,38 @@ MonoBehaviour:
   mainSource: {fileID: 7235632461860916148}
   oneshotSource: {fileID: 7919355156671153257}
   movementController: {fileID: 8806807569467557479}
+  health: {fileID: 657718530578751992}
   shots:
   - action: Land
     audioClip: {fileID: 8300000, guid: 91b3c89e65db2814da16530ce686c01b, type: 3}
     volume: 0
   - action: Swing
     audioClip: {fileID: 8300000, guid: b0b39104bbbfc57438c05d20bc0c1a67, type: 3}
-    volume: 0.35
+    volume: 0.1
   - action: Climb_Ooah
-    audioClip: {fileID: 8300000, guid: 4f9d1f785be40cc44be2a730bac912ff, type: 3}
-    volume: 0.5
+    audioClip: {fileID: 8300000, guid: ea8ce1fe13b0b5147976ccb9a43a2d2b, type: 3}
+    volume: 0.8
   - action: Dash
     audioClip: {fileID: 8300000, guid: fa4757a35004d504383a7a92107246c9, type: 3}
-    volume: 0.5
+    volume: 0.3
   - action: Jump
     audioClip: {fileID: 8300000, guid: 3f83517ebf6c0fe428aac997a8341e45, type: 3}
+    volume: 0.3
+  - action: GetHit_Block
+    audioClip: {fileID: 8300000, guid: 82e660931cdaad547ad029c08303907c, type: 3}
+    volume: 0.4
+  - action: GetHit
+    audioClip: {fileID: 8300000, guid: 7af44aff4e8415640a765f20b756f5e2, type: 3}
+    volume: 1
+  - action: Hit
+    audioClip: {fileID: 8300000, guid: 154a0570ea1bb6140a7239c96fc9c5d2, type: 3}
+    volume: 0.6
+  - action: MedkitPickup
+    audioClip: {fileID: 8300000, guid: 9cba3b7bf6e728a4a8ddab2865a4ad3b, type: 3}
     volume: 0.5
+  - action: MedkitUse
+    audioClip: {fileID: 8300000, guid: 4fcc459723c24854a8819592d968c8eb, type: 3}
+    volume: 1
 --- !u!1 &7917437497820838933
 GameObject:
   m_ObjectHideFlags: 0
@@ -15409,7 +15497,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -139, y: 61.722946}
+  m_AnchoredPosition: {x: -189.97998, y: 61.7229}
   m_SizeDelta: {x: 379.96, y: 123.446}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5861642344691931707
