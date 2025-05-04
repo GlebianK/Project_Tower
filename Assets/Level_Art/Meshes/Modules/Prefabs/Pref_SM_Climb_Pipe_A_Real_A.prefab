@@ -31,9 +31,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1051781362867942027}
   - {fileID: 6719023948982299280}
   - {fileID: 1458602990982172097}
-  - {fileID: 1051781362867942027}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &542999191121614517
@@ -219,6 +219,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: bbb960988f5460d419554a285e222811, type: 3}
       propertyPath: m_Name
       value: SM_Sewer_Pipe_4m_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bbb960988f5460d419554a285e222811, type: 3}
+      propertyPath: m_Layer
+      value: 21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
