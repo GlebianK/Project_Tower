@@ -184,6 +184,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3436655615630483464, guid: 7a175806e04b02945a485f2d3844899c, type: 3}
+      propertyPath: soundsCollection.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: e0d29ed3caebefe40be1622bfe3bbac1, type: 3}
+    - target: {fileID: 3436655615630483464, guid: 7a175806e04b02945a485f2d3844899c, type: 3}
+      propertyPath: soundsCollection.Array.data[1].pitch
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3436655615630483464, guid: 7a175806e04b02945a485f2d3844899c, type: 3}
+      propertyPath: soundsCollection.Array.data[2].pitch
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5041792732846744763, guid: 7a175806e04b02945a485f2d3844899c, type: 3}
       propertyPath: m_Name
       value: Rat_2.0_B
@@ -369,6 +381,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3802593743713443994, guid: 8bca4bd2ebd953645b0b18ecf64eed6d, type: 3}
+      propertyPath: soundsCollection.Array.data[1].pitch
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3802593743713443994, guid: 8bca4bd2ebd953645b0b18ecf64eed6d, type: 3}
+      propertyPath: soundsCollection.Array.data[2].pitch
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5041792732846744763, guid: 8bca4bd2ebd953645b0b18ecf64eed6d, type: 3}
       propertyPath: m_Name
       value: Rat_2.0_A
