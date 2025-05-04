@@ -1082,7 +1082,7 @@ MonoBehaviour:
     damage: 20
     attackRange: 1.35
     damageDealingDelay: 0.28
-    durationOfAttack: 0.285
+    durationOfAttack: 0.9
     layerMask:
       serializedVersion: 2
       m_Bits: 64
@@ -1189,9 +1189,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  minAttackCooldown: 1.5
-  maxAttackCooldown: 2
-  afterHitRecoveryTimer: 1
+  minAttackCooldown: 0.1
+  maxAttackCooldown: 0.2
+  afterHitRecoveryTimer: 1.3
   attackAudioSource: {fileID: 6570726152423300998}
 --- !u!114 &5548709662071400167
 MonoBehaviour:
