@@ -1063,6 +1063,7 @@ MonoBehaviour:
   destructionTimer: 5.5
   combatAnimationsComponent: {fileID: 5548709662071400167}
   shieldObject: {fileID: 8207943633975042915}
+  audioSourceMain: {fileID: 6570726152423300998}
   audioSourceForShield: {fileID: 5229709777810706455}
   dropShieldHPThreshold: 50
 --- !u!114 &5962977997049606169
@@ -1305,6 +1306,12 @@ MonoBehaviour:
     isLooped: 0
     delayTimer: 0
     volume: 0.45
+    pitch: 1
+  - action: HitOnShield
+    clip: {fileID: 8300000, guid: c06ac090023b0aa49bfe819f1be8d97c, type: 3}
+    isLooped: 0
+    delayTimer: 0
+    volume: 0.75
     pitch: 1
   sfxSource: {fileID: 6570726152423300998}
 --- !u!82 &6570726152423300998

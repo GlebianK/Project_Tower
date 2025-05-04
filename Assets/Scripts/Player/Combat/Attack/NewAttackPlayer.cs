@@ -20,9 +20,12 @@ public class NewAttackPlayer : NewAttackBase
                     if (health.gameObject.TryGetComponent<NewEnemyShield>(out NewEnemyShield nes)) // переделать на теги??
                     {
                         if(nes.HasShield() && attackType == AttackType.light)
+                        {
+                            health.TakeDamage(0f, attackType);
                             continue;
+                        }
                     }
-
+                    
                     health.TakeDamage(damage * (1 - health.DamageReductionCoef), attackType);
                 }
             }

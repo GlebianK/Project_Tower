@@ -4,12 +4,14 @@ public class NewEnemyShield : NewEnemyBase
 {
     [SerializeField] private CombatAnimations combatAnimationsComponent;
     [SerializeField] private GameObject shieldObject;
+    [SerializeField] private AudioSource audioSourceMain;
     [SerializeField] private AudioSource audioSourceForShield;
     
     [Tooltip("Остаток здоровья для исчезновения щита (в процентах от максимального здоровья)")]
     [SerializeField, Range(0, 100)] private int dropShieldHPThreshold;
 
     private bool hasShield;
+    private SoundSystemRaider soundSystemRaider;
 
     public bool HasShield() => hasShield;
 
@@ -18,6 +20,11 @@ public class NewEnemyShield : NewEnemyBase
         base.Awake();
         rewardResolveType = EnemyType.Heavy;
         hasShield = true;
+
+        if (gameObject.TryGetComponent<SoundSystemRaider>(out soundSystemRaider))
+            health.TookDamage.AddListener(PlayShieldSound);
+        else
+            Debug.LogError($"{gameObject}, Awake: soundSystemRaider is null!");
     }
 
     private void Update()
@@ -36,12 +43,22 @@ public class NewEnemyShield : NewEnemyBase
         LosePlayer(other);
     }
 
+    private void PlayShieldSound()
+    {
+        if (soundSystemRaider != null)
+            soundSystemRaider.PlaySFXSound("HitOnShield");
+        else
+            Debug.LogError($"{gameObject}: soundSystemRaider is null!");
+    }
+
     private void SubscribeEventsToLightDamageWithoutShield()
     {
         health.TookDamage.AddListener(combatController.OnAttackAborted);
         health.TookDamage.AddListener(combatAnimationsComponent.OnGetHit);
         health.TookDamage.AddListener(combatController.OnGetHit);
         health.TookDamage.AddListener(OnGetHit);
+
+        health.TookDamage.RemoveListener(PlayShieldSound);
     }
 
     private void OnDisable()
