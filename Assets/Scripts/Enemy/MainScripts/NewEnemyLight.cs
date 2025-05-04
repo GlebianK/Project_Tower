@@ -15,10 +15,6 @@ public class NewEnemyLight : NewEnemyBase
     {
         if (isAlive && !combatAnimationsComponent.IsInStunnedState)
         {
-            /*
-            if (agent.isStopped)
-                agent.isStopped = false;
-            */
             EnemyBehaviourCycle();
         }
     }
@@ -37,11 +33,8 @@ public class NewEnemyLight : NewEnemyBase
     {
         if(!combatAnimationsComponent.IsInStunnedState)
         {
-            agent.SetDestination(gameObject.transform.position);
-            agent.speed = 0;
-            agent.angularSpeed = 0;
-            agent.velocity = Vector3.zero;
-            agent.isStopped = true;
+            agent.ResetPath();
+            StopEnemyMovement();
             Debug.Log("New Enemy Light: STUNNED!");
         }
     }

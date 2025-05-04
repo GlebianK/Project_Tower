@@ -41,7 +41,7 @@ public class NewEnemyShield : NewEnemyBase
         health.TookDamage.AddListener(combatController.OnAttackAborted);
         health.TookDamage.AddListener(combatAnimationsComponent.OnGetHit);
         health.TookDamage.AddListener(combatController.OnGetHit);
-        //health.TookDamage.AddListener(OnPlayInjuredSound);
+        health.TookDamage.AddListener(OnGetHit);
     }
 
     private void OnDisable()
@@ -49,15 +49,7 @@ public class NewEnemyShield : NewEnemyBase
         health.TookDamage.RemoveListener(combatController.OnAttackAborted);
         health.TookDamage.RemoveListener(combatAnimationsComponent.OnGetHit);
         health.TookDamage.RemoveListener(combatController.OnGetHit);
-        //health.TookDamage.RemoveListener(OnPlayInjuredSound);
-    }
-
-    public void OnPlayInjuredSound()
-    {
-        if (gameObject.TryGetComponent<SoundSystemRaider>(out SoundSystemRaider soundSystem))
-        {
-            soundSystem.PlaySFXSound("Injure");
-        }
+        health.TookDamage.RemoveListener(OnGetHit);
     }
 
     public void DropShield()

@@ -19,6 +19,8 @@ public class CombatControllerEnemy : CombatControllerBase
     public override bool IsAttackAllowed() => attackEnemy.CanPerform();
     public override bool IsBlockAllowed() => blockEnemy.CanPerform();
 
+    public bool IsRecoveringAfterHit() => isRecoveringAfterHit;
+
     private void Awake()
     {
         attackIsOnCooldown = false;
@@ -52,10 +54,6 @@ public class CombatControllerEnemy : CombatControllerBase
     public void OnAttackAborted()
     {
         attackEnemy.attackIsAborted = true;
-        /*
-        if (attackAudioSource != null)
-            attackAudioSource.clip = null;
-        */
     }
 
     // Коллбэк на получение удара (чтобы не было нанесения урона игроку при анимации отшатывания)

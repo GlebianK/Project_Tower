@@ -49,7 +49,7 @@ public class NewEnemyBase : MonoBehaviour
 
     protected virtual void EnemyBehaviourCycle()
     {
-        if (player != null)
+        if (player != null && !combatController.IsRecoveringAfterHit())
         {
             if (playerCCRadius == 0f)
             {
@@ -64,10 +64,7 @@ public class NewEnemyBase : MonoBehaviour
             //Debug.Log($"distance: {distance}, attack start distance: {attackStartRange}");
             if (distance <= attackStartRange)
             {
-                motionEnemy.StopMovingAnimations();
-                agent.isStopped = true;
-                agent.speed = 0f;
-                agent.velocity = Vector3.zero;
+                StopEnemyMovement();
                 if (combatController.IsAttackAllowed())
                 {
                     float angle = Vector3.Angle(transform.forward, (player.position - transform.position).normalized);
@@ -95,15 +92,30 @@ public class NewEnemyBase : MonoBehaviour
         return rotationToPlayer;
     }
 
+    protected void StopEnemyMovement()
+    {
+        agent.speed = 0;
+        agent.angularSpeed = 0;
+        agent.isStopped = true;
+        agent.velocity = Vector3.zero;
+        motionEnemy.StopMovingAnimations();
+    }
+
+    protected void AllowEnemyMovement()
+    {
+        agent.speed = speedAgent;
+        agent.angularSpeed = angularSpeedAgent;
+        agent.isStopped = false;
+        //motionEnemy.StartMovingAnimations();
+    }
+
     protected void ChasePlayer()
     {
         if (player != null)
         {
-            agent.speed = speedAgent;
-            agent.angularSpeed = angularSpeedAgent;
-            Vector3 playerCapsuleSurfacePos = GetPointOnSurface(gameObject.transform, player, playerCCRadius);
+            Vector3 playerCapsuleSurfacePos = GetPointOnSurface(player, gameObject.transform, playerCCRadius);
             agent.SetDestination(player.position + playerCapsuleSurfacePos);  // CHANGED !!!!!!!!!!!!!!!!!!!!!! (����: player.position)
-            agent.isStopped = false;
+            AllowEnemyMovement();
             motionEnemy.StartMovingAnimations();
         }
     }
@@ -125,11 +137,7 @@ public class NewEnemyBase : MonoBehaviour
     {
         if (detectedObject.CompareTag("Player"))
         {
-            agent.speed = 0;
-            agent.angularSpeed = 0;
-            agent.isStopped = true;
-            agent.velocity = Vector3.zero;
-            motionEnemy.StopMovingAnimations();
+            StopEnemyMovement();
             player = null;
             playerCCRadius = 0f;
         }
@@ -152,11 +160,7 @@ public class NewEnemyBase : MonoBehaviour
     #region EVENT CALLBACKS
     public void OnAttackStarted()
     {
-        agent.speed = 0;
-        agent.angularSpeed = 0;
-        agent.velocity = Vector3.zero;
-        agent.isStopped = true;
-        motionEnemy.StopMovingAnimations();
+        StopEnemyMovement();
     }
 
     public void OnAttackEnded()
@@ -178,15 +182,17 @@ public class NewEnemyBase : MonoBehaviour
         health.DeactivateDamageReductionByBlock();
     }
 
+    public void OnGetHit()
+    {
+        StopEnemyMovement();
+        agent.ResetPath();
+    }
+
     public void EnemyDied()
     {
         isAlive = false;
         player = null;
-        agent.speed = 0;
-        agent.angularSpeed = 0;
-        agent.isStopped = true;
-        agent.velocity = Vector3.zero;
-        motionEnemy.StopMovingAnimations();
+        StopEnemyMovement();
         
         if (TryGetComponent<CapsuleCollider>(out CapsuleCollider capsule))
         {
@@ -220,7 +226,7 @@ public class NewEnemyBase : MonoBehaviour
     }
     #endregion
 
-    //method for group fights
+    //method for group fights 
     public void SetPlayer(Transform externalLinkToPlayer)
     {
         player = externalLinkToPlayer;
