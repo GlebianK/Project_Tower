@@ -44,6 +44,7 @@ public class TutorialCanvas : MonoBehaviour
                     tempDict.Add(tpComponent.GetTutorialPanelID(), panel);
                 }
             }
+            Debug.Log("Tutorial collection initiated!");
         }
 
         return tempDict;
@@ -71,6 +72,7 @@ public class TutorialCanvas : MonoBehaviour
                 {
                     panel.SetActive(true);
                     activeTutorialPanel = panel;
+                    Debug.Log("Active!");
                 }
             }    
         }
