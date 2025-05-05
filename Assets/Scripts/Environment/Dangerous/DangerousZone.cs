@@ -1,16 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 // ÏÎÊÀ ÍÅ ĞÀÁÎÒÀÅÒ ÏĞÎÒÈÂ ÂĞÀÃÎÂ, ÂÈÄÈÌÎ, ×ÒÎ-ÒÎ Ñ ÒĞÈÃÃÅĞÀÌÈ, ÍÀÄÎ ÒÅÑÒÈĞÎÂÀÒÜ ÄÀËÜØÅ
-public class Mud : MonoBehaviour
+public class DangerousZone : MonoBehaviour
 {
     [SerializeField] private float frequencyOfAttacks;
     [SerializeField] private float damage;
+    [SerializeField] private DangerType zoneType;
 
     private bool canAttack = true;
     private List<Health> objectsToDamage;
+
+    public DangerType GetZoneType() => zoneType;
+
+    public UnityEvent<DangerType> ObjectEntered;
+    public UnityEvent<DangerType> ObjectExited;
+
+    public enum DangerType
+    {
+        light,
+        mud
+    }
 
     private void Awake()
     {
@@ -19,6 +32,8 @@ public class Mud : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        ObjectEntered.Invoke(zoneType);
+
         if(other.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Hi enemy!");
@@ -54,6 +69,8 @@ public class Mud : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        ObjectExited.Invoke(zoneType);
+
         if (other.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("bye enemy!");

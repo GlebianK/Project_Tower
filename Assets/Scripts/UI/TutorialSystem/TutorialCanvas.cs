@@ -62,6 +62,7 @@ public class TutorialCanvas : MonoBehaviour
 
     public void ShowTutorial(int id)
     {
+        HideAllTutorialPanels();
         if (tutorialPanelsCollection != null
             && tutorialPanelsCollection.Length > 0)
         {

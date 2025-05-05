@@ -11,7 +11,7 @@ public class TutorialTrigger : MonoBehaviour
 
     private bool isPassed;
 
-    private void Awake()
+    private void Start()
     {
         isPassed = false;
     }
@@ -41,7 +41,7 @@ public class TutorialTrigger : MonoBehaviour
     private IEnumerator HideTutorialPanelTimerCoroutine()
     {
         yield return new WaitForSeconds(hideTimer);
-        if (isPassed )
+        if (isPassed)
         {
             TutorialCanvas.Instance.HideTutorial();
         }
