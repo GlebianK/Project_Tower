@@ -1160,9 +1160,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 2
+  m_Height: 2.05
   m_Direction: 1
-  m_Center: {x: 0, y: 0.9, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!65 &8565916889286045456
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1321,7 +1321,7 @@ MonoBehaviour:
   health: {fileID: 6391752666143194889}
   combatController: {fileID: 5134204888741610866}
   motionEnemy: {fileID: 4996885776109548527}
-  attackStartRange: 1.05
+  attackStartRange: 1.15
   maxPlayerDetectViewAngle: 15
   agent: {fileID: 7048105651285985314}
   speedAgent: 2
@@ -1346,7 +1346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackEnemy:
     damage: 20
-    attackRange: 1.35
+    attackRange: 1.3
     damageDealingDelay: 0.45
     durationOfAttack: 0.9
     layerMask:
@@ -1455,9 +1455,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  minAttackCooldown: 0.1
-  maxAttackCooldown: 0.3
-  afterHitRecoveryTimer: 1.2
+  minAttackCooldown: 0.35
+  maxAttackCooldown: 1.25
+  afterHitRecoveryTimer: 0.8
   attackAudioSource: {fileID: 975477088483431310}
 --- !u!114 &1716496027889720428
 MonoBehaviour:
@@ -1471,7 +1471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1fc31a2b5f883a4caadb6d3ece452a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stunnedAnimationTimer: 1.5
+  stunnedAnimationTimer: 0
 --- !u!114 &4996885776109548527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1535,8 +1535,8 @@ NavMeshAgent:
   m_GameObject: {fileID: 3205048880066735889}
   m_Enabled: 1
   m_AgentTypeID: 287145453
-  m_Radius: 0.4
-  m_Speed: 3.75
+  m_Radius: 0.525
+  m_Speed: 4.25
   m_Acceleration: 5.75
   avoidancePriority: 50
   m_AngularSpeed: 200
@@ -2383,7 +2383,7 @@ Transform:
   m_GameObject: {fileID: 4929587726749002850}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.35, z: 0.1}
+  m_LocalPosition: {x: 0, y: 1.65, z: 0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
