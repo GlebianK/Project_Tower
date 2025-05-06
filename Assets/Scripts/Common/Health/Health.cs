@@ -25,6 +25,17 @@ public class Health : MonoBehaviour
         currentDamageReductionCoef = 0f;
     }
 
+    private void Start()
+    {
+        if (GameManager.Instance.IsDevMode)
+            if (gameObject.CompareTag("Player"))
+            {
+                maxHp = GameManager.Instance.PlayerInitialHP;
+                hp = maxHp;
+                Healed.Invoke();
+            }
+    }
+
     public void Heal(float healValue)
     {
         if(hp <= maxHp)

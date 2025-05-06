@@ -10,7 +10,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private string playerMovementActionMapName = "Movement";
     [SerializeField] private string uiActionMapName = "GameManager";
 
+    [SerializeField] private bool isDevMode = false;
+    [SerializeField] private Transform playerSpawnPoint;
+    [SerializeField] private float playerInitialHP = 100;
+    [SerializeField] private int initialMedKitsAmount = 0;
+
     private float fixedDeltaTime;
+
+    public bool IsDevMode => isDevMode;
+    public float PlayerInitialHP => playerInitialHP;
 
     private void Awake()
     {
@@ -20,6 +28,39 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
 
         fixedDeltaTime = Time.fixedDeltaTime;
+    }
+
+    private void Start()
+    {
+        // спавним игрока в нужно месте
+        if (isDevMode)
+        {
+            CharacterController[] playerCC = FindObjectsByType<CharacterController>(FindObjectsSortMode.None);
+            //Debug.LogWarning($"Контроллеров найдено: {playerCC.Length}");
+
+            if (playerCC != null && playerCC.Length == 1)
+            {
+                if (playerSpawnPoint != null)
+                {
+                    playerCC[0].gameObject.transform.position = playerSpawnPoint.position;
+                }
+
+                if (playerCC[0].gameObject.TryGetComponent<UseItem>(out UseItem useItemComponent))
+                {
+                    for (int i = 1; i <= initialMedKitsAmount; i++)
+                        useItemComponent.AddMedKit();
+                }
+            }
+            else
+            {
+                Debug.LogError("MORE OR LESS THEN ONE CCs ON SCENE!");
+            }
+        }
+        else
+        {
+            initialMedKitsAmount = 0;
+            playerInitialHP = 100;
+        }
     }
 
     private void Update()

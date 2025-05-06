@@ -12,7 +12,7 @@ public class UseItem : MonoBehaviour
     public UnityEvent CollectItem;
     public UnityEvent UseTheItem;
 
-    private void Start()
+    private void Awake()
     {
         amountOfMedKits = 0;
     }
@@ -29,12 +29,12 @@ public class UseItem : MonoBehaviour
         {
             if (amountOfMedKits > 0 && hc.HP < hc.MaxHP)
             {
-                Debug.Log($"hp before use: {hc.HP}");
-                Debug.Log("Can use medkit");
+                //Debug.Log($"hp before use: {hc.HP}");
+                //Debug.Log("Can use medkit");
                 hc.Heal(hpToAdd);
                 amountOfMedKits--;
                 UseTheItem.Invoke();
-                Debug.Log($"hp after use: {hc.HP}");
+                //Debug.Log($"hp after use: {hc.HP}");
             }
             
         }  
