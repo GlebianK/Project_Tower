@@ -81,6 +81,10 @@ public class NewEnemyBase : MonoBehaviour
                 ChasePlayer();
             }
         }
+        else
+        {
+            StopEnemyMovement();
+        }
     }
 
     protected Quaternion RotateInDirectionOfPlayer()
