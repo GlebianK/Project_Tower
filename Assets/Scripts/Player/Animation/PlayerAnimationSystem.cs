@@ -252,13 +252,13 @@ public class PlayerAnimationSystem : MonoBehaviour
             AudioMixerPlayable volumer = AudioMixerPlayable.Create(graph, 1, true);
             AudioClipPlayable clipPlayable = AudioClipPlayable.Create(graph, asset.asset.AudioClip, asset.asset.IsInfinite);
             volumer.ConnectInput(0, clipPlayable, 0);
-            volumer.SetInputWeight(0, asset.asset.Volume);
+            volumer.SetInputWeight(0, 0);
             
             int selfIndex = audioIndex;
 
             audioOutput.ConnectInput(selfIndex, volumer, 0);
-            audioOutput.SetInputWeight(audioIndex, 0);
-            state.SetControll(audioOutput, audioIndex);
+            audioOutput.SetInputWeight(audioIndex, asset.asset.Volume);
+            state.SetControll(volumer, 0);
             audioIndex++;
         }
 

@@ -2067,7 +2067,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 210, y: -57.894}
+  m_AnchoredPosition: {x: 210, y: -57.894043}
   m_SizeDelta: {x: 300, y: 35.7881}
   m_Pivot: {x: 0.49999997, y: 0.49999982}
 --- !u!114 &3911024159695413972
@@ -2992,9 +2992,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7917817253461790993}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 250, y: -392.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 480, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &452127242042605321
@@ -4855,7 +4855,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -5383,7 +5383,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -7006,9 +7006,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6610195513307843571}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 20, y: -22.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4767805811335316341
@@ -7932,7 +7932,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 53.113556, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6350487534164329603
 CanvasRenderer:
@@ -9303,7 +9303,7 @@ Transform:
   m_GameObject: {fileID: 6243404489616842721}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.932827, y: 3.5325584, z: -54.607586}
+  m_LocalPosition: {x: -5.5915556, y: 2.2700005, z: -79.586}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10759,9 +10759,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7917817253461790993}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 250, y: -7.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 480, y: 270}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &1021379006294447048
@@ -12350,7 +12350,7 @@ Transform:
   m_GameObject: {fileID: 7912131694403203269}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.932827, y: 1.9325585, z: -54.607586}
+  m_LocalPosition: {x: -5.5915556, y: 0.6700003, z: -79.586}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -13348,14 +13348,14 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 91b3c89e65db2814da16530ce686c01b, type: 3}
     volume: 0
   - action: Swing
-    audioClip: {fileID: 8300000, guid: b0b39104bbbfc57438c05d20bc0c1a67, type: 3}
-    volume: 0.1
+    audioClip: {fileID: 8300000, guid: 36f2b0619178e6b42a26b97c5a648ba2, type: 3}
+    volume: 0.15
   - action: Climb_Ooah
-    audioClip: {fileID: 8300000, guid: ea8ce1fe13b0b5147976ccb9a43a2d2b, type: 3}
-    volume: 0.8
+    audioClip: {fileID: 8300000, guid: 1e7916e5fdb118f4fab759705b39def4, type: 3}
+    volume: 0.1
   - action: Dash
     audioClip: {fileID: 8300000, guid: fa4757a35004d504383a7a92107246c9, type: 3}
-    volume: 0.3
+    volume: 0
   - action: Jump
     audioClip: {fileID: 8300000, guid: 3f83517ebf6c0fe428aac997a8341e45, type: 3}
     volume: 0.3
@@ -13367,7 +13367,7 @@ MonoBehaviour:
     volume: 1
   - action: Hit
     audioClip: {fileID: 8300000, guid: 154a0570ea1bb6140a7239c96fc9c5d2, type: 3}
-    volume: 0.6
+    volume: 0.45
   - action: MedkitPickup
     audioClip: {fileID: 8300000, guid: 9cba3b7bf6e728a4a8ddab2865a4ad3b, type: 3}
     volume: 0.5
@@ -16000,6 +16000,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMovementActionMapName: Movement
   uiActionMapName: UI Interaction
+  isDevMode: 1
+  playerSpawnPoint: {fileID: 0}
+  playerInitialHP: 10000
+  initialMedKitsAmount: 0
 --- !u!114 &2984026524325507566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16129,17 +16133,17 @@ MonoBehaviour:
   LostGameEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4086264719601063099}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: Play
-        m_Mode: 5
+      - m_Target: {fileID: 1354203492313858040}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Appear Delay
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 5365086279200518402}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
@@ -16165,6 +16169,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4547426787183685731}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: StopGameplay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 7912131694403203269}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Appear
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2984026524325507566}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Appear
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 2338059108791923821}
         m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
         m_MethodName: Play
@@ -16176,6 +16204,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: Appear
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4086264719601063099}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Appear Delay
+          m_BoolArgument: 1
         m_CallState: 2
   CompleteGameEvent:
     m_PersistentCalls:
@@ -16204,10 +16244,82 @@ MonoBehaviour:
           m_StringArgument: Appear Delay
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 4547426787183685731}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: StopGameplay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 7912131694403203269}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Appear Delay
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2984026524325507566}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Appear Delay
+          m_BoolArgument: 0
+        m_CallState: 2
   OnGameBadEnded:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1354203492313858040}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Appear
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2984026524325507566}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Appear
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4547426787183685731}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: StopGameplay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 7912131694403203269}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Appear
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 5365086279200518402}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7150089698598411238}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6
@@ -16231,18 +16343,6 @@ MonoBehaviour:
           m_StringArgument: Appear Delay
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 7150089698598411238}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 2338059108791923821}
         m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
         m_MethodName: Play
@@ -16258,6 +16358,30 @@ MonoBehaviour:
   OnGameNormEnded:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1354203492313858040}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Appear
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2984026524325507566}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Appear
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 5365086279200518402}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
@@ -16268,6 +16392,30 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7150089698598411238}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4547426787183685731}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: StopGameplay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 7912131694403203269}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Appear
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 944248893798188358}
@@ -16281,18 +16429,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: Appear Delay
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 7150089698598411238}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 2338059108791923821}
         m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
@@ -16309,6 +16445,30 @@ MonoBehaviour:
   OnGameGoodEnded:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1354203492313858040}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Appear
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2984026524325507566}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Appear
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 5365086279200518402}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
@@ -16319,6 +16479,30 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7150089698598411238}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4547426787183685731}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: StopGameplay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 7912131694403203269}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Appear
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 5668443163744778272}
@@ -16332,18 +16516,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: Appear Delay
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 7150089698598411238}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 2338059108791923821}
         m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine

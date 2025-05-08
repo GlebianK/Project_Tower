@@ -16,16 +16,18 @@ public class PauseManager : MonoBehaviour
     // обычный метод открытия-закрытия канваса паузы (костыльный дубликат в обход CallbackContext'а для использщования в других скриптах)
     public void OpenClosePauseMenu()
     {
+
         //Debug.Log($"Before: {pauseMenuCanvas.activeSelf}");
         bool isPauseMenuCanvasEnabled = pauseMenuCanvas.activeSelf;
         pauseMenuCanvas.SetActive(!isPauseMenuCanvasEnabled);
         //Debug.Log($"After: {pauseMenuCanvas.activeSelf}");
+
     }
 
     // коллбек на нажатие Esc
     public void OnOpenClosePauseMenu(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && enabled)
         {
             OpenClosePauseMenu();
         }
