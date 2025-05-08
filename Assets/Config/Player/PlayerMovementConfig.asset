@@ -23,7 +23,7 @@ MonoBehaviour:
   crouchMaxSpeed: 1.5
   crouchHeight: 0.9
   enableSprint: 1
-  sprintMaxSpeed: 4.5
+  sprintMaxSpeed: 5
   sprintJumpVelocity: 3.5
   sprintJumpHorizontalSpeed: 4.2
   sprintToWalkSpeedThreshold: 0.8
@@ -31,12 +31,12 @@ MonoBehaviour:
   slideStartSpeed: 7
   slideDecceleration: 5
   slideEndSpeedThreshold: 2
-  dashRange: 3
-  dashTime: 0.2
+  dashRange: 1.5
+  dashTime: 0.15
   climbCheckForwardRange: 1.2
   climbCheckpointHeight: 2.5
   climbDownCheckRange: 1.8
-  climbMaxDuration: 0.8
+  climbMaxDuration: 1
   groundObstacleLayer:
     serializedVersion: 2
     m_Bits: 1
