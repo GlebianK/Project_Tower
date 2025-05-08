@@ -5,6 +5,7 @@
  * Одним из protected полей является словарь "действие-клип". Рекомендуется использовать его для доступа к элементам коллекции
  */
 
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -78,6 +79,23 @@ public class SoundSystemBase : MonoBehaviour
         yield return new WaitForSeconds(delay);
         if (sfxSource.isActiveAndEnabled && sfxSource.clip != null)
             sfxSource.Play();
+        yield return null;
+    }
+
+    public void StopLoopedSFXSound()
+    {
+        if (currentSFXItem != null && currentSFXItem.isLooped == true)
+        {
+            float duration = 0.5f;
+            sfxSource.DOFade(0f, duration); // плавно обнулить громкость за [duration] секунд 
+            StartCoroutine(StopSFXSourceAfterFade(duration));
+        }
+    }
+
+    private IEnumerator StopSFXSourceAfterFade(float FadeTimeout)
+    {
+        yield return new WaitForSeconds(FadeTimeout);
+        sfxSource.Stop();
         yield return null;
     }
 
