@@ -105,10 +105,10 @@ public class PlayerSFXCustomizer : MonoBehaviour
                 PlayOneShot("Jump");
         }
 
-        if (state == PlayerMovementStateType.Dash)
-        {
-            PlayOneShot("Dash");
-        }
+        //if (state == PlayerMovementStateType.Dash)
+        //{
+        //    PlayOneShot("Dash");
+        //}
 
         if (state == PlayerMovementStateType.Climb)
         {
