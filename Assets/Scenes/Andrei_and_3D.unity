@@ -1354,19 +1354,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3.0476623
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5.3333473
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 130.94
+      value: 129.11
       objectReference: {fileID: 0}
     - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.89
+      value: 7.12
       objectReference: {fileID: 0}
     - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1374,27 +1378,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1402,7 +1406,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1585424937127194101, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_Name
-      value: ETZCampRaiderLevelF
+      value: ETZ_Raiders_1_Level_F
+      objectReference: {fileID: 0}
+    - target: {fileID: 5043769994712277977, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
+      propertyPath: m_Size.x
+      value: 2.5178833
+      objectReference: {fileID: 0}
+    - target: {fileID: 5043769994712277977, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
+      propertyPath: m_Center.x
+      value: 0.25893888
       objectReference: {fileID: 0}
     - target: {fileID: 7854975526360092611, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: enemiesCollection.Array.size
@@ -2122,7 +2134,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1585424937127194101, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_Name
-      value: ETZCampRatLevelC
+      value: ETZ_Rats1_Level_C
       objectReference: {fileID: 0}
     - target: {fileID: 7854975526360092611, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: enemiesCollection.Array.size
@@ -2770,7 +2782,7 @@ GameObject:
   m_Component:
   - component: {fileID: 89663870}
   m_Layer: 0
-  m_Name: LevelD
+  m_Name: Level_D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5292,7 +5304,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1585424937127194101, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_Name
-      value: ETZCampRaiderLevelE 3
+      value: ETZ_Camp_Raiders_3_1_Level_E
       objectReference: {fileID: 0}
     - target: {fileID: 7854975526360092611, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: enemiesCollection.Array.size
@@ -8753,7 +8765,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1585424937127194101, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_Name
-      value: ETZCampRaiderLevelE
+      value: ETZ_Camp_Raiders_1_Level_E
       objectReference: {fileID: 0}
     - target: {fileID: 7854975526360092611, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: enemiesCollection.Array.size
@@ -12457,7 +12469,7 @@ GameObject:
   m_Component:
   - component: {fileID: 418948670}
   m_Layer: 0
-  m_Name: LevelF
+  m_Name: Level_F
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18639,7 +18651,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1585424937127194101, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_Name
-      value: ETZCampShieldLevelD
+      value: ETZ_SingleShieldRaider_Level_D
       objectReference: {fileID: 0}
     - target: {fileID: 7854975526360092611, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: enemiesCollection.Array.size
@@ -21146,6 +21158,104 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfe5f3912d4224b4bb86aac5ae8f3418, type: 3}
+--- !u!1001 &782578960
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1384552232}
+    m_Modifications:
+    - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 85.188
+      objectReference: {fileID: 0}
+    - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.702
+      objectReference: {fileID: 0}
+    - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 90.543
+      objectReference: {fileID: 0}
+    - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1585424937127194101, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
+      propertyPath: m_Name
+      value: ETZ_Camp_Raiders_3_2_Level_E
+      objectReference: {fileID: 0}
+    - target: {fileID: 5043769994712277977, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5043769994712277977, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5043769994712277977, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
+      propertyPath: m_Size.z
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7854975526360092611, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
+      propertyPath: enemiesCollection.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7854975526360092611, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
+      propertyPath: 'enemiesCollection.Array.data[0]'
+      value: 
+      objectReference: {fileID: 528234054}
+    - target: {fileID: 7854975526360092611, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
+      propertyPath: 'enemiesCollection.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2043840553}
+    - target: {fileID: 7854975526360092611, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
+      propertyPath: 'enemiesCollection.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1466035954}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
+--- !u!4 &782578961 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
+  m_PrefabInstance: {fileID: 782578960}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &783154355 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2108020140326512509, guid: 4ef3b254741b6cc4090a27d3bd9b1087, type: 3}
@@ -25540,7 +25650,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1585424937127194101, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_Name
-      value: ETZCampRaiderLevelB
+      value: ETZ_Raiders1_LevelB
       objectReference: {fileID: 0}
     - target: {fileID: 7854975526360092611, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: enemiesCollection.Array.size
@@ -28014,7 +28124,7 @@ GameObject:
   m_Component:
   - component: {fileID: 999235753}
   m_Layer: 0
-  m_Name: LevelB
+  m_Name: Level_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28724,7 +28834,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1585424937127194101, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_Name
-      value: ETZCampRaiderLevelD
+      value: ETZ_SingleLightRaider_Level_D
       objectReference: {fileID: 0}
     - target: {fileID: 7854975526360092611, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: enemiesCollection.Array.size
@@ -35556,7 +35666,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1276401993}
   m_Layer: 0
-  m_Name: LevelC
+  m_Name: Level_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37794,7 +37904,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1384552232}
   m_Layer: 0
-  m_Name: LevelE
+  m_Name: Level_E_Camp_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37817,6 +37927,7 @@ Transform:
   - {fileID: 310186322}
   - {fileID: 1443385136}
   - {fileID: 159177644}
+  - {fileID: 782578961}
   - {fileID: 1750028098}
   - {fileID: 1812533638}
   m_Father: {fileID: 1446531278}
@@ -38244,7 +38355,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1585424937127194101, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_Name
-      value: ETZCampRatLevelE
+      value: ETZ_Pre-camp_Rats1_Level_E
       objectReference: {fileID: 0}
     - target: {fileID: 7854975526360092611, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: enemiesCollection.Array.size
@@ -39235,7 +39346,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1585424937127194101, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_Name
-      value: ETZCampRatLevelB
+      value: ETZ_Rats1_Level_B
       objectReference: {fileID: 0}
     - target: {fileID: 7854975526360092611, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: enemiesCollection.Array.size
@@ -39526,7 +39637,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1585424937127194101, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_Name
-      value: ETZCampRaiderLevelE 2
+      value: ETZ_Camp_Raiders_2_Level_E
       objectReference: {fileID: 0}
     - target: {fileID: 7854975526360092611, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: enemiesCollection.Array.size
@@ -39797,7 +39908,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1446531278}
   m_Layer: 0
-  m_Name: TriggerZone
+  m_Name: Enemy Trigger Zones
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47439,27 +47550,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_LocalScale.x
-      value: 7.3661084
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.8542419
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 87.466
+      value: 88.75
       objectReference: {fileID: 0}
     - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.319
+      value: 9.919
       objectReference: {fileID: 0}
     - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 87.6
+      value: 88.46
       objectReference: {fileID: 0}
     - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_LocalRotation.x
@@ -47467,7 +47578,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_LocalRotation.z
@@ -47479,7 +47590,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -47487,7 +47598,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1585424937127194101, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_Name
-      value: ETZCampRaiderLevelE 4
+      value: ETZ_Camp_Raiders_4_Level_E
+      objectReference: {fileID: 0}
+    - target: {fileID: 5043769994712277977, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
+      propertyPath: m_Size.y
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5043769994712277977, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
+      propertyPath: m_Size.z
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7854975526360092611, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: enemiesCollection.Array.size
@@ -50748,7 +50867,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1585424937127194101, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_Name
-      value: ETZCampRaiderLevelE 5
+      value: ETZ_Camp_Raiders_5_Level_E
       objectReference: {fileID: 0}
     - target: {fileID: 7854975526360092611, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: enemiesCollection.Array.size
@@ -61273,9 +61392,9 @@ SceneRoots:
   - {fileID: 954117521}
   - {fileID: 405282325}
   - {fileID: 251125108}
+  - {fileID: 1308333380}
   - {fileID: 1962357935}
   - {fileID: 955282921}
   - {fileID: 1246315602}
   - {fileID: 1941431695}
-  - {fileID: 1308333380}
   - {fileID: 1446531278}
