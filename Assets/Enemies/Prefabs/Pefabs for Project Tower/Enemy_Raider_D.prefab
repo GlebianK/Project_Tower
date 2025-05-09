@@ -1197,7 +1197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 200
-  damageReductionCoef: 0.75
+  damageReductionCoef: 0.5
   Died:
     m_PersistentCalls:
       m_Calls:
@@ -1331,7 +1331,7 @@ MonoBehaviour:
   shieldObject: {fileID: 8101218004284693641}
   audioSourceMain: {fileID: 975477088483431310}
   audioSourceForShield: {fileID: 2051699152783290390}
-  dropShieldHPThreshold: 50
+  dropShieldHPThreshold: 56
 --- !u!114 &5134204888741610866
 MonoBehaviour:
   m_ObjectHideFlags: 0
