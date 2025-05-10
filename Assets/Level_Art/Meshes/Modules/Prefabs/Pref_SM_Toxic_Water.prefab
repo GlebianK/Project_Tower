@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frequencyOfAttacks: 1
   damage: 5
-  zoneType: 0
+  zoneType: 1
   ObjectEntered:
     m_PersistentCalls:
       m_Calls:
@@ -71,7 +71,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3320932044357452571}
         m_TargetAssemblyTypeName: SoundSystemBase, Assembly-CSharp
-        m_MethodName: StopLoopedSFXSound
+        m_MethodName: StopSFXSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -119,19 +119,13 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: ff78655647fa51a4ea63ecd225cf5721, type: 3}
     isLooped: 0
     delayTimer: 0
-    volume: 0.7
+    volume: 0.5
     pitch: 1
-  - action: Light damage
-    clip: {fileID: 0}
-    isLooped: 0
+  - action: Damage
+    clip: {fileID: 8300000, guid: 75684aef3bedc884380d43c51449d296, type: 3}
+    isLooped: 1
     delayTimer: 0
-    volume: 0.75
-    pitch: 1
-  - action: Toxic damage
-    clip: {fileID: 0}
-    isLooped: 0
-    delayTimer: 0
-    volume: 0.75
+    volume: 0.125
     pitch: 1
   sfxSource: {fileID: 414597290671022649}
 --- !u!82 &414597290671022649

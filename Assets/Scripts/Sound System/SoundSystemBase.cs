@@ -68,7 +68,6 @@ public class SoundSystemBase : MonoBehaviour
             sfxSource.loop = currentSFXItem.isLooped;
             sfxSource.pitch = currentSFXItem.pitch;
             StartCoroutine(PlaySoundDelayCoroutine(sfxSource, currentSFXItem.delayTimer));
-            //sfxSource.Play();
         }
         else
             Debug.LogError($"No action named {actionName}!!!");
@@ -82,11 +81,13 @@ public class SoundSystemBase : MonoBehaviour
         yield return null;
     }
 
-    public void StopLoopedSFXSound()
+    public void StopSFXSound()
     {
-        if (currentSFXItem != null && currentSFXItem.isLooped == true)
+        //Debug.LogError($" curItem is null: {currentSFXItem == null}, curItem is looped: {currentSFXItem.isLooped}");
+        //if (currentSFXItem != null && currentSFXItem.isLooped == true)
+        if (currentSFXItem != null)
         {
-            float duration = 0.5f;
+            float duration = 0.5f; // ХАРДКОД (но ме пох)
             sfxSource.DOFade(0f, duration); // плавно обнулить громкость за [duration] секунд 
             StartCoroutine(StopSFXSourceAfterFade(duration));
         }
@@ -96,6 +97,8 @@ public class SoundSystemBase : MonoBehaviour
     {
         yield return new WaitForSeconds(FadeTimeout);
         sfxSource.Stop();
+        sfxSource.clip = null;
+        currentSFXItem = null;
         yield return null;
     }
 
