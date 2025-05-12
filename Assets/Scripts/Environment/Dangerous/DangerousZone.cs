@@ -60,28 +60,28 @@ public class DangerousZone : MonoBehaviour
             StartCoroutine(SwitchClipToDamageCoroutine());
     }
 
-    private void OnTriggerStay(Collider other)
+    private void Update()
     {
+        for (int i = 0; i < objectsToDamage.Count; i++)
+        {
+            if (objectsToDamage[i].gameObject.TryGetComponent<CharacterController>(out CharacterController cc))
+            {
+                if (cc.enabled == false)
+                {
+                    OnTriggerExit(cc);
+                }
+            }
+        }
+
         if (objectsToDamage.Count > 0 && canAttack)
         {
             for (int i = 0; i < objectsToDamage.Count; i++)
             {
                 if (objectsToDamage[i] != null)
                 {
-                    if (objectsToDamage[i].gameObject.TryGetComponent<CharacterController>(out CharacterController cc))
-                    {
-                        if (cc.enabled)
-                        {
-                            //Debug.Log("CC enabled!");
-                            objectsToDamage[i].TakeDamage(damage);
-                        }
-                        else
-                        {
-                            //Debug.Log("CC disabled!");
-                            OnTriggerExit(cc);
-                        }
-                    }
-                }    
+                    //Debug.Log("CC enabled!");
+                    objectsToDamage[i].TakeDamage(damage);
+                }
             }
             StartCoroutine(PerformAttackCoroutine());
         }
