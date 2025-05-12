@@ -23,7 +23,7 @@ public class TutorialTrigger : MonoBehaviour
         {
             isPassed = true;
             TutorialCanvas.Instance.ShowTutorial(id);
-            StartCoroutine(HideTutorialPanelTimerCoroutine());
+            StartCoroutine(HideTutorialPanelTimerCoroutine(id));
         }
     }
 
@@ -38,12 +38,12 @@ public class TutorialTrigger : MonoBehaviour
     }
     */
 
-    private IEnumerator HideTutorialPanelTimerCoroutine()
+    private IEnumerator HideTutorialPanelTimerCoroutine(int triggerID)
     {
         yield return new WaitForSeconds(hideTimer);
         if (isPassed)
         {
-            TutorialCanvas.Instance.HideTutorial();
+            TutorialCanvas.Instance.HideTutorial(triggerID);
         }
     }
 }

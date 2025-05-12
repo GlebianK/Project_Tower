@@ -10,6 +10,7 @@ public class TutorialCanvas : MonoBehaviour
 
     private Dictionary<int, GameObject> tutorialsDict;
     private GameObject activeTutorialPanel;
+    private int activeTutorialPanelID;
 
     private void Awake()
     {
@@ -22,6 +23,7 @@ public class TutorialCanvas : MonoBehaviour
     private void Start()
     {
         activeTutorialPanel = null;
+        activeTutorialPanelID = 0;
         tutorialsDict = InitializeTutorialDictionary();
 
         if (tutorialsDict == null || tutorialsDict.Count < 1)
@@ -73,6 +75,7 @@ public class TutorialCanvas : MonoBehaviour
                 {
                     panel.SetActive(true);
                     activeTutorialPanel = panel;
+                    activeTutorialPanelID = id;
                     Debug.Log("Active!");
                 }
             }    
@@ -86,5 +89,11 @@ public class TutorialCanvas : MonoBehaviour
             activeTutorialPanel.SetActive(false);
             activeTutorialPanel = null;
         }
+    }
+
+    public void HideTutorial(int tutorialID)
+    {
+        if (activeTutorialPanelID == tutorialID)
+            activeTutorialPanel.SetActive(false);
     }
 }
