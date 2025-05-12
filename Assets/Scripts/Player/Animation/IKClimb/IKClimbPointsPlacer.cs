@@ -7,14 +7,18 @@ public class IKClimbPointsPlacer : MonoBehaviour
     public void OnStateChanged(PlayerMovementStateMachine machine, PlayerMovementStateType type)
     {
         if (!enabled) return;
+
         if (type == PlayerMovementStateType.Climb)
         {
-            RaycastHit climbPointHit;
-            machine.TryGetClimbPoint(out climbPointHit);
+            ClimbPlayerMovementState state = machine.GetCurrentState() as ClimbPlayerMovementState;
+            RaycastHit climbPointHit = state.ClimbPointHit;
+
+            Vector3 machinePosYAlligned = machine.transform.position;
+            machinePosYAlligned.y = climbPointHit.point.y;
             Vector3 climbVector = climbPointHit.point - machine.transform.position;
             Debug.Log($"Climb Direction: {climbVector}");
-            Vector3 raycastStart = machine.transform.position;
-            raycastStart.y = climbPointHit.point.y - 0.05f;
+            Vector3 raycastStart = machinePosYAlligned;
+            raycastStart.y -= 0.05f;
 
             Vector3 raycastEnd = climbPointHit.point;
             raycastEnd.y -= 0.05f;
@@ -25,7 +29,7 @@ public class IKClimbPointsPlacer : MonoBehaviour
 
             RaycastHit wallHit;
 
-            Physics.Raycast(raycastStart, raycastDir, out wallHit, raycastRange + machine.cc.radius,
+            bool successCast = Physics.Raycast(raycastStart, raycastDir, out wallHit, raycastRange + machine.cc.radius,
                 machine.Properties.ClimbObstacleLayer,
                 QueryTriggerInteraction.Ignore);
 
@@ -47,7 +51,20 @@ public class IKClimbPointsPlacer : MonoBehaviour
             Vector3 wallNormal = wallHit.normal;
 
             climbPointsObject.position = climbPointHit.point;
-            climbPointsObject.rotation = Quaternion.LookRotation(wallNormal, climbPointHit.normal);
+            climbPointsObject.rotation = Quaternion.LookRotation(-machine.transform.forward, climbPointHit.normal);
+
+            if (successCast)
+            {
+                Debug.Log("Climb Rotated for wallHit");
+                climbPointsObject.rotation = Quaternion.LookRotation(wallNormal, climbPointHit.normal);
+            }
+
+            //if (Vector3.Angle(climbPointsObject.forward, -machine.transform.forward) > 60)
+            //{
+            //    Debug.Log("Climb Rotation Corrected");
+            //    climbPointsObject.rotation = Quaternion.LookRotation(-machine.transform.forward, climbPointHit.normal);
+
+            //}
         }
     }
 }

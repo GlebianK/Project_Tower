@@ -5,10 +5,13 @@ public class ClimbPlayerMovementState : PlayerMovementStateBase
     private readonly float maxClimbRange;
     private readonly float climbSpeed;
 
-    RaycastHit climbPointHit;
+    private RaycastHit climbPointHit;
+    public RaycastHit ClimbPointHit => climbPointHit;
 
     private float climbTime;
     private Vector3 movementVector;
+
+
     public ClimbPlayerMovementState(PlayerMovementStateConfig config) : base(config)
     {
         maxClimbRange = (Vector3.forward * config.ClimbSnapXZRange + Vector3.up * config.ClimbCheckpointHeight).magnitude;
