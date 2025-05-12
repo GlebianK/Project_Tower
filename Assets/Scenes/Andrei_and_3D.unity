@@ -6601,7 +6601,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.12
+      value: 7.51
       objectReference: {fileID: 0}
     - target: {fileID: 897845376198990687, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6641,11 +6641,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5043769994712277977, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_Size.x
-      value: 2.5178833
+      value: 1.958416
+      objectReference: {fileID: 0}
+    - target: {fileID: 5043769994712277977, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
+      propertyPath: m_Size.y
+      value: 4.7016716
+      objectReference: {fileID: 0}
+    - target: {fileID: 5043769994712277977, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
+      propertyPath: m_Size.z
+      value: 0.35653427
       objectReference: {fileID: 0}
     - target: {fileID: 5043769994712277977, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: m_Center.x
-      value: 0.25893888
+      value: 0.83629143
+      objectReference: {fileID: 0}
+    - target: {fileID: 5043769994712277977, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
+      propertyPath: m_Center.y
+      value: 0.8508358
+      objectReference: {fileID: 0}
+    - target: {fileID: 5043769994712277977, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
+      propertyPath: m_Center.z
+      value: -0.00729661
       objectReference: {fileID: 0}
     - target: {fileID: 7854975526360092611, guid: 176670d93b9565a4f92b7d51096e21d8, type: 3}
       propertyPath: enemiesCollection.Array.size
@@ -215407,7 +215423,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4547426787183685731, guid: 79fa68c0c35d23f46b452fa1d1d9c19c, type: 3}
       propertyPath: isDevMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4547426787183685731, guid: 79fa68c0c35d23f46b452fa1d1d9c19c, type: 3}
       propertyPath: playerSpawnPoint
@@ -237868,7 +237884,7 @@ Transform:
   m_GameObject: {fileID: 1949060970}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 143.84, y: 19.71, z: 142.61}
+  m_LocalPosition: {x: 153.742, y: 5.275, z: 70.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

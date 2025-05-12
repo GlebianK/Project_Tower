@@ -59,6 +59,7 @@ public class DangerousZone : MonoBehaviour
         if (zoneType == DangerType.mud)
             StartCoroutine(SwitchClipToDamageCoroutine());
     }
+
     private void OnTriggerStay(Collider other)
     {
         if (objectsToDamage.Count > 0 && canAttack)

@@ -48,11 +48,13 @@ public class StatusView : MonoBehaviour
         {
             inLightZonesCounter++;
             radiationImage.SetActive(true);
+            Debug.LogWarning($"Мы на свету! Кол-во триггеров: {inLightZonesCounter}");
         }
         else if (type == DangerousZone.DangerType.mud)
         {
             inMudZonesCounter++;
             toxicImage.SetActive(true);
+            Debug.LogWarning($"Мы в грязи! Кол-во триггеров: {inMudZonesCounter}");
         }
         else
             Debug.LogError("StatusView -> ActivateStatus: something wrong with callbacks or danger zones!");
@@ -63,6 +65,7 @@ public class StatusView : MonoBehaviour
         if (type == DangerousZone.DangerType.mud)
         {
             inMudZonesCounter--;
+            Debug.LogWarning($"Мы вышли из грязи! Кол-во триггеров: {inMudZonesCounter}");
             if (inMudZonesCounter == 0)
                 toxicImage.SetActive(false);
             else if (inMudZonesCounter < 0)
@@ -71,6 +74,7 @@ public class StatusView : MonoBehaviour
         else if (type == DangerousZone.DangerType.light)
         {
             inLightZonesCounter--;
+            Debug.LogWarning($"Мы выщли из света! Кол-во триггеров: {inLightZonesCounter}");
             if (inLightZonesCounter == 0)
                 radiationImage.SetActive(false);
             else if (inLightZonesCounter < 0)
