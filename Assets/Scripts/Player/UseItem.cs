@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -8,6 +9,8 @@ public class UseItem : MonoBehaviour
     [SerializeField] private float hpToAdd = 5f;
 
     private int amountOfMedKits = 0;
+
+    public int GetMedkitsAmount() => amountOfMedKits;
 
     public UnityEvent CollectItem;
     public UnityEvent UseTheItem;
@@ -38,5 +41,21 @@ public class UseItem : MonoBehaviour
             }
             
         }  
+    }
+
+    public void SetMedkitsAmountViaCheckpointData(int amountOfKits)
+    {
+        amountOfMedKits = amountOfKits;
+        StartCoroutine(InvokeCollectItemEventForCheckpointRestart(amountOfKits));
+    }
+    
+    private IEnumerator InvokeCollectItemEventForCheckpointRestart(int counter)
+    {
+        for (int i = 1; i <= counter; i++)
+        {
+            CollectItem.Invoke();
+            yield return null;
+        }
+        yield return null;
     }
 }

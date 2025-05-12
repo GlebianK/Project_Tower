@@ -25,4 +25,11 @@ public class GameTimer : MonoBehaviour
         Time = initialTimeInSeconds;
         TimeClamped = Time;
     }
+
+    // ========== йняршкэ дкъ вейонхмрю
+    public void SetTimerFromCheckpointData(float value)
+    {
+        Time = value;
+        TimeClamped = value;
+    }
 }

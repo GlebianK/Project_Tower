@@ -136,4 +136,44 @@ public class GameplayManager : MonoBehaviour
 
         return totalKills;
     }
+
+    // =============================== ÊÎÑÒÛËÜ ÄËß ×ÅÊÏÎÈÍÒÀ
+    public int GetRatKillsCounted()
+    {
+        if (ratKillCounted)
+            return RatKilled;
+        else
+            return 0;
+    }
+
+    public void SetRatKillsCounted(int amount)
+    {
+        RatKilled = amount;
+    }
+
+    public int GetLightEnemiesKillsCounted()
+    {
+        if (ratKillCounted)
+            return RatKilled;
+        else
+            return 0;
+    }
+
+    public void SetLightEnemiesKillsCounted(int amount)
+    {
+        LightKilled = amount;
+    }
+
+    public int GetShieldEnemiesKillsCounted()
+    {
+        if (ratKillCounted)
+            return RatKilled;
+        else
+            return 0;
+    }
+
+    public void SetShieldEnemiesKillsCounted(int amount)
+    {
+        HeavyKilled = amount;
+    }
 }

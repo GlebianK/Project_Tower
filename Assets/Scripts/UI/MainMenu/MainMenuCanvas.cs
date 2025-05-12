@@ -22,10 +22,24 @@ public class MainMenuCanvas : MonoBehaviour
         panelToOpen.SetActive(true);
     }
 
+    private void ClearCheckpointDataInPlayerPrefs()
+    {
+        PlayerPrefs.DeleteKey("PlayerX");
+        PlayerPrefs.DeleteKey("PlayerZ");
+        PlayerPrefs.DeleteKey("PlayerY");
+        PlayerPrefs.DeleteKey("Medkits");
+        PlayerPrefs.DeleteKey("Rats");
+        PlayerPrefs.DeleteKey("Heavy");
+        PlayerPrefs.DeleteKey("Light");
+        PlayerPrefs.DeleteKey("Health");
+        PlayerPrefs.DeleteKey("Timer");
+    }
+
     #region MAIN MENU BUTTONS CALLBACKS
     public void OnPressPlay() // Играть
     {
         Time.timeScale = 1.0f;
+        ClearCheckpointDataInPlayerPrefs();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

@@ -114,4 +114,9 @@ public class Health : MonoBehaviour
         currentDamageReductionCoef = 0f;
     }
 
+
+    public void SetHPViaCheckpointData(float healthPoints)
+    {
+        hp = healthPoints;
+    }
 }
