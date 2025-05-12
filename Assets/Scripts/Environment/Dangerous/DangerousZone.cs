@@ -52,7 +52,7 @@ public class DangerousZone : MonoBehaviour
             }
             objectsToDamage.Add(healthComponent);
 
-            Debug.Log($"{other.gameObject.name} is in mud zone!");
+            Debug.Log($"{other.gameObject.name} is in the danger zone!");
         }
 
         // переключение звука с всплеска на шипение дл€ гр€зи
@@ -67,7 +67,21 @@ public class DangerousZone : MonoBehaviour
             for (int i = 0; i < objectsToDamage.Count; i++)
             {
                 if (objectsToDamage[i] != null)
-                    objectsToDamage[i].TakeDamage(damage);
+                {
+                    if (objectsToDamage[i].gameObject.TryGetComponent<CharacterController>(out CharacterController cc))
+                    {
+                        if (cc.enabled)
+                        {
+                            //Debug.Log("CC enabled!");
+                            objectsToDamage[i].TakeDamage(damage);
+                        }
+                        else
+                        {
+                            //Debug.Log("CC disabled!");
+                            OnTriggerExit(cc);
+                        }
+                    }
+                }    
             }
             StartCoroutine(PerformAttackCoroutine());
         }
@@ -75,6 +89,8 @@ public class DangerousZone : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        Debug.Log("Something left the zone!");
+
         ObjectExited.Invoke(zoneType);
 
         if (other.TryGetComponent<Health>(out Health healthComponent))
@@ -82,9 +98,10 @@ public class DangerousZone : MonoBehaviour
             if (objectsToDamage.Contains(healthComponent))
             {
                 objectsToDamage.Remove(healthComponent);
+                Debug.Log("Health component removed from List!");
             }
 
-            Debug.Log($"{other.gameObject.name} is out of the dirt");
+            Debug.Log($"{other.gameObject.name} is out of the zone");
         }
     }
 

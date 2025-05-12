@@ -66,7 +66,7 @@ public class Health : MonoBehaviour
         if (hp < 0)
             hp = 0;
 
-        Debug.Log($"Damage recieved: {damageValue}, remaining HP: {hp}");
+        //Debug.Log($"Damage recieved: {damageValue}, remaining HP: {hp}");
 
         TookDamage.Invoke();
 
