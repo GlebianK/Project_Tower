@@ -1,14 +1,19 @@
+using System.Collections;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
+    [SerializeField] private float saveAfterRestartTimer = 10f;
+
     private Vector3 tempVector;
+    private bool canSave = false;
 
     public Vector3 SavedPlayerPosition => tempVector;
 
     private void Start()
     {
+        canSave = false;
         tempVector = TryLoadPlayerData();
         if (tempVector != Vector3.zero)
         {
@@ -18,6 +23,8 @@ public class Checkpoint : MonoBehaviour
         }
         else
             Debug.LogWarning("Checkpoint.Start: No saved player position!");
+
+        StartCoroutine(WaitUntilNextSaveCoroutine(saveAfterRestartTimer));
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,42 +38,54 @@ public class Checkpoint : MonoBehaviour
 
     private void SavePlayerData(Vector3 playerPos, GameObject player)
     {
-        float playerPosX = playerPos.x;
-        float playerPosY = playerPos.y;
-        float playerPosZ = playerPos.z;
-
-        PlayerPrefs.SetFloat("PlayerX", playerPosX);
-        PlayerPrefs.SetFloat("PlayerY", playerPosY);
-        PlayerPrefs.SetFloat("PlayerZ", playerPosZ);
-
-        if (player.TryGetComponent<Health>(out Health playerHealth))
+        if (canSave)
         {
-            PlayerPrefs.SetFloat("Health", playerHealth.HP);
+            canSave = false;
+
+            float playerPosX = playerPos.x;
+            float playerPosY = playerPos.y;
+            float playerPosZ = playerPos.z;
+
+            PlayerPrefs.SetFloat("PlayerX", playerPosX);
+            PlayerPrefs.SetFloat("PlayerY", playerPosY);
+            PlayerPrefs.SetFloat("PlayerZ", playerPosZ);
+
+            if (player.TryGetComponent<Health>(out Health playerHealth))
+            {
+                PlayerPrefs.SetFloat("Health", playerHealth.HP);
+            }
+
+            if (player.TryGetComponent<UseItem>(out UseItem useItemComponent))
+            {
+                PlayerPrefs.SetInt("Medkits", useItemComponent.GetMedkitsAmount());
+            }
+
+            GameplayManager gm = FindAnyObjectByType<GameplayManager>();
+            if (gm != null)
+            {
+                int rats = gm.GetRatKillsCounted();
+                PlayerPrefs.SetInt("Rats", rats);
+
+                int lights = gm.GetLightEnemiesKillsCounted();
+                PlayerPrefs.SetInt("Light", lights);
+
+                int heavies = gm.GetShieldEnemiesKillsCounted();
+                PlayerPrefs.SetInt("Heavy", heavies);
+            }
+
+            GameTimer gt = FindAnyObjectByType<GameTimer>();
+            if (gt != null)
+            {
+                PlayerPrefs.SetFloat("Timer", gt.TimeClamped);
+            }
         }
+        StartCoroutine(WaitUntilNextSaveCoroutine(saveAfterRestartTimer));
+    }
 
-        if (player.TryGetComponent<UseItem>(out UseItem useItemComponent))
-        {
-            PlayerPrefs.SetInt("Medkits", useItemComponent.GetMedkitsAmount());
-        }
-
-        GameplayManager gm = FindAnyObjectByType<GameplayManager>();
-        if (gm != null)
-        {
-            int rats = gm.GetRatKillsCounted();
-            PlayerPrefs.SetInt("Rats", rats);
-
-            int lights = gm.GetLightEnemiesKillsCounted();
-            PlayerPrefs.SetInt("Light", lights);
-
-            int heavies = gm.GetShieldEnemiesKillsCounted();
-            PlayerPrefs.SetInt("Heavy", heavies);
-        }
-
-        GameTimer gt = FindAnyObjectByType<GameTimer>();
-        if (gt != null)
-        {
-            PlayerPrefs.SetFloat("Timer", gt.TimeClamped);
-        }
+    private IEnumerator WaitUntilNextSaveCoroutine(float timer)
+    {
+        yield return new WaitForSeconds(timer);
+        canSave = true;
     }
 
     private Vector3 TryLoadPlayerData()
@@ -90,73 +109,84 @@ public class Checkpoint : MonoBehaviour
         GameObject player = FindAnyObjectByType<CombatControllerPlayer>().gameObject;
         if (player != null)
         {
-            // Load health
-            if (PlayerPrefs.HasKey("Health") && player.TryGetComponent<Health>(out Health playerHealth))
-            {
-                playerHealth.SetHPViaCheckpointData(PlayerPrefs.GetFloat("Health"));
-            }
-            else
-            {
-                Debug.LogError("Checkpoint load data: can't find Health!");
-                return Vector3.zero;
-            }
-
-            // Load amount of Medkits
-            if (PlayerPrefs.HasKey("Medkits") && player.TryGetComponent<UseItem>(out UseItem useItemComponent))
-            {
-                useItemComponent.SetMedkitsAmountViaCheckpointData(PlayerPrefs.GetInt("Medkits"));
-            }
-            else
-            {
-                Debug.LogError("Checkpoint load data: can't find Medkits!");
-                return Vector3.zero;
-            }
-
-            // Load kills
-            GameplayManager gm = FindAnyObjectByType<GameplayManager>();
-            if (gm != null)
-            {
-                if (PlayerPrefs.HasKey("Rats") && PlayerPrefs.HasKey("Rats") && PlayerPrefs.HasKey("Rats"))
-                {
-                    int rats = PlayerPrefs.GetInt("Rats");
-                    gm.SetRatKillsCounted(rats);
-
-                    int lights = PlayerPrefs.GetInt("Light");
-                    gm.SetLightEnemiesKillsCounted(lights);
-
-                    int heavies = PlayerPrefs.GetInt("Heavy");
-                    gm.SetShieldEnemiesKillsCounted(heavies);
-
-                }
-                else
-                {
-                    Debug.LogError("Checkpoint load data: can't find Kills!");
-                }
-                
-            }
-            else
-            {
-                Debug.LogError("Checkpoint load data: can't find GameplayManager!");
-                return Vector3.zero;
-            }
-
-            //Load timer value
-            GameTimer gt = FindAnyObjectByType<GameTimer>();
-            if (gt != null)
-            {
-                gt.SetTimerFromCheckpointData(PlayerPrefs.GetFloat("Timer"));
-            }
-            else
-            {
-                Debug.LogError("Checkpoint load data: can't find Timer!");
-                return Vector3.zero;
-            }
+            StartCoroutine(GetPlayerComponentValuesCoroutine(player));
         }
         else
         {
             Debug.LogError("NO PLAYER FOUND FOR CHECKPOINT LOAD!");
+            temp = Vector3.zero;
         }
 
         return temp;
+    }
+
+    private IEnumerator GetPlayerComponentValuesCoroutine(GameObject playerC)
+    {
+        yield return null;
+        yield return new WaitForSeconds(0.75f);
+
+        // Load health
+        if (PlayerPrefs.HasKey("Health") && playerC.TryGetComponent<Health>(out Health playerHealth))
+        {
+            playerHealth.SetHPViaCheckpointData(PlayerPrefs.GetFloat("Health"));
+            Debug.Log("Saved health restored!");
+        }
+        else
+        {
+            Debug.LogError("Checkpoint load data: can't find Health!");
+        }
+
+        // Load amount of Medkits
+        if (PlayerPrefs.HasKey("Medkits") && playerC.TryGetComponent<UseItem>(out UseItem useItemComponent))
+        {
+            useItemComponent.SetMedkitsAmountViaCheckpointData(PlayerPrefs.GetInt("Medkits"));
+            Debug.Log("Saved medkits amount restored!");
+        }
+        else
+        {
+            Debug.LogError("Checkpoint load data: can't find Medkits!");
+        }
+
+        // Load kills
+        GameplayManager gm = FindAnyObjectByType<GameplayManager>();
+        if (gm != null)
+        {
+            if (PlayerPrefs.HasKey("Rats") && PlayerPrefs.HasKey("Rats") && PlayerPrefs.HasKey("Rats"))
+            {
+                int rats = PlayerPrefs.GetInt("Rats");
+                gm.SetRatKillsCounted(rats);
+
+                int lights = PlayerPrefs.GetInt("Light");
+                gm.SetLightEnemiesKillsCounted(lights);
+
+                int heavies = PlayerPrefs.GetInt("Heavy");
+                gm.SetShieldEnemiesKillsCounted(heavies);
+
+                Debug.Log("Saved kills restored!");
+            }
+            else
+            {
+                Debug.LogError("Checkpoint load data: can't find Kills!");
+            }
+
+        }
+        else
+        {
+            Debug.LogError("Checkpoint load data: can't find GameplayManager!");
+        }
+
+        //Load timer value
+        GameTimer gt = FindAnyObjectByType<GameTimer>();
+        if (gt != null)
+        {
+            gt.SetTimerFromCheckpointData(PlayerPrefs.GetFloat("Timer"));
+            Debug.Log("Saved Timer value restored!");
+        }
+        else
+        {
+            Debug.LogError("Checkpoint load data: can't find Timer!");
+        }
+
+        yield return null;
     }
 }

@@ -118,5 +118,6 @@ public class Health : MonoBehaviour
     public void SetHPViaCheckpointData(float healthPoints)
     {
         hp = healthPoints;
+        Healed.Invoke();
     }
 }
