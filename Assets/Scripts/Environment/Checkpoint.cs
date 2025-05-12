@@ -17,9 +17,12 @@ public class Checkpoint : MonoBehaviour
         tempVector = TryLoadPlayerData();
         if (tempVector != Vector3.zero)
         {
-            Transform player = FindAnyObjectByType<CombatControllerPlayer>().gameObject.transform;
+            Debug.Log($"Saved position: x={tempVector.x}, y={tempVector.y}, z={tempVector.z}");
+            Transform player = FindAnyObjectByType<CharacterController>().gameObject.transform;
+            Debug.Log($"Player initial position: x={player.position.x}, y={player.position.y}, z={player.position.z}");
             player.position = tempVector;
             Debug.LogWarning("Checkpoint saved data found!");
+            Debug.Log($"Player new position: x={player.position.x}, y={player.position.y}, z={player.position.z}");
         }
         else
             Debug.LogWarning("Checkpoint.Start: No saved player position!");
@@ -90,7 +93,7 @@ public class Checkpoint : MonoBehaviour
 
     private Vector3 TryLoadPlayerData()
     {
-        Vector3 temp = new();
+        Vector3 temp = Vector3.zero;
 
         // Load world position
         if (PlayerPrefs.HasKey("PlayerX") && PlayerPrefs.HasKey("PlayerY") && PlayerPrefs.HasKey("PlayerZ"))
@@ -106,15 +109,17 @@ public class Checkpoint : MonoBehaviour
             return temp;
         }
 
-        GameObject player = FindAnyObjectByType<CombatControllerPlayer>().gameObject;
+        GameObject player = FindAnyObjectByType<CharacterController>().gameObject;
         if (player != null)
         {
+            Debug.Log("Loading saved values...");
             StartCoroutine(GetPlayerComponentValuesCoroutine(player));
         }
         else
         {
             Debug.LogError("NO PLAYER FOUND FOR CHECKPOINT LOAD!");
             temp = Vector3.zero;
+            return temp;
         }
 
         return temp;
@@ -123,13 +128,13 @@ public class Checkpoint : MonoBehaviour
     private IEnumerator GetPlayerComponentValuesCoroutine(GameObject playerC)
     {
         yield return null;
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.75f); // просто ждём
 
         // Load health
         if (PlayerPrefs.HasKey("Health") && playerC.TryGetComponent<Health>(out Health playerHealth))
         {
             playerHealth.SetHPViaCheckpointData(PlayerPrefs.GetFloat("Health"));
-            Debug.Log("Saved health restored!");
+            Debug.Log($"Saved health restored! Value: {PlayerPrefs.GetFloat("Health")}");
         }
         else
         {
@@ -140,7 +145,7 @@ public class Checkpoint : MonoBehaviour
         if (PlayerPrefs.HasKey("Medkits") && playerC.TryGetComponent<UseItem>(out UseItem useItemComponent))
         {
             useItemComponent.SetMedkitsAmountViaCheckpointData(PlayerPrefs.GetInt("Medkits"));
-            Debug.Log("Saved medkits amount restored!");
+            Debug.Log($"Saved medkits amount restored! Value: {PlayerPrefs.GetInt("Medkits")}");
         }
         else
         {
@@ -151,7 +156,7 @@ public class Checkpoint : MonoBehaviour
         GameplayManager gm = FindAnyObjectByType<GameplayManager>();
         if (gm != null)
         {
-            if (PlayerPrefs.HasKey("Rats") && PlayerPrefs.HasKey("Rats") && PlayerPrefs.HasKey("Rats"))
+            if (PlayerPrefs.HasKey("Rats") && PlayerPrefs.HasKey("Light") && PlayerPrefs.HasKey("Heavy"))
             {
                 int rats = PlayerPrefs.GetInt("Rats");
                 gm.SetRatKillsCounted(rats);
@@ -162,7 +167,7 @@ public class Checkpoint : MonoBehaviour
                 int heavies = PlayerPrefs.GetInt("Heavy");
                 gm.SetShieldEnemiesKillsCounted(heavies);
 
-                Debug.Log("Saved kills restored!");
+                Debug.Log($"Saved kills restored! Values: r={rats}, l={lights}, s={heavies}");
             }
             else
             {
@@ -180,13 +185,13 @@ public class Checkpoint : MonoBehaviour
         if (gt != null)
         {
             gt.SetTimerFromCheckpointData(PlayerPrefs.GetFloat("Timer"));
-            Debug.Log("Saved Timer value restored!");
+            Debug.Log($"Saved Timer value restored! Value: {PlayerPrefs.GetFloat("Timer")}");
         }
         else
         {
             Debug.LogError("Checkpoint load data: can't find Timer!");
         }
-
+        Debug.Log("Loading checkpoint data complete!");
         yield return null;
     }
 }
