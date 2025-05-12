@@ -60434,6 +60434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0943b0240efb5844490f863a63fd533a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveAfterRestartTimer: 10
 --- !u!65 &499923046
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -214140,6 +214141,17 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1309242935129331371, guid: 79fa68c0c35d23f46b452fa1d1d9c19c, type: 3}
+      propertyPath: m_text
+      value: "\u042D\u0442\u0430 \u0432\u044B\u043B\u0430\u0437\u043A\u0430 \u043E\u043A\u0430\u0437\u0430\u043B\u0430\u0441\u044C
+        \u0434\u043B\u044F \u043C\u0435\u043D\u044F \u043F\u043E\u0441\u043B\u0435\u0434\u043D\u0435\u0439
+        \u0438 \u044F \u043D\u0435 \u0441\u043C\u043E\u0433 \u043F\u043E\u043C\u043E\u0447\u044C
+        \u043B\u044E\u0434\u044F\u043C. \u0422\u0435\u043F\u0435\u0440\u044C \u0440\u0435\u0439\u0434\u0435\u0440\u044B
+        \u0440\u0430\u0437\u0433\u0440\u0430\u0431\u044F\u0442 \u043B\u0430\u0433\u0435\u0440\u044C,
+        \u043F\u0435\u0440\u0435\u0431\u0438\u0432 \u0432\u0441\u0435\u0445 \u0434\u043E
+        \u0435\u0434\u0438\u043D\u043E\u0433\u043E. \u0421\u043E\u043A\u0440\u0443\u0448\u0438\u0442\u0435\u043B\u044C\u043D\u043E\u0435
+        \u0444\u0438\u0430\u0441\u043A\u043E."
+      objectReference: {fileID: 0}
     - target: {fileID: 1335813210178254911, guid: 79fa68c0c35d23f46b452fa1d1d9c19c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -214854,6 +214866,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4128457621648398205, guid: 79fa68c0c35d23f46b452fa1d1d9c19c, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4303197945754946057, guid: 79fa68c0c35d23f46b452fa1d1d9c19c, type: 3}
+      propertyPath: m_Alpha
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4456806857033493708, guid: 79fa68c0c35d23f46b452fa1d1d9c19c, type: 3}
