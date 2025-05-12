@@ -110,7 +110,7 @@ public class NewEnemyBase : MonoBehaviour
         agent.speed = speedAgent;
         agent.angularSpeed = angularSpeedAgent;
         agent.isStopped = false;
-        //motionEnemy.StartMovingAnimations();
+        motionEnemy.StartMovingAnimations();
     }
 
     protected void ChasePlayer()
@@ -120,7 +120,7 @@ public class NewEnemyBase : MonoBehaviour
             Vector3 playerCapsuleSurfacePos = GetPointOnSurface(player, gameObject.transform, playerCCRadius);
             agent.SetDestination(player.position + playerCapsuleSurfacePos);  // CHANGED !!!!!!!!!!!!!!!!!!!!!! (����: player.position)
             AllowEnemyMovement();
-            motionEnemy.StartMovingAnimations();
+            //motionEnemy.StartMovingAnimations();
         }
     }
 
