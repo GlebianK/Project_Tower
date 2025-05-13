@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
@@ -18,11 +17,26 @@ public class Checkpoint : MonoBehaviour
         if (tempVector != Vector3.zero)
         {
             Debug.Log($"Saved position: x={tempVector.x}, y={tempVector.y}, z={tempVector.z}");
-            Transform player = FindAnyObjectByType<CharacterController>().gameObject.transform;
-            Debug.Log($"Player initial position: x={player.position.x}, y={player.position.y}, z={player.position.z}");
-            player.position = tempVector;
-            Debug.LogWarning("Checkpoint saved data found!");
-            Debug.Log($"Player new position: x={player.position.x}, y={player.position.y}, z={player.position.z}");
+            Transform player = FindAnyObjectByType<CombatControllerPlayer>().gameObject.transform;
+            if (player != null)
+            {
+                if ( player.gameObject.TryGetComponent<CharacterController>(out CharacterController cc))
+                {
+                    cc.enabled = false;
+                    Debug.Log($"Player initial position: x={player.position.x}, y={player.position.y}, z={player.position.z}");
+
+                    player.position = tempVector;
+
+                    Debug.LogWarning("Checkpoint saved data found!");
+                    Debug.Log($"Player new position: x={player.position.x}, y={player.position.y}, z={player.position.z}");
+                    cc.enabled = true;
+                }
+                else
+                    Debug.LogError("Checkpoint.Start: NO CHARACTER CONTROLLER ON PLAYER!");
+            }
+            else
+                Debug.LogError("Checkpoint.Start: NO PLAYER ON THE SCENE!");
+            
         }
         else
             Debug.LogWarning("Checkpoint.Start: No saved player position!");
@@ -109,7 +123,7 @@ public class Checkpoint : MonoBehaviour
             return temp;
         }
 
-        GameObject player = FindAnyObjectByType<CharacterController>().gameObject;
+        GameObject player = FindAnyObjectByType<CombatControllerPlayer>().gameObject;
         if (player != null)
         {
             Debug.Log("Loading saved values...");
