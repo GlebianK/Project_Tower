@@ -1055,7 +1055,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 99.99998, y: 100.000015}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3667582259604382082
 CanvasRenderer:
@@ -1078,7 +1078,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 0}
+  m_Color: {r: 0.6528301, g: 0.25990024, b: 0.25990024, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1114,21 +1114,21 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
+      value: -0.00091552734
+      inSlope: 14.26574
+      outSlope: 14.26574
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.037823673
     - serializedVersion: 3
       time: 0.11449036
       value: 0.49293113
-      inSlope: -0.097820945
+      inSlope: -0.0000045162315
       outSlope: -0.097820945
-      tangentMode: 0
+      tangentMode: 1
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0.5763748
       outWeight: 0.045342304
     - serializedVersion: 3
       time: 0.5632873
@@ -8626,7 +8626,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2769331271058756442
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16725,7 +16725,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMovementActionMapName: Movement
   uiActionMapName: UI Interaction
-  isDevMode: 0
+  isDevMode: 1
   playerSpawnPoint: {fileID: 0}
   playerInitialHP: 10000
   initialMedKitsAmount: 0
