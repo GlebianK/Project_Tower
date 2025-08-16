@@ -48,6 +48,8 @@ public class Checkpoint : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.LogWarning("Player entered the checkpoint trigger!");
+            Debug.Log($"CP pos: {gameObject.transform.position}, player pos: {other.transform.position}");
             tempVector = other.transform.position;
             SavePlayerData(tempVector, other.gameObject);
         }
@@ -57,8 +59,6 @@ public class Checkpoint : MonoBehaviour
     {
         if (canSave)
         {
-            canSave = false;
-
             float playerPosX = playerPos.x;
             float playerPosY = playerPos.y;
             float playerPosZ = playerPos.z;
@@ -67,14 +67,18 @@ public class Checkpoint : MonoBehaviour
             PlayerPrefs.SetFloat("PlayerY", playerPosY);
             PlayerPrefs.SetFloat("PlayerZ", playerPosZ);
 
+            Debug.Log($"SavePlayerData: position saved! Values: X = {playerPosX}, Y = {playerPosY}, Z = {playerPosZ}");
+
             if (player.TryGetComponent<Health>(out Health playerHealth))
             {
                 PlayerPrefs.SetFloat("Health", playerHealth.HP);
+                Debug.Log($"SavePlayerData: hp saved! {playerHealth.HP}");
             }
 
             if (player.TryGetComponent<UseItem>(out UseItem useItemComponent))
             {
                 PlayerPrefs.SetInt("Medkits", useItemComponent.GetMedkitsAmount());
+                Debug.Log($"SavePlayerData: medkits saved! {useItemComponent.GetMedkitsAmount()}");
             }
 
             GameplayManager gm = FindAnyObjectByType<GameplayManager>();
@@ -88,19 +92,30 @@ public class Checkpoint : MonoBehaviour
 
                 int heavies = gm.GetShieldEnemiesKillsCounted();
                 PlayerPrefs.SetInt("Heavy", heavies);
+
+                Debug.Log($"SavePlayerData: kills saved! Values: r={rats}, l={lights}, s={heavies}");
             }
+            else
+                Debug.LogWarning("Can't find GameplayManager to save kills!");
 
             GameTimer gt = FindAnyObjectByType<GameTimer>();
             if (gt != null)
             {
                 PlayerPrefs.SetFloat("Timer", gt.TimeClamped);
+                Debug.Log($"SavePlayerData: timer value saved! {gt.TimeClamped}");
             }
+            else
+                Debug.LogWarning("Can't find GameTimer to save timer!");
+
+            StartCoroutine(WaitUntilNextSaveCoroutine(saveAfterRestartTimer));
         }
-        StartCoroutine(WaitUntilNextSaveCoroutine(saveAfterRestartTimer));
+        else
+            Debug.LogWarning("Checkpoint's save system is on cooldown!");
     }
 
     private IEnumerator WaitUntilNextSaveCoroutine(float timer)
     {
+        canSave = false;
         yield return new WaitForSeconds(timer);
         canSave = true;
     }
@@ -185,7 +200,7 @@ public class Checkpoint : MonoBehaviour
             }
             else
             {
-                Debug.LogError("Checkpoint load data: can't find Kills!");
+                Debug.LogError("Checkpoint load data: can't find all kills!");
             }
 
         }

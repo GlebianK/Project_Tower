@@ -153,8 +153,8 @@ public class GameplayManager : MonoBehaviour
 
     public int GetLightEnemiesKillsCounted()
     {
-        if (ratKillCounted)
-            return RatKilled;
+        if (lightKillCounted)
+            return LightKilled;
         else
             return 0;
     }
@@ -166,8 +166,8 @@ public class GameplayManager : MonoBehaviour
 
     public int GetShieldEnemiesKillsCounted()
     {
-        if (ratKillCounted)
-            return RatKilled;
+        if (heavyKillCounted)
+            return HeavyKilled;
         else
             return 0;
     }
